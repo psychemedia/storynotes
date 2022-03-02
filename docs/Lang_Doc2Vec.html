@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Connecting to the Database &#8212; Story Notes - Technical Recipes</title>
+    <title>Doc2Vec Searching of Lang Database &#8212; Story Notes - Technical Recipes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -37,18 +37,22 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tale Types Scraper" href="Missouri_Tale_Types.html" />
@@ -118,7 +122,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Connecting to the Database
+   Doc2Vec Searching of Lang Database
   </a>
  </li>
 </ul>
@@ -238,27 +242,27 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-to-the-database">
    Connecting to the Database
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#simple-model">
    Simple Model
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-a-search-tool">
    Creating a Search Tool
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#saving-model-vectors-into-the-database">
    Saving Model Vectors into the Database
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#add-tf-idf">
    Add TF-IDF
   </a>
@@ -274,8 +278,9 @@
         
               <div>
                 
-  <p># Doc2Vec Searching of Lang Database</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">gensim</span></code> and a simple <code class="docutils literal notranslate"><span class="pre">doc2vec</span></code> model trained on stories from the Lang coloured fairy books to support semantic retrieval of fairy stories.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="doc2vec-searching-of-lang-database">
+<h1>Doc2Vec Searching of Lang Database<a class="headerlink" href="#doc2vec-searching-of-lang-database" title="Permalink to this headline">¶</a></h1>
+<p>In this recipe, I will demonstrate the use of the <code class="docutils literal notranslate"><span class="pre">gensim</span></code> package and a simple <code class="docutils literal notranslate"><span class="pre">doc2vec</span></code> model trained on stories from the Lang coloured fairy books to support semantic retrieval of fairy stories.</p>
 <p>The approach can be summarised as follows:</p>
 <ul class="simple">
 <li><p>generate a vocabulary of terms representative of the search corpus;</p></li>
@@ -284,8 +289,9 @@
 <li><p>retrieve documents based on similarity between document vector and search phrase vector.</p></li>
 </ul>
 <p>The following recipe is inspired by <a class="reference external" href="https://github.com/ppontisso/Text-Search-Engine-using-Doc2Vec-and-TF-IDF/blob/master/notebook.ipynb">How to make a search engine on Movies Description</a>.</p>
+<p>See also <a class="reference external" href="https://www.kaggle.com/hgilles06/a-doc2vec-search-engine-cord19-new-version">https://www.kaggle.com/hgilles06/a-doc2vec-search-engine-cord19-new-version</a> for ideas on a possible graphical user interface.</p>
 <div class="section" id="connecting-to-the-database">
-<h1>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h1>
+<h2>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h2>
 <p>We’re going to work with our Lang fairy story database, so let’s set up a connection to it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -338,8 +344,6 @@ CREATE TRIGGER [books_au] AFTER UPDATE ON [books] BEGIN
   INSERT INTO [books_fts] ([books_fts], rowid, [title], [text]) VALUES(&#39;delete&#39;, old.rowid, old.[title], old.[text]);
   INSERT INTO [books_fts] (rowid, [title], [text]) VALUES (new.rowid, new.[title], new.[text]);
 END;
-CREATE TABLE story_vectors 
-    (tag TEXT PRIMARY KEY, vector array, book TEXT, title TEXT );
 </pre></div>
 </div>
 </div>
@@ -380,18 +384,18 @@ CREATE TABLE story_vectors
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Fairy Nurse
-The Four Gifts
-The Hairy Man
-The Stone-Cutter
-The Little Soldier
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Master Cat; Or, Puss In Boots
+The Dragon Of The North
+The Snow-Daughter And The Fire-Son
+Princess Rosette
+Graciosa And Percinet
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="simple-model">
-<h1>Simple Model<a class="headerlink" href="#simple-model" title="Permalink to this headline">¶</a></h1>
+<h2>Simple Model<a class="headerlink" href="#simple-model" title="Permalink to this headline">¶</a></h2>
 <p>We could use an off-the-shelf model to process documents, or we can train our own model from our own documents so that the word vectors are aligned to our dataset. In a large corpus, we can train on a sample of documents if they are representative of the whole.</p>
 <p>If we train against the whole dataset, we can search into the dataset directly from the model. If train the model on a partial collection, then we can only compare search phrases and documents that we have generated vectors for.</p>
 <p>To create the model, it helps if we clean the documents, e.g. by decasing, and removing punctuation:</p>
@@ -574,16 +578,17 @@ The Little Soldier
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Hansel And Grettel&#39;, 0.7547191381454468),
- (&#39;The Yellow Fairy Book::The Witch&#39;, 0.5689845085144043),
- (&#39;The Red Fairy Book::The Three Dwarfs&#39;, 0.4800337553024292),
- (&#39;The Red Fairy Book::Brother And Sister&#39;, 0.4466070830821991),
- (&#39;The Yellow Fairy Book::The White Duck&#39;, 0.42747220396995544),
- (&#39;The Red Fairy Book::Mother Holle&#39;, 0.4187214970588684),
- (&#39;The Orange Fairy Book::The Two Caskets&#39;, 0.4114452302455902),
- (&#39;The Red Fairy Book::The Twelve Brothers&#39;, 0.39679238200187683),
- (&#39;The Orange Fairy Book::The Owl And The Eagle&#39;, 0.3924826979637146),
- (&#39;The Yellow Fairy Book::The Nixy&#39;, 0.38102683424949646)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Hansel And Grettel&#39;, 0.8078378438949585),
+ (&#39;The Yellow Fairy Book::The Witch&#39;, 0.6382074356079102),
+ (&#39;The Red Fairy Book::Mother Holle&#39;, 0.5871626734733582),
+ (&#39;The Red Fairy Book::The Three Dwarfs&#39;, 0.5496401786804199),
+ (&#39;The Yellow Fairy Book::The White Duck&#39;, 0.5409235954284668),
+ (&#39;The Pink Fairy Book::The House In The Wood&#39;, 0.5084931254386902),
+ (&#39;The Red Fairy Book::The Twelve Brothers&#39;, 0.5014591217041016),
+ (&#39;The Red Fairy Book::The True History Of Little Golden Hood&#39;,
+  0.4763985276222229),
+ (&#39;The Lilac Fairy Book::The Fairy Nurse&#39;, 0.4740994870662689),
+ (&#39;The Red Fairy Book::Brother And Sister&#39;, 0.4694729149341583)]
 </pre></div>
 </div>
 </div>
@@ -607,16 +612,16 @@ The Little Soldier
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Cinderella, Or The Little Glass Slipper&#39;,
-  0.5544741749763489),
- (&#39;The Yellow Fairy Book::The Yellow Fairy Book&#39;, 0.5115742683410645),
- (&#39;The Pink Fairy Book::Peter Bull&#39;, 0.5099089741706848),
- (&#39;The Pink Fairy Book::The Merry Wives&#39;, 0.49374860525131226),
- (&#39;The Green Fairy Book::Spindle, Shuttle, And Needle&#39;, 0.4853510856628418),
- (&#39;The Blue Fairy Book::Rumpelstiltzkin&#39;, 0.46972209215164185),
- (&#39;The Yellow Fairy Book::The Swineherd&#39;, 0.46485644578933716),
- (&#39;The Yellow Fairy Book::How To Tell A True Princess&#39;, 0.46403932571411133),
- (&#39;The Red Fairy Book::Mother Holle&#39;, 0.45142310857772827),
- (&#39;The Blue Fairy Book::Little Red Riding Hood&#39;, 0.4508194923400879)]
+  0.5001515746116638),
+ (&#39;The Yellow Fairy Book::How To Tell A True Princess&#39;, 0.48996108770370483),
+ (&#39;The Pink Fairy Book::Peter Bull&#39;, 0.4699169099330902),
+ (&#39;The Green Fairy Book::The Dirty Shepherdess&#39;, 0.44922515749931335),
+ (&#39;The Brown Fairy Book::Habogi&#39;, 0.4464060068130493),
+ (&#39;The Pink Fairy Book::The Merry Wives&#39;, 0.44565868377685547),
+ (&#39;The Blue Fairy Book::Little Red Riding Hood&#39;, 0.44428491592407227),
+ (&#39;The Lilac Fairy Book::The Brownie Of The Lake&#39;, 0.429581880569458),
+ (&#39;The Green Fairy Book::Spindle, Shuttle, And Needle&#39;, 0.42602261900901794),
+ (&#39;The Brown Fairy Book::Which Was The Foolishest?&#39;, 0.4186409115791321)]
 </pre></div>
 </div>
 </div>
@@ -624,7 +629,7 @@ The Little Soldier
 <p>Not that the result is stochastic (has a random element) in the way that the search vector is inferred: if you rerun the query, you will likely generate a different search vector. As a consequence, the search results returned are likely differ in their order and match scores each time the query is run.</p>
 </div>
 <div class="section" id="creating-a-search-tool">
-<h1>Creating a Search Tool<a class="headerlink" href="#creating-a-search-tool" title="Permalink to this headline">¶</a></h1>
+<h2>Creating a Search Tool<a class="headerlink" href="#creating-a-search-tool" title="Permalink to this headline">¶</a></h2>
 <p>The next step is to register a custom SQLite function that will generate a vector for a search term and return matching records on that basis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -678,20 +683,15 @@ The Little Soldier
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Blue Fairy Book&#39;, &#39;Cinderella, Or The Little Glass Slipper&#39;, 0.5492352247238159)
-(&#39;The Green Fairy Book&#39;, &#39;Spindle, Shuttle, And Needle&#39;, 0.5063244104385376)
-(&#39;The Yellow Fairy Book&#39;, &#39;The Yellow Fairy Book&#39;, 0.4934154152870178)
-(&#39;The Pink Fairy Book&#39;, &#39;Peter Bull&#39;, 0.48438823223114014)
-(&#39;The Violet Fairy Book&#39;, &#39;The Child Who Came From An Egg&#39;, 0.4662984609603882)
-(&#39;The Blue Fairy Book&#39;, &#39;Rumpelstiltzkin&#39;, 0.45463424921035767)
-(&#39;The Yellow Fairy Book&#39;, &#39;How To Tell A True Princess&#39;, 0.45086005330085754)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Blue Fairy Book&#39;, &#39;Cinderella, Or The Little Glass Slipper&#39;, 0.48510563373565674)
+(&#39;The Yellow Fairy Book&#39;, &#39;How To Tell A True Princess&#39;, 0.46390530467033386)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="saving-model-vectors-into-the-database">
-<h1>Saving Model Vectors into the Database<a class="headerlink" href="#saving-model-vectors-into-the-database" title="Permalink to this headline">¶</a></h1>
+<h2>Saving Model Vectors into the Database<a class="headerlink" href="#saving-model-vectors-into-the-database" title="Permalink to this headline">¶</a></h2>
 <p>If we look at the object type of one of the model vectors, we see that it is a <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>, which can be easily represented as a list:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -780,7 +780,7 @@ The Little Soldier
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Cursor at 0x133501dc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Cursor at 0x129297500&gt;
 </pre></div>
 </div>
 </div>
@@ -822,8 +822,8 @@ The Little Soldier
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Blue Fairy Book::The Bronze Ring The Blue Fairy Book The Bronze Ring [-0.01405123 -0.50704396  0.7826763   0.6966156   0.87891227 -0.2688267
-  0.33178896 -1.6542805   1.053172    0.8667782 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Blue Fairy Book::The Bronze Ring The Blue Fairy Book The Bronze Ring [-1.0093689  -0.1564127  -0.0966939  -1.4806722   0.9885061  -0.20294045
+ -0.01452014  0.11410468  2.0146265   1.5099672 ]
 </pre></div>
 </div>
 </div>
@@ -868,21 +868,21 @@ The Little Soldier
     <tr>
       <th>0</th>
       <td>The Blue Fairy Book::The Bronze Ring</td>
-      <td>[-0.014051229, -0.50704396, 0.7826763, 0.69661...</td>
+      <td>[-1.0093689, -0.1564127, -0.096693896, -1.4806...</td>
       <td>The Blue Fairy Book</td>
       <td>The Bronze Ring</td>
     </tr>
     <tr>
       <th>1</th>
       <td>The Blue Fairy Book::Prince Hyacinth And The D...</td>
-      <td>[0.22857311, -0.0002901034, 0.86985964, -0.280...</td>
+      <td>[0.1957608, 0.38043478, -0.7802087, 1.2817937,...</td>
       <td>The Blue Fairy Book</td>
       <td>Prince Hyacinth And The Dear Little Princess</td>
     </tr>
     <tr>
       <th>2</th>
       <td>The Blue Fairy Book::East Of The Sun And West ...</td>
-      <td>[0.12482449, 0.509038, 0.730183, -1.0778545, 0...</td>
+      <td>[0.36145663, 1.1464835, -0.54549956, -0.858507...</td>
       <td>The Blue Fairy Book</td>
       <td>East Of The Sun And West Of The Moon</td>
     </tr>
@@ -937,42 +937,26 @@ The Little Soldier
     <tr>
       <th>6</th>
       <td>The Blue Fairy Book::Cinderella, Or The Little...</td>
-      <td>[1.1064563, 1.6556664, 0.65659255, 0.12633619,...</td>
+      <td>[-1.3509198, -1.6842823, 0.7652303, -0.1859175...</td>
       <td>The Blue Fairy Book</td>
       <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>0.554474</td>
+      <td>0.500151</td>
     </tr>
     <tr>
-      <th>275</th>
-      <td>The Yellow Fairy Book::The Yellow Fairy Book</td>
-      <td>[0.2586239, 0.2307802, 0.54648733, -0.15965664...</td>
+      <th>313</th>
+      <td>The Yellow Fairy Book::How To Tell A True Prin...</td>
+      <td>[-0.05214778, -0.12172321, 0.10988371, 0.09160...</td>
       <td>The Yellow Fairy Book</td>
-      <td>The Yellow Fairy Book</td>
-      <td>0.511574</td>
+      <td>How To Tell A True Princess</td>
+      <td>0.489961</td>
     </tr>
     <tr>
       <th>51</th>
       <td>The Pink Fairy Book::Peter Bull</td>
-      <td>[-1.1498377, 0.6431778, 0.94959325, 0.12849873...</td>
+      <td>[-0.9925492, 0.8335164, 0.41881433, 0.09546763...</td>
       <td>The Pink Fairy Book</td>
       <td>Peter Bull</td>
-      <td>0.509909</td>
-    </tr>
-    <tr>
-      <th>71</th>
-      <td>The Pink Fairy Book::The Merry Wives</td>
-      <td>[-0.4850009, 1.2584103, 0.38522613, 0.6031495,...</td>
-      <td>The Pink Fairy Book</td>
-      <td>The Merry Wives</td>
-      <td>0.493749</td>
-    </tr>
-    <tr>
-      <th>389</th>
-      <td>The Green Fairy Book::Spindle, Shuttle, And Ne...</td>
-      <td>[-0.0354758, 0.32155505, 0.37913308, -0.182975...</td>
-      <td>The Green Fairy Book</td>
-      <td>Spindle, Shuttle, And Needle</td>
-      <td>0.485351</td>
+      <td>0.469917</td>
     </tr>
   </tbody>
 </table>
@@ -1059,21 +1043,21 @@ The Little Soldier
   <tbody>
     <tr>
       <th>0</th>
-      <td>The Yellow Fairy Book</td>
-      <td>The Yellow Fairy Book</td>
-      <td>0.544387</td>
+      <td>The Blue Fairy Book</td>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>0.501989</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>0.538539</td>
+      <td>The Pink Fairy Book</td>
+      <td>Peter Bull</td>
+      <td>0.426749</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Pink Fairy Book</td>
-      <td>Peter Bull</td>
-      <td>0.521462</td>
+      <td>The Yellow Fairy Book</td>
+      <td>The Swineherd</td>
+      <td>0.413579</td>
     </tr>
   </tbody>
 </table>
@@ -1127,19 +1111,19 @@ The Little Soldier
       <th>0</th>
       <td>The Red Fairy Book</td>
       <td>The Nettle Spinner</td>
-      <td>0.629813</td>
+      <td>0.644197</td>
     </tr>
     <tr>
       <th>1</th>
       <td>The Blue Fairy Book</td>
       <td>Rumpelstiltzkin</td>
-      <td>0.542233</td>
+      <td>0.531964</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Pink Fairy Book</td>
-      <td>The Merry Wives</td>
-      <td>0.481604</td>
+      <td>The Green Fairy Book</td>
+      <td>Spindle, Shuttle, And Needle</td>
+      <td>0.514382</td>
     </tr>
   </tbody>
 </table>
@@ -1188,63 +1172,63 @@ The Little Soldier
   <tbody>
     <tr>
       <th>0</th>
-      <td>The Yellow Fairy Book</td>
-      <td>The Yellow Fairy Book</td>
-      <td>0.602410</td>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>0.590731</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Little Red Riding Hood</td>
-      <td>0.559836</td>
+      <td>The Red Fairy Book</td>
+      <td>The Six Sillies</td>
+      <td>0.566427</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Red Fairy Book</td>
-      <td>The True History Of Little Golden Hood</td>
-      <td>0.541085</td>
+      <td>The Yellow Fairy Book</td>
+      <td>The Yellow Fairy Book</td>
+      <td>0.566358</td>
     </tr>
     <tr>
       <th>3</th>
       <td>The Green Fairy Book</td>
-      <td>The Dirty Shepherdess</td>
-      <td>0.521930</td>
+      <td>Allerleirauh; Or, The Many-Furred Creature</td>
+      <td>0.556895</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>The Blue Fairy Book</td>
-      <td>Rumpelstiltzkin</td>
-      <td>0.514022</td>
+      <td>The Green Fairy Book</td>
+      <td>The Dirty Shepherdess</td>
+      <td>0.551209</td>
     </tr>
     <tr>
       <th>5</th>
       <td>The Red Fairy Book</td>
-      <td>The Six Sillies</td>
-      <td>0.513303</td>
+      <td>The True History Of Little Golden Hood</td>
+      <td>0.539535</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>The Pink Fairy Book</td>
-      <td>Peter Bull</td>
-      <td>0.507049</td>
+      <td>The Red Fairy Book</td>
+      <td>The Three Dwarfs</td>
+      <td>0.536254</td>
     </tr>
     <tr>
       <th>7</th>
       <td>The Blue Fairy Book</td>
-      <td>Why The Sea Is Salt</td>
-      <td>0.498361</td>
+      <td>Rumpelstiltzkin</td>
+      <td>0.534775</td>
     </tr>
     <tr>
       <th>8</th>
       <td>The Pink Fairy Book</td>
-      <td>I Know What I Have Learned</td>
-      <td>0.487329</td>
+      <td>The Merry Wives</td>
+      <td>0.527103</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>The Pink Fairy Book</td>
-      <td>The Shirt-Collar</td>
-      <td>0.481853</td>
+      <td>The Blue Fairy Book</td>
+      <td>Why The Sea Is Salt</td>
+      <td>0.517202</td>
     </tr>
   </tbody>
 </table>
@@ -1252,8 +1236,9 @@ The Little Soldier
 </div>
 </div>
 <div class="section" id="add-tf-idf">
-<h1>Add TF-IDF<a class="headerlink" href="#add-tf-idf" title="Permalink to this headline">¶</a></h1>
-<p>To improve the doc2vec performance, it might be worth exploring a model that has a stricter minimum frequency for words in the corpus, but that also mixes a TF-IDF (term frequency, inverse document frequency) component in the ranking score?</p>
+<h2>Add TF-IDF<a class="headerlink" href="#add-tf-idf" title="Permalink to this headline">¶</a></h2>
+<p>To improve the doc2vec performance, it might be worth exploring a model that has a stricter minimum frequency for words in the corpus, but that also mixes a TF-IDF (<em>term frequency, inverse document frequency</em>) component in the ranking score?</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

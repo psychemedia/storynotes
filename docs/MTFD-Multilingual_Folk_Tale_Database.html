@@ -37,21 +37,25 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Connecting to the Database" href="Lang_Doc2Vec.html" />
+    <link rel="next" title="Doc2Vec Searching of Lang Database" href="Lang_Doc2Vec.html" />
     <link rel="prev" title="Ashliman “Folklore and Mythology Electronic Texts” Scraper" href="Ashliman_folk_texts_scraper.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -118,7 +122,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lang_Doc2Vec.html">
-   Connecting to the Database
+   Doc2Vec Searching of Lang Database
   </a>
  </li>
 </ul>
@@ -249,6 +253,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-story-database">
+   Creating a Story Database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#query-the-database">
    Query the Database
   </a>
@@ -273,13 +282,18 @@
 <h1>Multilingual Folk Tale Database (MTFD)<a class="headerlink" href="#multilingual-folk-tale-database-mtfd" title="Permalink to this headline">¶</a></h1>
 <p>The Multilingual Folk Tale Database (MTFD) [<a class="reference external" href="http://www.mftd.org/">http://www.mftd.org/</a>] publishes a wide ranging collection of folk tales across many languages.</p>
 <p>In this notebook, we will create a simple scraper for grabbing English language folktales from the database into a simple file-based SQLite database.</p>
-<p>Let;s start off by loading in a couple of packages to handle the loading, cacheing and parsing of the database web pages.</p>
+<p>Let’s start off by loading in a couple of packages to support the cacheing of the web pages we’ll be downloading to populate the database.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“Cacheing” the pages means storing a local copy of them. This means we only need to grab the page from the webserver once and then work with a local copy of it if we need to call it again, as for example when developing the scripts used to populate the database.)</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests_cache</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 
-<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;ashliman_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span>
+<span class="c1"># </span>
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span>
                              <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -486,6 +500,18 @@
 <p>Each story page has a some metadata at the top of the page, the story text, and some additional metadata in a sidebar.</p>
 <p><img alt="" src="_images/MFTD_story_page.png" /></p>
 <p>The text is contained within a single HTML element, which is convenient. But the metadata at the top of the page and in the sidebar is very variable across story pages.</p>
+<p>To start with, let’s parse the HTML using <em>BeautifulSoup</em> so that we can more easily work with it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For some reason, requests-html can&#39;t reliably find the element</span>
+<span class="c1"># So parse the HTML using BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>We can easily extract the title from the page header :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -494,7 +520,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Nennillo and Nennella&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The Piglet, the Sheep, and the Goat&#39;
 </pre></div>
 </div>
 </div>
@@ -502,18 +528,13 @@
 <p>In the HTML, the text can be found inside a <code class="docutils literal notranslate"><span class="pre">&lt;text&gt;</span></code> element.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For some reason, requests-html can&#39;t reliably find the element</span>
-<span class="c1"># So parse the HTML using BeautifulSoup</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-
-<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">))</span>
 <span class="n">text</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;text&gt;&lt;p&gt;Woe to him who thinks to find a governess for his children by giving them a stepmother! He only brings into his house the cause of their ruin. There never yet was a stepmother who looked kindly on the children of another; or if by chance such a one were ever found, she would be regarded as a miracle, and be called a white crow. But beside all those of whom you may have heard, I will now tell you of another, to be added to the list of heartless stepmothers, whom you will consider well deserving the punishment she purchased for herself with ready money.&lt;/p&gt;&lt;p&gt;There was once a good man named Jannuccio, who had two children, Nennillo and Nennella, whom he loved as much as his own life. But Death having, with the smooth file of Time, severed the prison-bars of his wife\&#39;s soul, he took to himself a cruel woman, who had no sooner set foot in his house than she began to ride the high horse, saying, &quot;Am I come here indeed to look after other folk\&#39;s children? A pretty job I have undertaken, to have all this trouble and be for ever teased by a couple of squalling brats! Would that I had broken my neck ere I ever came to this place, to have bad food, worse drink, and get no sleep at night! Here\&#39;s a life to lead! Forsooth I came as a wife, and not as a servant; but I must find some means of getting rid of these creatures, or it will cost me my life: better to blush once than to grow pale a hundred times; so I\&#39;ve done with them, for I am resolved to send them away, or to leave the house myself for ever.&quot;&lt;/p&gt;&lt;p&gt;The poor husband, who had some affection for this woman, said to her, &quot;Softly, wife! Don\&#39;t be angry, for sugar is dear; and to-morrow morning, before the cock crows, I will remove this annoyance in order to please you.&quot; So the next morning, ere the Dawn had hung out the red counterpane at the window of the East to air it, Jannuccio took the children, one by each hand, and with a good basketful of things to eat upon his arm, he led them to a wood, where an army of poplars and beech-trees were holding the shades besieged. Then Jannuccio said, &quot;My little children, stay here in this wood, and eat and drink merrily; but if you want anything, follow this line of ashes which I have been strewing as we came along; this will be a clue to lead you out of the labyrinth and bring you straight home.&quot; Then giving them both a kiss, he returned weeping to his house.&lt;/p&gt;&lt;p&gt;But at the hour when all creatures, summoned by the constables of Night, pay to Nature the tax of needful repose, the two children began to feel afraid at remaining in that lonesome place, where the waters of a river, which was thrashing the impertinent stones for obstructing its course, would have frightened even a hero. So they went slowly along the path of ashes, and it was already midnight ere they reached their home. When Pascozza, their stepmother, saw the children, she acted not like a woman, but a perfect fury; crying aloud, wringing her hands, stamping with her feet, snorting like a frightened horse, and exclaiming, &quot;What fine piece of work is this? Is there no way of ridding the house of these creatures? Is it possible, husband, that you are determined to keep them here to plague my very life out? Go, take them out of my sight! I\&#39;ll not wait for the crowing of cocks and the cackling of hens; or else be assured that to-morrow morning I\&#39;ll go off to my parents\&#39; house, for you do not deserve me. I have not brought you so many fine things, only to be made the slave of children who are not my own.&quot;&lt;/p&gt;&lt;p&gt;Poor Jannuccio, who saw that matters were growing rather too warm, immediately took the little ones and returned to the wood; where giving the children another basketful of food, he said to them, &quot;You see, my dears, how this wife of mine--who is come to my house to be your ruin and a nail in my heart--hates you; therefore remain in this wood, where the trees, more compassionate, will give you shelter from the sun; where the river, more charitable, will give you drink without poison; and the earth, more kind, will give you a pillow of grass without danger. And when you want food, follow this little path of bran which I have made for you in a straight line, and you can come and seek what you require.&quot; So saying, he turned away his face, not to let himself be seen to weep and dishearten the poor little creatures.&lt;/p&gt;&lt;p&gt;When Nennillo and Nennella had eaten all that was in the basket, they wanted to return home; but alas! a jackass--the son of ill-luck--had eaten up all the bran that was strewn upon the ground; so they lost their way, and wandered about forlorn in the wood for several days, feeding on acorns and chestnuts which they found fallen on the ground. But as Heaven always extends its arm over the innocent, there came by chance a Prince to hunt in that wood. Then Nennillo, hearing the baying of the hounds, was so frightened that he crept into a hollow tree; and Nennella set off running at full speed, and ran until she came out of the wood, and found herself on the seashore. Now it happened that some pirates, who had landed there to get fuel, saw Nennella and carried her off; and their captain took her home with him where he and his wife, having just lost a little girl, took her as their daughter.&lt;/p&gt;&lt;p&gt;Meantime Nennillo, who had hidden himself in the tree, was surrounded by the dogs, which made such a furious barking that the Prince sent to find out the cause; and when he discovered the pretty little boy, who was so young that he could not tell who were his father and mother, he ordered one of the huntsmen to set him upon his saddle and take him to the royal palace. Then he had him brought up with great care, and instructed in various arts, and among others, he had him taught that of a carver; so that, before three or four years had passed, Nennillo became so expert in his art that he could carve a joint to a hair.&lt;/p&gt;&lt;p&gt;Now about this time it was discovered that the captain of the ship who had taken Nennella to his house was a sea-robber, and the people wished to take him prisoner; but getting timely notice from the clerks in the law-courts, who were his friends, and whom he kept in his pay, he fled with all his family. It was decreed, however, perhaps by the judgment of Heaven, that he who had committed his crimes upon the sea, upon the sea should suffer the punishment of them; for having embarked in a small boat, no sooner was he upon the open sea than there came such a storm of wind and tumult of the waves, that the boat was upset and all were drowned--all except Nennella, who having had no share in the corsair\&#39;s robberies, like his wife and children, escaped the danger; for just then a large enchanted fish, which was swimming about the boat, opened its huge throat and swallowed her down.&lt;/p&gt;&lt;p&gt;The little girl now thought to herself that her days were surely at an end, when suddenly she found a thing to amaze her inside the fish,--beautiful fields and fine gardens, and a splendid mansion, with all that heart could desire, in which she lived like a Princess. Then she was carried quickly by the fish to a rock, where it chanced that the Prince had come to escape the burning heat of a summer, and to enjoy the cool sea-breezes. And whilst a great banquet was preparing, Nennillo had stepped out upon a balcony of the palace on the rock to sharpen some knives, priding himself greatly on acquiring honour from his office. When Nennella saw him through the fish\&#39;s throat, she cried aloud,&lt;/p&gt;&lt;p&gt;&quot;Brother, brother, your task is done, The tables are laid out every one; But here in the fish I must sit and sigh, O brother, without you I soon shall die.&quot;&lt;/p&gt;&lt;p&gt;Nennillo at first paid no attention to the voice, but the Prince, who was standing on another balcony and had also heard it, turned in the direction whence the sound came, and saw the fish. And when he again heard the same words, he was beside himself with amazement, and ordered a number of servants to try whether by any means they could ensnare the fish and draw it to land. At last, hearing the words &quot;Brother, brother!&quot; continually repeated, he asked all his servants, one by one, whether any of them had lost a sister. And Nennillo replied, that he recollected, as a dream, having had a sister when the Prince found him in the wood, but that he had never since heard any tidings of her. Then the Prince told him to go nearer to the fish, and see what was the matter, for perhaps this adventure might concern him. As soon as Nennillo approached the fish, it raised up its head upon the rock, and opening its throat six palms wide, Nennella stepped out, so beautiful that she looked just like a nymph in some interlude, come forth from that animal at the incantation of a magician. And when the Prince asked her how it had all happened, she told him a part of her sad story, and the hatred of their stepmother; but not being able to recollect the name of their father nor of their home, the Prince caused a proclamation to be issued, commanding that whoever had lost two children, named Nennillo and Nennella, in a wood, should come to the royal palace, and he would there receive joyful news of them.&lt;/p&gt;&lt;p&gt;Jannuccio, who had all this time passed a sad and disconsolate life, believing that his children had been devoured by wolves, now hastened with the greatest joy to seek the Prince, and told him that he had lost the children. And when he had related the story, how he had been compelled to take them to the wood, the Prince gave him a good scolding, calling him a blockhead for allowing a woman to put her heel upon his neck till he was brought to send away two such jewels as his children. But after he had broken Jannuccio\&#39;s head with these words, he applied to it the plaster of consolation, showing him the children, whom the father embraced and kissed for half an hour without being satisfied. Then the Prince made him pull off his jacket, and had him dressed like a lord; and sending for Jannuccio\&#39;s wife, he showed her those two golden pippins, asked her what that person would deserve who should do them any harm, and even endanger their lives. And she replied, &quot;For my part, I would put her into a closed cask, and send her rolling down a mountain.&quot;&lt;/p&gt;&lt;p&gt;&quot;So it shall be done!&quot; said the Prince. &quot;The goat has butted at herself. Quick now! you have passed the sentence, and you must suffer it, for having borne these beautiful stepchildren such malice.&quot; So he gave orders that the sentence should be instantly executed. Then choosing a very rich lord among his vassals, he gave him Nennella to wife, and the daughter of another great lord to Nennillo; allowing them enough to live upon, with their father, so that they wanted for nothing in the world. But the stepmother, shut into the cask and shut out from life, kept on crying through the bunghole as long as she had breath--&lt;/p&gt;&lt;p&gt;&quot;To him who mischief seeks, shall mischief fall; There comes an hour that recompenses all.&quot;\n&lt;/p&gt;&lt;/text&gt;&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;text&gt;&lt;p&gt;  A YOUNG PIG was shut up in a fold-yard with a Goat and a Sheep.  On one occasion when the shepherd laid hold of him, he grunted and squeaked and resisted violently. The Sheep and the Goat complained of his distressing cries, saying, &amp;amp;quot;He often handles us, and we do not cry out.&amp;amp;quot; To this the Pig replied, &amp;amp;quot;Your handling and mine are very different things. He catches you only for your wool, or your milk, but he lays hold on me for my very life.&amp;amp;quot;&lt;/p&gt;&lt;/text&gt;&#39;
 </pre></div>
 </div>
 </div>
@@ -540,23 +561,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<p>Woe to him who thinks to find a governess for his children by giving them a stepmother! He only brings into his house the cause of their ruin. There never yet was a stepmother who looked kindly on the children of another; or if by chance such a one were ever found, she would be regarded as a miracle, and be called a white crow. But beside all those of whom you may have heard, I will now tell you of another, to be added to the list of heartless stepmothers, whom you will consider well deserving the punishment she purchased for herself with ready money.</p>
-<p>There was once a good man named Jannuccio, who had two children, Nennillo and Nennella, whom he loved as much as his own life. But Death having, with the smooth file of Time, severed the prison-bars of his wife's soul, he took to himself a cruel woman, who had no sooner set foot in his house than she began to ride the high horse, saying, &quot;Am I come here indeed to look after other folk's children? A pretty job I have undertaken, to have all this trouble and be for ever teased by a couple of squalling brats! Would that I had broken my neck ere I ever came to this place, to have bad food, worse drink, and get no sleep at night! Here's a life to lead! Forsooth I came as a wife, and not as a servant; but I must find some means of getting rid of these creatures, or it will cost me my life: better to blush once than to grow pale a hundred times; so I've done with them, for I am resolved to send them away, or to leave the house myself for ever.&quot;</p>
-<p>The poor husband, who had some affection for this woman, said to her, &quot;Softly, wife! Don't be angry, for sugar is dear; and to-morrow morning, before the cock crows, I will remove this annoyance in order to please you.&quot; So the next morning, ere the Dawn had hung out the red counterpane at the window of the East to air it, Jannuccio took the children, one by each hand, and with a good basketful of things to eat upon his arm, he led them to a wood, where an army of poplars and beech-trees were holding the shades besieged. Then Jannuccio said, &quot;My little children, stay here in this wood, and eat and drink merrily; but if you want anything, follow this line of ashes which I have been strewing as we came along; this will be a clue to lead you out of the labyrinth and bring you straight home.&quot; Then giving them both a kiss, he returned weeping to his house.</p>
-<p>But at the hour when all creatures, summoned by the constables of Night, pay to Nature the tax of needful repose, the two children began to feel afraid at remaining in that lonesome place, where the waters of a river, which was thrashing the impertinent stones for obstructing its course, would have frightened even a hero. So they went slowly along the path of ashes, and it was already midnight ere they reached their home. When Pascozza, their stepmother, saw the children, she acted not like a woman, but a perfect fury; crying aloud, wringing her hands, stamping with her feet, snorting like a frightened horse, and exclaiming, &quot;What fine piece of work is this? Is there no way of ridding the house of these creatures? Is it possible, husband, that you are determined to keep them here to plague my very life out? Go, take them out of my sight! I'll not wait for the crowing of cocks and the cackling of hens; or else be assured that to-morrow morning I'll go off to my parents' house, for you do not deserve me. I have not brought you so many fine things, only to be made the slave of children who are not my own.&quot;</p>
-<p>Poor Jannuccio, who saw that matters were growing rather too warm, immediately took the little ones and returned to the wood; where giving the children another basketful of food, he said to them, &quot;You see, my dears, how this wife of mine--who is come to my house to be your ruin and a nail in my heart--hates you; therefore remain in this wood, where the trees, more compassionate, will give you shelter from the sun; where the river, more charitable, will give you drink without poison; and the earth, more kind, will give you a pillow of grass without danger. And when you want food, follow this little path of bran which I have made for you in a straight line, and you can come and seek what you require.&quot; So saying, he turned away his face, not to let himself be seen to weep and dishearten the poor little creatures.</p>
-<p>When Nennillo and Nennella had eaten all that was in the basket, they wanted to return home; but alas! a jackass--the son of ill-luck--had eaten up all the bran that was strewn upon the ground; so they lost their way, and wandered about forlorn in the wood for several days, feeding on acorns and chestnuts which they found fallen on the ground. But as Heaven always extends its arm over the innocent, there came by chance a Prince to hunt in that wood. Then Nennillo, hearing the baying of the hounds, was so frightened that he crept into a hollow tree; and Nennella set off running at full speed, and ran until she came out of the wood, and found herself on the seashore. Now it happened that some pirates, who had landed there to get fuel, saw Nennella and carried her off; and their captain took her home with him where he and his wife, having just lost a little girl, took her as their daughter.</p>
-<p>Meantime Nennillo, who had hidden himself in the tree, was surrounded by the dogs, which made such a furious barking that the Prince sent to find out the cause; and when he discovered the pretty little boy, who was so young that he could not tell who were his father and mother, he ordered one of the huntsmen to set him upon his saddle and take him to the royal palace. Then he had him brought up with great care, and instructed in various arts, and among others, he had him taught that of a carver; so that, before three or four years had passed, Nennillo became so expert in his art that he could carve a joint to a hair.</p>
-<p>Now about this time it was discovered that the captain of the ship who had taken Nennella to his house was a sea-robber, and the people wished to take him prisoner; but getting timely notice from the clerks in the law-courts, who were his friends, and whom he kept in his pay, he fled with all his family. It was decreed, however, perhaps by the judgment of Heaven, that he who had committed his crimes upon the sea, upon the sea should suffer the punishment of them; for having embarked in a small boat, no sooner was he upon the open sea than there came such a storm of wind and tumult of the waves, that the boat was upset and all were drowned--all except Nennella, who having had no share in the corsair's robberies, like his wife and children, escaped the danger; for just then a large enchanted fish, which was swimming about the boat, opened its huge throat and swallowed her down.</p>
-<p>The little girl now thought to herself that her days were surely at an end, when suddenly she found a thing to amaze her inside the fish,--beautiful fields and fine gardens, and a splendid mansion, with all that heart could desire, in which she lived like a Princess. Then she was carried quickly by the fish to a rock, where it chanced that the Prince had come to escape the burning heat of a summer, and to enjoy the cool sea-breezes. And whilst a great banquet was preparing, Nennillo had stepped out upon a balcony of the palace on the rock to sharpen some knives, priding himself greatly on acquiring honour from his office. When Nennella saw him through the fish's throat, she cried aloud,</p>
-<p>&quot;Brother, brother, your task is done, The tables are laid out every one; But here in the fish I must sit and sigh, O brother, without you I soon shall die.&quot;</p>
-<p>Nennillo at first paid no attention to the voice, but the Prince, who was standing on another balcony and had also heard it, turned in the direction whence the sound came, and saw the fish. And when he again heard the same words, he was beside himself with amazement, and ordered a number of servants to try whether by any means they could ensnare the fish and draw it to land. At last, hearing the words &quot;Brother, brother!&quot; continually repeated, he asked all his servants, one by one, whether any of them had lost a sister. And Nennillo replied, that he recollected, as a dream, having had a sister when the Prince found him in the wood, but that he had never since heard any tidings of her. Then the Prince told him to go nearer to the fish, and see what was the matter, for perhaps this adventure might concern him. As soon as Nennillo approached the fish, it raised up its head upon the rock, and opening its throat six palms wide, Nennella stepped out, so beautiful that she looked just like a nymph in some interlude, come forth from that animal at the incantation of a magician. And when the Prince asked her how it had all happened, she told him a part of her sad story, and the hatred of their stepmother; but not being able to recollect the name of their father nor of their home, the Prince caused a proclamation to be issued, commanding that whoever had lost two children, named Nennillo and Nennella, in a wood, should come to the royal palace, and he would there receive joyful news of them.</p>
-<p>Jannuccio, who had all this time passed a sad and disconsolate life, believing that his children had been devoured by wolves, now hastened with the greatest joy to seek the Prince, and told him that he had lost the children. And when he had related the story, how he had been compelled to take them to the wood, the Prince gave him a good scolding, calling him a blockhead for allowing a woman to put her heel upon his neck till he was brought to send away two such jewels as his children. But after he had broken Jannuccio's head with these words, he applied to it the plaster of consolation, showing him the children, whom the father embraced and kissed for half an hour without being satisfied. Then the Prince made him pull off his jacket, and had him dressed like a lord; and sending for Jannuccio's wife, he showed her those two golden pippins, asked her what that person would deserve who should do them any harm, and even endanger their lives. And she replied, &quot;For my part, I would put her into a closed cask, and send her rolling down a mountain.&quot;</p>
-<p>&quot;So it shall be done!&quot; said the Prince. &quot;The goat has butted at herself. Quick now! you have passed the sentence, and you must suffer it, for having borne these beautiful stepchildren such malice.&quot; So he gave orders that the sentence should be instantly executed. Then choosing a very rich lord among his vassals, he gave him Nennella to wife, and the daughter of another great lord to Nennillo; allowing them enough to live upon, with their father, so that they wanted for nothing in the world. But the stepmother, shut into the cask and shut out from life, kept on crying through the bunghole as long as she had breath--</p>
-<p>&quot;To him who mischief seeks, shall mischief fall; There comes an hour that recompenses all.&quot;</p>
+<p>A YOUNG PIG was shut up in a fold-yard with a Goat and a Sheep. On one occasion when the shepherd laid hold of him, he grunted and squeaked and resisted violently. The Sheep and the Goat complained of his distressing cries, saying, &quot;He often handles us, and we do not cry out.&quot; To this the Pig replied, &quot;Your handling and mine are very different things. He catches you only for your wool, or your milk, but he lays hold on me for my very life.&quot;</p>
 </div>
 </div>
-<p>## Creating a Story Database</p>
+</div>
+<div class="section" id="creating-a-story-database">
+<h2>Creating a Story Database<a class="headerlink" href="#creating-a-story-database" title="Permalink to this headline">¶</a></h2>
 <p>Although we will be losing a lot of metadata information by only saving the story title and text, the available metadata fields are too inconsistent for us to reliably extract information with just a cursory review of a couple of stories. So for now, let’s just create a pure story database, along with the XML path, with support for full text search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -641,44 +651,8 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8256428f714544eaaff0db96bc7d6a83", "version_major": 2, "version_minor": 0}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-Adding records...
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table english_stories (title, text, path)&gt;
+{"model_id": "bc629e40d51947ffb50f999ac4d98967", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table english_stories (title, text, path)&gt;
 </pre></div>
 </div>
 </div>
@@ -1035,6 +1009,12 @@ Adding records...
 </div>
 </div>
 
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"201ad881b56b48eeae99047ab3de064b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "41e8c65d52ab415caf1c4ce6e6e20848": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_845f2bc83a914150a9d494f51c48f9da", "placeholder": "\u200b", "style": "IPY_MODEL_5d0d21e4b60a4093a5c250ddf895c5a3", "value": "100%"}}, "432851c6a1bd4eb7a906b03a37eba487": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "56f5c5805ea64aa189bb58cf87ebbbbf": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "5d0d21e4b60a4093a5c250ddf895c5a3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "76e982b5494643ba96159bdd16a844ed": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "845f2bc83a914150a9d494f51c48f9da": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "997c0c96d9aa4536980ca104a609a3f9": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "9c760b022558414b8cb6f5f053e62df4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_76e982b5494643ba96159bdd16a844ed", "max": 1717.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_56f5c5805ea64aa189bb58cf87ebbbbf", "value": 1717.0}}, "b0a1673c72b84f53bc23b501138fcc06": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_201ad881b56b48eeae99047ab3de064b", "placeholder": "\u200b", "style": "IPY_MODEL_997c0c96d9aa4536980ca104a609a3f9", "value": " 1717/1717 [00:23&lt;00:00, 91.13it/s]"}}, "bc629e40d51947ffb50f999ac4d98967": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_41e8c65d52ab415caf1c4ce6e6e20848", "IPY_MODEL_9c760b022558414b8cb6f5f053e62df4", "IPY_MODEL_b0a1673c72b84f53bc23b501138fcc06"], "layout": "IPY_MODEL_432851c6a1bd4eb7a906b03a37eba487"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -1077,7 +1057,7 @@ Adding records...
         <a class="right-next" href="Lang_Doc2Vec.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Connecting to the Database</p>
+                <p class="prevnext-title">Doc2Vec Searching of Lang Database</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

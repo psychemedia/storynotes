@@ -37,18 +37,22 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Aarne-Thompson-Uther (ATU) Search" href="DBPedia_Aarne-Thompson-Uther_Search.html" />
@@ -118,7 +122,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lang_Doc2Vec.html">
-   Connecting to the Database
+   Doc2Vec Searching of Lang Database
   </a>
  </li>
 </ul>
@@ -1102,8 +1106,8 @@
 <p>Now add the dataframe to the database as a databse table:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
-<span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#db[&quot;motifs_km&quot;].drop()</span>
+<span class="c1">#db[&quot;motifs_km_fts&quot;].drop()</span>
 <span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
     <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="s2">&quot;sortfield&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1166,20 +1170,28 @@
     <tr style="text-align: right;">
       <th></th>
       <th>bibliographies</th>
+      <th>motif_label</th>
+      <th>sortfield</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>For a general bibliography of creation myths, ...</td>
+      <td>Creator</td>
+      <td>A0000</td>
     </tr>
     <tr>
       <th>1</th>
       <td></td>
+      <td>Identity of creator</td>
+      <td>A0001</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+      <td>Sun-god as creator</td>
+      <td>A0001.1</td>
     </tr>
   </tbody>
 </table>

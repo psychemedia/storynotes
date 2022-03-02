@@ -37,22 +37,26 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Thompson Motif Index" href="Thompson_Motif_Index.html" />
-    <link rel="prev" title="Connecting to the Database" href="Lang_Doc2Vec.html" />
+    <link rel="prev" title="Doc2Vec Searching of Lang Database" href="Lang_Doc2Vec.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -118,7 +122,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lang_Doc2Vec.html">
-   Connecting to the Database
+   Doc2Vec Searching of Lang Database
   </a>
  </li>
 </ul>
@@ -288,7 +292,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests_cache</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 
-<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;ashliman_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span> <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span> <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
 
 <span class="kn">from</span> <span class="nn">requests_html</span> <span class="kn">import</span> <span class="n">HTMLSession</span>
  
@@ -1861,7 +1865,6 @@ Name: 0, dtype: object
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>index</th>
       <th>ATU Classification Type</th>
       <th>AT Classification Type</th>
       <th>Thompson Motif</th>
@@ -1877,7 +1880,6 @@ Name: 0, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
       <td></td>
       <td></td>
       <td>D812.3. †D812.3. Magic object received from de...</td>
@@ -1891,7 +1893,6 @@ Name: 0, dtype: object
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
       <td></td>
       <td></td>
       <td>D1413.8. †D1413.8. Chamber-pot to which one st...</td>
@@ -1905,7 +1906,6 @@ Name: 0, dtype: object
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
       <td>ATU 576 Magic Knife</td>
       <td>AT 576 Magic Knife</td>
       <td>D838. †D838. Magic object acquired by stealing</td>
@@ -2258,14 +2258,8 @@ Name: 0, dtype: object
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "45c08aae1a004cd88d7fb8be56d55548", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-28-46856a629dd3&gt;:9: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  table_df[&#39;category&#39;] = category
-/usr/local/lib/python3.9/site-packages/pandas/core/generic.py:2872: UserWarning: The spaces in these column names will not be changed. In pandas versions &lt; 0.14, spaces were converted to underscores.
+{"model_id": "7ef28604de6f4e04b43a3027b4dee46e", "version_major": 2, "version_minor": 0}
+</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/pandas/core/generic.py:2872: UserWarning: The spaces in these column names will not be changed. In pandas versions &lt; 0.14, spaces were converted to underscores.
   sql.to_sql(
 </pre></div>
 </div>
@@ -2298,7 +2292,6 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>index</th>
       <th>ATU Classification Type</th>
       <th>AT Classification Type</th>
       <th>Thompson Motif</th>
@@ -2314,45 +2307,42 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>ATU 1 The theft of fish</td>
-      <td>AT 1 Fox steals fish by playing dead</td>
-      <td>K371.1. Trickster throws fish off the wagon.</td>
-      <td>Animal Tales - Wild Animals - The Clever Fox 1...</td>
-      <td>1</td>
-      <td>The theft of fish</td>
-      <td>1</td>
-      <td>Fox steals fish by playing dead</td>
-      <td>K371.1</td>
       <td></td>
+      <td></td>
+      <td>D812.3. †D812.3. Magic object received from de...</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>D812.3</td>
+      <td>†D812.3. Magic object received from devil.</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>ATU 1 The theft of fish</td>
-      <td>AT 1* Fox and rabbit steal a basket (now ATU 1)</td>
-      <td>K371.1. Trickster throws fish off the wagon.</td>
-      <td>Animal Tales - Wild Animals - The Clever Fox 1...</td>
-      <td>1</td>
-      <td>The theft of fish</td>
-      <td>1*</td>
-      <td>Fox and rabbit steal a basket (now ATU 1)</td>
-      <td>K371.1</td>
       <td></td>
+      <td></td>
+      <td>D1413.8. †D1413.8. Chamber-pot to which one st...</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>D1413.8</td>
+      <td>†D1413.8. Chamber-pot to which one sticks.</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
-      <td>ATU 2 Tail-Fisher</td>
-      <td>AT 2 How the Bear Lost His Tail</td>
-      <td>K1021 The tail fisher.</td>
-      <td>Animal Tales - Wild Animals - The Clever Fox 1...</td>
-      <td>2</td>
-      <td>Tail-Fisher</td>
-      <td>2</td>
-      <td>How the Bear Lost His Tail</td>
-      <td>K1021</td>
-      <td></td>
+      <td>ATU 576 Magic Knife</td>
+      <td>AT 576 Magic Knife</td>
+      <td>D838. †D838. Magic object acquired by stealing</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>576</td>
+      <td>Magic Knife</td>
+      <td>576</td>
+      <td>Magic Knife</td>
+      <td>D838</td>
+      <td>†D838. Magic object acquired by stealing</td>
     </tr>
   </tbody>
 </table>
@@ -2391,7 +2381,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>0</th>
-      <td>2226</td>
+      <td>2311</td>
     </tr>
   </tbody>
 </table>
@@ -2424,7 +2414,6 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>index</th>
       <th>ATU Classification Type</th>
       <th>AT Classification Type</th>
       <th>Thompson Motif</th>
@@ -2440,7 +2429,162 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   <tbody>
     <tr>
       <th>0</th>
-      <td>48</td>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>T68.1. †T68.1. Princess offered as prize to re...</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>T68.1</td>
+      <td>†T68.1. Princess offered as prize to rescuer.</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>H346. †H346. Princess given to man who can hea...</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>H346</td>
+      <td>†H346. Princess given to man who can heal her.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>Q2. †Q2. Kind and unkind.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>Q2</td>
+      <td>†Q2. Kind and unkind.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>L13. †L13. Compassionate youngest son.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>L13</td>
+      <td>†L13. Compassionate youngest son.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>L10. †L10. Victorious youngest son.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>L10</td>
+      <td>†L10. Victorious youngest son.</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>N825.3. †N825.3. Old woman helper.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>N825.3</td>
+      <td>†N825.3. Old woman helper.</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>D1500.1.5. †D1500.1.5. Magic healing fruit.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>D1500.1.5</td>
+      <td>†D1500.1.5. Magic healing fruit.</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>H1010. †H1010. Impossible tasks</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>H1010</td>
+      <td>†H1010. Impossible tasks</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>D1533.1.1. †D1533.1.1. Magic land and water ship.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>D1533.1.1</td>
+      <td>†D1533.1.1. Magic land and water ship.</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>H1112. †H1112. Task: herding rabbits.</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>H1112</td>
+      <td>†H1112. Task: herding rabbits.</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>H1331.1.2.1. †H1331.1.2.1. Quest for remarkabl...</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>H1331.1.2.1</td>
+      <td>†H1331.1.2.1. Quest for remarkable bird feathers.</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>ATU 610 The Healing Fruit</td>
+      <td>AT 610 Fruit to Cure the Princess</td>
+      <td>L161. †L161. Lowly hero marries princess</td>
+      <td>Tales of Magic - Magic Object 560 - 571</td>
+      <td>610</td>
+      <td>The Healing Fruit</td>
+      <td>610</td>
+      <td>Fruit to Cure the Princess</td>
+      <td>L161</td>
+      <td>†L161. Lowly hero marries princess</td>
+    </tr>
+    <tr>
+      <th>12</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>T68.1. †T68.1. Princess offered as prize to re...</td>
@@ -2453,8 +2597,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Princess offered as prize to rescuer.</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>49</td>
+      <th>13</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>H346. †H346. Princess given to man who can hea...</td>
@@ -2467,8 +2610,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Princess given to man who can heal her.</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>50</td>
+      <th>14</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>Q2. †Q2. Kind and unkind.</td>
@@ -2481,8 +2623,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Kind and unkind.</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>51</td>
+      <th>15</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>L13. †L13. Compassionate youngest son.</td>
@@ -2495,8 +2636,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Compassionate youngest son.</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>52</td>
+      <th>16</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>L10. †L10. Victorious youngest son.</td>
@@ -2509,8 +2649,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Victorious youngest son.</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>53</td>
+      <th>17</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>N825.3. †N825.3. Old woman helper.</td>
@@ -2523,8 +2662,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Old woman helper.</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>54</td>
+      <th>18</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>D1500.1.5. †D1500.1.5. Magic healing fruit.</td>
@@ -2537,8 +2675,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Magic healing fruit.</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>55</td>
+      <th>19</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>H1010. †H1010. Impossible tasks</td>
@@ -2551,8 +2688,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Impossible tasks</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>56</td>
+      <th>20</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>D1533.1.1. †D1533.1.1. Magic land and water ship.</td>
@@ -2565,8 +2701,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Magic land and water ship.</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>57</td>
+      <th>21</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>H1112. †H1112. Task: herding rabbits.</td>
@@ -2579,8 +2714,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Task: herding rabbits.</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>58</td>
+      <th>22</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>H1331.1.2.1. †H1331.1.2.1. Quest for remarkabl...</td>
@@ -2593,8 +2727,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <td>Quest for remarkable bird feathers.</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>59</td>
+      <th>23</th>
       <td>ATU 610 The Healing Fruit</td>
       <td>AT 610 Fruit to Cure the Princess</td>
       <td>L161. †L161. Lowly hero marries princess</td>
@@ -2867,7 +3000,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <p>Note that there may be duplicate story names within a table, so we will join by the index value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_df</span> <span class="o">=</span> <span class="n">example_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">link_df</span><span class="p">[</span><span class="s2">&quot;Link&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_df</span> <span class="o">=</span> <span class="n">example_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">link_df</span><span class="p">[</span><span class="s2">&quot;link&quot;</span><span class="p">])</span>
 <span class="n">example_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2896,7 +3029,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
       <th>Title</th>
       <th>Origin</th>
       <th>ATU Name</th>
-      <th>Link</th>
+      <th>link</th>
     </tr>
   </thead>
   <tbody>
@@ -3010,8 +3143,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "43f7c50366cb4be4bb64d640d3c3f327", "version_major": 2, "version_minor": 0}
-</script></div>
+{"model_id": "80db75d555b74ad181c4756d2d68150c", "version_major": 2, "version_minor": 0}
+</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/pandas/core/generic.py:2872: UserWarning: The spaces in these column names will not be changed. In pandas versions &lt; 0.14, spaces were converted to underscores.
+  sql.to_sql(
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3190,6 +3327,12 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"0065c4d02ba8404aaa5a73bf80fd8013": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0370c457a86b4ad2a0e1f06ffb5ff477": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1bf2ab5e83fe4747b9eb19630e428230": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_0065c4d02ba8404aaa5a73bf80fd8013", "placeholder": "\u200b", "style": "IPY_MODEL_638d7eea3b1e46148ed385656d7c9b23", "value": "100%"}}, "23176ff8385c4d84aac0f6b21bfd03d8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_b54bb21754d94ef7a47743e92cde1ed5", "placeholder": "\u200b", "style": "IPY_MODEL_a3e4053f5ab042ae88158a70e4f907c1", "value": " 8/8 [00:05&lt;00:00,  1.68it/s]"}}, "2891c0d7bbbc4c2db1e60ad1252da9ec": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f33ef9ce75e3445ab4360ae34bb134cd", "max": 8.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_682e4be7f90447fe8f094e13a5d3e19d", "value": 8.0}}, "2e7b7fba33ee4218878586f87c290963": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_2fde8974bcbf4210a52fd79c8936bf21", "placeholder": "\u200b", "style": "IPY_MODEL_457df45b01b4477794f01c2c54045d01", "value": "100%"}}, "2fde8974bcbf4210a52fd79c8936bf21": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "448d7244164240d1ae90acbf6ca24b01": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "457df45b01b4477794f01c2c54045d01": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "570ab151f037474ebe37380e9e376b51": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "638d7eea3b1e46148ed385656d7c9b23": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "682e4be7f90447fe8f094e13a5d3e19d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "76a32fae454c4ee288afa77c9d2f29f8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_9e8e4c71ba30464492c08c7e61dbbec4", "max": 7.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_570ab151f037474ebe37380e9e376b51", "value": 7.0}}, "7ef28604de6f4e04b43a3027b4dee46e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_1bf2ab5e83fe4747b9eb19630e428230", "IPY_MODEL_2891c0d7bbbc4c2db1e60ad1252da9ec", "IPY_MODEL_23176ff8385c4d84aac0f6b21bfd03d8"], "layout": "IPY_MODEL_448d7244164240d1ae90acbf6ca24b01"}}, "80db75d555b74ad181c4756d2d68150c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_2e7b7fba33ee4218878586f87c290963", "IPY_MODEL_76a32fae454c4ee288afa77c9d2f29f8", "IPY_MODEL_a449fa5cb75b497c829d9abf040f9978"], "layout": "IPY_MODEL_d10378da6958457e9bc1d455ed048181"}}, "9e8e4c71ba30464492c08c7e61dbbec4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a3e4053f5ab042ae88158a70e4f907c1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a449fa5cb75b497c829d9abf040f9978": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_0370c457a86b4ad2a0e1f06ffb5ff477", "placeholder": "\u200b", "style": "IPY_MODEL_d297247edd6448df9821bcd54764d76a", "value": " 7/7 [00:06&lt;00:00,  1.31it/s]"}}, "b54bb21754d94ef7a47743e92cde1ed5": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d10378da6958457e9bc1d455ed048181": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "d297247edd6448df9821bcd54764d76a": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f33ef9ce75e3445ab4360ae34bb134cd": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -3224,7 +3367,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Connecting to the Database</p>
+                <p class="prevnext-title">Doc2Vec Searching of Lang Database</p>
             </div>
         </a>
     </div>
