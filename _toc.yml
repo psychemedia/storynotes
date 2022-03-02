@@ -5,7 +5,7 @@ parts:
   chapters:
   - file: lang-fairy-books-db
   - file: Ashliman_folk_texts_scraper
-  - file: MTFD-Multilingual_Folk_Tale_Database
+  - file: MFTD-Multilingual_Folk_Tale_Database
 
 - caption: Advanced Search Techniques
   chapters:
