@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multilingual Folk Tale Database (MFTD) &#8212; Story Notes - Technical Recipes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Doc2Vec Searching of Lang Database" href="Lang_Doc2Vec.html" />
+    <link rel="prev" title="Ashliman “Folklore and Mythology Electronic Texts” Scraper" href="Ashliman_folk_texts_scraper.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/MFTD-Multilingual_Folk_Tale_Database.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mftd-english-stories">
+   MFTD English Stories
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parsing-html-pages">
+   Parsing HTML Pages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-story-database">
+   Creating a Story Database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-the-database">
+   Query the Database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parsing-xml-story-files">
+   Parsing XML Story Files
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="multilingual-folk-tale-database-mftd">
+<h1>Multilingual Folk Tale Database (MFTD)<a class="headerlink" href="#multilingual-folk-tale-database-mftd" title="Permalink to this headline">¶</a></h1>
+<p>The Multilingual Folk Tale Database (MFTD) [<a class="reference external" href="http://www.mftd.org/">http://www.mftd.org/</a>] publishes a wide ranging collection of folk tales across many languages.</p>
+<p>In this notebook, we will create a simple scraper for grabbing English language folktales from the database into a simple file-based SQLite database.</p>
+<p>Let’s start off by loading in a couple of packages to support the cacheing of the web pages we’ll be downloading to populate the database.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>“Cacheing” the pages means storing a local copy of them. This means we only need to grab the page from the webserver once and then work with a local copy of it if we need to call it again, as for example when developing the scripts used to populate the database.)</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests_cache</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="c1"># Set the cache to live for many days...</span>
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span>
+                             <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="mftd-english-stories">
+<h2>MFTD English Stories<a class="headerlink" href="#mftd-english-stories" title="Permalink to this headline">¶</a></h2>
+<p>We can find a listing of English stories contained in the <em>Multilingual Folk Tale Database</em> from <a class="reference external" href="http://www.mftd.org/index.php?action=browser&amp;class=language&amp;val=English">http://www.mftd.org/index.php?action=browser&amp;class=language&amp;val=English</a>. This is a paged representation, so to scrape the whole database we will have to navigate across multiple results pagess via a <em>next page</em> link.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">english_story_index_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.mftd.org/index.php?action=browser&amp;class=language&amp;val=English&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">requests_html</span> <span class="kn">import</span> <span class="n">HTMLSession</span>
+ 
+<span class="n">session</span> <span class="o">=</span> <span class="n">HTMLSession</span><span class="p">()</span>
+<span class="n">index_response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">english_story_index_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The index page provides a summary of key information and then links to a story page. The story page includes the story title and original title, (for example, if is a translated work), as well as the story text. All this information is rendered from an XML file, the filepath and name of which is available from the index page. (The HTML page for each story is keyed by the XML file path.)</p>
+<p>What this means is that we don’t need to scrape the story page if we can figure out how to parse the XML documents. Alternatively, we can scrape the actual story page. Or we might attempt a fusion of the two, extracting some data from the HTML page, and some from the XML document, although this comes at the cost of downloading both the XML and HTML files from MFTD, rather than just one of them.</p>
+<p>Let’s start by grabbing the list of XML links from a single index page.</p>
+<p>The links are all contained in the rows of a single table:</p>
+<p><img alt="" src="_images/MFTD_index_page_structure.png" /></p>
+<p>If we grab the table, we can then pull the links from it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scrape links from table</span>
+<span class="n">link_elements</span> <span class="o">=</span> <span class="n">index_response</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get href link from the link_elements</span>
+<span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">link_element</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">link_element</span> <span class="ow">in</span> <span class="n">link_elements</span><span class="p">]</span>
+
+<span class="n">links</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;index.php?action=file&amp;cid=xmlfiles/eng/trans-1849.xml&#39;,
+ &#39;index.php?action=file&amp;cid=xmlfiles/eng/trans-7953.xml&#39;,
+ &#39;index.php?action=file&amp;cid=xmlfiles/eng/trans-8007.xml&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then tidy this up to get the XML file path. By observation, if we split each link on the <code class="docutils literal notranslate"><span class="pre">=</span></code> character, the filepath is then given as the last part (list index value <code class="docutils literal notranslate"><span class="pre">-1</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">link</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">]</span>
+<span class="n">links</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;xmlfiles/eng/trans-1849.xml&#39;,
+ &#39;xmlfiles/eng/trans-7953.xml&#39;,
+ &#39;xmlfiles/eng/trans-8007.xml&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Defining a simple function to extract the links from the page lets us grab the links using a single line of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_xml_paths</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get XML links from index page.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Scrape links from table</span>
+    <span class="n">link_elements</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get href link from the link_elements</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">link_element</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;href&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">link_element</span> <span class="ow">in</span> <span class="n">link_elements</span><span class="p">]</span>
+
+    <span class="c1"># Tidy links</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="n">link</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">links</span>
+
+<span class="n">get_xml_paths</span><span class="p">(</span><span class="n">index_response</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;xmlfiles/eng/trans-1849.xml&#39;,
+ &#39;xmlfiles/eng/trans-7953.xml&#39;,
+ &#39;xmlfiles/eng/trans-8007.xml&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we need to find a way of iterating over all the index pages.</p>
+<p>At the top of the page is a <code class="docutils literal notranslate"><span class="pre">next</span></code> link. If we search for the anchor containing the text <code class="docutils literal notranslate"><span class="pre">next</span></code>, we can inspect that link:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">next_link</span> <span class="o">=</span> <span class="n">index_response</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">containing</span> <span class="o">=</span> <span class="s2">&quot;next&quot;</span><span class="p">)</span>
+<span class="n">next_link</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;Element &#39;a&#39; onclick=&quot;document.getElementById(&#39;rsstart&#39;).value =&#39;100&#39;; document.resubmit.submit();&quot;&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clicking the link doesn’t actually work for me, but by a bit of guess work, we find that if we add the parameter <code class="docutils literal notranslate"><span class="pre">&amp;start=</span></code> to the URL we can retrieve the next 100 records starting from the supplied start value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parse</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="n">next_val</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;document.getElementById(&#39;rsstart&#39;).value =&#39;</span><span class="si">{next}</span><span class="s2">&#39;; document.resubmit.submit();&quot;</span><span class="p">,</span>
+                 <span class="n">next_link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;onclick&#39;</span><span class="p">])</span>
+
+<span class="n">next_val</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">next_val</span><span class="p">[</span><span class="s1">&#39;next&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Result () {&#39;next&#39;: &#39;100&#39;}&gt;, 100)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can keep doing this, adding 100 to the <code class="docutils literal notranslate"><span class="pre">start</span></code> value each time, until no <code class="docutils literal notranslate"><span class="pre">next</span></code> link appears on the page.</p>
+<p>To simplify the creation of the URL, we can create a template for it, into which we can pass the start value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url_template</span> <span class="o">=</span> <span class="s2">&quot;http://www.mftd.org/index.php?action=browser&amp;class=language&amp;val=English&amp;start=</span><span class="si">{start}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the XML links from the first index page</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">english_story_index_url</span><span class="p">)</span>
+<span class="n">xml_paths_full</span> <span class="o">=</span> <span class="n">get_xml_paths</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="n">next_link</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">containing</span> <span class="o">=</span> <span class="s2">&quot;next&quot;</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">next_link</span><span class="p">:</span>
+    <span class="c1"># Find the next page index</span>
+    <span class="n">next_val</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;document.getElementById(&#39;rsstart&#39;).value =&#39;</span><span class="si">{next}</span><span class="s2">&#39;; document.resubmit.submit();&quot;</span><span class="p">,</span>
+                 <span class="n">next_link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;onclick&#39;</span><span class="p">])</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">next_val</span><span class="p">[</span><span class="s1">&#39;next&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Generate the next page URL</span>
+    <span class="n">next_url</span> <span class="o">=</span> <span class="n">url_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">)</span>
+    
+    <span class="c1">#Get the next page</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">next_url</span><span class="p">)</span>
+    
+    <span class="c1"># Get the XML links</span>
+    <span class="n">xml_paths</span> <span class="o">=</span> <span class="n">get_xml_paths</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    
+    <span class="c1"># Add scraped links to full links list</span>
+    <span class="n">xml_paths_full</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">xml_paths</span><span class="p">)</span>
+    
+    <span class="c1"># Is there another page?</span>
+    <span class="n">next_link</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">containing</span> <span class="o">=</span> <span class="s2">&quot;next&quot;</span><span class="p">)</span>
+    
+<span class="nb">len</span><span class="p">(</span><span class="n">xml_paths_full</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1717
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="parsing-html-pages">
+<h2>Parsing HTML Pages<a class="headerlink" href="#parsing-html-pages" title="Permalink to this headline">¶</a></h2>
+<p>The HTML page for each story is keyed by the XML path. We can use a templated string to generate the HTML page URL:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">html_url_template</span> <span class="o">=</span> <span class="s2">&quot;http://www.mftd.org/index.php?action=file&amp;cid=</span><span class="si">{html_path}</span><span class="s2">&quot;</span>
+
+<span class="n">html_url</span> <span class="o">=</span> <span class="n">html_url_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">html_path</span><span class="o">=</span><span class="n">xml_paths_full</span><span class="p">[</span><span class="mi">685</span><span class="p">])</span>
+<span class="n">html_url</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.mftd.org/index.php?action=file&amp;cid=xmlfiles/eng/trans-5362.xml&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>And grab the page:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">html_response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">html_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each story page has a some metadata at the top of the page, the story text, and some additional metadata in a sidebar.</p>
+<p><img alt="" src="_images/MFTD_story_page.png" /></p>
+<p>The text is contained within a single HTML element, which is convenient. But the metadata at the top of the page and in the sidebar is very variable across story pages.</p>
+<p>To start with, let’s parse the HTML using <em>BeautifulSoup</em> so that we can more easily work with it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For some reason, requests-html can&#39;t reliably find the element</span>
+<span class="c1"># So parse the HTML using BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can easily extract the title from the page header :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;The Piglet, the Sheep, and the Goat&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the HTML, the text can be found inside a <code class="docutils literal notranslate"><span class="pre">&lt;text&gt;</span></code> element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">))</span>
+<span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;text&gt;&lt;p&gt;  A YOUNG PIG was shut up in a fold-yard with a Goat and a Sheep.  On one occasion when the shepherd laid hold of him, he grunted and squeaked and resisted violently. The Sheep and the Goat complained of his distressing cries, saying, &amp;amp;quot;He often handles us, and we do not cry out.&amp;amp;quot; To this the Pig replied, &amp;amp;quot;Your handling and mine are very different things. He catches you only for your wool, or your milk, but he lays hold on me for my very life.&amp;amp;quot;&lt;/p&gt;&lt;/text&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some of the texts have sentence tags (<code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span></code>); the <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span></code> tag in HTML is a <em>strikethrough</em>, so let’s just process that text to replace the <code class="docutils literal notranslate"><span class="pre">&lt;s&gt;</span></code> tags with <code class="docutils literal notranslate"><span class="pre">&lt;span&gt;</span></code> tags.</p>
+<p>We can also replace the <code class="docutils literal notranslate"><span class="pre">&lt;title&gt;</span></code> with a heading tag (<code class="docutils literal notranslate"><span class="pre">&lt;h1&gt;</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;s &quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;span &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/span&gt; &quot;</span><span class="p">)</span> <span class="c1"># Add a space char</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;title&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;h1&gt; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/title&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/h1&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now can now use the <code class="docutils literal notranslate"><span class="pre">markdownify</span></code> package to convert the story HTML to markdown:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">markdownify</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Markdown</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">markdownify</span><span class="o">.</span><span class="n">markdownify</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">bullets</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="c1">#.strip()</span>
+<span class="n">Markdown</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>A YOUNG PIG was shut up in a fold-yard with a Goat and a Sheep. On one occasion when the shepherd laid hold of him, he grunted and squeaked and resisted violently. The Sheep and the Goat complained of his distressing cries, saying, &quot;He often handles us, and we do not cry out.&quot; To this the Pig replied, &quot;Your handling and mine are very different things. He catches you only for your wool, or your milk, but he lays hold on me for my very life.&quot;</p>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-story-database">
+<h2>Creating a Story Database<a class="headerlink" href="#creating-a-story-database" title="Permalink to this headline">¶</a></h2>
+<p>Although we will be losing a lot of metadata information by only saving the story title and text, the available metadata fields are too inconsistent for us to reliably extract information with just a cursory review of a couple of stories. So for now, let’s just create a pure story database, along with the XML path, with support for full text search.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;mtdf_demo.db&quot;</span>
+
+<span class="c1"># While developing the script, recreate database each time...</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;english_stories&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">})</span>
+
+<span class="c1"># Create a full text search table to improve search support</span>
+<span class="c1"># Include the path for convenience</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;english_stories&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table english_stories (title, text, path)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can iterate through all the English story XML links and grab the stories into the database.</p>
+<p>Adding one story at a time to the database is inefficient, but if we want to play nicely with the MFTD server, we should have a short delay between requests anyway.</p>
+<p>With over 1700 records to grab the following will take some time to run (note that the requests are cached, so if we rerun the routine, we shouldn’t be hitting the server again)…</p>
+<p>So set the following running, and go and get a cup of tea and some cake…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># We&#39;ll use a progress bar</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1"># Empty the db tables</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;english_stories&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;english_stories_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+
+<span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">sleep_time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xml_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">xml_paths_full</span><span class="p">)):</span>
+    <span class="n">html_url</span> <span class="o">=</span> <span class="n">html_url_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">html_path</span><span class="o">=</span><span class="n">xml_path</span><span class="p">)</span>
+    <span class="n">html_response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">html_url</span><span class="p">)</span>
+
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html_response</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+    
+    <span class="n">record</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span>
+              <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">xml_path</span><span class="p">}</span>
+    
+    <span class="c1"># Get the story text</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">))</span>
+    <span class="c1"># Tidy it</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;s &quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;span &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/span&gt; &quot;</span><span class="p">)</span> <span class="c1"># Add a space char</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;title&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;h1&gt; &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;/title&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/h1&gt;&quot;</span><span class="p">)</span>
+    <span class="c1"># And convert to markdown</span>
+    <span class="n">record</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">markdownify</span><span class="o">.</span><span class="n">markdownify</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">bullets</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Add to the database - batches of 50</span>
+    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="o">==</span><span class="mi">50</span><span class="p">:</span>
+        <span class="c1">#print(&quot;Adding records...&quot;)</span>
+        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;english_stories&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+        
+        <span class="c1"># Reset the session</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">HTMLSession</span><span class="p">()</span>
+        <span class="c1">#time.sleep(5) # Give a backoff...</span>
+
+    <span class="c1"># And play nice - ideally, we wouldn&#39;t do this with cached objects</span>
+    <span class="c1"># Even so, do we get backoff requests or rate limited?</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+
+<span class="c1">#Final update</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;english_stories&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b1c310a8d44d4921ba8e5dc7bfbdb43e", "version_major": 2, "version_minor": 0}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table english_stories (title, text, path)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="query-the-database">
+<h2>Query the Database<a class="headerlink" href="#query-the-database" title="Permalink to this headline">¶</a></h2>
+<p>We can query the database table using exact search terms or using full text search. Let’s start with an simple direct query:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM english_stories LIMIT 3&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>text</th>
+      <th>path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The grave-mound</td>
+      <td>The grave-mound\n================\n\nA rich f...</td>
+      <td>xmlfiles/eng/trans-1849.xml</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Sheep, the Stag, and the Wolf</td>
+      <td>When one rogue would another get\nFor surety i...</td>
+      <td>xmlfiles/eng/trans-7953.xml</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Demetrius and Menander</td>
+      <td>If Esop's name at any time\nI bring into this ...</td>
+      <td>xmlfiles/eng/trans-8007.xml</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>How many records are there?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT COUNT(*) AS num_records FROM english_stories&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>num_records</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1717</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can also run a full text search:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FTS search</span>
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT english_stories_fts.* FROM english_stories_fts</span>
+<span class="s2">WHERE english_stories_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s1">&#39;sea &quot;white horses&quot; waves&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span><span class="c1">#.iloc[0][&#39;text&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>text</th>
+      <th>path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Story Of Little King Loc</td>
+      <td>Two or three miles from the coast of France, a...</td>
+      <td>xmlfiles/lang/lang_olive-4.xml</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="parsing-xml-story-files">
+<h2>Parsing XML Story Files<a class="headerlink" href="#parsing-xml-story-files" title="Permalink to this headline">¶</a></h2>
+<p>Stories in the MFTD are represented as XML files. We could parse each XML file into a simple record that we can add to a story database, but of course things aren’t that simple. The <code class="docutils literal notranslate"><span class="pre">text</span></code> element of the XML document contains the text, but the structure is fluid. Some documents only contain paragraph tags, others contain chapter headings, yet others are broken down to the sentence level.</p>
+<p>If we had access to the complete XML schema (that is, a fully specified abstract representation of the elements and attributes that might appear in one of the XML documents) we would have more of a chance of creating a parser for the XML document. Even better if we had access to a stylesheet we could crib from that transformed to the XML to HTML.</p>
+<p>But we don’t. So whilst the following represents some notes relating to how we might go about building out own parser for the XML documents, a complete treatment will not be attempted for now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xml_example_path</span> <span class="o">=</span> <span class="n">xml_paths_full</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">xml_example_path</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;xmlfiles/eng/trans-1849.xml&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The full URL is rooted on <code class="docutils literal notranslate"><span class="pre">http://www.mftd.org/</span></code> which we can generate from a templated string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xml_url_template</span> <span class="o">=</span> <span class="s2">&quot;http://www.mftd.org/</span><span class="si">{xml_path}</span><span class="s2">&quot;</span>
+
+<span class="n">xml_url</span> <span class="o">=</span> <span class="n">xml_url_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xml_path</span><span class="o">=</span><span class="n">xml_example_path</span><span class="p">)</span>
+<span class="n">xml_url</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;http://www.mftd.org/xmlfiles/eng/trans-1849.xml&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Start off by grabbing the XML file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">xml_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">xml_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now parse the XML into an <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> data structure using the <code class="docutils literal notranslate"><span class="pre">xmltodict</span></code> package. Since Python 3.6+, simple Python dictionaries have been order preserving, so we lose nothing by converting the <code class="docutils literal notranslate"><span class="pre">OrderedDict</span></code> to a simple <code class="docutils literal notranslate"><span class="pre">dict</span></code> by saving it out to a JSON datastructure then reading it back in as a <code class="docutils literal notranslate"><span class="pre">dict</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xmltodict</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">xml_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">xml_response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">process_namespaces</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;TEI&quot;</span><span class="p">]))</span>
+<span class="c1">#xml_dict</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can cast this structure to a flat, row-based form using the <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">json_normalize</span></code> function, tidying up the column names a little as we do so:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">json_normalize</span>
+
+<span class="n">df_xml</span> <span class="o">=</span> <span class="n">json_normalize</span><span class="p">(</span><span class="n">xml_dict</span><span class="p">)</span>
+<span class="n">df_xml</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>teiHeader.fileDesc.titleStmt.title</th>
+      <th>teiHeader.fileDesc.titleStmt.author</th>
+      <th>teiHeader.fileDesc.sourceDesc.bibl.@id</th>
+      <th>teiHeader.fileDesc.sourceDesc.bibl.@type</th>
+      <th>teiHeader.fileDesc.sourceDesc.bibl.title</th>
+      <th>teiHeader.fileDesc.sourceDesc.bibl.author</th>
+      <th>teiHeader.fileDesc.sourceDesc.bibl.booktitle</th>
+      <th>teiHeader.fileDesc.sourceDesc.bibl.date</th>
+      <th>teiHeader.fileDesc.notesStmt.note</th>
+      <th>teiHeader.fileDesc.notesStmt.notes.@n</th>
+      <th>teiHeader.profileDesc.langUsage.language.@ident</th>
+      <th>teiHeader.profileDesc.langUsage.language.#text</th>
+      <th>text.@language</th>
+      <th>text.title</th>
+      <th>text.chapter.@id</th>
+      <th>text.chapter.p</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The grave-mound</td>
+      <td>None</td>
+      <td>trans-1851.xml</td>
+      <td>orig</td>
+      <td>Der Grabhügel</td>
+      <td>Jacob &amp; Wilhelm Grimm</td>
+      <td>None</td>
+      <td>1812</td>
+      <td>[{'@n': 'recid', '#text': '1849'}, {'@n': 'nam...</td>
+      <td>atu</td>
+      <td>eng</td>
+      <td>English</td>
+      <td></td>
+      <td>The grave-mound</td>
+      <td>1</td>
+      <td>[{'@id': 'p-1', 's': [{'@id': 's-1', '#text': ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop the notes column</span>
+<span class="n">df_xml</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;teiHeader.fileDesc.notesStmt.note&quot;</span><span class="p">],</span>
+            <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># What is extent of teiHeader.fileDesc.notesStmt.note ?</span>
+
+<span class="c1"># Tidy up column names</span>
+<span class="n">df_xml</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_xml</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">df_xml</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>titleStmt_title</th>
+      <th>titleStmt_author</th>
+      <th>bibl_id</th>
+      <th>bibl_type</th>
+      <th>bibl_title</th>
+      <th>bibl_author</th>
+      <th>bibl_booktitle</th>
+      <th>bibl_date</th>
+      <th>notes_n</th>
+      <th>language_ident</th>
+      <th>language_text</th>
+      <th>text_language</th>
+      <th>text_title</th>
+      <th>chapter_id</th>
+      <th>chapter_p</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The grave-mound</td>
+      <td>None</td>
+      <td>trans-1851.xml</td>
+      <td>orig</td>
+      <td>Der Grabhügel</td>
+      <td>Jacob &amp; Wilhelm Grimm</td>
+      <td>None</td>
+      <td>1812</td>
+      <td>atu</td>
+      <td>eng</td>
+      <td>English</td>
+      <td></td>
+      <td>The grave-mound</td>
+      <td>1</td>
+      <td>[{'@id': 'p-1', 's': [{'@id': 's-1', '#text': ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"0631121e6f9f4a73a4e93fe1ccced1e0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "0b46e39a8c7d4f679b1268e539e2adc0": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a8d938cf7fd04ddda362183d88559c2a", "max": 1717.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_115e5f13295a457a83fe49853a88c029", "value": 1717.0}}, "115e5f13295a457a83fe49853a88c029": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "1b4a7961e3d04a2d9a2915fc0b72fe93": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "36e9ed27f1df43b0a81bf1a6ac6bc8b5": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "7e2f13f350ea489bb07c96e4d6a0e218": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_1b4a7961e3d04a2d9a2915fc0b72fe93", "placeholder": "\u200b", "style": "IPY_MODEL_8bf00a4d6c3741be82fcfb7c062a73d7", "value": "100%"}}, "8bf00a4d6c3741be82fcfb7c062a73d7": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a8d938cf7fd04ddda362183d88559c2a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b1c310a8d44d4921ba8e5dc7bfbdb43e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_7e2f13f350ea489bb07c96e4d6a0e218", "IPY_MODEL_0b46e39a8c7d4f679b1268e539e2adc0", "IPY_MODEL_b986eed60153408da54ece4e6a61a85e"], "layout": "IPY_MODEL_36e9ed27f1df43b0a81bf1a6ac6bc8b5"}}, "b986eed60153408da54ece4e6a61a85e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_e49888c6c6e4426b850a6dc28e2cb553", "placeholder": "\u200b", "style": "IPY_MODEL_0631121e6f9f4a73a4e93fe1ccced1e0", "value": " 1717/1717 [00:23&lt;00:00, 86.73it/s]"}}, "e49888c6c6e4426b850a6dc28e2cb553": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Ashliman_folk_texts_scraper.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Ashliman “Folklore and Mythology Electronic Texts” Scraper</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Lang_Doc2Vec.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Doc2Vec Searching of Lang Database</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
