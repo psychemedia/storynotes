@@ -1,0 +1,1331 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connecting to the Database &#8212; Story Notes - Technical Recipes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tale Types Scraper" href="Missouri_Tale_Types.html" />
+    <link rel="prev" title="Multilingual Folk Tale Database (MTFD)" href="MTFD-Multilingual_Folk_Tale_Database.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MTFD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MTFD)
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Connecting to the Database
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lang_Doc2Vec.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Connecting to the Database
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simple-model">
+   Simple Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-search-tool">
+   Creating a Search Tool
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-model-vectors-into-the-database">
+   Saving Model Vectors into the Database
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-tf-idf">
+   Add TF-IDF
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p># Doc2Vec Searching of Lang Database</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">gensim</span></code> and a simple <code class="docutils literal notranslate"><span class="pre">doc2vec</span></code> model trained on stories from the Lang coloured fairy books to support semantic retrieval of fairy stories.</p>
+<p>The approach can be summarised as follows:</p>
+<ul class="simple">
+<li><p>generate a vocabulary of terms representative of the search corpus;</p></li>
+<li><p>generate a vector space where each dimension is a word in the vocabulary;</p></li>
+<li><p>generate a vector for each document or search phrase;</p></li>
+<li><p>retrieve documents based on similarity between document vector and search phrase vector.</p></li>
+</ul>
+<p>The following recipe is inspired by <a class="reference external" href="https://github.com/ppontisso/Text-Search-Engine-using-Doc2Vec-and-TF-IDF/blob/master/notebook.ipynb">How to make a search engine on Movies Description</a>.</p>
+<div class="section" id="connecting-to-the-database">
+<h1>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h1>
+<p>We’re going to work with our Lang fairy story database, so let’s set up a connection to it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;demo.db&quot;</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s remind ourselves of the database structure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">schema</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CREATE TABLE [books] (
+   [book] TEXT,
+   [title] TEXT,
+   [text] TEXT,
+   [last_para] TEXT,
+   [first_line] TEXT,
+   [provenance] TEXT,
+   [chapter_order] INTEGER,
+   PRIMARY KEY ([book], [title])
+);
+CREATE TABLE [books_metadata] (
+   [title] TEXT,
+   [year] INTEGER
+);
+CREATE VIRTUAL TABLE [books_fts] USING FTS5 (
+    [title], [text],
+    content=[books]
+);
+CREATE TABLE &#39;books_fts_data&#39;(id INTEGER PRIMARY KEY, block BLOB);
+CREATE TABLE &#39;books_fts_idx&#39;(segid, term, pgno, PRIMARY KEY(segid, term)) WITHOUT ROWID;
+CREATE TABLE &#39;books_fts_docsize&#39;(id INTEGER PRIMARY KEY, sz BLOB);
+CREATE TABLE &#39;books_fts_config&#39;(k PRIMARY KEY, v) WITHOUT ROWID;
+CREATE TRIGGER [books_ai] AFTER INSERT ON [books] BEGIN
+  INSERT INTO [books_fts] (rowid, [title], [text]) VALUES (new.rowid, new.[title], new.[text]);
+END;
+CREATE TRIGGER [books_ad] AFTER DELETE ON [books] BEGIN
+  INSERT INTO [books_fts] ([books_fts], rowid, [title], [text]) VALUES(&#39;delete&#39;, old.rowid, old.[title], old.[text]);
+END;
+CREATE TRIGGER [books_au] AFTER UPDATE ON [books] BEGIN
+  INSERT INTO [books_fts] ([books_fts], rowid, [title], [text]) VALUES(&#39;delete&#39;, old.rowid, old.[title], old.[text]);
+  INSERT INTO [books_fts] (rowid, [title], [text]) VALUES (new.rowid, new.[title], new.[text]);
+END;
+CREATE TABLE story_vectors 
+    (tag TEXT PRIMARY KEY, vector array, book TEXT, title TEXT );
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that we can perform a full text search:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#q = &#39;king &quot;three sons&quot; gold&#39;</span>
+<span class="n">q</span> <span class="o">=</span> <span class="s1">&#39;hansel witch&#39;</span>
+<span class="n">_q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT title FROM books_fts WHERE books_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="si">}</span><span class="s1"> ;&#39;</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hansel And Grettel
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can randomly sample a selection of rows with a query of the following form:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Via https://gist.github.com/alecco/9976dab8fda8256ed403054ed0a65d7b</span>
+
+<span class="n">_q_random_sample</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM books</span>
+<span class="s2">WHERE rowid IN (SELECT rowid FROM books</span>
+<span class="s2">                WHERE title NOT LIKE &quot;Preface&quot;</span>
+<span class="s2">                ORDER BY random() LIMIT </span><span class="si">{}</span><span class="s2">);</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q_random_sample</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">5</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Fairy Nurse
+The Four Gifts
+The Hairy Man
+The Stone-Cutter
+The Little Soldier
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-model">
+<h1>Simple Model<a class="headerlink" href="#simple-model" title="Permalink to this headline">¶</a></h1>
+<p>We could use an off-the-shelf model to process documents, or we can train our own model from our own documents so that the word vectors are aligned to our dataset. In a large corpus, we can train on a sample of documents if they are representative of the whole.</p>
+<p>If we train against the whole dataset, we can search into the dataset directly from the model. If train the model on a partial collection, then we can only compare search phrases and documents that we have generated vectors for.</p>
+<p>To create the model, it helps if we clean the documents, e.g. by decasing, and removing punctuation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.parsing.preprocessing</span> <span class="kn">import</span> <span class="n">preprocess_string</span>
+<span class="kn">from</span> <span class="nn">gensim.parsing.preprocessing</span> <span class="kn">import</span> <span class="n">strip_tags</span><span class="p">,</span> <span class="n">strip_punctuation</span><span class="p">,</span> <span class="n">strip_numeric</span><span class="p">,</span> <span class="n">remove_stopwords</span>
+
+<span class="k">def</span> <span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a cleaned, tokenised version of a text.&quot;&quot;&quot;</span>
+    <span class="n">CUSTOM_FILTERS</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+                      <span class="n">strip_tags</span><span class="p">,</span> <span class="n">strip_punctuation</span><span class="p">,</span>
+                      <span class="n">strip_numeric</span><span class="p">,</span> <span class="n">remove_stopwords</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">preprocess_string</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">CUSTOM_FILTERS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apply the cleaning function to the text on the way in to creating the training corpus:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_corpus</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q_random_sample</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">9999</span><span class="p">))</span>
+
+<span class="n">sample_docs</span> <span class="o">=</span> <span class="p">[(</span><span class="n">clean_text</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]),</span>
+               <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;book&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">::</span><span class="si">{</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="c1">#create a unique tag</span>
+               <span class="n">r</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+               <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">sample_corpus</span><span class="p">]</span>
+
+<span class="c1"># For the first doc, preview the first 5 cleaned words and title</span>
+<span class="n">sample_docs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][:</span><span class="mi">5</span><span class="p">],</span> <span class="n">sample_docs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">sample_docs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;time&#39;, &#39;certain&#39;, &#39;country&#39;, &#39;lived&#39;, &#39;king&#39;],
+ &#39;The Blue Fairy Book::The Bronze Ring&#39;,
+ &#39;The Bronze Ring&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The gensim model needs named tuples</span>
+<span class="c1"># including at least a words and tags dimension</span>
+<span class="c1"># Naively we can just use a document index count as the tag</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">StoryDoc</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;StoryDoc&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;words tags title&#39;</span><span class="p">)</span>
+
+<span class="n">sample_docs_training</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sample_doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sample_docs</span><span class="p">):</span>
+    <span class="n">sample_docs_training</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StoryDoc</span><span class="p">(</span><span class="n">sample_doc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                         <span class="p">[</span><span class="n">sample_doc</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="c1"># This must be a list</span>
+                                         <span class="n">sample_doc</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Doc2Vec</span>
+
+<span class="c1"># Define the parameters for building the model.</span>
+<span class="c1"># We can also pass a list of documents</span>
+<span class="c1"># via the first &quot;documents&quot; parameter</span>
+<span class="c1"># and the model will be trained against those.</span>
+<span class="c1"># Alternatively, create an empty model and train it later.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="p">(</span>
+                <span class="c1"># dm: training algorithm;</span>
+                <span class="c1"># 1: distributed memory/PV-DM;</span>
+                <span class="c1"># 0: distributed bag of words (PV-DBOW)</span>
+                <span class="n">dm</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="c1"># vector_size: size of feature vectors</span>
+                <span class="n">vector_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+                <span class="c1"># window: max dist between current &amp; predicted word</span>
+                <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                <span class="c1"># hs: 1: hierarchical softmax;</span>
+                <span class="c1"># hs: 0 : negative sampling if negative</span>
+                <span class="n">hs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                <span class="c1"># min_count: ignore words w/ lower frequency</span>
+                <span class="c1"># There is a risk to setting this too high</span>
+                <span class="c1"># particularly if a search term is likely unique,</span>
+                <span class="c1"># as it might be with a name. On the other hand,</span>
+                <span class="c1"># for such situations, a simple search might be better?</span>
+                <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="c1"># sample: randomly downsample hi-frequency words</span>
+                <span class="c1"># useful range: (0, 1e-5)</span>
+                <span class="n">sample</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+                <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The model is built around a vocabulary extracted from the training document corpus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the model vocabulary</span>
+<span class="n">model</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">(</span><span class="n">sample_docs_training</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now train the model (this may take some time for a large corpus):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># It would be useful if we could display a progress bar for this</span>
+<span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">sample_docs_training</span><span class="p">,</span>
+            <span class="n">total_examples</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">corpus_count</span><span class="p">,</span>
+            <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">start_alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">end_alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rather than creating a model each time we want to use it, we can save the model and then load it as required:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save a model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;lang_model.gensim&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load in a model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;lang_model.gensim&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To retrieve a document matching a search phrase, we need to encode the search phrase and then try to find a matching document:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_phrase</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">hansel and his sister were cast out by their wicked stepmother</span>
+<span class="s2">and went into forest and met an evil witch</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Preprocess the search phrase</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">search_phrase</span><span class="p">)</span>
+
+<span class="n">tokens</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;hansel&#39;,
+ &#39;sister&#39;,
+ &#39;cast&#39;,
+ &#39;wicked&#39;,
+ &#39;stepmother&#39;,
+ &#39;went&#39;,
+ &#39;forest&#39;,
+ &#39;met&#39;,
+ &#39;evil&#39;,
+ &#39;witch&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generate a vector for the tokens:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the vector representation from the model</span>
+<span class="n">search_vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now search for related documents from the original training set based on how well their vectors match the vector generated for the search phrase:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the top 10 matches</span>
+<span class="n">matches</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">most_similar</span><span class="p">([</span><span class="n">search_vector</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="c1"># To rank every document from the training corpus</span>
+<span class="c1"># set: topn=model.docvecs.count</span>
+
+<span class="c1"># The response gives the original training document ids and match scores</span>
+<span class="n">matches</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Hansel And Grettel&#39;, 0.7547191381454468),
+ (&#39;The Yellow Fairy Book::The Witch&#39;, 0.5689845085144043),
+ (&#39;The Red Fairy Book::The Three Dwarfs&#39;, 0.4800337553024292),
+ (&#39;The Red Fairy Book::Brother And Sister&#39;, 0.4466070830821991),
+ (&#39;The Yellow Fairy Book::The White Duck&#39;, 0.42747220396995544),
+ (&#39;The Red Fairy Book::Mother Holle&#39;, 0.4187214970588684),
+ (&#39;The Orange Fairy Book::The Two Caskets&#39;, 0.4114452302455902),
+ (&#39;The Red Fairy Book::The Twelve Brothers&#39;, 0.39679238200187683),
+ (&#39;The Orange Fairy Book::The Owl And The Eagle&#39;, 0.3924826979637146),
+ (&#39;The Yellow Fairy Book::The Nixy&#39;, 0.38102683424949646)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try another one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_phrase</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">a poor orphan girl lives with her wicked stepmother and sisters</span>
+<span class="s2">but then her fairy godmother appears and she goes to a ball </span>
+<span class="s2">and leaves at midnight</span>
+<span class="s2">but loses her slipper then finally marries the prince</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Preprocess the search phrase</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">search_phrase</span><span class="p">)</span>
+<span class="n">search_vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">most_similar</span><span class="p">([</span><span class="n">search_vector</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Cinderella, Or The Little Glass Slipper&#39;,
+  0.5544741749763489),
+ (&#39;The Yellow Fairy Book::The Yellow Fairy Book&#39;, 0.5115742683410645),
+ (&#39;The Pink Fairy Book::Peter Bull&#39;, 0.5099089741706848),
+ (&#39;The Pink Fairy Book::The Merry Wives&#39;, 0.49374860525131226),
+ (&#39;The Green Fairy Book::Spindle, Shuttle, And Needle&#39;, 0.4853510856628418),
+ (&#39;The Blue Fairy Book::Rumpelstiltzkin&#39;, 0.46972209215164185),
+ (&#39;The Yellow Fairy Book::The Swineherd&#39;, 0.46485644578933716),
+ (&#39;The Yellow Fairy Book::How To Tell A True Princess&#39;, 0.46403932571411133),
+ (&#39;The Red Fairy Book::Mother Holle&#39;, 0.45142310857772827),
+ (&#39;The Blue Fairy Book::Little Red Riding Hood&#39;, 0.4508194923400879)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not that the result is stochastic (has a random element) in the way that the search vector is inferred: if you rerun the query, you will likely generate a different search vector. As a consequence, the search results returned are likely differ in their order and match scores each time the query is run.</p>
+</div>
+<div class="section" id="creating-a-search-tool">
+<h1>Creating a Search Tool<a class="headerlink" href="#creating-a-search-tool" title="Permalink to this headline">¶</a></h1>
+<p>The next step is to register a custom SQLite function that will generate a vector for a search term and return matching records on that basis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vtfunc</span> <span class="kn">import</span> <span class="n">TableFunction</span>
+
+<span class="k">class</span> <span class="nc">SQLite_doc2Vec_Model_Search</span><span class="p">(</span><span class="n">TableFunction</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;threshold&#39;</span><span class="p">]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;book&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;doc2vec_model_search&#39;</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;lang_model.gensim&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">search_vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">most_similar</span><span class="p">([</span><span class="n">search_vector</span><span class="p">],</span>
+                                            <span class="n">topn</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">threshold</span><span class="p">:</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="p">[(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="ow">in</span> <span class="n">scores</span> <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="n">threshold</span> <span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+ 
+    <span class="k">def</span> <span class="nf">iterate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">)</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">items</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">score</span><span class="p">,)</span>
+
+<span class="c1"># And register the function</span>
+<span class="n">SQLite_doc2Vec_Model_Search</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The query searches over the model and can take various forms:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">doc2vec_model_search(&quot;search</span> <span class="pre">phrase&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doc2vec_model_search(&quot;search</span> <span class="pre">phrase&quot;,</span> <span class="pre">MIN_SCORE)</span></code></p></li>
+</ul>
+<p>For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT *</span>
+<span class="s2">FROM doc2vec_model_search(&#39;&#39;&#39;</span><span class="si">{</span><span class="n">search_phrase</span><span class="si">}</span><span class="s2">&#39;&#39;&#39;, 0.45 );</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">model_query</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+ 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Blue Fairy Book&#39;, &#39;Cinderella, Or The Little Glass Slipper&#39;, 0.5492352247238159)
+(&#39;The Green Fairy Book&#39;, &#39;Spindle, Shuttle, And Needle&#39;, 0.5063244104385376)
+(&#39;The Yellow Fairy Book&#39;, &#39;The Yellow Fairy Book&#39;, 0.4934154152870178)
+(&#39;The Pink Fairy Book&#39;, &#39;Peter Bull&#39;, 0.48438823223114014)
+(&#39;The Violet Fairy Book&#39;, &#39;The Child Who Came From An Egg&#39;, 0.4662984609603882)
+(&#39;The Blue Fairy Book&#39;, &#39;Rumpelstiltzkin&#39;, 0.45463424921035767)
+(&#39;The Yellow Fairy Book&#39;, &#39;How To Tell A True Princess&#39;, 0.45086005330085754)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="saving-model-vectors-into-the-database">
+<h1>Saving Model Vectors into the Database<a class="headerlink" href="#saving-model-vectors-into-the-database" title="Permalink to this headline">¶</a></h1>
+<p>If we look at the object type of one of the model vectors, we see that it is a <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>, which can be easily represented as a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can store this data in the SQLite database as a <code class="docutils literal notranslate"><span class="pre">BLOB</span></code>. To simplify the process of converting the array into and out of the appropriate format for storage in the database compared to its use as a gensim vector, we can register a custom handler for the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Via https://stackoverflow.com/a/18622264/454773</span>
+<span class="c1"># See also: https://github.com/joosephook/sqlite3-numpy</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="k">def</span> <span class="nf">adapt_array</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    http://stackoverflow.com/a/31312102/190597 (SoulNibbler)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Binary</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">convert_array</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">out</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+
+<span class="c1"># Converts np.array to TEXT when inserting</span>
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_adapter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">adapt_array</span><span class="p">)</span>
+
+<span class="c1"># Converts TEXT to np.array when selecting</span>
+<span class="n">sqlite3</span><span class="o">.</span><span class="n">register_converter</span><span class="p">(</span><span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="n">convert_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to reset the database to a connection that supports the custom handler we have just registered:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reset the database connection to used the parsed datatype</span>
+<span class="n">db</span><span class="o">.</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_name</span><span class="p">,</span> <span class="n">detect_types</span><span class="o">=</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">PARSE_DECLTYPES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now create a table with a custom “array” datatype:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Give ourselves a clean slate</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;story_vectors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1"># sqlite_utils doesn&#39;t appear to support custom types (yet?!)</span>
+<span class="c1"># The following errors on the &quot;array&quot; datatype</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">db[&quot;story_vectors&quot;].create({</span>
+<span class="sd">    &quot;book&quot;: str,</span>
+<span class="sd">    &quot;title&quot;: str,</span>
+<span class="sd">    &quot;tag&quot;: str, # a unique key derived from book and title</span>
+<span class="sd">    &quot;vector&quot;: &quot;array&quot;,</span>
+<span class="sd">}, pk=(&quot;book&quot;, &quot;title&quot;),</span>
+<span class="sd">    # The following is not currently supported by sqlite_utils</span>
+<span class="sd">   #foreign_keys=[ ((&quot;book&quot;, &quot;title&quot;), &quot;books&quot;, (&quot;book&quot;, &quot;title&quot;))] # local-table-id, foreign-table, foreign-table-id]</span>
+<span class="sd">)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># so we can create a table the old fashioned way...</span>
+<span class="n">vector_table_create</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">CREATE TABLE story_vectors </span>
+<span class="s2">    (tag TEXT PRIMARY KEY, vector array, book TEXT, title TEXT );</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">cur</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">vector_table_create</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Cursor at 0x133501dc0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can generate a list of dictionaries, one per record used to train the model, that can then be added directly to the <code class="docutils literal notranslate"><span class="pre">story_vectors</span></code> database table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xrecords</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">doctags</span><span class="p">:</span>
+    <span class="n">xrecords</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;book&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;::&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                     <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;::&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
+                     <span class="s1">&#39;tag&#39;</span><span class="p">:</span> <span class="n">tag</span><span class="p">,</span> <span class="s1">&#39;vector&#39;</span><span class="p">:</span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="p">[</span><span class="n">tag</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And add the records directly to the database:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;story_vectors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">xrecords</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table story_vectors (tag, vector, book, title)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s pull an example record back showing just the first few elements of the vector associated with the record:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM story_vectors LIMIT 1;&#39;</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;tag&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;book&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;vector&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Blue Fairy Book::The Bronze Ring The Blue Fairy Book The Bronze Ring [-0.01405123 -0.50704396  0.7826763   0.6966156   0.87891227 -0.2688267
+  0.33178896 -1.6542805   1.053172    0.8667782 ]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">_q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM story_vectors;&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">_q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tag</th>
+      <th>vector</th>
+      <th>book</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book::The Bronze Ring</td>
+      <td>[-0.014051229, -0.50704396, 0.7826763, 0.69661...</td>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book::Prince Hyacinth And The D...</td>
+      <td>[0.22857311, -0.0002901034, 0.86985964, -0.280...</td>
+      <td>The Blue Fairy Book</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Blue Fairy Book::East Of The Sun And West ...</td>
+      <td>[0.12482449, 0.509038, 0.730183, -1.0778545, 0...</td>
+      <td>The Blue Fairy Book</td>
+      <td>East Of The Sun And West Of The Moon</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can get the cosine similarity for each row relative to a search vector using the <code class="docutils literal notranslate"><span class="pre">sklearn.metrics.pairwise.cosine_similarity</span></code> applied to a dataframe of vectors we want to match against.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cosine_similarity()</span></code> function will happily accept two <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframes, such as an N x M matrix of vectors we want to score against, and a 1 x M search vector matrics:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span>
+
+<span class="c1"># Grab the vectors and expand each on across columns</span>
+<span class="n">match_vectors_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vector&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+<span class="n">search_vector_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">search_vector</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">match_vectors_df</span><span class="p">,</span>
+                                <span class="n">search_vector_df</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">0.45</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tag</th>
+      <th>vector</th>
+      <th>book</th>
+      <th>title</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>The Blue Fairy Book::Cinderella, Or The Little...</td>
+      <td>[1.1064563, 1.6556664, 0.65659255, 0.12633619,...</td>
+      <td>The Blue Fairy Book</td>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>0.554474</td>
+    </tr>
+    <tr>
+      <th>275</th>
+      <td>The Yellow Fairy Book::The Yellow Fairy Book</td>
+      <td>[0.2586239, 0.2307802, 0.54648733, -0.15965664...</td>
+      <td>The Yellow Fairy Book</td>
+      <td>The Yellow Fairy Book</td>
+      <td>0.511574</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>The Pink Fairy Book::Peter Bull</td>
+      <td>[-1.1498377, 0.6431778, 0.94959325, 0.12849873...</td>
+      <td>The Pink Fairy Book</td>
+      <td>Peter Bull</td>
+      <td>0.509909</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>The Pink Fairy Book::The Merry Wives</td>
+      <td>[-0.4850009, 1.2584103, 0.38522613, 0.6031495,...</td>
+      <td>The Pink Fairy Book</td>
+      <td>The Merry Wives</td>
+      <td>0.493749</td>
+    </tr>
+    <tr>
+      <th>389</th>
+      <td>The Green Fairy Book::Spindle, Shuttle, And Ne...</td>
+      <td>[-0.0354758, 0.32155505, 0.37913308, -0.182975...</td>
+      <td>The Green Fairy Book</td>
+      <td>Spindle, Shuttle, And Needle</td>
+      <td>0.485351</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>So it’s easy enough to create a custom function to search over the vectors table rather than the model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SQLite_doc2Vec_Table_Search</span><span class="p">(</span><span class="n">TableFunction</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;threshold&#39;</span><span class="p">]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;book&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;score&#39;</span><span class="p">]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;doc2vec_search&#39;</span>
+    
+    <span class="c1"># If we move this into the body, we can update the database</span>
+    <span class="c1"># and respond to new rows added to story_vectors table</span>
+    <span class="n">_q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT book, title, vector FROM story_vectors;&#39;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">_q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+    <span class="n">match_vectors_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vector&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">search_vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+
+        <span class="n">search_vector_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">search_vector</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="c1"># Find cosine similarity</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">match_vectors_df</span><span class="p">,</span>
+                                        <span class="n">search_vector_df</span><span class="p">)</span>
+        
+        <span class="c1"># Apply minimum threshold if set</span>
+        <span class="n">_iterator</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">threshold</span><span class="p">]</span> <span class="k">if</span> <span class="n">threshold</span> <span class="k">else</span> <span class="n">df</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span> <span class="o">=</span> <span class="n">_iterator</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                                        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+ 
+    <span class="k">def</span> <span class="nf">iterate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],)</span>
+
+<span class="c1"># And register the function</span>
+<span class="n">SQLite_doc2Vec_Table_Search</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try it out:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vector_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT *</span>
+<span class="s2">FROM doc2vec_search(&quot;</span><span class="si">{</span><span class="n">search_phrase</span><span class="si">}</span><span class="s2">&quot;)</span>
+<span class="s2">WHERE score&gt;0.4 ORDER BY score DESC LIMIT 3;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">vector_query</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Yellow Fairy Book</td>
+      <td>The Yellow Fairy Book</td>
+      <td>0.544387</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>0.538539</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Pink Fairy Book</td>
+      <td>Peter Bull</td>
+      <td>0.521462</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s try another one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_phrase2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A girl lives with her grandmother and a wicked lord comes along and tells her</span>
+<span class="s2">she can&#39;t get married unless she spins a funeral shroud and a wedding gown made from nettles.</span>
+<span class="s2">As she spins, he gets ill, but can&#39;t die until she finishes it.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">vector_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT *</span>
+<span class="s2">FROM doc2vec_search(&quot;</span><span class="si">{</span><span class="n">search_phrase2</span><span class="si">}</span><span class="s2">&quot;)</span>
+<span class="s2">WHERE score&gt;0.3 ORDER BY score DESC LIMIT 3;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">vector_query</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Red Fairy Book</td>
+      <td>The Nettle Spinner</td>
+      <td>0.629813</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Rumpelstiltzkin</td>
+      <td>0.542233</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Pink Fairy Book</td>
+      <td>The Merry Wives</td>
+      <td>0.481604</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_phrase3</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">A girl in kitchen makes soup for king gets married.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">vector_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT *</span>
+<span class="s2">FROM doc2vec_search(&quot;</span><span class="si">{</span><span class="n">search_phrase3</span><span class="si">}</span><span class="s2">&quot;)</span>
+<span class="s2">WHERE score&gt;0.3 ORDER BY score DESC LIMIT 10;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">vector_query</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Yellow Fairy Book</td>
+      <td>The Yellow Fairy Book</td>
+      <td>0.602410</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>0.559836</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Red Fairy Book</td>
+      <td>The True History Of Little Golden Hood</td>
+      <td>0.541085</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Green Fairy Book</td>
+      <td>The Dirty Shepherdess</td>
+      <td>0.521930</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Blue Fairy Book</td>
+      <td>Rumpelstiltzkin</td>
+      <td>0.514022</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Red Fairy Book</td>
+      <td>The Six Sillies</td>
+      <td>0.513303</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>The Pink Fairy Book</td>
+      <td>Peter Bull</td>
+      <td>0.507049</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>The Blue Fairy Book</td>
+      <td>Why The Sea Is Salt</td>
+      <td>0.498361</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Pink Fairy Book</td>
+      <td>I Know What I Have Learned</td>
+      <td>0.487329</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>The Pink Fairy Book</td>
+      <td>The Shirt-Collar</td>
+      <td>0.481853</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="add-tf-idf">
+<h1>Add TF-IDF<a class="headerlink" href="#add-tf-idf" title="Permalink to this headline">¶</a></h1>
+<p>To improve the doc2vec performance, it might be worth exploring a model that has a stricter minimum frequency for words in the corpus, but that also mixes a TF-IDF (term frequency, inverse document frequency) component in the ranking score?</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="MTFD-Multilingual_Folk_Tale_Database.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Multilingual Folk Tale Database (MTFD)</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="Missouri_Tale_Types.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Tale Types Scraper</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

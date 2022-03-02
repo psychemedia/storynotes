@@ -1,0 +1,1506 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thompson Motif Index &#8212; Story Notes - Technical Recipes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Aarne-Thompson-Uther (ATU) Search" href="DBPedia_Aarne-Thompson-Uther_Search.html" />
+    <link rel="prev" title="Tale Types Scraper" href="Missouri_Tale_Types.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MTFD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MTFD)
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Connecting to the Database
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Thompson_Motif_Index.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#momfer-meerten-online-motif-finder">
+   MOMFER - Meerten online motif finder
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="thompson-motif-index">
+<h1>Thompson Motif Index<a class="headerlink" href="#thompson-motif-index" title="Permalink to this headline">¶</a></h1>
+<p>Katja Mellmann: Thompson’s Motif-Index as CSV File (version 1.2). Open Science Framework (OSF), 2020. DOI: 10.17605/OSF.IO/XEB67 (<a class="reference external" href="https://osf.io/xeb67/">https://osf.io/xeb67/</a>), also available via <a class="reference external" href="https://github.com/KatjaMellmann/TMI_as_CSV/">https://github.com/KatjaMellmann/TMI_as_CSV/</a>, provides a handy lookup reference for the Thompson Motif index.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">thompson_motif_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://github.com/KatjaMellmann/TMI_as_CSV/blob/main/tmi.csv?raw=true&quot;</span><span class="p">)</span>
+<span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>[sorting field]</th>
+      <th>1st ed.</th>
+      <th>chapter</th>
+      <th>division1</th>
+      <th>division2</th>
+      <th>division3</th>
+      <th>section ("tens")</th>
+      <th>MOTIF</th>
+      <th>bibliographies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>A0000</td>
+      <td>A0</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A0. Creator.</td>
+      <td>For a general bibliography of creation myths, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>A0001</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1. Identity of creator.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A1.1</td>
+      <td>A0001.1</td>
+      <td>A1</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.1. Sun-god as creator.</td>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A1.2</td>
+      <td>A0001.2</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.2. Grandfather as creator.</td>
+      <td>S. Am. Indian (Paressi): Métraux BBAE CXLIII (...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1.3</td>
+      <td>A0001.3</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.3. Stone-woman as creator.</td>
+      <td>Paressi: Métraux BBAE CXLIII (3) 359.</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Tidy up some of the column names:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;[sorting field]&quot;</span><span class="p">:</span> <span class="s2">&quot;sortfield&quot;</span><span class="p">,</span>
+                                  <span class="s1">&#39;section (&quot;tens&quot;)&#39;</span><span class="p">:</span> <span class="s2">&quot;section10s&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">thompson_motif_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>sortfield</th>
+      <th>1st ed.</th>
+      <th>chapter</th>
+      <th>division1</th>
+      <th>division2</th>
+      <th>division3</th>
+      <th>section10s</th>
+      <th>MOTIF</th>
+      <th>bibliographies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>A0000</td>
+      <td>A0</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A0. Creator.</td>
+      <td>For a general bibliography of creation myths, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>A0001</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1. Identity of creator.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A1.1</td>
+      <td>A0001.1</td>
+      <td>A1</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.1. Sun-god as creator.</td>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A1.2</td>
+      <td>A0001.2</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.2. Grandfather as creator.</td>
+      <td>S. Am. Indian (Paressi): Métraux BBAE CXLIII (...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1.3</td>
+      <td>A0001.3</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.3. Stone-woman as creator.</td>
+      <td>Paressi: Métraux BBAE CXLIII (3) 359.</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>46297</th>
+      <td>Z352</td>
+      <td>Z0352</td>
+      <td>Z352</td>
+      <td>Z. Miscellaneous groups of motifs.</td>
+      <td>Z300–Z399. Unique exceptions</td>
+      <td></td>
+      <td></td>
+      <td>Z350. Other unique exceptions.</td>
+      <td>Z352. All trees except aspen refuse to make Ch...</td>
+      <td>Dh II 209; North Carolina: Brown Collection I ...</td>
+    </tr>
+    <tr>
+      <th>46298</th>
+      <td>Z355</td>
+      <td>Z0355</td>
+      <td>Z355</td>
+      <td>Z. Miscellaneous groups of motifs.</td>
+      <td>Z300–Z399. Unique exceptions</td>
+      <td></td>
+      <td></td>
+      <td>Z350. Other unique exceptions.</td>
+      <td>Z355. All snakes but one placated by music. In...</td>
+      <td>Hdwb. d. Märchens I 437a.</td>
+    </tr>
+    <tr>
+      <th>46299</th>
+      <td>Z356</td>
+      <td>Z0356</td>
+      <td></td>
+      <td>Z. Miscellaneous groups of motifs.</td>
+      <td>Z300–Z399. Unique exceptions</td>
+      <td></td>
+      <td></td>
+      <td>Z350. Other unique exceptions.</td>
+      <td>Z356. Unique survivor. Only one person left fr...</td>
+      <td>India: *Thompson-Balys; Hawaii: Beckwith Myth ...</td>
+    </tr>
+    <tr>
+      <th>46300</th>
+      <td>Z356.1</td>
+      <td>Z0356.1</td>
+      <td></td>
+      <td>Z. Miscellaneous groups of motifs.</td>
+      <td>Z300–Z399. Unique exceptions</td>
+      <td></td>
+      <td></td>
+      <td>Z350. Other unique exceptions.</td>
+      <td>Z56.1 Unique survivor from detruction of animals</td>
+      <td>India: *Thompson-Balys.</td>
+    </tr>
+    <tr>
+      <th>46301</th>
+      <td>Z357</td>
+      <td>Z0357</td>
+      <td></td>
+      <td>Z. Miscellaneous groups of motifs.</td>
+      <td>Z300–Z399. Unique exceptions</td>
+      <td></td>
+      <td></td>
+      <td>Z350. Other unique exceptions.</td>
+      <td>Z357. Unique exceptions from curse.</td>
+      <td>Irish myth: *Cross.</td>
+    </tr>
+  </tbody>
+</table>
+<p>46302 rows × 10 columns</p>
+</div></div></div>
+</div>
+<p>We can also process it further to extract out the codes (we really should combine the following so we only iterate through the whole dataset once):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">motif_splitter</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Split out motif label.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="p">:</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;motif_label&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;motif_label&quot;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">})</span>
+
+<span class="n">thompson_motif_df</span><span class="p">[[</span><span class="s2">&quot;motif_label&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">thompson_motif_df</span><span class="p">[</span><span class="s2">&quot;MOTIF&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">motif_splitter</span><span class="p">)</span>
+<span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>sortfield</th>
+      <th>1st ed.</th>
+      <th>chapter</th>
+      <th>division1</th>
+      <th>division2</th>
+      <th>division3</th>
+      <th>section10s</th>
+      <th>MOTIF</th>
+      <th>bibliographies</th>
+      <th>motif_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>A0000</td>
+      <td>A0</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A0. Creator.</td>
+      <td>For a general bibliography of creation myths, ...</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>A0001</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1. Identity of creator.</td>
+      <td></td>
+      <td>Identity of creator</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A1.1</td>
+      <td>A0001.1</td>
+      <td>A1</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.1. Sun-god as creator.</td>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+      <td>Sun-god as creator</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A1.2</td>
+      <td>A0001.2</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.2. Grandfather as creator.</td>
+      <td>S. Am. Indian (Paressi): Métraux BBAE CXLIII (...</td>
+      <td>Grandfather as creator</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1.3</td>
+      <td>A0001.3</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.3. Stone-woman as creator.</td>
+      <td>Paressi: Métraux BBAE CXLIII (3) 359.</td>
+      <td>Stone-woman as creator</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">chapter_splitter</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Split out Chapter label.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="p">:</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;chapter_label&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;chapter_label&quot;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">})</span>
+
+<span class="n">thompson_motif_df</span><span class="p">[[</span><span class="s2">&quot;chapter_label&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">thompson_motif_df</span><span class="p">[</span><span class="s2">&quot;chapter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">chapter_splitter</span><span class="p">)</span>
+<span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>sortfield</th>
+      <th>1st ed.</th>
+      <th>chapter</th>
+      <th>division1</th>
+      <th>division2</th>
+      <th>division3</th>
+      <th>section10s</th>
+      <th>MOTIF</th>
+      <th>bibliographies</th>
+      <th>motif_label</th>
+      <th>chapter_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>A0000</td>
+      <td>A0</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A0. Creator.</td>
+      <td>For a general bibliography of creation myths, ...</td>
+      <td>Creator</td>
+      <td>Mythological motifs</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>A0001</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1. Identity of creator.</td>
+      <td></td>
+      <td>Identity of creator</td>
+      <td>Mythological motifs</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A1.1</td>
+      <td>A0001.1</td>
+      <td>A1</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.1. Sun-god as creator.</td>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+      <td>Sun-god as creator</td>
+      <td>Mythological motifs</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A1.2</td>
+      <td>A0001.2</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.2. Grandfather as creator.</td>
+      <td>S. Am. Indian (Paressi): Métraux BBAE CXLIII (...</td>
+      <td>Grandfather as creator</td>
+      <td>Mythological motifs</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1.3</td>
+      <td>A0001.3</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.3. Stone-woman as creator.</td>
+      <td>Paressi: Métraux BBAE CXLIII (3) 359.</td>
+      <td>Stone-woman as creator</td>
+      <td>Mythological motifs</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">section_tens_splitter</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Split out section(10s) Label and code.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="p">:</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;section10s_label&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;section10s_label&quot;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">})</span>
+
+<span class="n">thompson_motif_df</span><span class="p">[[</span><span class="s2">&quot;section10s_label&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">thompson_motif_df</span><span class="p">[</span><span class="s1">&#39;section10s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">section_tens_splitter</span><span class="p">)</span>
+<span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>sortfield</th>
+      <th>1st ed.</th>
+      <th>chapter</th>
+      <th>division1</th>
+      <th>division2</th>
+      <th>division3</th>
+      <th>section10s</th>
+      <th>MOTIF</th>
+      <th>bibliographies</th>
+      <th>motif_label</th>
+      <th>chapter_label</th>
+      <th>section10s_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>A0000</td>
+      <td>A0</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A0. Creator.</td>
+      <td>For a general bibliography of creation myths, ...</td>
+      <td>Creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>A0001</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1. Identity of creator.</td>
+      <td></td>
+      <td>Identity of creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A1.1</td>
+      <td>A0001.1</td>
+      <td>A1</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.1. Sun-god as creator.</td>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+      <td>Sun-god as creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A1.2</td>
+      <td>A0001.2</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.2. Grandfather as creator.</td>
+      <td>S. Am. Indian (Paressi): Métraux BBAE CXLIII (...</td>
+      <td>Grandfather as creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1.3</td>
+      <td>A0001.3</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.3. Stone-woman as creator.</td>
+      <td>Paressi: Métraux BBAE CXLIII (3) 359.</td>
+      <td>Stone-woman as creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">section_division1_splitter</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Split out division1 Label and code.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cell</span><span class="p">:</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;division1_code&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span>
+                          <span class="s2">&quot;division1_label&quot;</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)})</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s2">&quot;division1_code&quot;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s2">&quot;division1_label&quot;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">})</span>
+
+<span class="n">thompson_motif_df</span><span class="p">[[</span><span class="s2">&quot;division1_code&quot;</span><span class="p">,</span> <span class="s2">&quot;division1_label&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">thompson_motif_df</span><span class="p">[</span><span class="s1">&#39;division1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">section_division1_splitter</span><span class="p">)</span>
+<span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>sortfield</th>
+      <th>1st ed.</th>
+      <th>chapter</th>
+      <th>division1</th>
+      <th>division2</th>
+      <th>division3</th>
+      <th>section10s</th>
+      <th>MOTIF</th>
+      <th>bibliographies</th>
+      <th>motif_label</th>
+      <th>chapter_label</th>
+      <th>section10s_label</th>
+      <th>division1_code</th>
+      <th>division1_label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A0</td>
+      <td>A0000</td>
+      <td>A0</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A0. Creator.</td>
+      <td>For a general bibliography of creation myths, ...</td>
+      <td>Creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+      <td>A0–A99</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A1</td>
+      <td>A0001</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1. Identity of creator.</td>
+      <td></td>
+      <td>Identity of creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+      <td>A0–A99</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A1.1</td>
+      <td>A0001.1</td>
+      <td>A1</td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.1. Sun-god as creator.</td>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+      <td>Sun-god as creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+      <td>A0–A99</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>A1.2</td>
+      <td>A0001.2</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.2. Grandfather as creator.</td>
+      <td>S. Am. Indian (Paressi): Métraux BBAE CXLIII (...</td>
+      <td>Grandfather as creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+      <td>A0–A99</td>
+      <td>Creator</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>A1.3</td>
+      <td>A0001.3</td>
+      <td></td>
+      <td>A. Mythological motifs.</td>
+      <td>A0–A99. Creator.</td>
+      <td></td>
+      <td></td>
+      <td>A0. Creator.</td>
+      <td>A1.3. Stone-woman as creator.</td>
+      <td>Paressi: Métraux BBAE CXLIII (3) 359.</td>
+      <td>Stone-woman as creator</td>
+      <td>Mythological motifs</td>
+      <td>Creator</td>
+      <td>A0–A99</td>
+      <td>Creator</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can add this table directly to a simple database. First, create the database:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;motifs_demo.db&quot;</span>
+
+<span class="c1"># While developing the script, recreate database each time...</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now add the dataframe to the database as a databse table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;sortfield&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;1st ed.&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;chapter&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;division1&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;division2&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;division3&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;section10s&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="s2">&quot;MOTIF&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;bibliographies&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;motif_label&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;chapter_label&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;section10s_label&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;division1_code&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="s2">&quot;division1_label&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="c1"># Create a full text search table to improve search support</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;bibliographies&quot;</span><span class="p">,</span> <span class="s2">&quot;motif_label&quot;</span><span class="p">,</span> <span class="s2">&quot;sortfield&quot;</span><span class="p">],</span> <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;motifs_km&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">thompson_motif_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">))</span>
+<span class="c1">#thompson_motif_df.to_sql(&quot;motifs_km&quot;, index=False, if_exists=&quot;replace&quot;, con=db.conn)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table motifs_km (code, sortfield, 1st ed., chapter, division1, division2, division3, section10s, MOTIF, bibliographies, motif_label, chapter_label, section10s_label, division1_code, division1_label)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>And query:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM motifs_km_fts LIMIT 3&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bibliographies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>For a general bibliography of creation myths, ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Egyptian: Müller 69; Persian: Carnoy 260.</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FTS search</span>
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT motifs_km_fts.* FROM motifs_km_fts</span>
+<span class="s2">WHERE motifs_km_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s1">&#39;cockroach&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bibliographies</th>
+      <th>motif_label</th>
+      <th>sortfield</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>India: Thompson-Balys.</td>
+      <td>Creation of cockroach</td>
+      <td>A2061</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Finnish: Aarne FFC VIII 22 No. 125.</td>
+      <td>Origin of cockroach in Finland</td>
+      <td>A2061.1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>India: Thompson-Balys.</td>
+      <td>Why cockroaches live in houses</td>
+      <td>A2433.5.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Antigua: Johnson JAFL XXXIV 66.</td>
+      <td>Enmity between fowl and cockroach</td>
+      <td>A2494.13.03</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>India: Thompson-Balys.</td>
+      <td>Wedding of mouse and cockroach</td>
+      <td>B0281.02.2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>India: Thompson-Balys.</td>
+      <td>Wedding of rat and cockroach</td>
+      <td>B0281.11.1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>India: Thompson-Balys.</td>
+      <td>Wedding of cockroach and rat</td>
+      <td>B0285.8</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>India: Thompson-Balys.</td>
+      <td>Magic whistle gives life to cockroach. (Cf. D1...</td>
+      <td>D1594.6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="momfer-meerten-online-motif-finder">
+<h2>MOMFER - Meerten online motif finder<a class="headerlink" href="#momfer-meerten-online-motif-finder" title="Permalink to this headline">¶</a></h2>
+<p>The <em>MOMFER - Meerten online motif finder</em>, <a class="reference external" href="http://www.momfer.ml">http://www.momfer.ml</a>, is an online search engine over motifs.</p>
+<p>Source code and related data files appear to be available at: <a class="reference external" href="https://github.com/fbkarsdorp/tmi">https://github.com/fbkarsdorp/tmi</a> <em>TMI: Interface on Thompson’s Motif Index”</em>.</p>
+<p>See also:</p>
+<ul class="simple">
+<li><p><em>Folgert Karsdorp, Marten van der Meulen, Theo Meder, Antal van den Bosch: MOMFER. A Search Engine of Thompson’s Motif-Index of Folk Literature. In: Folklore 126 (2015), no. 1, 37–52. <a class="reference external" href="https://doi.org/10.1080/0015587X.2015.1006954">https://doi.org/10.1080/0015587X.2015.1006954</a> ]</em></p></li>
+<li><p><em>Thierry Declerck, Antónia Kostová, Lisa Schäfer: Linked Data Access to Folktales classified by Thompson’s Motifs and Aarne-Thompson-Uther’s Types. In: Rhian Lewis et al. (Eds.): Digital Humanities 2017 (DH2017), Montréal, August 8-11, 2017, Conference Abstracts. Montréal: ADHO, <a class="reference external" href="https://dh2017.adho.org/abstracts/465/465.pdf">https://dh2017.adho.org/abstracts/465/465.pdf</a></em></p></li>
+<li><p><a class="reference external" href="https://www.dfki.de/fileadmin/user_upload/import/9028_Dh2017_LOD_TMI-ATU_final.pdf">https://www.dfki.de/fileadmin/user_upload/import/9028_Dh2017_LOD_TMI-ATU_final.pdf</a></p></li>
+</ul>
+<p>The json data in the repository looks very reminiscent of Katja Mellmann’s <em>Thompson’s Motif-Index as CSV File</em> although there does appear to be some additional data, suc as the <code class="docutils literal notranslate"><span class="pre">locations</span></code> field:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">momfer_json</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://github.com/fbkarsdorp/tmi/blob/master/data/tmi.json?raw=true&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">momfer_json</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">1500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
+    {
+        &quot;motif&quot;: &quot;A0&quot;, 
+        &quot;description&quot;: &quot;Creator.&quot;, 
+        &quot;lemmas&quot;: [
+            &quot;creator&quot;
+        ], 
+        &quot;locations&quot;: [
+            &quot;Ireland&quot;, 
+            &quot;Mexico&quot;, 
+            &quot;Africa&quot;, 
+            &quot;India&quot;, 
+            &quot;Loango&quot;, 
+            &quot;Polynesia&quot;, 
+            &quot;United States&quot;, 
+            &quot;Armenia&quot;, 
+            &quot;Tahiti&quot;
+        ], 
+        &quot;additional_description&quot;: &quot;&quot;, 
+        &quot;references&quot;: &quot;For a general bibliography of creation myths, see Alexander N. Am. 278 n. 15. For bibliographies of North American Indian mythologies arranged by areas, see Thompson Tales 272 n. 1; **Feilberg Skabelses og Syndflodssagn; Jewish: Neuman. Mexican Indian: (Tarascan) Alexander Lat. Am. Armenian: Ananikian 20; African: Werner African 127ff., **Frobenius and Fox, (Loango): Pechul l-Loesche 267; Hindu: Penzer I 10; Buddhist myth: Malalasekera II 338; Icel.: Boberg, MacCulloch Eddic 326; Irish myth: Cross.&quot;
+    }, 
+    {
+        &quot;motif&quot;: &quot;A1&quot;, 
+        &quot;description&quot;: &quot;Identity of creator.&quot;, 
+        &quot;lemmas&quot;: [
+            &quot;identity&quot;, 
+            &quot;creator&quot;
+        ], 
+        &quot;locations&quot;: [], 
+        &quot;additional_description&quot;: &quot;&quot;, 
+        &quot;references&quot;: &quot;&quot;
+    }, 
+    {
+        &quot;motif&quot;: &quot;A1.1&quot;, 
+        &quot;description&quot;: &quot;Sun-god as creator.&quot;, 
+        &quot;lemmas&quot;: [
+            &quot;sun-god&quot;, 
+            &quot;creator&quot;
+        ], 
+        &quot;locations&quot;: [
+            &quot;Egypt&quot;
+        ], 
+        &quot;additional_description&quot;: &quot;&quot;, 
+        &quot;references&quot;: &quot;Egyptian: M&#39; ller 69; P
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">momfer_json</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;motif&#39;: &#39;A0&#39;,
+ &#39;description&#39;: &#39;Creator.&#39;,
+ &#39;lemmas&#39;: [&#39;creator&#39;],
+ &#39;locations&#39;: [&#39;Ireland&#39;,
+  &#39;Mexico&#39;,
+  &#39;Africa&#39;,
+  &#39;India&#39;,
+  &#39;Loango&#39;,
+  &#39;Polynesia&#39;,
+  &#39;United States&#39;,
+  &#39;Armenia&#39;,
+  &#39;Tahiti&#39;],
+ &#39;additional_description&#39;: &#39;&#39;,
+ &#39;references&#39;: &#39;For a general bibliography of creation myths, see Alexander N. Am. 278 n. 15. For bibliographies of North American Indian mythologies arranged by areas, see Thompson Tales 272 n. 1; **Feilberg Skabelses og Syndflodssagn; Jewish: Neuman. Mexican Indian: (Tarascan) Alexander Lat. Am. Armenian: Ananikian 20; African: Werner African 127ff., **Frobenius and Fox, (Loango): Pechul l-Loesche 267; Hindu: Penzer I 10; Buddhist myth: Malalasekera II 338; Icel.: Boberg, MacCulloch Eddic 326; Irish myth: Cross.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmi_data</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://github.com/fbkarsdorp/tmi/blob/master/data/tmi-cleaned.txt?raw=true&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tmi_data</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">1500</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A0.	Creator.
+A1.	Identity of creator.
+A1.1.	Sun-god as creator.
+A1.2.	Grandfather as creator.
+A1.3.	Stone-woman as creator.
+A1.4.	Brahma as creator.
+A2.	Multiple creators.
+A2.1.	Three creators.
+A2.2.	First human pair as creators.
+A3.	Creative mother source of everything.
+A5.	Reason for creation.
+A5.1.	Gods make earth to have place to rest their feet.
+A7.	Creator&#39;s descendants.
+A7.1.	Creator has two sons.
+A10.	Nature of the creator.
+A11.	Invisible creator.
+A11.1.	Invisibility of creator learned from the impossibility of staring at the sun, his servant.
+A12.	Hermaphroditic creator.
+A12.1.	Male and female creators.
+A13.	Animal as creator.
+A13.1.	Beast as creator.
+A13.1.1.	Cow as creator.
+A13.2.	Bird as creator.
+A13.2.1.	Raven as creator.
+A13.2.2.	Eagle as creator of man.
+A13.2.3.	Black-winged bird as creator.
+A13.3.	Insect as creator.
+A13.3.1.	Spider as creator.
+A13.3.2.	Beetle as creator.
+A13.4.	Reptile as creator.
+A13.4.1.	Snake as creator.
+A13.4.2.	Worm as creator.
+A15.	Human creator.
+A15.1.	Female creator.
+A15.1.1.	Old woman as creator.
+A15.2.	Brothers as creators.
+A15.3.	Old man as creator.
+A15.3.1.	Old man with staff as creator.
+A15.4.	Artisan as creator.
+A15.4.1.	Potter as creator.
+A17.	Angel as creator.
+A18.	Pictorial representations of creator.
+A18.1.	Creator with dragon&#39;s head.
+A18.2.	Creator with two horns on head.
+A18.3.	Dwarfish creator.
+A18.4.	Creator clothed in bear-skin (or in leaves).
+A18.5.	Creator with hammer and chisel in hands.
+A18.6.	Creator with sun and mo
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Missouri_Tale_Types.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Tale Types Scraper</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="DBPedia_Aarne-Thompson-Uther_Search.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Aarne-Thompson-Uther (ATU) Search</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
