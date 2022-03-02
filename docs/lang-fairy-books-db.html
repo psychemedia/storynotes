@@ -37,18 +37,22 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Ashliman “Folklore and Mythology Electronic Texts” Scraper" href="Ashliman_folk_texts_scraper.html" />
@@ -118,7 +122,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Lang_Doc2Vec.html">
-   Connecting to the Database
+   Doc2Vec Searching of Lang Database
   </a>
  </li>
 </ul>
@@ -312,17 +316,28 @@
 <h1>A Full Text Searchable Database of Lang’s Fairy Books<a class="headerlink" href="#a-full-text-searchable-database-of-lang-s-fairy-books" title="Permalink to this headline">¶</a></h1>
 <p>In the late 19th and early 20th century, Andrew Lang published various collections of fairy tales, starting with <em>The Blue Fairy Book</em> and then progressing though various other colours to <em>The Olive Fairy Book</em>.</p>
 <p>This notebook represents a playful aside in trying to build various searchable contexts over the stories.</p>
-<p>To begin with, let’s start by ingesting the stories into a database and building a full text search over them…</p>
+<p>To begin with, let’s start by ingesting the stories into a database and building a full text search over them.</p>
 <div class="section" id="obtain-source-texts">
 <h2>Obtain Source Texts<a class="headerlink" href="#obtain-source-texts" title="Permalink to this headline">¶</a></h2>
-<p>We can download the raw text for each of Lang’s coloured Fairy Books from the Sacred Texts website:</p>
+<p>We can download the raw text for each of Lang’s coloured Fairy Books from the Sacred Texts website. The books are listed on a single index page:</p>
+<p><img alt="" src="_images/Sacred-Texts__Lang_Fairy_Books.png" /></p>
+<p>Let’s start by loading in that index page:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These packages make it easy to download web pages so that we can work with them</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># &quot;Cacheing&quot; pages mans grabbing a local copy of the page so we only need to download it once</span>
+<span class="kn">import</span> <span class="nn">requests_cache</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span> <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1"># Specify the URL of the page we want to download</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.sacred-texts.com/neu/lfb/index.htm&quot;</span>
+<span class="c1"># And then grab the page</span>
 <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
+<span class="c1"># Preview some of the raw web page / HTML text in the page we just downloaded</span>
 <span class="n">html</span><span class="o">.</span><span class="n">text</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -336,15 +351,56 @@
 <p>By inspection of the HTML, we see the books are in <code class="docutils literal notranslate"><span class="pre">span</span></code> tag with a <code class="docutils literal notranslate"><span class="pre">ista-content</span></code> class. Digging further, we then notice the links are in <code class="docutils literal notranslate"><span class="pre">c_t</span></code> classed <code class="docutils literal notranslate"><span class="pre">span</span></code> elements. We can extract them using beautiful soup:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The BeautifulSoup package provides a range of tools</span>
+<span class="c1"># that help us work with the downloaded web page,</span>
+<span class="c1"># such as extracting particular elements from it</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
 
+<span class="c1"># The &quot;soup&quot; is a parsed and structured form of the page we downloaded</span>
 <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
 
-<span class="c1"># Find the spans containing the links</span>
+<span class="c1"># Find the span elements containing the links</span>
 <span class="n">items_</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;ista-content&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;c_t&quot;</span><span class="p">)</span>
 
-<span class="c1"># And then reduce those to just the links</span>
+<span class="c1"># Preview the first few extracted &lt;span&gt; elements</span>
+<span class="n">items_</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;span class=&quot;c_t&quot;&gt;&lt;a href=&quot;bl/index.htm&quot;&gt;The Blue Fairy Book&lt;/a&gt;&lt;/span&gt;,
+ &lt;span class=&quot;c_t&quot;&gt;&lt;a href=&quot;br/index.htm&quot;&gt;The Brown Fairy Book&lt;/a&gt;&lt;/span&gt;,
+ &lt;span class=&quot;c_t&quot;&gt;&lt;a href=&quot;cr/index.htm&quot;&gt;The Crimson Fairy Book&lt;/a&gt;&lt;/span&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s grab just the anchor tags from there:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># And then reduce those to just the links</span>
+<span class="c1"># The following construction is known as a &quot;list comprehension&quot;</span>
+<span class="c1"># It generates a list of items (items contained in square brackets, [])</span>
+<span class="c1"># from another this of items</span>
+
 <span class="n">items_</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items_</span><span class="p">]</span>
+<span class="n">items_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;a href=&quot;bl/index.htm&quot;&gt;The Blue Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;br/index.htm&quot;&gt;The Brown Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;cr/index.htm&quot;&gt;The Crimson Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;gn/index.htm&quot;&gt;The Green Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;gy/index.htm&quot;&gt;The Grey Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;li/index.htm&quot;&gt;The Lilac Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;ol/index.htm&quot;&gt;The Olive Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;or/index.htm&quot;&gt;The Orange Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;pi/index.htm&quot;&gt;The Pink Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;re/index.htm&quot;&gt;The Red Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;vi/index.htm&quot;&gt;The Violet Fairy Book&lt;/a&gt;,
+ &lt;a href=&quot;ye/index.htm&quot;&gt;The Yellow Fairy Book&lt;/a&gt;]
 </pre></div>
 </div>
 </div>
@@ -352,23 +408,24 @@
 <p>We can then extract the relative links and generate full links for each book page:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;index.htm&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Srip the &quot;index.htm&quot; element from the URL to give a &quot;base&quot; URL</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;index.htm&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
 <span class="n">links</span> <span class="o">=</span> <span class="p">[(</span><span class="n">link</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">items_</span><span class="p">]</span>
-<span class="n">links</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Provide some annotated output to see what&#39;s going on</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Base URL: </span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="se">\n</span><span class="s2">Example links: </span><span class="si">{</span><span class="n">links</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book&#39;, &#39;https://www.sacred-texts.com/neu/lfb/bl/index.htm&#39;),
- (&#39;The Brown Fairy Book&#39;, &#39;https://www.sacred-texts.com/neu/lfb/br/index.htm&#39;),
- (&#39;The Crimson Fairy Book&#39;,
-  &#39;https://www.sacred-texts.com/neu/lfb/cr/index.htm&#39;)]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Base URL: https://www.sacred-texts.com/neu/lfb/
+Example links: [(&#39;The Blue Fairy Book&#39;, &#39;https://www.sacred-texts.com/neu/lfb/bl/index.htm&#39;), (&#39;The Brown Fairy Book&#39;, &#39;https://www.sacred-texts.com/neu/lfb/br/index.htm&#39;), (&#39;The Crimson Fairy Book&#39;, &#39;https://www.sacred-texts.com/neu/lfb/cr/index.htm&#39;)]
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can also grab the years:</p>
+<p>We can also grab the publication year for each work:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">years_</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;ista-content&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;c_d&quot;</span><span class="p">)</span>
@@ -447,13 +504,41 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LICENSE                   gnfb.txt.gz               pifb.txt.gz
-README.md                 gyfb.txt.gz               refb.txt.gz
-blfb.txt.gz               index.md                  <span class=" -Color -Color-Blue">site</span>
-brfb.txt.gz               lang-fairy-books-db.ipynb vifb.txt.gz
-crfb.txt.gz               lifb.txt.gz               yefb.txt.gz
-data.db                   olfb.txt.gz
-demo.db                   orfb.txt.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ashliman_folk_texts_scraper.ipynb
+DBPedia_Aarne-Thompson-Uther_Search.ipynb
+LICENSE
+Lang_Doc2Vec.ipynb
+MTFD-Multilingual_Folk_Tale_Database.ipynb
+Missouri_Tale_Types.ipynb
+README.md
+Thompson_Motif_Index.ipynb
+<span class=" -Color -Color-Blue">_build</span>
+_config.yml
+_toc.yml
+ashliman_demo.db
+blfb.txt.gz
+brfb.txt.gz
+crfb.txt.gz
+demo.db
+<span class=" -Color -Color-Blue">docs</span>
+gnfb.txt.gz
+gyfb.txt.gz
+<span class=" -Color -Color-Blue">images</span>
+lang-fairy-books-db.ipynb
+lang_model.gensim
+lifb.txt.gz
+motifs_demo.db
+mtdf_demo.db
+olfb.txt.gz
+orfb.txt.gz
+pifb.txt.gz
+preface.md
+refb.txt.gz
+tale_types_demo.db
+thompson_motif_index.csv
+vifb.txt.gz
+web_cache.sqlite
+yefb.txt.gz
 </pre></div>
 </div>
 </div>
@@ -493,13 +578,41 @@ demo.db                   orfb.txt.gz
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LICENSE                   gnfb.txt.gz               pifb.txt.gz
-README.md                 gyfb.txt.gz               refb.txt.gz
-blfb.txt.gz               index.md                  <span class=" -Color -Color-Blue">site</span>
-brfb.txt.gz               lang-fairy-books-db.ipynb vifb.txt.gz
-crfb.txt.gz               lifb.txt.gz               yefb.txt.gz
-data.db                   olfb.txt.gz
-demo.db                   orfb.txt.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ashliman_folk_texts_scraper.ipynb
+DBPedia_Aarne-Thompson-Uther_Search.ipynb
+LICENSE
+Lang_Doc2Vec.ipynb
+MTFD-Multilingual_Folk_Tale_Database.ipynb
+Missouri_Tale_Types.ipynb
+README.md
+Thompson_Motif_Index.ipynb
+<span class=" -Color -Color-Blue">_build</span>
+_config.yml
+_toc.yml
+ashliman_demo.db
+blfb.txt.gz
+brfb.txt.gz
+crfb.txt.gz
+demo.db
+<span class=" -Color -Color-Blue">docs</span>
+gnfb.txt.gz
+gyfb.txt.gz
+<span class=" -Color -Color-Blue">images</span>
+lang-fairy-books-db.ipynb
+lang_model.gensim
+lifb.txt.gz
+motifs_demo.db
+mtdf_demo.db
+olfb.txt.gz
+orfb.txt.gz
+pifb.txt.gz
+preface.md
+refb.txt.gz
+tale_types_demo.db
+thompson_motif_index.csv
+vifb.txt.gz
+web_cache.sqlite
+yefb.txt.gz
 </pre></div>
 </div>
 </div>
@@ -770,13 +883,6 @@ demo.db                   orfb.txt.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/pandas/core/window/ewm.py:11: RuntimeWarning: coroutine &#39;async_function&#39; was never awaited
-  import pandas._libs.window.aggregations as window_aggregations
-RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 </pre></div>
 </div>
 </div>
@@ -1456,8 +1562,90 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>text</th>
+      <th>last_para</th>
+      <th>first_line</th>
+      <th>provenance</th>
+      <th>chapter_order</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>[1] Le Prince Desir et la Princesse Mignonne. ...</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Blue Fairy Book</td>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>[1] Asbjornsen and Moe.</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>Asbjornsen and Moe.</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Yellow Dwarf</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>[1] Madame d'Aulnoy.</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>Madame d'Aulnoy.</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td>And, saying these words, this wicked wolf fell...</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td></td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-<p>Now let’s have a go at extracting some entities:</p>
+<p>Now let’s have a go at extracting some entities (this may take some time!):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a set of entities, rather than a list...</span>
@@ -1470,6 +1658,149 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>text</th>
+      <th>last_para</th>
+      <th>first_line</th>
+      <th>provenance</th>
+      <th>chapter_order</th>
+      <th>entities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>{DATE :: Good-day, DATE :: forty days, DATE ::...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>[1] Le Prince Desir et la Princesse Mignonne. ...</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
+      <td>1</td>
+      <td>{LAW :: the Dear Little Princess up, ORG :: ca...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Blue Fairy Book</td>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>[1] Asbjornsen and Moe.</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>Asbjornsen and Moe.</td>
+      <td>2</td>
+      <td>{TIME :: evening, CARDINAL :: thou, TIME :: th...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Yellow Dwarf</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>[1] Madame d'Aulnoy.</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>Madame d'Aulnoy.</td>
+      <td>3</td>
+      <td>{WORK_OF_ART :: Love, TIME :: this minute, CAR...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td>And, saying these words, this wicked wolf fell...</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td></td>
+      <td>4</td>
+      <td>{PERSON :: Wolf, ORG :: Grandmamma, DATE :: On...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Sleeping Beauty In The Wood</td>
+      <td>There were formerly a king and a queen, who we...</td>
+      <td>No one dared to tell him, when the Ogress, all...</td>
+      <td>There were formerly a king and a queen, who we...</td>
+      <td></td>
+      <td>5</td>
+      <td>{CARDINAL :: seven, TIME :: four hours, DATE :...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>The Blue Fairy Book</td>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>Once there was a gentleman who married, for hi...</td>
+      <td>[1] Charles Perrault.</td>
+      <td>Once there was a gentleman who married, for hi...</td>
+      <td>Charles Perrault.</td>
+      <td>6</td>
+      <td>{DATE :: three-quarters, CARDINAL :: six, CARD...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>The Blue Fairy Book</td>
+      <td>Aladdin And The Wonderful Lamp</td>
+      <td>There once lived a poor tailor, who had a son ...</td>
+      <td>[1] Arabian Nights.</td>
+      <td>There once lived a poor tailor, who had a son ...</td>
+      <td>Arabian Nights.</td>
+      <td>7</td>
+      <td>{CARDINAL :: ten thousand, DATE :: forty days,...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
+      <td>A father had two sons, of whom the eldest was ...</td>
+      <td>[1] Grimm.</td>
+      <td>A father had two sons, of whom the eldest was ...</td>
+      <td>Grimm.</td>
+      <td>8</td>
+      <td>{CARDINAL :: six, TIME :: evening, TIME :: thi...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>The Blue Fairy Book</td>
+      <td>Rumpelstiltzkin</td>
+      <td>There was once upon a time a poor miller who h...</td>
+      <td>[1] Grimm.</td>
+      <td>There was once upon a time a poor miller who h...</td>
+      <td>Grimm.</td>
+      <td>9</td>
+      <td>{TIME :: the morning, DATE :: The next day, TI...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p><em>We should probably just do this once and add an appropriate table of entities to the database…</em></p>
 <p>We can explode these out into a long format dataframe:</p>
@@ -1487,6 +1818,106 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>text</th>
+      <th>last_para</th>
+      <th>first_line</th>
+      <th>provenance</th>
+      <th>chapter_order</th>
+      <th>entity</th>
+      <th>entity_typ</th>
+      <th>entity_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>DATE :: Good-day</td>
+      <td>DATE</td>
+      <td>Good-day</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>DATE :: forty days</td>
+      <td>DATE</td>
+      <td>forty days</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>DATE :: 1889</td>
+      <td>DATE</td>
+      <td>1889</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>DATE :: this very day</td>
+      <td>DATE</td>
+      <td>this very day</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>DATE :: next day</td>
+      <td>DATE</td>
+      <td>next day</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>And explore…</p>
 <div class="cell docutils container">
@@ -1495,11 +1926,48 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE           3108
+CARDINAL       2536
+TIME           1928
+ORG            1564
+PERSON         1499
+ORDINAL         879
+GPE             564
+WORK_OF_ART     358
+NORP            343
+QUANTITY        209
+LOC             165
+PRODUCT         144
+FAC             126
+MONEY            41
+LAW              34
+EVENT            28
+LANGUAGE         12
+Name: entity_typ, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>What sort of money has been identified in the stories?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;MONEY&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a penny                     6
+a hundred dollars           5
+three hundred dollars       4
+a few pence                 4
+two hundred dollars         3
+ten dollars                 2
+the hundred dollars         2
+fifty dollars               1
+only a few hundred yards    1
+the hundred marks           1
+Name: entity_value, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1512,11 +1980,41 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one foot           15
+a mile             12
+a few miles         7
+twenty miles        6
+three miles         5
+a hundred miles     5
+two barrels         3
+two miles           3
+several miles       3
+seven miles         3
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>What people have been identified?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;PERSON&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fairy       31
+Majesty     29
+Prince      29
+Queen       27
+bush        12
+wolf        11
+Madam       11
+Campbell    11
+Lang        11
+Jack        10
+Name: entity_value, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1528,11 +2026,41 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>thou                11
+Paris               10
+France               9
+Japan                8
+Greece               7
+Denmark              6
+Ireland              6
+Contes Armeniens     5
+Gedichte             5
+Finland              5
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>When did things happen?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;DATE&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one day         188
+One day         154
+the day          86
+three days       79
+next day         62
+the next day     61
+a few days       50
+all day          44
+many years       41
+that day         40
+Name: entity_value, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1544,6 +2072,21 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>night            117
+evening          115
+a few minutes     77
+morning           69
+next morning      63
+one morning       58
+Next morning      53
+the night         47
+midnight          44
+one night         40
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>How were things organised?</p>
 <div class="cell docutils container">
@@ -1552,11 +2095,41 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>King        102
+Princess     71
+Court        48
+Prince       42
+Grimm        28
+King&#39;s       23
+Quick        18
+eagle        12
+Majesty      11
+I.           10
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 <p>What’s a <code class="docutils literal notranslate"><span class="pre">NORP</span></code>? (Ah… <em>Nationalities Or Religious or Political groups.)</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;NORP&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>German        24
+Danish        18
+French        14
+Russian       11
+Indian        10
+Christian      9
+Italian        8
+Portuguese     7
+Spanish        7
+Chinese        6
+Name: entity_value, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -3391,8 +3964,19 @@ The animals said, &#39;Duks:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?    3
-Name: phrase, dtype: int64
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">83</span><span class="o">-</span><span class="mi">0</span><span class="n">f91c30a6c76</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">scanner</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="nn">&lt;ipython-input-82-e2f02733262b&gt;</span> in <span class="ni">scanner</span><span class="nt">(text, minlen, startlen, min_repeats, autostop)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="sd">&quot;&quot;&quot;Search a text for repeated phrases above a minimum length.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="c1"># Tokenise the text</span>
+<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s1">&#39;Eighty-seven miles to go, yet.  Onward!&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;RegexpTokenizer&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -3402,12 +3986,6 @@ Name: phrase, dtype: int64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the first (0&#39;th indexed) item</span>
 <span class="c1"># (In this case there is only one item hat repeats this number of times anyway.)</span>
 <span class="n">scanner</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scanner</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;,
- 3)
 </pre></div>
 </div>
 </div>
@@ -3431,11 +4009,6 @@ Name: phrase, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">find_repeating_phrase</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;
 </pre></div>
 </div>
 </div>
@@ -3464,11 +4037,6 @@ Name: phrase, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3480,48 +4048,6 @@ Name: phrase, dtype: int64
 <span class="k">for</span> <span class="n">row3</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">row3</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">row3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Catherine And Her Destiny&#39;, &#39;phrase&#39;: &#39;the court , and&#39;}
-{&#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &quot;? &#39; &#39;Ye -- e -- s ! &#39; &#39;Are you coming back again ? &#39; &#39;That may be , &#39; said Esben . &#39;Then you &#39;ll catch it , &#39;&quot;}
-{&#39;title&#39;: &quot;Hans, The Mermaid&#39;s Son&quot;, &#39;phrase&#39;: &quot;, &#39; said Hans ; &#39; I&quot;}
-{&#39;title&#39;: &#39;How The Dragon Was Tricked&#39;, &#39;phrase&#39;: &quot;, &#39; said the dragon&quot;}
-{&#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &quot;&#39;Ask him if he will come with us&quot;}
-{&#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
-{&#39;title&#39;: &#39;King Lindorm&#39;, &#39;phrase&#39;: &#39;rode out into the forest&#39;}
-{&#39;title&#39;: &#39;Maiden Bright-Eye&#39;, &#39;phrase&#39;: &quot;. &#39;Good evening , &#39; it said . &#39;Thanks , Maiden Bright-eye , &#39; said the dog . &#39;Where is my brother ? &#39; &#39;He is in the serpent-pit . &#39; &#39;Where is my wicked sister ? &#39; &#39;She is with the noble king . &#39; &#39;Alas ! alas !&quot;}
-{&#39;title&#39;: &#39;Master And Pupil&#39;, &#39;phrase&#39;: &quot;, &#39; said the boy .&quot;}
-{&#39;title&#39;: &#39;Peter Bull&#39;, &#39;phrase&#39;: &quot;&#39;Oh , yes , &#39; said the&quot;}
-{&#39;title&#39;: &#39;Princess Minon-Minette&#39;, &#39;phrase&#39;: &quot;, &#39; replied the old woman&quot;}
-{&#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes&#39;}
-{&#39;title&#39;: &#39;The Cunning Shoemaker&#39;, &#39;phrase&#39;: &quot;, &#39; replied the shoemaker&quot;}
-{&#39;title&#39;: &#39;The Fir-Tree&#39;, &#39;phrase&#39;: &quot;&#39; thought the tree .&quot;}
-{&#39;title&#39;: &#39;The Flying Trunk&#39;, &#39;phrase&#39;: &quot;. &#39;&#39; &#39; &#39;&#39;&quot;}
-{&#39;title&#39;: &#39;The Goblin And The Grocer&#39;, &#39;phrase&#39;: &#39;, and he had&#39;}
-{&#39;title&#39;: &#39;The Golden Lion&#39;, &#39;phrase&#39;: &#39;, and the young man&#39;}
-{&#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;}
-{&#39;title&#39;: &#39;The Jackal, The Dove, And The Panther&#39;, &#39;phrase&#39;: &quot;which side do you turn to ? &#39;&quot;}
-{&#39;title&#39;: &#39;The King Who Would Have A Beautiful Wife&#39;, &#39;phrase&#39;: &quot;. &#39; &#39;And I&quot;}
-{&#39;title&#39;: &#39;The Little Hare&#39;, &#39;phrase&#39;: &#39;the little hare , the little hare ,&#39;}
-{&#39;title&#39;: &#39;The Man Without A Heart&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
-{&#39;title&#39;: &#39;The Merry Wives&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
-{&#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &quot;&#39;Sentry , where are you ? Sentry , where are you ?&quot;}
-{&#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &quot;! &#39; said the shirt-collar ,&quot;}
-{&#39;title&#39;: &#39;The Slaying Of The Tanuki&#39;, &#39;phrase&#39;: &#39;. The Tanuki ,&#39;}
-{&#39;title&#39;: &#39;The Snow-Man&#39;, &#39;phrase&#39;: &quot;? &#39; asked the Snow-man .&quot;}
-{&#39;title&#39;: &#39;The Snow-Queen&#39;, &#39;phrase&#39;: &quot;, &#39; said the crow ,&quot;}
-{&#39;title&#39;: &#39;The Sparrow With The Slit Tongue&#39;, &#39;phrase&#39;: &#39;the house , and&#39;}
-{&#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &quot;&#39;Do you , rich as you are ,&quot;}
-{&#39;title&#39;: &#39;The Story Of Ciccu&#39;, &#39;phrase&#39;: &quot;accept them with my humble duty . &#39;&quot;}
-{&#39;title&#39;: &#39;The Three Brothers&#39;, &#39;phrase&#39;: &quot;the house . &#39;&quot;}
-{&#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea .&#39;}
-{&#39;title&#39;: &#39;The Two Brothers&#39;, &#39;phrase&#39;: &#39;seven years and seven months&#39;}
-{&#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird , and a branch of the tree of beauty&#39;}
-{&#39;title&#39;: &#39;The White Dove&#39;, &#39;phrase&#39;: &quot;, &#39; said the prince ,&quot;}
-{&#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;will hire me for a servant ?&#39;}
-{&#39;title&#39;: &#39;Uraschimataro And The Turtle&#39;, &#39;phrase&#39;: &#39;the sea , and&#39;}
 </pre></div>
 </div>
 </div>
@@ -3606,11 +4132,6 @@ Name: phrase, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pretty cock Pretty hen And you pretty brindled cow What do you say now&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <p>Register the function:</p>
 <div class="cell docutils container">
@@ -3635,22 +4156,6 @@ Name: phrase, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &#39;Ye e s Are you coming back again That may be said Esben Then you ll catch it&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;Ask him if he will come with us&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;Maiden Bright-Eye&#39;, &#39;phrase&#39;: &#39;Good evening it said Thanks Maiden Bright eye said the dog Where is my brother He is in the serpent pit Where is my wicked sister She is with the noble king Alas alas&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes and&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;Pretty cock Pretty hen And you pretty brindled cow What do you say now&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &#39;My father has set no sentry in War and Pest&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &#39;a boot jack and a hair brush&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &#39;listened and was sorry for her and&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea He&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird and a branch of the tree of beauty&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;Who will hire me for a servant&#39;}
-</pre></div>
-</div>
-</div>
 </div>
 <p>Check the context:</p>
 <div class="cell docutils container">
@@ -3667,70 +4172,12 @@ Name: phrase, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Thanks, Maiden Bright-eye,&#39; said the dog.
-
-&#39;Where is my brother?&#39;
-
-&#39;He is in the serpent-pit.&#39;
-
-&#39;Where is my wicked sister?&#39;
-
-&#39;She is with the noble king.&#39;
-
-&#39;Alas! alas! I am here this evening, and shall be for two e 
-===
-
-
-&#39;Thanks, Maiden Bright-eye,&#39; said the dog.
-
-&#39;Where is my brother?&#39;
-
-&#39;He is in the serpent-pit.&#39;
-
-&#39;Where is my wicked sister?&#39;
-
-&#39;She is with the noble king.&#39;
-
-&#39;Alas! alas! I am here this evening, and shall be for one e 
-===
-
-
-&#39;Thanks, Maiden Bright-eye,&#39; said the dog.
-
-&#39;Where is my brother?&#39;
-
-&#39;He is in the serpent-pit.&#39;
-
-&#39;Where is my wicked sister?&#39;
-
-&#39;She is with the noble king.&#39;
-
-&#39;Alas! alas! now I shall never come again.&#39; With this it sl 
-===
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row6</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">find_contexts</span><span class="p">(</span><span class="n">row6</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s2">&quot;the king&#39;s palace&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> something about the stepson. He had gone out into the world to look about him, and took service in the king&#39;s palace. About this time he got permission to go home and see his sister, and when he saw how lovely and be 
-===
- he saw how lovely and beautiful she was, he was so pleased and delighted that when he came back to the king&#39;s palace everyone there wanted to know what he was always so happy about. He told them that it was because h 
-===
-r life, and she was at once transformed into a duck. The duck swam away after the ship, and came to the king&#39;s palace on the next evening. There it waddled up the drain, and so into the kitchen, where her little dog l 
-===
-it.
-
-At this time the brother in the serpent-pit dreamed that his right sister had come swimming to the king&#39;s palace in the shape of a duck, and that she could not regain her own form until her beak was cut off. He g 
-===
 </pre></div>
 </div>
 </div>
@@ -3774,12 +4221,6 @@ At this time the brother in the serpent-pit dreamed that his right sister had co
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There once was a thing that and    6
-Name: phrase, dtype: int64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3787,20 +4228,10 @@ Name: phrase, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;There once was a thing that and&#39;: 6, &#39;and there was another that&#39;: 7}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_all</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;: 4}
 </pre></div>
 </div>
 </div>
@@ -3813,11 +4244,6 @@ Name: phrase, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">txt_reps</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">txt_reps</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">find_longest_match</span><span class="p">()</span>
 <span class="n">m</span><span class="p">,</span> <span class="n">txt_reps</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Match(a=9, b=33, size=33), &#39; There once was a thing that and &#39;)
 </pre></div>
 </div>
 </div>
