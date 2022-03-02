@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aarne-Thompson-Uther (ATU) Search &#8212; Story Notes - Technical Recipes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Thompson Motif Index" href="Thompson_Motif_Index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MTFD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MTFD)
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Connecting to the Database
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/DBPedia_Aarne-Thompson-Uther_Search.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#folk-songs">
+   Folk Songs
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="aarne-thompson-uther-atu-search">
+<h1>Aarne-Thompson-Uther (ATU) Search<a class="headerlink" href="#aarne-thompson-uther-atu-search" title="Permalink to this headline">¶</a></h1>
+<p>Linked data search over ATU tagged resources.</p>
+<p>Wikipedia page: <a class="reference external" href="https://en.wikipedia.org/wiki/Godfather_Death">https://en.wikipedia.org/wiki/Godfather_Death</a></p>
+<p>DBpedia page: <a class="reference external" href="https://live.dbpedia.org/page/Godfather_Death">https://live.dbpedia.org/page/Godfather_Death</a></p>
+<p>Gives us eg:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://live.dbpedia.org/page/Category:The_Devil_in_fairy_tales">https://live.dbpedia.org/page/Category:The_Devil_in_fairy_tales</a> (rdf:type	skos:Concept ;
+rdfs:label	The Devil in fairy tales (en) )</p></li>
+<li><p>dbp:aarneThompsonGrouping	ATU 332 (en); dbp:country	Germany (en) ; dbp:folkTaleName	Godfather Death (en) ; dct:subject	dbc:Grimms’_Fairy_Tales dbc:The_Devil_in_fairy_tales ; rdfs:label	Godfather Death (en)</p></li>
+</ul>
+<p><a class="reference external" href="https://dbpedia.org/snorql/?query=%0D%0ASELECT+DISTINCT+COUNT%28*%29++WHERE+%7B%0D%0A++%3Fstory+dbp%3AaarneThompsonGrouping%09+%3Fatu+.%0D%0A%0D%0A%3Fstory+gold%3Ahypernym%09%0D%0Adbr%3ATale+.%0D%0A++%3Fstory+rdfs%3Alabel+%3Fstory_name+.%0D%0AFILTER+%28langMatches%28lang%28%3Fstory_name%29%2C+%22en%22%29%29%0D%0A%7D+%0D%0A">https://dbpedia.org/snorql/?query=
+SELECT+DISTINCT+COUNT(*)++WHERE+{
+++?story+dbp:aarneThompsonGrouping	+?atu+.
+
+?story+gold:hypernym	
+dbr:Tale+.
+++?story+rdfs:label+?story_name+.
+FILTER+(langMatches(lang(?story_name),+”en”))
+}+
+</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1">#Install some essential packages</span>
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">SPARQLWrapper</span> <span class="n">pandas</span> <span class="n">folium</span>
+<span class="c1"># Import the necessary packages</span>
+<span class="kn">from</span> <span class="nn">SPARQLWrapper</span> <span class="kn">import</span> <span class="n">SPARQLWrapper</span><span class="p">,</span> <span class="n">JSON</span>
+
+<span class="c1"># Add some helper functions</span>
+
+<span class="c1"># A function that will return the results of running a SPARQL query with </span>
+<span class="c1"># a defined set of prefixes over a specified endpoint.</span>
+<span class="c1"># It follows the same five-step process apart from creating the query, which </span>
+<span class="c1"># is provided as an argument to the function.</span>
+<span class="k">def</span> <span class="nf">runQuery</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Run a SPARQL query with a declared prefix over a specified endpoint &#39;&#39;&#39;</span>
+    <span class="n">sparql</span> <span class="o">=</span> <span class="n">SPARQLWrapper</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+    <span class="n">sparql</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">prefix</span><span class="o">+</span><span class="n">q</span><span class="p">)</span> <span class="c1"># concatenate the strings representing the prefixes and the query</span>
+    <span class="n">sparql</span><span class="o">.</span><span class="n">setReturnFormat</span><span class="p">(</span><span class="n">JSON</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sparql</span><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+    
+<span class="c1"># Import pandas to provide facilities for creating a DataFrame to hold results</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Function to convert query results into a DataFrame</span>
+<span class="c1"># The results are assumed to be in JSON format and therefore the Python dictionary will have  </span>
+<span class="c1"># the results indexed by &#39;results&#39; and then &#39;bindings&#39;. </span>
+<span class="k">def</span> <span class="nf">dict2df</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; A function to flatten the SPARQL query results and return the column values &#39;&#39;&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="s2">&quot;bindings&quot;</span><span class="p">]:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="n">el</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">el</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Function to run a query and return results in a DataFrame</span>
+<span class="k">def</span> <span class="nf">dfResults</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Generate a data frame containing the results of running</span>
+<span class="sd">        a SPARQL query with a declared prefix over a specified endpoint &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">dict2df</span><span class="p">(</span><span class="n">runQuery</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">))</span>
+        
+<span class="c1"># Print a limited number of results of a query</span>
+<span class="k">def</span> <span class="nf">printQuery</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Print the results from the SPARQL query &#39;&#39;&#39;</span>
+    <span class="n">resdata</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="s2">&quot;bindings&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">limit</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">resdata</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="s2">&quot;bindings&quot;</span><span class="p">][:</span><span class="n">limit</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">resdata</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ans</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">: </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">ans</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Run a query and print out a limited number of results</span>
+<span class="k">def</span> <span class="nf">printRunQuery</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Print the results from the SPARQL query &#39;&#39;&#39;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">runQuery</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="n">printQuery</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define any prefixes</span>
+<span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="s1">    PREFIX dbpedia: &lt;http://dbpedia.org/resource/&gt;</span>
+<span class="s1">    PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;</span>
+<span class="s1">    PREFIX dct: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s1">    PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</span>
+<span class="s1">    PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="s1">    PREFIX dbo: &lt;http://dbpedia.org/ontology/&gt;</span>
+<span class="s1">    PREFIX dbc: &lt;http://dbpedia.org/resource/Category:&gt;</span>
+<span class="s1">    PREFIX geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;</span>
+<span class="s1">    PREFIX prov: &lt;http://www.w3.org/ns/prov#&gt;</span>
+<span class="s1">    PREFIX dbp: &lt;https://www.w3.org/1999/02/22-rdf-syntax-ns#Property&gt;</span>
+<span class="s1">    </span>
+<span class="s1">    PREFIX ouseful:&lt;http://ouseful.info/&gt;</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Declare the DBPedia endpoint</span>
+<span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://dbpedia.org/sparql&quot;</span>
+<span class="n">sparql</span> <span class="o">=</span> <span class="n">SPARQLWrapper</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">SELECT DISTINCT ?story_name ?src WHERE {</span>
+<span class="s1">  ?story dct:subject dbc:The_Devil_in_fairy_tales .</span>
+<span class="s1">  ?story rdfs:label ?story_name .</span>
+<span class="s1">  ?story prov:wasDerivedFrom ?src .</span>
+<span class="s1">FILTER (langMatches(lang(?story_name), &quot;en&quot;))</span>
+<span class="s1">}</span>
+<span class="s1">LIMIT 10</span>
+<span class="s1">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">dfResults</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>story_name</th>
+      <th>src</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Girl Without Hands</td>
+      <td>http://en.wikipedia.org/wiki/The_Girl_Without_...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Godfather Death</td>
+      <td>http://en.wikipedia.org/wiki/Godfather_Death?o...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jack the Giant Killer</td>
+      <td>http://en.wikipedia.org/wiki/Jack_the_Giant_Ki...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Snow Queen</td>
+      <td>http://en.wikipedia.org/wiki/The_Snow_Queen?ol...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Errementari</td>
+      <td>http://en.wikipedia.org/wiki/Errementari?oldid...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>How the Devil Married Three Sisters</td>
+      <td>http://en.wikipedia.org/wiki/How_the_Devil_Mar...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Why the Sea is Salt</td>
+      <td>http://en.wikipedia.org/wiki/Why_the_Sea_is_Sa...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Jean, the Soldier, and Eulalie, the Devil's Da...</td>
+      <td>http://en.wikipedia.org/wiki/Jean,_the_Soldier...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Little Johnny Sheep-Dung</td>
+      <td>http://en.wikipedia.org/wiki/Little_Johnny_She...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>The Lost Children (fairy tale)</td>
+      <td>http://en.wikipedia.org/wiki/The_Lost_Children...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+
+<span class="s1">SELECT DISTINCT COUNT(*) AS ?count WHERE {</span>
+<span class="s1">  ?story dbp:aarneThompsonGrouping ?atu .</span>
+<span class="s1">  ?story rdfs:label ?story_name .</span>
+<span class="s1">FILTER (langMatches(lang(?story_name), &quot;en&quot;))</span>
+<span class="s1">} </span>
+
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">dfResults</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="folk-songs">
+<h2>Folk Songs<a class="headerlink" href="#folk-songs" title="Permalink to this headline">¶</a></h2>
+<p>eg <a class="reference external" href="https://dbpedia.org/page/The_Raggle_Taggle_Gypsy">https://dbpedia.org/page/The_Raggle_Taggle_Gypsy</a> from <a class="reference external" href="https://en.wikipedia.org/wiki/The_Raggle_Taggle_Gypsy">https://en.wikipedia.org/wiki/The_Raggle_Taggle_Gypsy</a></p>
+<p>gold:hypernym	 dbr:Song
+PREFIX gold: <a class="reference external" href="http://linguistics-ontology.org/gold/hypernym">http://linguistics-ontology.org/gold/hypernym</a></p>
+<p>This song has a Roud number, but there is no Roud number attribute; it’s also a Chold Ballad, but there is no Child ballad number attribute</p>
+<p>ALso wikidata: <a class="reference external" href="http://localhost:8888/notebooks/Documents/GitHub/lang-fairy-books/lang-fairy-books-db.ipynb">http://localhost:8888/notebooks/Documents/GitHub/lang-fairy-books/lang-fairy-books-db.ipynb</a> which does have eg roud number</p>
+<p><a class="reference external" href="https://query.wikidata.org/#%23Rock%20bands%20that%20start%20with%20%22M%22%0A%0ASELECT%20DISTINCT%20%2a%20WHERE%20%7B%0A%20%3Fitem%20rdfs%3Alabel%20%22Godfather%20Death%22%40en%20.%0A%20%20%3Fitem%20wdt%3AP136%20%3Fz%20.%0A%20%20%3Fz%20rdfs%3Alabel%20%3Ftype%20.%0A%20%20FILTER%28LANG%28%3Ftype%29%20%3D%20%22en%22%29%20.%0A%20%20%0A%7D%0ALIMIT%20300%0A%20%20%20%20%20%20">https://query.wikidata.org/##Rock bands that start with “M”
+
+SELECT DISTINCT * WHERE {
+ ?item rdfs:label “Godfather Death”&#64;en .
+  ?item wdt:P136 ?z .
+  ?z rdfs:label ?type .
+  FILTER(LANG(?type) = “en”) .
+  
+}
+LIMIT 300
+      </a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="Thompson_Motif_Index.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Thompson Motif Index</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Tony Hirst<br/>
+        
+            &copy; Copyright 2022.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
