@@ -571,8 +571,14 @@ When somebody passes by.
 <p>We can make it easier to repeat the refrain by putting that code into another reusable function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say_refrain</span><span class="p">(</span><span class="n">refrain</span><span class="p">):</span>
-    <span class="s2">&quot;Repeat the refrain.&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A function is like a multi-step spell we&#39;ve made up</span>
+<span class="c1"># and given a name so that we can invoke it more easily.</span>
+<span class="c1"># The spell can use various different ingredients that</span>
+<span class="c1"># are passed to it when its name is invoked</span>
+<span class="k">def</span> <span class="nf">say_refrain</span><span class="p">(</span><span class="n">refrain</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Repeat the refrain.&quot;&quot;&quot;</span>
+    <span class="c1"># The named spell contains one or more instructions</span>
+    <span class="c1"># that are carried out whenever the function&#39;s name is invoked.</span>
     <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;And the </span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2"> said:</span><span class="se">\n</span><span class="si">{</span><span class="n">refrain</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -581,6 +587,26 @@ When somebody passes by.
 </div>
 <p>All we have to do now is say the following in a code cell:</p>
 <p><code class="docutils literal notranslate"><span class="pre">say_refrain(three_heads_refrain)</span></code></p>
+<p>If you’ve even been to a storytelling club or story festival, you’re probably familiar with the idea of “cric-crac”, a call and response technique used by the storyteller - who calls out “cric” - to keep an audience - who respond with “crac” - engaged, particularly during a long story, or between tales.</p>
+<p>In code, we can use a simple spell component that gives us a basis for simple, and direct, call-response behaviours:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The curly brackets, {}, defines a &quot;dictionary&quot;</span>
+<span class="c1"># which contains one or more &quot;key:value&quot; pairs.</span>
+<span class="c1"># Provide the key, and it returns the value</span>
+<span class="n">cric_crac</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cric&quot;</span><span class="p">:</span> <span class="s2">&quot;crac&quot;</span><span class="p">}</span>
+
+<span class="n">cric_crac</span><span class="p">[</span><span class="s2">&quot;cric&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;crac&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s go back to the three heads.</p>
 <p>You might also recall that each of the heads gave a different gift to the good natured heroine.</p>
 <p>That is, the gift given by each head was <em>conditional</em> on which head gave the gift.</p>
 <p>We can create an incantation that will also perform different actions based on what we are currently doing or talking about.</p>
