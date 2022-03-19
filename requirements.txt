@@ -4,3 +4,5 @@ beautifulsoup4
 parse
 sqlite_utils
 
+jupyterlab-myst
+

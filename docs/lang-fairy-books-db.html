@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Ashliman “Folklore and Mythology Electronic Texts” Scraper" href="Ashliman_folk_texts_scraper.html" />
-    <link rel="prev" title="How To Read This Book (Do Not Be Afraid)" href="how-to-read-this-book.html" />
+    <link rel="prev" title="Running the Code Contained in This Book" href="running-the-book-code.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -114,6 +114,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="how-to-read-this-book.html">
    How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Running the Code Contained in This Book
   </a>
  </li>
 </ul>
@@ -233,7 +238,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/master?urlpath=tree/lang-fairy-books-db.ipynb"
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./lang-fairy-books-db.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -251,7 +256,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="./lite/retro/notebooks?path=lang-fairy-books-db.ipynb"
+        <a href="./lite/retro/notebooks?path=./lang-fairy-books-db.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -265,6 +270,24 @@ title="Launch via RetroLite"
   </span>
 <span class="headerbtn__text-container">RetroLite</span>
 </a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
 
       </li>
       
@@ -4703,8 +4726,8 @@ Name: phrase, dtype: int64
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "psychemedia/storynotes",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -4726,11 +4749,11 @@ Name: phrase, dtype: int64
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="how-to-read-this-book.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="running-the-book-code.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">How To Read This Book (Do Not Be Afraid)</p>
+            <p class="prev-next-title">Running the Code Contained in This Book</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Ashliman_folk_texts_scraper.html" title="next page">
