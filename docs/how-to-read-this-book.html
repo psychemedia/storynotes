@@ -51,11 +51,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="A Full Text Searchable Database of Lang’s Fairy Books" href="lang-fairy-books-db.html" />
+    <link rel="next" title="Invoking the Incantations Contained in This Book" href="running-the-book-code.html" />
     <link rel="prev" title="Preface" href="preface.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -114,6 +112,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
   </a>
  </li>
 </ul>
@@ -233,7 +236,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/master?urlpath=tree/how-to-read-this-book.ipynb"
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./how-to-read-this-book.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -251,7 +254,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="./lite/retro/notebooks?path=how-to-read-this-book.ipynb"
+        <a href="./lite/retro/notebooks?path=./how-to-read-this-book.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -265,6 +268,24 @@ title="Launch via RetroLite"
   </span>
 <span class="headerbtn__text-container">RetroLite</span>
 </a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
 
       </li>
       
@@ -470,7 +491,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="how-to-read-this-book-do-not-be-afraid">
-<h1>How To Read This Book (Do Not Be Afraid)<a class="headerlink" href="#how-to-read-this-book-do-not-be-afraid" title="Permalink to this headline">¶</a></h1>
+<span id="how-to-read-book"></span><h1>How To Read This Book (Do Not Be Afraid)<a class="headerlink" href="#how-to-read-this-book-do-not-be-afraid" title="Permalink to this headline">¶</a></h1>
 <p>This book takes no prisoners in that it exposes you to various arcane spells that invoke untold magical powers…</p>
 <p>In part, it may <em>look</em> quite technical, and in places it <em>is</em> quite technical, but <em>DON’T PANIC</em>: it is still intended to be read <em>as a story</em>, even if you skip over the bits where the arcane squiggles, runes and glyphs make your head go fuzzy, and your eyes go blurry, and you just want to run away, terrified.</p>
 <p>If you skim through the book, you will notice several very striking stylistic elements.</p>
@@ -1014,6 +1035,22 @@ And the third_head said: She shall become a poor peasant.
 <p>And if we were so minded, we could take that chunk of code and put it in its own function, called <code class="docutils literal notranslate"><span class="pre">minimal_three_heads()</span></code>, perhaps.</p>
 <p>And then, whenever we wanted to tell that tale, we could just call out: <em>“By the magic of code, I demand that you tell me the<code class="docutils literal notranslate"> <span class="pre">minimal_three_heads()</span></code> story.</em></p>
 <p>And it would…</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Running the code for yourself</p>
+<p>If you would like to make the wishes and invoke the spells described in this chapter from the book version of the chapter, the easiest way is to click on the <strong>rocket</strong> (<em>“launch menu”</em>) icon in the tool bar at the top of the book page and select the <code class="docutils literal notranslate"><span class="pre">Live</span> <span class="pre">Code</span></code> option.</p>
+<p>A status button will appear at the top of the content area of the page and display a series of progress messages as the book tries to summon a genie from a far off land.</p>
+<p>As soon as the genie has been summoned, you can scroll down to the code cell areas of the book and, as if by magic, they will have been transformed to cells that look a bit like the following:</p>
+<p><img alt="" src="_images/how-to-run-live-code.png" /></p>
+<p>If you click the run button in a cell, the incantation will be invoked.</p>
+<p>When the <em>Live Code</em> mode is enabled, you can also edit the content of the code cells - so if you want the three heads to say something different, you can put words into their mouths by changing the appropriate part of the spell.</p>
+<p>The changes you make will not be saved: when you reload the page, the original code will reappear. To access the live code mode again, you will also have to perform the correct ritual again, which is to say: <em>click the rocket and select the appropriate menu option</em> again.</p>
+<p>Note that you need to call the various parts of the charm in the correct order: there’s no point trying to cross the stream until you’ve found the axe to cut down the tree to make the bridge.</p>
+<div class="dropdown seealso admonition">
+<p class="admonition-title">Running the code using an interactive notebook editor</p>
+<p>As well as executing the code in a situated fashion “inline” in the book, you can also execute the code inside an interactive editing environment. See the section <a class="reference internal" href="running-the-book-code.html#running-code"><span class="std std-ref">Invoking the Incantations Contained in This Book</span></a> for a tale about how you might achieve that…</p>
+</div>
+<p>So what are you waiting for..? You <em>know</em> you want to give it a go… Click that rocket!</p>
+</div>
 <p>And that’s pretty much it for what code can do…</p>
 <p>But as you have seen, we also have the ability to create <em>our own</em> story functions, as well as reusing ones created and shared by other code-storytellers. And this means that we can quite quickly create what seem to be impossibly complex tales, pretty much off the top of our heads, using our own, made up, recipes, and some perhaps not-so-simple bundles of code developed incrementally by hundreds of other story-coders over tens of years.</p>
 <p>In the pages that follow, the code described is intended to move a story along, to get from here to there, to where the next thing becomes possible. And as a hero may collect various magical gifts whose usefulness only becomes apparent later in a storied quest, so too might we come across things that look at little peculiar, at first, until we realise how we might be able to make use of them later on.</p>
@@ -1025,8 +1062,8 @@ And the third_head said: She shall become a poor peasant.
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "psychemedia/storynotes",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -1055,10 +1092,10 @@ And the third_head said: She shall become a poor peasant.
             <p class="prev-next-title">Preface</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="lang-fairy-books-db.html" title="next page">
+    <a class='right-next' id="next-link" href="running-the-book-code.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">A Full Text Searchable Database of Lang’s Fairy Books</p>
+        <p class="prev-next-title">Invoking the Incantations Contained in This Book</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

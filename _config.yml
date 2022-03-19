@@ -5,11 +5,16 @@ only_build_toc_files: true
 
 repository:
   url: https://github.com/psychemedia/storynotes
+  path_to_book: .
+  branch: main
+
 html:
   use_repository_button: true
 
 launch_buttons:
-  notebook_interface: classic
+  notebook_interface: jupyterlab
+  thebe: true
+  binderhub_url: https://mybinder.org
   retrolite_url: ./lite/retro/notebooks/
 
 execute:

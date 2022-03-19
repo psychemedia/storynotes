@@ -3,6 +3,7 @@ root: preface
 parts:
 - chapters:
   - file: how-to-read-this-book
+  - file: running-the-book-code
 - caption: Story Collection Scrapers and Search
   chapters:
   - file: lang-fairy-books-db
