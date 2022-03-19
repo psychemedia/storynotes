@@ -1,0 +1,780 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How To Read This Book (Do Not Be Afraid) &#8212; Story Notes - Technical Recipes</title>
+    
+    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A Full Text Searchable Database of Lang’s Fairy Books" href="lang-fairy-books-db.html" />
+    <link rel="prev" title="Preface" href="preface.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
+    <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/how-to-read-this-book.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stories-not-theatre">
+   Stories Not Theatre
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes">
+   Some Tricks to Help You Recognise Code Tropes and Archetypes
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>How To Read This Book (Do Not Be Afraid)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stories-not-theatre">
+   Stories Not Theatre
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes">
+   Some Tricks to Help You Recognise Code Tropes and Archetypes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-read-this-book-do-not-be-afraid">
+<h1>How To Read This Book (Do Not Be Afraid)<a class="headerlink" href="#how-to-read-this-book-do-not-be-afraid" title="Permalink to this headline">¶</a></h1>
+<p>This book takes no prisoners… In part, it may <em>look</em> quite technical, and in places it <em>is</em> quite technical, but it is still intended to be read.</p>
+<p>If you skim through the book, you will notice several very striking stylistic elements.</p>
+<p>In the first case, there is straightforward text, such as this.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Text might also appear in stylised boxes, perhaps as an aside, or perhaps as note or warning.</p>
+</div>
+<p>As well as “pure text”, the document includes <em>programming code</em>. As you may well be versed in story traditions, you can think of programming code as magical incantations that a wizard or witch might invoke to order a summoned demon or spirit to perform some sort of task.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Areas like this contain programming code</span>
+<span class="c1"># Some lines start with a # and are known as &quot;comments&quot;</span>
+
+<span class="c1"># They are not instructions to the computer...</span>
+
+<span class="c1"># ...they are an aside to you the reader, you the listener,</span>
+<span class="c1"># to help explain a plot point, or characteristic of the</span>
+<span class="c1"># evil king that need to better understand his actions</span>
+
+<span class="c1"># Then, there is the code</span>
+<span class="c1"># The actual incantation that instructs the demon computer</span>
+<span class="c1"># to do something...</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Once upon a time...&quot;</span><span class="p">)</span>
+
+<span class="c1"># And then, read on..., there is the result of that invocation</span>
+<span class="c1"># (Look down...)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Once upon a time...
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Did you see what just happened?</em></p>
+<p>The computer is the demon, or the powers that are summoned and controlled by the magician. The code is the spell, or the incantation, uttered by the magician.</p>
+<p>Just like the words of a spell as used in a story may make no sense to you, the teller, or you, the audience, the programming code may make no sense to you, the reader of this text.</p>
+<p>But just as there may be recognisable elements in a charm, such as the name of the person who will fall in love with a supplicant who has gone to ask the cunning woman who lives at the edge of the forest for help, and who has spoken who knows what garbled language to make it so, you may also recognise certain words or elements in bits of programming code.</p>
+<p>The URL, or web location, of an web page, for example. Or a search term that forms part of a magical query.</p>
+<p>So there will be code. There will be incantations. Nothing is hidden. All that this book does, and is, and all that is revealed within it, was generated through the telling, or execution, of the code within it and the rendering of any outputs the code produced.</p>
+<div class="section" id="stories-not-theatre">
+<h2>Stories Not Theatre<a class="headerlink" href="#stories-not-theatre" title="Permalink to this headline">¶</a></h2>
+<p>At this point you may be wondering <em>why</em> there is such a focus on code to work with story data sources, rather than just making a website that makes those resources easy to access.</p>
+<p>That’s because user interfaces are hard to produce, hard to maintain, hard to get right right, and often limiting in what they allow the user to do. The designer makes certain decisions about what they think the user is likely to want to do, and someone then makes various decisions about how to support that behaviour, decisions that lead to a particular user interface.</p>
+<p>By sticking with code, we are focusing on the bare bones of the story. This is not theatre. The production of a theatre play is a user interface onto a story. We’re working with the story. Stick with it…</p>
+</div>
+<div class="section" id="some-tricks-to-help-you-recognise-code-tropes-and-archetypes">
+<h2>Some Tricks to Help You Recognise Code Tropes and Archetypes<a class="headerlink" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes" title="Permalink to this headline">¶</a></h2>
+<p>When telling a folk tale or a fairy tale from a particular tradition, we rely on tropes and archetypes. In Germanic fairy tales, the evil witch who lives in the forest, the trolls and giants of Scandinavian tales, the dragon-serpents of Eastern and Eastern European fairy tales, and so on.</p>
+<p>In a story, we invoke archetypes we can rely on to perform certain  certain roles:</p>
+<p><em>Once, there was a king…</em></p>
+<p>Sometimes, we need to take the shortcut further:</p>
+<p><em>Once, there was an <strong>evil</strong> king…</em></p>
+<p>Sometimes, we situate the king:</p>
+<p><em>Once, <strong>in a land far far away</strong>, there was an evil king…</em></p>
+<p>It’s the same with code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In a far off land, was a king, an evil king</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having invoked the character, we can get it do something:</p>
+<p><em>Every so often, the vizier would pass the evil king a note that caused the king to behave in a particular way.</em></p>
+<p>As with code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We put the message onto a piece of paper</span>
+<span class="n">video_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=KdnGPQaICjk&quot;</span>
+
+<span class="c1"># And give the message to the king</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="n">video_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="400"
+    height="300"
+    src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=KdnGPQaICjk"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>Sometimes, we need to package up a bit of the story so that we can reuse it. Or we need to teach the audience something they can do for us.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>When the man gets on the horse with the fairy queen, you say:
+
+And they rode,
+and they rode,
+and they merrily, merrily rode,
+and they rode for a night and a day.
+</pre></div>
+</div>
+<p>Same with code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhyme</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">And they rode,</span>
+<span class="s2">and they rode,</span>
+<span class="s2">and they merrily, merrily rode,</span>
+<span class="s2">and they rode for a night and a day.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">man_gets_on_horse</span><span class="p">(</span><span class="n">action</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Do this when the man gets on the horse.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">man_gets_on_horse</span><span class="p">(</span><span class="n">rhyme</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>And they rode,
+and they rode,
+and they merrily, merrily rode,
+and they rode for a night and a day.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sometimes, we want to do the same thing several times.</p>
+<p>You may recall the three heads on the well who each made the same request?</p>
+<p>So does the following piece of code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">refrain</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Wash me and comb me,</span>
+<span class="s2">And lay me down softly.</span>
+<span class="s2">And lay me on a bank to dry,</span>
+<span class="s2">That I may look pretty,</span>
+<span class="s2">When somebody passes by.&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;And the </span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2"> said:</span><span class="se">\n</span><span class="si">{</span><span class="n">refrain</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>And the first_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the second_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the third_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might also recall that each of the heads gave a different gift to the good natured heroine.</p>
+<p>That is, the gift given by each head was <em>conditional</em> on which head gave the gift.</p>
+<p>We can create an incantation that will also perform different actions based on what we are currently doing or talking about.</p>
+<p>Here’s the set-up…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heads_question</span> <span class="o">=</span> <span class="s1">&#39;What shall we give here for treating us so kindly?&#39;</span>
+
+<span class="n">heads_response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall be beautiful&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;second_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall have a sweet voice&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;third_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall become queen.&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What do you think might happen next?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">heads_question</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">heads_response</span><span class="p">[</span><span class="n">head</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>What shall we give here for treating us so kindly?
+- She shall be beautiful
+- She shall have a sweet voice
+- She shall become queen.
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the same story, the three heads also had a different set of decisions available for the spiteful maid.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heads_other_response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall be struck with leprosy&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;second_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall have a harsh voice&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;third_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall become a poor peasant.&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So what happens if we have several characters?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The [] structure lets us create a list of items</span>
+<span class="n">maids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;good maid&quot;</span><span class="p">,</span> <span class="s2">&quot;blackbird&quot;</span><span class="p">,</span> <span class="s2">&quot;spiteful maid&quot;</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How might the three heads behave differently towards them?</p>
+<p>Let’s pick one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can select the n&#39;th item from a list</span>
+<span class="c1"># although you should note the the first item is the [0]&#39;th,</span>
+<span class="c1"># the second item is at index value [1], etc</span>
+<span class="n">maid</span> <span class="o">=</span> <span class="n">maids</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Which one did we pick?</span>
+<span class="n">maid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;spiteful maid&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can construct an incantation that behaves differently depending upon some tested condition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We need to select the appropriate set of responses</span>
+<span class="c1"># depending on which maid appears</span>
+<span class="k">if</span> <span class="n">maid</span> <span class="o">==</span> <span class="s2">&quot;good maid&quot;</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">heads_response</span>
+<span class="k">elif</span> <span class="n">maid</span> <span class="o">==</span> <span class="s2">&quot;spiteful maid&quot;</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">heads_other_response</span>
+
+
+<span class="c1"># So what&#39;s the outcome here?</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For the </span><span class="si">{</span><span class="n">maid</span><span class="si">}</span><span class="s2">, use the following response:&quot;</span><span class="p">)</span>
+<span class="n">response</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For the spiteful maid, use the following response:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;first_head&#39;: &#39;She shall be struck with leprosy&#39;,
+ &#39;second_head&#39;: &#39;She shall have a harsh voice&#39;,
+ &#39;third_head&#39;: &#39;She shall become a poor peasant.&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now put those various pieces together in slightly more elaborate incantation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">maid</span> <span class="ow">in</span> <span class="n">maids</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(The </span><span class="si">{</span><span class="n">maid</span><span class="si">}</span><span class="s2"> appears...)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="k">if</span> <span class="n">maid</span> <span class="o">==</span> <span class="s2">&quot;good maid&quot;</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">heads_response</span>
+    <span class="k">elif</span> <span class="n">maid</span> <span class="o">==</span> <span class="s2">&quot;spiteful maid&quot;</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">heads_other_response</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># do nothing more this time round</span>
+        <span class="c1"># go back to the top if there&#39;s more to consider</span>
+        <span class="k">continue</span>
+
+    <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="n">head</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="c1"># The \n character is an end-of-line character</span>
+    <span class="c1"># but you had perhaps already worked that out for yourself..?</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(The good maid appears...)
+
+- She shall be beautiful
+- She shall have a sweet voice
+- She shall become queen.
+
+
+(The blackbird appears...)
+
+(The spiteful maid appears...)
+
+- She shall be struck with leprosy
+- She shall have a harsh voice
+- She shall become a poor peasant.
+</pre></div>
+</div>
+</div>
+</div>
+<p>And that’s pretty much it for what code can do…</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="preface.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Preface</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lang-fairy-books-db.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">A Full Text Searchable Database of Lang’s Fairy Books</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  
+
+  </body>
+</html>
