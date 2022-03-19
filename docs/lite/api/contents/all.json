@@ -1,0 +1,25 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2022-03-19T17:30:52.848609Z",
+      "format": null,
+      "last_modified": "2022-03-19T16:50:04.835522Z",
+      "mimetype": null,
+      "name": "how-to-read-this-book.ipynb",
+      "path": "how-to-read-this-book.ipynb",
+      "size": 43522,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2022-03-19T17:30:52.848211Z",
+  "format": "json",
+  "last_modified": "2022-03-19T17:30:52.848211Z",
+  "mimetype": null,
+  "name": "",
+  "path": "",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

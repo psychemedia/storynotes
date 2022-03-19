@@ -786,6 +786,7 @@ orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
+requirements.txt
 tale_types_demo.db
 thompson_motif_index.csv
 vifb.txt.gz
@@ -868,6 +869,7 @@ orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
+requirements.txt
 tale_types_demo.db
 thompson_motif_index.csv
 vifb.txt.gz
@@ -1969,7 +1971,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time in a certain country there li...</td>
       <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
       <td>0</td>
-      <td>{CARDINAL :: three, DATE :: this very day, GPE...</td>
+      <td>{DATE :: this very day, TIME :: night, CARDINA...</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1980,7 +1982,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time there lived a king who was de...</td>
       <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
       <td>1</td>
-      <td>{PERSON :: Prince, LAW :: the Dear Little Prin...</td>
+      <td>{PERSON :: Fairy, DATE :: Hyacinth, WORK_OF_AR...</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1991,7 +1993,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time there was a poor husbandman w...</td>
       <td>Asbjornsen and Moe.</td>
       <td>2</td>
-      <td>{CARDINAL :: three, LOC :: Prince, TIME :: mid...</td>
+      <td>{DATE :: Thursday, FAC :: the White Bear, TIME...</td>
     </tr>
     <tr>
       <th>3</th>
@@ -2002,7 +2004,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time there lived a queen who had b...</td>
       <td>Madame d'Aulnoy.</td>
       <td>3</td>
-      <td>{PERSON :: Desert, CARDINAL :: three, ORG :: W...</td>
+      <td>{ORG :: Bellissima, ORG :: Courts, CARDINAL ::...</td>
     </tr>
     <tr>
       <th>4</th>
@@ -2013,7 +2015,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time there lived in a certain vill...</td>
       <td></td>
       <td>4</td>
-      <td>{DATE :: three days, DATE :: One day, PERSON :...</td>
+      <td>{ORG :: Grandmamma, DATE :: three days, PERSON...</td>
     </tr>
     <tr>
       <th>5</th>
@@ -2024,7 +2026,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>There were formerly a king and a queen, who we...</td>
       <td></td>
       <td>5</td>
-      <td>{CARDINAL :: three, PRODUCT :: Ogres, PERSON :...</td>
+      <td>{PERSON :: Fairy, PERSON :: Ogresses, ORG :: F...</td>
     </tr>
     <tr>
       <th>6</th>
@@ -2035,7 +2037,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once there was a gentleman who married, for hi...</td>
       <td>Charles Perrault.</td>
       <td>6</td>
-      <td>{NORP :: French, CARDINAL :: three, LOC :: Pri...</td>
+      <td>{PERSON :: Charlotte, PERSON :: Fairy, PERSON ...</td>
     </tr>
     <tr>
       <th>7</th>
@@ -2046,7 +2048,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>There once lived a poor tailor, who had a son ...</td>
       <td>Arabian Nights.</td>
       <td>7</td>
-      <td>{LOC :: Africa, GPE :: roc, DATE :: One day, C...</td>
+      <td>{PRODUCT :: The Grand Vizier, DATE :: forty ye...</td>
     </tr>
     <tr>
       <th>8</th>
@@ -2057,7 +2059,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>A father had two sons, of whom the eldest was ...</td>
       <td>Grimm.</td>
       <td>8</td>
-      <td>{CARDINAL :: three, TIME :: a minute, DATE :: ...</td>
+      <td>{TIME :: the night, TIME :: night, ORDINAL :: ...</td>
     </tr>
     <tr>
       <th>9</th>
@@ -2068,7 +2070,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>There was once upon a time a poor miller who h...</td>
       <td>Grimm.</td>
       <td>9</td>
-      <td>{CARDINAL :: three, GPE :: Kasper, ORDINAL :: ...</td>
+      <td>{PERSON :: Miller, GPE :: Melchior, TIME :: Go...</td>
     </tr>
   </tbody>
 </table>
@@ -2131,19 +2133,6 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time in a certain country there li...</td>
       <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
       <td>0</td>
-      <td>CARDINAL :: three</td>
-      <td>CARDINAL</td>
-      <td>three</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
       <td>DATE :: this very day</td>
       <td>DATE</td>
       <td>this very day</td>
@@ -2157,9 +2146,9 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time in a certain country there li...</td>
       <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
       <td>0</td>
-      <td>GPE :: Maisonneuve</td>
-      <td>GPE</td>
-      <td>Maisonneuve</td>
+      <td>TIME :: night</td>
+      <td>TIME</td>
+      <td>night</td>
     </tr>
     <tr>
       <th>0</th>
@@ -2170,9 +2159,9 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time in a certain country there li...</td>
       <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
       <td>0</td>
-      <td>ORDINAL :: second</td>
-      <td>ORDINAL</td>
-      <td>second</td>
+      <td>CARDINAL :: twelve</td>
+      <td>CARDINAL</td>
+      <td>twelve</td>
     </tr>
     <tr>
       <th>0</th>
@@ -2183,9 +2172,22 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
       <td>Once upon a time in a certain country there li...</td>
       <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
       <td>0</td>
-      <td>GPE :: Janina</td>
+      <td>GPE :: Nicolaides</td>
       <td>GPE</td>
-      <td>Janina</td>
+      <td>Nicolaides</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>CARDINAL :: three</td>
+      <td>CARDINAL</td>
+      <td>three</td>
     </tr>
   </tbody>
 </table>
@@ -2231,14 +2233,14 @@ Name: entity_typ, dtype: int64
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a penny                     6
 a hundred dollars           5
-a few pence                 4
 three hundred dollars       4
+a few pence                 4
 two hundred dollars         3
 the hundred dollars         2
 ten dollars                 2
-a thousand dollars          1
+fifty dollars               1
+Five hundred dollars        1
 only a few hundred yards    1
-the hundred marks           1
 Name: entity_value, dtype: int64
 </pre></div>
 </div>
@@ -2259,10 +2261,10 @@ a few miles         7
 twenty miles        6
 three miles         5
 a hundred miles     5
-seven miles         3
-two miles           3
-several miles       3
 two barrels         3
+a few yards         3
+several miles       3
+two miles           3
 Name: entity_value, dtype: int64
 </pre></div>
 </div>
@@ -2281,10 +2283,10 @@ Prince      29
 Majesty     29
 Queen       27
 bush        12
-Campbell    11
-Lang        11
 wolf        11
+Lang        11
 Madam       11
+Campbell    11
 Jack        10
 Name: entity_value, dtype: int64
 </pre></div>
@@ -2299,16 +2301,16 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>thou                11
-Paris               10
-France               9
-Japan                8
-Greece               7
-Denmark              6
-Ireland              6
-Contes Armeniens     5
-Egypt                5
-Gedichte             5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>thou       11
+Paris      10
+France      9
+Japan       8
+Greece      7
+Ireland     6
+Denmark     6
+Egypt       5
+Persia      5
+Thou        5
 Name: entity_value, dtype: int64
 </pre></div>
 </div>
