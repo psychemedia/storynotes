@@ -516,17 +516,25 @@ title="Print to PDF"
 <span class="c1"># previous line of the incantation as giving</span>
 <span class="c1"># the web address of a YouTube page</span>
 
-<span class="c1"># And pass the message to the king for him to read</span>
-<span class="n">YouTubeVideo</span><span class="p">(</span><span class="n">video_url</span><span class="p">)</span>
+<span class="c1"># We can extract the ID of the video by splitting</span>
+<span class="c1"># the URL on the &quot;=&quot; and taking the last (-1) piece</span>
+<span class="n">video_id</span> <span class="o">=</span> <span class="n">video_url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Video ID is </span><span class="si">{</span><span class="n">video_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now pass the message to the king for him to read</span>
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="n">video_id</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Video ID is KdnGPQaICjk&#39;
+</pre></div>
+</div>
 <div class="output text_html">
 <iframe
     width="400"
     height="300"
-    src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=KdnGPQaICjk"
+    src="https://www.youtube.com/embed/KdnGPQaICjk"
     frameborder="0"
     allowfullscreen
 
