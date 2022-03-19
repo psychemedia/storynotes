@@ -1,6 +1,8 @@
 format: jb-book
 root: preface
 parts:
+- chapters:
+  - file: how-to-read-this-book
 - caption: Story Collection Scrapers and Search
   chapters:
   - file: lang-fairy-books-db
