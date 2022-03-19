@@ -522,7 +522,7 @@ and they rode for a night and a day.
 <p>So does the following piece of code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">refrain</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">three_heads_refrain</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Wash me and comb me,</span>
 <span class="s2">And lay me down softly.</span>
 <span class="s2">And lay me on a bank to dry,</span>
@@ -530,7 +530,7 @@ and they rode for a night and a day.
 <span class="s2">When somebody passes by.&quot;&quot;&quot;</span>
 
 <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;And the </span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2"> said:</span><span class="se">\n</span><span class="si">{</span><span class="n">refrain</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;And the </span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2"> said:</span><span class="se">\n</span><span class="si">{</span><span class="n">three_heads_refrain</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -564,13 +564,26 @@ When somebody passes by.
 </div>
 </div>
 </div>
+<p>We can make it easier to repeat the refrain by putting that code into another reusable function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">say_refrain</span><span class="p">(</span><span class="n">refrain</span><span class="p">):</span>
+    <span class="s2">&quot;Repeat the refrain.&quot;</span>
+    <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;And the </span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2"> said:</span><span class="se">\n</span><span class="si">{</span><span class="n">refrain</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>All we have to do now is say the following in a code cell:</p>
+<p><code class="docutils literal notranslate"><span class="pre">say_refrain(three_heads_refrain)</span></code></p>
 <p>You might also recall that each of the heads gave a different gift to the good natured heroine.</p>
 <p>That is, the gift given by each head was <em>conditional</em> on which head gave the gift.</p>
 <p>We can create an incantation that will also perform different actions based on what we are currently doing or talking about.</p>
 <p>Here’s the set-up…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heads_question</span> <span class="o">=</span> <span class="s1">&#39;What shall we give here for treating us so kindly?&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">heads_question</span> <span class="o">=</span> <span class="s1">&#39;What shall we give her for treating us so kindly?&#39;</span>
 
 <span class="n">heads_response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;first_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall be beautiful&quot;</span><span class="p">,</span>
                   <span class="s2">&quot;second_head&quot;</span><span class="p">:</span> <span class="s2">&quot;She shall have a sweet voice&quot;</span><span class="p">,</span>
@@ -582,7 +595,7 @@ When somebody passes by.
 <p>What do you think might happen next?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">heads_question</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">heads_question</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">heads_response</span><span class="p">[</span><span class="n">head</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -590,7 +603,8 @@ When somebody passes by.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>What shall we give here for treating us so kindly?
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>What shall we give her for treating us so kindly? 
+
 - She shall be beautiful
 - She shall have a sweet voice
 - She shall become queen.
@@ -670,7 +684,9 @@ When somebody passes by.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">maid</span> <span class="ow">in</span> <span class="n">maids</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(The </span><span class="si">{</span><span class="n">maid</span><span class="si">}</span><span class="s2"> appears...)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        
+    
+    <span class="n">say_refrain</span><span class="p">(</span><span class="n">three_heads_refrain</span><span class="p">)</span>
+    
     <span class="k">if</span> <span class="n">maid</span> <span class="o">==</span> <span class="s2">&quot;good maid&quot;</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">heads_response</span>
     <span class="k">elif</span> <span class="n">maid</span> <span class="o">==</span> <span class="s2">&quot;spiteful maid&quot;</span><span class="p">:</span>
@@ -680,6 +696,7 @@ When somebody passes by.
         <span class="c1"># go back to the top if there&#39;s more to consider</span>
         <span class="k">continue</span>
 
+        
     <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="n">head</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
@@ -692,6 +709,33 @@ When somebody passes by.
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(The good maid appears...)
 
+And the first_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the second_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the third_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
 - She shall be beautiful
 - She shall have a sweet voice
 - She shall become queen.
@@ -699,7 +743,61 @@ When somebody passes by.
 
 (The blackbird appears...)
 
+And the first_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the second_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the third_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
 (The spiteful maid appears...)
+
+And the first_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the second_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
+
+And the third_head said:
+
+Wash me and comb me,
+And lay me down softly.
+And lay me on a bank to dry,
+That I may look pretty,
+When somebody passes by.
+
 
 - She shall be struck with leprosy
 - She shall have a harsh voice
