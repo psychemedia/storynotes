@@ -1,0 +1,6 @@
+pandas
+lxml
+beautifulsoup4
+parse
+sqlite_utils
+
