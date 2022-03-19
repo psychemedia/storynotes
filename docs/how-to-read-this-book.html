@@ -342,6 +342,33 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes">
    Some Tricks to Help You Recognise Code Tropes and Archetypes
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-our-own-shortcuts-spells-and-incantations">
+     Defining Our Own Shortcuts, Spells and Incantations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#again-and-again-and-again-and-again">
+     Again, and Again, and Again, and Again…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-and-response">
+     Call and Response
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess">
+     If You Bring Me the Head of a Dragon, You May Marry the Princess…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-long-story-is-often-made-from-simpler-parts">
+     A Long Story is Often Made From Simpler Parts
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -371,6 +398,33 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes">
    Some Tricks to Help You Recognise Code Tropes and Archetypes
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#defining-our-own-shortcuts-spells-and-incantations">
+     Defining Our Own Shortcuts, Spells and Incantations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#again-and-again-and-again-and-again">
+     Again, and Again, and Again, and Again…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-and-response">
+     Call and Response
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess">
+     If You Bring Me the Head of a Dragon, You May Marry the Princess…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-long-story-is-often-made-from-simpler-parts">
+     A Long Story is Often Made From Simpler Parts
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -479,6 +533,8 @@ title="Print to PDF"
 ></iframe>
 </div></div>
 </div>
+<div class="section" id="defining-our-own-shortcuts-spells-and-incantations">
+<h3>Defining Our Own Shortcuts, Spells and Incantations<a class="headerlink" href="#defining-our-own-shortcuts-spells-and-incantations" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes, we need to package up a bit of the story so that we can reuse it. Or we need to teach the audience something they can do for us.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>When the man gets on the horse with the fairy queen, you say:
 
@@ -488,7 +544,7 @@ and they merrily, merrily rode,
 and they rode for a night and a day.
 </pre></div>
 </div>
-<p>Same with code:</p>
+<p>It’s the same with code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhyme</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -521,6 +577,9 @@ and they rode for a night and a day.
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="again-and-again-and-again-and-again">
+<h3>Again, and Again, and Again, and Again…<a class="headerlink" href="#again-and-again-and-again-and-again" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes, we want to do the same thing several times.</p>
 <p>You may recall the three heads on the well who each made the same request?</p>
 <p>So does the following piece of code:</p>
@@ -585,8 +644,27 @@ When somebody passes by.
 </div>
 </div>
 </div>
-<p>All we have to do now is say the following in a code cell:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;triple</span> <span class="pre">quoted</span> <span class="pre">text&quot;&quot;&quot;</span></code> at the start of the spell is actually a “note-to-self” that can remind us what the spell does:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">say_refrain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function say_refrain in module __main__:
+
+say_refrain(refrain)
+    Repeat the refrain.
+</pre></div>
+</div>
+</div>
+</div>
+<p>To invoke the spell at another time, all we have to do is say the following in a code cell:</p>
 <p><code class="docutils literal notranslate"><span class="pre">say_refrain(three_heads_refrain)</span></code></p>
+</div>
+<div class="section" id="call-and-response">
+<h3>Call and Response<a class="headerlink" href="#call-and-response" title="Permalink to this headline">¶</a></h3>
 <p>If you’ve even been to a storytelling club or story festival, you’re probably familiar with the idea of “cric-crac”, a call and response technique used by the storyteller - who calls out “cric” - to keep an audience - who respond with “crac” - engaged, particularly during a long story, or between tales.</p>
 <p>In code, we can use a simple spell component that gives us a basis for simple, and direct, call-response behaviours:</p>
 <div class="cell docutils container">
@@ -606,8 +684,11 @@ When somebody passes by.
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess">
+<h3>If You Bring Me the Head of a Dragon, You May Marry the Princess…<a class="headerlink" href="#if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess" title="Permalink to this headline">¶</a></h3>
 <p>Let’s go back to the three heads.</p>
-<p>You might also recall that each of the heads gave a different gift to the good natured heroine.</p>
+<p>You might recall that each of the heads gave a different gift to the good natured heroine.</p>
 <p>That is, the gift given by each head was <em>conditional</em> on which head gave the gift.</p>
 <p>We can create an incantation that will also perform different actions based on what we are currently doing or talking about.</p>
 <p>Here’s the set-up…</p>
@@ -712,7 +793,12 @@ When somebody passes by.
 </div>
 </div>
 </div>
-<p>We can now put those various pieces together in slightly more elaborate incantation:</p>
+</div>
+<div class="section" id="a-long-story-is-often-made-from-simpler-parts">
+<h3>A Long Story is Often Made From Simpler Parts<a class="headerlink" href="#a-long-story-is-often-made-from-simpler-parts" title="Permalink to this headline">¶</a></h3>
+<p>Many longer stories are actually quite formulaic in their structure. They are often split into “chapters” or distinct phases, and each separate phase or part might have its own, often repeating, structure.</p>
+<p>And as with story, so with code.</p>
+<p>So let’s put several of those pieces we’ve sketched and tried out previously in slightly more elaborate code story incantation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make am ordered list of the heads</span>
@@ -882,6 +968,7 @@ And the third_head said: She shall become a poor peasant.
 </div>
 </div>
 <p>And that’s pretty much it for what code can do…</p>
+</div>
 </div>
 </div>
 
