@@ -631,6 +631,9 @@ When somebody passes by.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The [] structure lets us create a list of items</span>
 <span class="n">maids</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;good maid&quot;</span><span class="p">,</span> <span class="s2">&quot;blackbird&quot;</span><span class="p">,</span> <span class="s2">&quot;spiteful maid&quot;</span><span class="p">,]</span>
+
+<span class="c1"># Was &quot;maids&quot; a sensible name for that list?</span>
+<span class="c1"># Maybe &quot;characters&quot; would have been better...</span>
 </pre></div>
 </div>
 </div>
@@ -686,7 +689,14 @@ When somebody passes by.
 <p>We can now put those various pieces together in slightly more elaborate incantation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">maid</span> <span class="ow">in</span> <span class="n">maids</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make am ordered list of the heads</span>
+<span class="c1"># that we can call on later</span>
+<span class="n">heads</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]</span>
+
+
+<span class="c1"># Now let&#39;s see what happens for each of the</span>
+<span class="c1"># characters in our tale...</span>
+<span class="k">for</span> <span class="n">maid</span> <span class="ow">in</span> <span class="n">maids</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(The </span><span class="si">{</span><span class="n">maid</span><span class="si">}</span><span class="s2"> appears...)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     
     <span class="n">say_refrain</span><span class="p">(</span><span class="n">three_heads_refrain</span><span class="p">)</span>
@@ -705,8 +715,8 @@ When somebody passes by.
     
     <span class="n">say_refrain</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;-&quot;what a </span><span class="si">{</span><span class="n">maid</span><span class="si">}</span><span class="s1">...&quot;&#39;</span><span class="p">)</span>
     
-    <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;first_head&quot;</span><span class="p">,</span> <span class="s2">&quot;second_head&quot;</span><span class="p">,</span> <span class="s2">&quot;third_head&quot;</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="n">head</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">head</span> <span class="ow">in</span> <span class="n">heads</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;And the </span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2"> said: </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="n">head</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         
     <span class="c1"># The \n character is an end-of-line character</span>
     <span class="c1"># but you had perhaps already started to suspect</span>
@@ -759,9 +769,9 @@ And the third_head said:
 -&quot;what a good maid...&quot;
 
 
-- She shall be beautiful
-- She shall have a sweet voice
-- She shall become queen.
+And the first_head said: She shall be beautiful
+And the second_head said: She shall have a sweet voice
+And the third_head said: She shall become queen.
 
 
 (The blackbird appears...)
@@ -838,9 +848,9 @@ And the third_head said:
 -&quot;what a spiteful maid...&quot;
 
 
-- She shall be struck with leprosy
-- She shall have a harsh voice
-- She shall become a poor peasant.
+And the first_head said: She shall be struck with leprosy
+And the second_head said: She shall have a harsh voice
+And the third_head said: She shall become a poor peasant.
 </pre></div>
 </div>
 </div>
