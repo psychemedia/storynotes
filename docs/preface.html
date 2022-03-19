@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How To Read This Book (Do Not Be Afraid)" href="how-to-read-this-book.html" />
@@ -128,6 +130,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="lang-fairy-books-db.html">
    A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
   </a>
  </li>
  <li class="toctree-l1">
@@ -325,14 +342,16 @@ title="Print to PDF"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="preface">
 <h1>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h1>
-<p>As an aspiring traditional storyteller, I try to tell stories that I’ve heard other people tell. Story clubs and storytelling festivals such as <em>Festival at the Edge</em> (which I’ve attended many times) and <em>Beyond the Border</em> (which I’ve still never made) provide a rich source for pikcing up tales. The advent of Covid saw many storytellers starting podcasts, and whilst audio feeds don;t quite have the richness of a live event, they still provide an opportunity to <em>hear</em> other storytellers doing what they do best.</p>
+<p>As an aspiring traditional storyteller, I try to tell stories that I’ve heard other people tell. Story clubs and storytelling festivals such as <em>Festival at the Edge</em> (which I’ve attended many times) and <em>Beyond the Border</em> (which I’ve still never made) provide a rich source for picking up tales. The advent of Covid saw many storytellers starting podcasts, and whilst audio feeds don;t quite have the richness of a live event, they still provide an opportunity to <em>hear</em> other storytellers doing what they do best.</p>
 <p>Story collections in a printed form are another useful source, although often the <em>voice</em> is lost, unless you happen upon a collection by a storyteller you’ve seen performing and you can imagine them actually telling the tale.</p>
-<p>Whilst the canon of tales with which many folk are familiar is a wide one, digging into “lost” books and archives to find new old tales, or classic tales told a little differently, provides individual storytllers with the opportunity to return a lost story to the scene, and prick up the ears of other storytellers who maybe have heard that story before.</p>
+<p>Whilst the canon of tales with which many folk are familiar is a wide one, digging into “lost” books and archives to find new old tales, or classic tales told a little differently, provides individual storytellers with the opportunity to return a lost story to the scene, and prick up the ears of other storytellers who maybe have heard that story before.</p>
 <p>Many out-of-print books and journals can be found in the Internet Archive, at <code class="docutils literal notranslate"><span class="pre">archive.org</span></code>. Newspaper collections such as a the free-to-access newspaper and journal collections at the National Library of Wales also provide a great source of local stories and long-forgotten events.</p>
 <p>Many other collections of tales can be found online, although the ability to search for particular stories is often hampered by limited search tools. As well as searching story texts directly, stories may also be discovered through formal classifications of stories and “tale types”, using schemes such as the Thompson Motif Indexe or the Aarne-Thompson_Uther classification.</p>
-<p>In this online text, I will be gathering together various technical recipes for creating story collections and searching through them. This is <em>living</em> document, and various sections may be in various states of disprepair at any particular time. Many of the recipes demonstrate how to create searchable databases. My intention is to provide online search interfaces to these databases, but in the short term, if you want to try them out, you will have to download the recipe notebooks and construct them yourself. (I will also be providing guides on how to run the notebooks yourself, but again that’s still on the to-do list for now.)</p>
+<p>In this online text, I will be gathering together various technical recipes for creating story collections and searching through them. This is a <em>living</em> document, and various sections may be in various states of disprepair at any particular time. Many of the recipes demonstrate how to create searchable databases. My intention is to provide online search interfaces to these databases, but in the short term, if you want to try them out, you will have to download the recipe notebooks and construct them yourself. (I will also be providing guides on how to run the notebooks yourself, but again that’s still on the to-do list for now.)</p>
+<p>There is some code included in the pages, and then some more, but do not be put off by this. If you can keep a story in your head and understand enough about storytelling to identify common tale types and be able to make use of archetypes, you’ll be able to recognise parts, at least, of the tales told by the code stories you’ll find herein.</p>
+<p>And you’ll perhaps also come to realise that if you think of code as magic, it all starts to make a bit more sense…</p>
 <p>Tony Hirst
-<em>Isle of Wight, March 2022.</em></p>
+<em>Isle of Wight, March 2022+</em></p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

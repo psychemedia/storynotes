@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Ashliman “Folklore and Mythology Electronic Texts” Scraper" href="Ashliman_folk_texts_scraper.html" />
-    <link rel="prev" title="Running the Code Contained in This Book" href="running-the-book-code.html" />
+    <link rel="next" title="Finding Book Index-Like Things In Lang’s Fairy Stories…" href="lang-fairy-books-db_PART_2.html" />
+    <link rel="prev" title="Invoking the Incantations Contained in This Book" href="running-the-book-code.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,7 +118,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="running-the-book-code.html">
-   Running the Code Contained in This Book
+   Invoking the Incantations Contained in This Book
   </a>
  </li>
 </ul>
@@ -131,6 +131,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
   </a>
  </li>
  <li class="toctree-l1">
@@ -420,37 +435,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-pandas-based-database-queries">
-   Making
-   <em>
-    pandas
-   </em>
-   based Database Queries
+  <a class="reference internal nav-link" href="#returning-database-query-responses-as-a-table">
+   Returning Database Query Responses as a Table
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#entity-extraction">
-   Entity Extraction…
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-wikipedia-links">
-   Add Wikipedia Links
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#common-refrains-repeating-phrases">
-   Common Refrains / Repeating Phrases
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#longest-common-substring">
-   Longest Common Substring
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#doc2vec-search-engine">
-   Doc2Vec Search Engine
+  <a class="reference internal nav-link" href="#using-magic-to-make-database-queries">
+   Using Magic to Make Database Queries
   </a>
  </li>
 </ul>
@@ -503,37 +494,13 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#making-pandas-based-database-queries">
-   Making
-   <em>
-    pandas
-   </em>
-   based Database Queries
+  <a class="reference internal nav-link" href="#returning-database-query-responses-as-a-table">
+   Returning Database Query Responses as a Table
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#entity-extraction">
-   Entity Extraction…
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#add-wikipedia-links">
-   Add Wikipedia Links
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#common-refrains-repeating-phrases">
-   Common Refrains / Repeating Phrases
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#longest-common-substring">
-   Longest Common Substring
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#doc2vec-search-engine">
-   Doc2Vec Search Engine
+  <a class="reference internal nav-link" href="#using-magic-to-make-database-queries">
+   Using Magic to Make Database Queries
   </a>
  </li>
 </ul>
@@ -564,7 +531,9 @@ title="Print to PDF"
 <span class="kn">import</span> <span class="nn">requests_cache</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
 
-<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span> <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span>
+                             <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span>
+                             <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -783,6 +752,8 @@ Story db search examples.ipynb
 Thompson_Motif_Index.ipynb
 <span class=" -Color -Color-Blue">_build</span>
 _config.yml
+<span class=" -Color -Color-Blue">_content</span>
+<span class=" -Color -Color-Blue">_contents</span>
 _toc.yml
 ashliman_demo.db
 blfb.txt.gz
@@ -794,22 +765,23 @@ gnfb.txt.gz
 gyfb.txt.gz
 how-to-read-this-book.ipynb
 <span class=" -Color -Color-Blue">images</span>
-lang-fairy-books-db.ipynb
-lang-fairy-books-db_PART 1.ipynb
-lang-fairy-books-db_PART 2.ipynb
-lang-fairy-books-db_PART 3.ipynb
-lang-fairy-books-db_PART 4.ipynb
+lang-fairy-books-db_PART_1.ipynb
+lang-fairy-books-db_PART_2.ipynb
+lang-fairy-books-db_PART_3.ipynb
+lang-fairy-books-db_PART_4.ipynb
 lang_fairy_tale.db
 lang_model.gensim
 lifb.txt.gz
 motifs_demo.db
 mtdf_demo.db
+<span class=" -Color -Color-Blue">old</span>
 olfb.txt.gz
 orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
 requirements.txt
+running-the-book-code.ipynb
 tale_types_demo.db
 thompson_motif_index.csv
 vifb.txt.gz
@@ -866,6 +838,8 @@ Story db search examples.ipynb
 Thompson_Motif_Index.ipynb
 <span class=" -Color -Color-Blue">_build</span>
 _config.yml
+<span class=" -Color -Color-Blue">_content</span>
+<span class=" -Color -Color-Blue">_contents</span>
 _toc.yml
 ashliman_demo.db
 blfb.txt.gz
@@ -877,22 +851,23 @@ gnfb.txt.gz
 gyfb.txt.gz
 how-to-read-this-book.ipynb
 <span class=" -Color -Color-Blue">images</span>
-lang-fairy-books-db.ipynb
-lang-fairy-books-db_PART 1.ipynb
-lang-fairy-books-db_PART 2.ipynb
-lang-fairy-books-db_PART 3.ipynb
-lang-fairy-books-db_PART 4.ipynb
+lang-fairy-books-db_PART_1.ipynb
+lang-fairy-books-db_PART_2.ipynb
+lang-fairy-books-db_PART_3.ipynb
+lang-fairy-books-db_PART_4.ipynb
 lang_fairy_tale.db
 lang_model.gensim
 lifb.txt.gz
 motifs_demo.db
 mtdf_demo.db
+<span class=" -Color -Color-Blue">old</span>
 olfb.txt.gz
 orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
 requirements.txt
+running-the-book-code.ipynb
 tale_types_demo.db
 thompson_motif_index.csv
 vifb.txt.gz
@@ -1175,7 +1150,7 @@ yefb.txt.gz
 <p>Specifiy the database filename (and optionally conntect to the database if it already exists):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;demo.db&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;lang_fairy_tale.db&quot;</span>
 
 <span class="c1"># Uncomment the following lines to connect to a pre-existing database</span>
 <span class="c1">#db = Database(db_name)</span>
@@ -1379,7 +1354,8 @@ The Red Etin :: The Blue Fairy Book
 
 <span class="n">_q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">SELECT title, snippet(books_fts, -1, &quot;__&quot;, &quot;__&quot;, &quot;...&quot;, 30) as clip</span>
-<span class="s2">FROM books_fts WHERE books_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">q3</span><span class="p">)</span><span class="si">}</span><span class="s2"> LIMIT 2 ;</span>
+<span class="s2">FROM books_fts</span>
+<span class="s2">WHERE books_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">q3</span><span class="p">)</span><span class="si">}</span><span class="s2"> LIMIT 2 ;</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
@@ -1517,7 +1493,8 @@ Once upon a time there was a king who had __three sons__, who were all so clever
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Search on: </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;books&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">quote_fts</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;book&quot;</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;books&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">quote_fts</span><span class="p">(</span><span class="n">q</span><span class="p">),</span>
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;book&quot;</span><span class="p">]):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">story</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1765,8 +1742,17 @@ Grimm.
 <p>How about some stories that don’t reference Grimm?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This query was used to help iterate the regular expressions used to extract the provenance</span>
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;SELECT last_para, provenance FROM books WHERE text NOT LIKE &quot;</span><span class="si">%G</span><span class="s1">rimm%&quot; LIMIT 10&#39;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This query was used to help</span>
+<span class="c1"># iterate the regular expressions used to extract the provenance</span>
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT last_para, provenance</span>
+<span class="s2">    FROM books</span>
+<span class="s2">    WHERE text NOT LIKE &quot;</span><span class="si">%G</span><span class="s2">rimm%&quot;</span>
+<span class="s2">    LIMIT 10;</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;provenance&quot;</span><span class="p">],</span><span class="s2">&quot;::&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;last_para&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">200</span><span class="p">:])</span>
 </pre></div>
 </div>
@@ -1786,9 +1772,16 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </div>
 </div>
 </div>
+<p>Based on our extracted provenance data, lets see how many books were identified by each of the cited authors that we managed to discover:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;SELECT DISTINCT provenance, COUNT(*) AS num FROM books GROUP BY provenance ORDER BY num DESC LIMIT 10&#39;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT DISTINCT provenance, COUNT(*) AS num</span>
+<span class="s2">    FROM books</span>
+<span class="s2">    GROUP BY provenance ORDER BY num DESC LIMIT 10;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;num&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;provenance&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1808,54 +1801,62 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </div>
 </div>
 </div>
-<p>Hmm.. it seemed like there were more mentions of Grimm than that?</p>
+<p>There is possibly some more work we can do to improve things further, but we will leave this topic for now: we have something that partially works at least, and as we use the database, we may come across further tricks or observations that might help us extract higher quality or additional provenance data.</p>
 </div>
-<div class="section" id="making-pandas-based-database-queries">
-<h2>Making <em>pandas</em> based Database Queries<a class="headerlink" href="#making-pandas-based-database-queries" title="Permalink to this headline">¶</a></h2>
-<p>For convenience, let’s set up a database connection so we can easily run <em>pandas</em> mediated queries:</p>
+<div class="section" id="returning-database-query-responses-as-a-table">
+<h2>Returning Database Query Responses as a Table<a class="headerlink" href="#returning-database-query-responses-as-a-table" title="Permalink to this headline">¶</a></h2>
+<p>The pandas package is a powerful package for working with tabular data. We can use the <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">read_sql()</span></code> function to run queries against a database and return the result in a <em>padas</em> dataframe.</p>
+<p>Before making a query, we need to set up a connection to the database. The <code class="docutils literal notranslate"><span class="pre">read_sql()</span></code> function can then use this conection to make the query.</p>
+<p>One of the easiest ways to set up a database connection is using the <code class="docutils literal notranslate"><span class="pre">sqlite_utils</span></code> package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">sqlite3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
 
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;lang_fairy_tale.db&quot;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+
+<span class="c1"># The database connection:</span>
+<span class="n">db</span><span class="o">.</span><span class="n">conn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Connection at 0x1204ceb70&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>```{admonition} Creating Database Connections With the <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> Package
+:class: dropdown</p>
+<p>Database connections can als be opened using the basic <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> package.</p>
+<p>Use a command of the form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># Set the name of the database file</span>
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;my_database.db&quot;</span>
+
+<span class="c1"># Open the database connection</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#--SPLITHERE--</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="entity-extraction">
-<h2>Entity Extraction…<a class="headerlink" href="#entity-extraction" title="Permalink to this headline">¶</a></h2>
-<p>So what entities can we find in the stories…?!</p>
-<p>Let’s load in the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> natural language processing toolkit:</p>
+<p>We can now run queries with constructions of the form:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%pip install --upgrade spacy</span>
-<span class="kn">import</span> <span class="nn">spacy</span>
-<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t import dot_parser, loading of dot files will not be possible.
-</pre></div>
-</div>
-</div>
-</div>
-<p>Get a dataframe of data frm the database:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM books&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a function to support making queries to a connected database</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
 
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT DISTINCT provenance, COUNT(*) AS num</span>
+<span class="s2">    FROM books</span>
+<span class="s2">    GROUP BY provenance</span>
+<span class="s2">    ORDER BY num DESC</span>
+<span class="s2">    LIMIT 10;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1878,1520 +1879,248 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>book</th>
-      <th>title</th>
-      <th>text</th>
-      <th>last_para</th>
-      <th>first_line</th>
       <th>provenance</th>
-      <th>chapter_order</th>
+      <th>num</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
+      <td></td>
+      <td>126</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Once upon a time there lived a king who was de...</td>
-      <td>[1] Le Prince Desir et la Princesse Mignonne. ...</td>
-      <td>Once upon a time there lived a king who was de...</td>
-      <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
-      <td>1</td>
+      <td>Grimm.</td>
+      <td>31</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Blue Fairy Book</td>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>Once upon a time there was a poor husbandman w...</td>
-      <td>[1] Asbjornsen and Moe.</td>
-      <td>Once upon a time there was a poor husbandman w...</td>
-      <td>Asbjornsen and Moe.</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Yellow Dwarf</td>
-      <td>Once upon a time there lived a queen who had b...</td>
-      <td>[1] Madame d'Aulnoy.</td>
-      <td>Once upon a time there lived a queen who had b...</td>
-      <td>Madame d'Aulnoy.</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>The Blue Fairy Book</td>
-      <td>Little Red Riding Hood</td>
-      <td>Once upon a time there lived in a certain vill...</td>
-      <td>And, saying these words, this wicked wolf fell...</td>
-      <td>Once upon a time there lived in a certain vill...</td>
-      <td></td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Now let’s have a go at extracting some entities (this may take some time!):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a set of entities, rather than a list...</span>
-<span class="n">get_entities</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">desc</span><span class="p">:</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">label_</span><span class="si">}</span><span class="s2"> :: </span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">nlp</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span><span class="o">.</span><span class="n">ents</span><span class="p">}</span>
-
-<span class="c1"># The full run takes some time....</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;entities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_entities</span><span class="p">)</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>book</th>
-      <th>title</th>
-      <th>text</th>
-      <th>last_para</th>
-      <th>first_line</th>
-      <th>provenance</th>
-      <th>chapter_order</th>
-      <th>entities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
-      <td>{DATE :: this very day, TIME :: night, CARDINA...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Once upon a time there lived a king who was de...</td>
-      <td>[1] Le Prince Desir et la Princesse Mignonne. ...</td>
-      <td>Once upon a time there lived a king who was de...</td>
-      <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
-      <td>1</td>
-      <td>{PERSON :: Fairy, DATE :: Hyacinth, WORK_OF_AR...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>The Blue Fairy Book</td>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>Once upon a time there was a poor husbandman w...</td>
-      <td>[1] Asbjornsen and Moe.</td>
-      <td>Once upon a time there was a poor husbandman w...</td>
-      <td>Asbjornsen and Moe.</td>
-      <td>2</td>
-      <td>{DATE :: Thursday, FAC :: the White Bear, TIME...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Yellow Dwarf</td>
-      <td>Once upon a time there lived a queen who had b...</td>
-      <td>[1] Madame d'Aulnoy.</td>
-      <td>Once upon a time there lived a queen who had b...</td>
-      <td>Madame d'Aulnoy.</td>
-      <td>3</td>
-      <td>{ORG :: Bellissima, ORG :: Courts, CARDINAL ::...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>The Blue Fairy Book</td>
-      <td>Little Red Riding Hood</td>
-      <td>Once upon a time there lived in a certain vill...</td>
-      <td>And, saying these words, this wicked wolf fell...</td>
-      <td>Once upon a time there lived in a certain vill...</td>
-      <td></td>
-      <td>4</td>
-      <td>{ORG :: Grandmamma, DATE :: three days, PERSON...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Sleeping Beauty In The Wood</td>
-      <td>There were formerly a king and a queen, who we...</td>
-      <td>No one dared to tell him, when the Ogress, all...</td>
-      <td>There were formerly a king and a queen, who we...</td>
-      <td></td>
+      <td>Lapplandische Mahrchen.</td>
       <td>5</td>
-      <td>{PERSON :: Fairy, PERSON :: Ogresses, ORG :: F...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>The Blue Fairy Book</td>
-      <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>Once there was a gentleman who married, for hi...</td>
-      <td>[1] Charles Perrault.</td>
-      <td>Once there was a gentleman who married, for hi...</td>
-      <td>Charles Perrault.</td>
-      <td>6</td>
-      <td>{PERSON :: Charlotte, PERSON :: Fairy, PERSON ...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>The Blue Fairy Book</td>
-      <td>Aladdin And The Wonderful Lamp</td>
-      <td>There once lived a poor tailor, who had a son ...</td>
-      <td>[1] Arabian Nights.</td>
-      <td>There once lived a poor tailor, who had a son ...</td>
-      <td>Arabian Nights.</td>
-      <td>7</td>
-      <td>{PRODUCT :: The Grand Vizier, DATE :: forty ye...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
-      <td>A father had two sons, of whom the eldest was ...</td>
-      <td>[1] Grimm.</td>
-      <td>A father had two sons, of whom the eldest was ...</td>
-      <td>Grimm.</td>
-      <td>8</td>
-      <td>{TIME :: the night, TIME :: night, ORDINAL :: ...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>The Blue Fairy Book</td>
-      <td>Rumpelstiltzkin</td>
-      <td>There was once upon a time a poor miller who h...</td>
-      <td>[1] Grimm.</td>
-      <td>There was once upon a time a poor miller who h...</td>
-      <td>Grimm.</td>
-      <td>9</td>
-      <td>{PERSON :: Miller, GPE :: Melchior, TIME :: Go...</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p><em>We should probably just do this once and add an appropriate table of entities to the database…</em></p>
-<p>We can explode these out into a long format dataframe:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span>
-
-<span class="c1"># Explode the entities one per row...</span>
-<span class="n">df_long</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;entities&#39;</span><span class="p">)</span>
-<span class="n">df_long</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;entities&quot;</span><span class="p">:</span><span class="s2">&quot;entity&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># And then separate out entity type and value</span>
-<span class="n">df_long</span><span class="p">[[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">,</span> <span class="s2">&quot;entity_value&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; :: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Series</span><span class="p">)</span>
-<span class="n">df_long</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>book</th>
-      <th>title</th>
-      <th>text</th>
-      <th>last_para</th>
-      <th>first_line</th>
-      <th>provenance</th>
-      <th>chapter_order</th>
-      <th>entity</th>
-      <th>entity_typ</th>
-      <th>entity_value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
-      <td>DATE :: this very day</td>
-      <td>DATE</td>
-      <td>this very day</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
-      <td>TIME :: night</td>
-      <td>TIME</td>
-      <td>night</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
-      <td>CARDINAL :: twelve</td>
-      <td>CARDINAL</td>
-      <td>twelve</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
-      <td>GPE :: Nicolaides</td>
-      <td>GPE</td>
-      <td>Nicolaides</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
-      <td>Once upon a time in a certain country there li...</td>
-      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
-      <td>0</td>
-      <td>CARDINAL :: three</td>
-      <td>CARDINAL</td>
-      <td>three</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>And explore…</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE           3108
-CARDINAL       2536
-TIME           1928
-ORG            1564
-PERSON         1499
-ORDINAL         879
-GPE             564
-WORK_OF_ART     358
-NORP            343
-QUANTITY        209
-LOC             165
-PRODUCT         144
-FAC             126
-MONEY            41
-LAW              34
-EVENT            28
-LANGUAGE         12
-Name: entity_typ, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>What sort of money has been identified in the stories?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;MONEY&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a penny                     6
-a hundred dollars           5
-three hundred dollars       4
-a few pence                 4
-two hundred dollars         3
-the hundred dollars         2
-ten dollars                 2
-fifty dollars               1
-Five hundred dollars        1
-only a few hundred yards    1
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>Dollars? Really??? What about gold coins?! Do I need to train a new classifier?! Or was the original text really like that… Or has the text been got at? <em>(Maybe I should do my own digitisation project to extract the text from copies of the original books on the Internet Archive? Hmmm.. that could be interesting for when we go on strike…)</em></p>
-<p>What about other quantities?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;QUANTITY&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one foot           15
-a mile             12
-a few miles         7
-twenty miles        6
-three miles         5
-a hundred miles     5
-two barrels         3
-a few yards         3
-several miles       3
-two miles           3
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>What people have been identified?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;PERSON&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fairy       31
-Prince      29
-Majesty     29
-Queen       27
-bush        12
-wolf        11
-Lang        11
-Madam       11
-Campbell    11
-Jack        10
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>How about geo-political entities (GPEs)?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;GPE&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>thou       11
-Paris      10
-France      9
-Japan       8
-Greece      7
-Ireland     6
-Denmark     6
-Egypt       5
-Persia      5
-Thou        5
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>When did things happen?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;DATE&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one day         188
-One day         154
-the day          86
-three days       79
-next day         62
-the next day     61
-a few days       50
-all day          44
-many years       41
-that day         40
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>And how about time considerations?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;TIME&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>night            117
-evening          115
-a few minutes     77
-morning           69
-next morning      63
-one morning       58
-Next morning      53
-the night         47
-midnight          44
-one night         40
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>How were things organised?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;ORG&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>King        102
-Princess     71
-Court        48
-Prince       42
-Grimm        28
-King&#39;s       23
-Quick        18
-eagle        12
-Majesty      11
-I.           10
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>What’s a <code class="docutils literal notranslate"><span class="pre">NORP</span></code>? (Ah… <em>Nationalities Or Religious or Political groups.)</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;NORP&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>German        24
-Danish        18
-French        14
-Russian       11
-Indian        10
-Christian      9
-Italian        8
-Portuguese     7
-Spanish        7
-Persian        6
-Name: entity_value, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#--SPLITHERE--</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="add-wikipedia-links">
-<h2>Add Wikipedia Links<a class="headerlink" href="#add-wikipedia-links" title="Permalink to this headline">¶</a></h2>
-<p>The Wikipedia page <a class="reference external" href="https://en.wikipedia.org/wiki/Lang%27s_Fairy_Books"><code class="docutils literal notranslate"><span class="pre">Lang's_Fairy_Books</span></code></a> lists the contents of Lang’s coloured fairy books (as well as several other books), along with links to the Wikipedia page associated with each tale, if available.</p>
-<p>This means we can have a go at annotating our database with Wikipedia links for each story. From those pages in turn, or associated <em>DBpedia</em> pages, we might also be able to extract Aarne-Thompson classification codes for the corresponding stories.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://en.wikipedia.org/wiki/Lang&#39;s_Fairy_Books&quot;</span>
-
-<span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="n">wp_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the span for a particular book</span>
-<span class="n">wp_book_loc</span> <span class="o">=</span>  <span class="n">wp_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;The_Blue_Fairy_Book_(1889)&quot;</span><span class="p">)</span>
-
-<span class="c1"># Then navigate relative to this to get the (linked) story list</span>
-<span class="n">wp_book_stories</span> <span class="o">=</span> <span class="n">wp_book_loc</span><span class="o">.</span><span class="n">find_parent</span><span class="p">()</span><span class="o">.</span><span class="n">find_next</span><span class="p">(</span><span class="s2">&quot;ul&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
-<span class="n">wp_book_stories</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;li&gt;&quot;&lt;a href=&quot;/wiki/The_Bronze_Ring&quot; title=&quot;The Bronze Ring&quot;&gt;The Bronze Ring&lt;/a&gt;&quot;&lt;/li&gt;,
- &lt;li&gt;&quot;&lt;a href=&quot;/wiki/Prince_Hyacinth_and_the_Dear_Little_Princess&quot; title=&quot;Prince Hyacinth and the Dear Little Princess&quot;&gt;Prince Hyacinth and the Dear Little Princess&lt;/a&gt;&quot;&lt;/li&gt;,
- &lt;li&gt;&quot;&lt;a href=&quot;/wiki/East_of_the_Sun_and_West_of_the_Moon&quot; title=&quot;East of the Sun and West of the Moon&quot;&gt;East of the Sun and West of the Moon&lt;/a&gt;&quot;&lt;/li&gt;]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Get the Wikipedia path for stories with a Wikipedia page:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wp_book_paths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">),</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">wp_book_stories</span><span class="p">]</span>
-
-<span class="n">wp_book_paths</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Bronze Ring&#39;, &#39;/wiki/The_Bronze_Ring&#39;),
- (&#39;Prince Hyacinth and the Dear Little Princess&#39;,
-  &#39;/wiki/Prince_Hyacinth_and_the_Dear_Little_Princess&#39;),
- (&#39;East of the Sun and West of the Moon&#39;,
-  &#39;/wiki/East_of_the_Sun_and_West_of_the_Moon&#39;)]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Useful as a list of <code class="docutils literal notranslate"><span class="pre">dict</span></code>s or <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">wp_book_paths_wide</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">wp_book_paths</span><span class="p">:</span>
-    <span class="n">wp_book_paths_wide</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span> <span class="p">)</span>
-    
-<span class="n">wp_book_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wp_book_paths_wide</span><span class="p">)</span>
-<span class="n">wp_book_df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>path</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Bronze Ring</td>
-      <td>/wiki/The_Bronze_Ring</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Prince Hyacinth and the Dear Little Princess</td>
-      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>East of the Sun and West of the Moon</td>
-      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>The Yellow Dwarf</td>
-      <td>/wiki/The_Yellow_Dwarf</td>
+      <td>Japanische Marchen.</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Little Red Riding Hood</td>
-      <td>/wiki/Little_Red_Riding_Hood</td>
+      <td>From 'West Highland Tales.'</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Sleeping Beauty</td>
-      <td>/wiki/Sleeping_Beauty</td>
+      <td>Ehstnische Marchen.</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>Cinderella</td>
-      <td>/wiki/Cinderella</td>
+      <td>Charles Perrault.</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Aladdin</td>
-      <td>/wiki/Aladdin</td>
+      <td>Volksmarchen der Serben.</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>The Story of the Youth Who Went Forth to Learn...</td>
-      <td>/wiki/The_Story_of_the_Youth_Who_Went_Forth_to...</td>
+      <td>Madame d'Aulnoy.</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>Rumpelstiltskin</td>
-      <td>/wiki/Rumpelstiltskin</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Beauty and the Beast</td>
-      <td>/wiki/Beauty_and_the_Beast</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The Master Maid</td>
-      <td>/wiki/The_Master_Maid</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Why the Sea Is Salt</td>
-      <td>/wiki/Why_the_Sea_Is_Salt</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Puss in Boots</td>
-      <td>/wiki/Puss_in_Boots</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Felicia and the Pot of Pinks</td>
-      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>The White Cat (fairy tale)</td>
-      <td>/wiki/The_White_Cat_(fairy_tale)</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Water-lily. The Gold-spinners</td>
-      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Perseus</td>
-      <td>/wiki/Perseus</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>The Story of Pretty Goldilocks</td>
-      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Dick Whittington</td>
-      <td>/wiki/Dick_Whittington</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>The Wonderful Sheep</td>
-      <td>/wiki/The_Wonderful_Sheep</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Hop o' My Thumb</td>
-      <td>/wiki/Hop_o%27_My_Thumb</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Ali Baba</td>
-      <td>/wiki/Ali_Baba</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Hansel and Gretel</td>
-      <td>/wiki/Hansel_and_Gretel</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Snow-White and Rose-Red</td>
-      <td>/wiki/Snow-White_and_Rose-Red</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>The Goose Girl</td>
-      <td>/wiki/The_Goose_Girl</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Diamonds and Toads</td>
-      <td>/wiki/Diamonds_and_Toads</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Prince Darling</td>
-      <td>/wiki/Prince_Darling</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Bluebeard</td>
-      <td>/wiki/Bluebeard</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Trusty John</td>
-      <td>/wiki/Trusty_John</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>The Valiant Little Tailor</td>
-      <td>/wiki/The_Valiant_Little_Tailor</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Gulliver's Travels</td>
-      <td>/wiki/Gulliver%27s_Travels#Part_I:_A_Voyage_to...</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>The Princess on the Glass Hill</td>
-      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Ahmed (Arabian Nights)</td>
-      <td>/wiki/Ahmed_(Arabian_Nights)</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>Jack the Giant Killer</td>
-      <td>/wiki/Jack_the_Giant_Killer</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>The Black Bull of Norroway</td>
-      <td>/wiki/The_Black_Bull_of_Norroway</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>The Red Ettin</td>
-      <td>/wiki/The_Red_Ettin</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>See if we can then cross reference these with stories in the database?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT book, title, chapter_order FROM books WHERE book=&#39;The Blue Fairy Book&#39; ORDER BY chapter_order ASC&quot;</span>
-<span class="n">df_blue</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-
-<span class="n">df_blue</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>book</th>
-      <th>title</th>
-      <th>chapter_order</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Bronze Ring</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>The Blue Fairy Book</td>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Blue Fairy Book</td>
-      <td>The Yellow Dwarf</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>The Blue Fairy Book</td>
-      <td>Little Red Riding Hood</td>
+      <td>From Ungarische Mahrchen.</td>
       <td>4</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p>Let’s see if the chapters align in terms of order as presented:</p>
+</div>
+<div class="section" id="using-magic-to-make-database-queries">
+<h2>Using Magic to Make Database Queries<a class="headerlink" href="#using-magic-to-make-database-queries" title="Permalink to this headline">¶</a></h2>
+<p>It’s not just fairy tales that support the use of magic: Jupyter notebooks do to. A spacial class of commands, prefixed by a <code class="docutils literal notranslate"><span class="pre">%</span></code> (single line command) or <code class="docutils literal notranslate"><span class="pre">%%</span></code> (a block command) known as <em>IPython magics</em> perform easily scripted “power” commands, or modify code cell behaviour and turn them to our will…</p>
+<p>For example, load in Catherine Devlin’s <a class="reference external" href="https://github.com/catherinedevlin/ipython-sql"><code class="docutils literal notranslate"><span class="pre">catherinedevlin/ipython-sql</span></code></a> magics:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;book&quot;</span><span class="p">:</span><span class="n">df_blue</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="s2">&quot;wp&quot;</span><span class="p">:</span><span class="n">wp_book_df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="s2">&quot;wp_path&quot;</span><span class="p">:</span><span class="n">wp_book_df</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]})</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>book</th>
-      <th>wp</th>
-      <th>wp_path</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Bronze Ring</td>
-      <td>The Bronze Ring</td>
-      <td>/wiki/The_Bronze_Ring</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Prince Hyacinth and the Dear Little Princess</td>
-      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>East of the Sun and West of the Moon</td>
-      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Yellow Dwarf</td>
-      <td>The Yellow Dwarf</td>
-      <td>/wiki/The_Yellow_Dwarf</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Little Red Riding Hood</td>
-      <td>Little Red Riding Hood</td>
-      <td>/wiki/Little_Red_Riding_Hood</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>The Sleeping Beauty In The Wood</td>
-      <td>Sleeping Beauty</td>
-      <td>/wiki/Sleeping_Beauty</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>Cinderella</td>
-      <td>/wiki/Cinderella</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Aladdin And The Wonderful Lamp</td>
-      <td>Aladdin</td>
-      <td>/wiki/Aladdin</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
-      <td>The Story of the Youth Who Went Forth to Learn...</td>
-      <td>/wiki/The_Story_of_the_Youth_Who_Went_Forth_to...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Rumpelstiltzkin</td>
-      <td>Rumpelstiltskin</td>
-      <td>/wiki/Rumpelstiltskin</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Beauty And The Beast</td>
-      <td>Beauty and the Beast</td>
-      <td>/wiki/Beauty_and_the_Beast</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The Master-Maid</td>
-      <td>The Master Maid</td>
-      <td>/wiki/The_Master_Maid</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Why The Sea Is Salt</td>
-      <td>Why the Sea Is Salt</td>
-      <td>/wiki/Why_the_Sea_Is_Salt</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>The Master Cat; Or, Puss In Boots</td>
-      <td>Puss in Boots</td>
-      <td>/wiki/Puss_in_Boots</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Felicia And The Pot Of Pinks</td>
-      <td>Felicia and the Pot of Pinks</td>
-      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>The White Cat</td>
-      <td>The White Cat (fairy tale)</td>
-      <td>/wiki/The_White_Cat_(fairy_tale)</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Water-Lily. The Gold-Spinners</td>
-      <td>The Water-lily. The Gold-spinners</td>
-      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>The Terrible Head</td>
-      <td>Perseus</td>
-      <td>/wiki/Perseus</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>The Story Of Pretty Goldilocks</td>
-      <td>The Story of Pretty Goldilocks</td>
-      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>The History Of Whittington</td>
-      <td>Dick Whittington</td>
-      <td>/wiki/Dick_Whittington</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>The Wonderful Sheep</td>
-      <td>The Wonderful Sheep</td>
-      <td>/wiki/The_Wonderful_Sheep</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Little Thumb</td>
-      <td>Hop o' My Thumb</td>
-      <td>/wiki/Hop_o%27_My_Thumb</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>The Forty Thieves</td>
-      <td>Ali Baba</td>
-      <td>/wiki/Ali_Baba</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Hansel And Grettel</td>
-      <td>Hansel and Gretel</td>
-      <td>/wiki/Hansel_and_Gretel</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Snow-White And Rose-Red</td>
-      <td>Snow-White and Rose-Red</td>
-      <td>/wiki/Snow-White_and_Rose-Red</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>The Goose-Girl</td>
-      <td>The Goose Girl</td>
-      <td>/wiki/The_Goose_Girl</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Toads And Diamonds</td>
-      <td>Diamonds and Toads</td>
-      <td>/wiki/Diamonds_and_Toads</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Prince Darling</td>
-      <td>Prince Darling</td>
-      <td>/wiki/Prince_Darling</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Blue Beard</td>
-      <td>Bluebeard</td>
-      <td>/wiki/Bluebeard</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Trusty John</td>
-      <td>Trusty John</td>
-      <td>/wiki/Trusty_John</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>The Brave Little Tailor</td>
-      <td>The Valiant Little Tailor</td>
-      <td>/wiki/The_Valiant_Little_Tailor</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>A Voyage To Lilliput</td>
-      <td>Gulliver's Travels</td>
-      <td>/wiki/Gulliver%27s_Travels#Part_I:_A_Voyage_to...</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>The Princess On The Glass Hill</td>
-      <td>The Princess on the Glass Hill</td>
-      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>The Story Of Prince Ahmed And The Fairy Paribanou</td>
-      <td>Ahmed (Arabian Nights)</td>
-      <td>/wiki/Ahmed_(Arabian_Nights)</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>The History Of Jack The Giant-Killer</td>
-      <td>Jack the Giant Killer</td>
-      <td>/wiki/Jack_the_Giant_Killer</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>The Black Bull Of Norroway</td>
-      <td>The Black Bull of Norroway</td>
-      <td>/wiki/The_Black_Bull_of_Norroway</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>The Red Etin</td>
-      <td>The Red Ettin</td>
-      <td>/wiki/The_Red_Ettin</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>Yes, they do so we can use that as a basis of a merge. That said, in the genral case it would probably also be useful to generate a fuzzy match score between matched titles with a report on any low scoring matches, just in case the alignment has gone awry.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DO  - wp table for links, story and story order?</span>
-<span class="c1"># TO DO fuzzy match score test just to check ingest and allow user to check poor matches</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%pip install ipython-sql</span>
+<span class="o">%</span><span class="k">load_ext</span> sql
 </pre></div>
 </div>
 </div>
 </div>
-<p>In passing,what if we wanted to try to match on the titles themselves?</p>
-<p>If we use decased, but otherwise exact, matching, we see it’s bit flaky….</p>
+<p>We now need to specify which database we want out magic to connect to. In this case, we want to connect to our sqlite database file:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">wp_book_df</span><span class="p">,</span>
-         <span class="n">left_on</span><span class="o">=</span><span class="n">df_blue</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
-         <span class="n">right_on</span><span class="o">=</span><span class="n">wp_book_df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
-         <span class="n">how</span> <span class="o">=</span><span class="s2">&quot;left&quot;</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key_0</th>
-      <th>title_x</th>
-      <th>title_y</th>
-      <th>path</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>the bronze ring</td>
-      <td>The Bronze Ring</td>
-      <td>The Bronze Ring</td>
-      <td>/wiki/The_Bronze_Ring</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>prince hyacinth and the dear little princess</td>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Prince Hyacinth and the Dear Little Princess</td>
-      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>east of the sun and west of the moon</td>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>East of the Sun and West of the Moon</td>
-      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>the yellow dwarf</td>
-      <td>The Yellow Dwarf</td>
-      <td>The Yellow Dwarf</td>
-      <td>/wiki/The_Yellow_Dwarf</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>little red riding hood</td>
-      <td>Little Red Riding Hood</td>
-      <td>Little Red Riding Hood</td>
-      <td>/wiki/Little_Red_Riding_Hood</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>the sleeping beauty in the wood</td>
-      <td>The Sleeping Beauty In The Wood</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>cinderella, or the little glass slipper</td>
-      <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>aladdin and the wonderful lamp</td>
-      <td>Aladdin And The Wonderful Lamp</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>the tale of a youth who set out to learn what ...</td>
-      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>rumpelstiltzkin</td>
-      <td>Rumpelstiltzkin</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>beauty and the beast</td>
-      <td>Beauty And The Beast</td>
-      <td>Beauty and the Beast</td>
-      <td>/wiki/Beauty_and_the_Beast</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>the master-maid</td>
-      <td>The Master-Maid</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>why the sea is salt</td>
-      <td>Why The Sea Is Salt</td>
-      <td>Why the Sea Is Salt</td>
-      <td>/wiki/Why_the_Sea_Is_Salt</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>the master cat; or, puss in boots</td>
-      <td>The Master Cat; Or, Puss In Boots</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>felicia and the pot of pinks</td>
-      <td>Felicia And The Pot Of Pinks</td>
-      <td>Felicia and the Pot of Pinks</td>
-      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>the white cat</td>
-      <td>The White Cat</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>the water-lily. the gold-spinners</td>
-      <td>The Water-Lily. The Gold-Spinners</td>
-      <td>The Water-lily. The Gold-spinners</td>
-      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>the terrible head</td>
-      <td>The Terrible Head</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>the story of pretty goldilocks</td>
-      <td>The Story Of Pretty Goldilocks</td>
-      <td>The Story of Pretty Goldilocks</td>
-      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>the history of whittington</td>
-      <td>The History Of Whittington</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>the wonderful sheep</td>
-      <td>The Wonderful Sheep</td>
-      <td>The Wonderful Sheep</td>
-      <td>/wiki/The_Wonderful_Sheep</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>little thumb</td>
-      <td>Little Thumb</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>the forty thieves</td>
-      <td>The Forty Thieves</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>hansel and grettel</td>
-      <td>Hansel And Grettel</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>snow-white and rose-red</td>
-      <td>Snow-White And Rose-Red</td>
-      <td>Snow-White and Rose-Red</td>
-      <td>/wiki/Snow-White_and_Rose-Red</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>the goose-girl</td>
-      <td>The Goose-Girl</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>toads and diamonds</td>
-      <td>Toads And Diamonds</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>prince darling</td>
-      <td>Prince Darling</td>
-      <td>Prince Darling</td>
-      <td>/wiki/Prince_Darling</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>blue beard</td>
-      <td>Blue Beard</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>trusty john</td>
-      <td>Trusty John</td>
-      <td>Trusty John</td>
-      <td>/wiki/Trusty_John</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>the brave little tailor</td>
-      <td>The Brave Little Tailor</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>a voyage to lilliput</td>
-      <td>A Voyage To Lilliput</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>the princess on the glass hill</td>
-      <td>The Princess On The Glass Hill</td>
-      <td>The Princess on the Glass Hill</td>
-      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>the story of prince ahmed and the fairy paribanou</td>
-      <td>The Story Of Prince Ahmed And The Fairy Paribanou</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>the history of jack the giant-killer</td>
-      <td>The History Of Jack The Giant-Killer</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>the black bull of norroway</td>
-      <td>The Black Bull Of Norroway</td>
-      <td>The Black Bull of Norroway</td>
-      <td>/wiki/The_Black_Bull_of_Norroway</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>the red etin</td>
-      <td>The Red Etin</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>A fuzzy match might be able to improve things…</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reused from on https://stackoverflow.com/a/56315491/454773</span>
-<span class="kn">from</span> <span class="nn">fuzzywuzzy</span> <span class="kn">import</span> <span class="n">fuzz</span>
-<span class="kn">from</span> <span class="nn">fuzzywuzzy</span> <span class="kn">import</span> <span class="n">process</span>
-
-<span class="k">def</span> <span class="nf">fuzzy_merge</span><span class="p">(</span><span class="n">df_1</span><span class="p">,</span> <span class="n">df_2</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="n">key2</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    :param df_1: the left table to join</span>
-<span class="sd">    :param df_2: the right table to join</span>
-<span class="sd">    :param key1: key column of the left table</span>
-<span class="sd">    :param key2: key column of the right table</span>
-<span class="sd">    :param threshold: how close the matches should be to return a match, based on Levenshtein distance</span>
-<span class="sd">    :param limit: the amount of matches that will get returned, these are sorted high to low</span>
-<span class="sd">    :return: dataframe with boths keys and matches</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">df_2</span><span class="p">[</span><span class="n">key2</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> sqlite:///lang_fairy_tale.db
     
-    <span class="n">m</span> <span class="o">=</span> <span class="n">df_1</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">))</span>  
-    <span class="n">df_1</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
-    
-    <span class="n">m2</span> <span class="o">=</span> <span class="n">df_1</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">]))</span>
-    <span class="n">df_1</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m2</span>
-    <span class="k">return</span> <span class="n">df_1</span>
+<span class="c1"># Alternatively, provide the file name from our db_name variable</span>
+<span class="c1">#%sql sqlite:///$db_name</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can now run a query purely within a specially labelld code cell:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzzy_merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">,</span> <span class="n">wp_book_df</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;matches&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+    
+SELECT DISTINCT provenance, COUNT(*) AS num
+    FROM books
+    GROUP BY provenance
+    ORDER BY num DESC
+    LIMIT 10;
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///lang_fairy_tale.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <tr>
+        <th>provenance</th>
+        <th>num</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>126</td>
+    </tr>
+    <tr>
+        <td>Grimm.</td>
+        <td>31</td>
+    </tr>
+    <tr>
+        <td>Lapplandische Mahrchen.</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Japanische Marchen.</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>From &#x27;West Highland Tales.&#x27;</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Ehstnische Marchen.</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Charles Perrault.</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Volksmarchen der Serben.</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>Madame d&#x27;Aulnoy.</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>From Ungarische Mahrchen.</td>
+        <td>4</td>
+    </tr>
+</table></div></div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">%%sql</span></code> block cell magic <strong>MUST</strong> appear at the very start of the very first line of the code cell to modify its behaviour.</p>
+</div>
+<p>After the first query, it’s even more magical, because we no longer need to specify the connection:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+SELECT title, snippet(books_fts, -1, &quot;__&quot;, &quot;__&quot;, &quot;...&quot;, 30) as clip
+FROM books_fts
+WHERE books_fts MATCH &#39;king &quot;three sons&quot;&#39; LIMIT 2 ;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///lang_fairy_tale.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <tr>
+        <th>title</th>
+        <th>clip</th>
+    </tr>
+    <tr>
+        <td>The Master Cat; Or, Puss In Boots</td>
+        <td>There was a miller who left no more estate to the __three sons__ he had than his mill, his ass, and his cat. The partition was soon made. Neither scrivener...</td>
+    </tr>
+    <tr>
+        <td>The White Cat</td>
+        <td>Once upon a time there was a __king__ who had __three sons__, who were all so clever and brave that he began to be afraid that they would want to...</td>
+    </tr>
+</table></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Writing simple magics is relatively straihgtforward.</p>
+<p>The previous example shows a rather clumsy query for making a full text search with the result displayed as a concordance.</p>
+<p>One thing we might explore is creating some simple magic that would let us run a line magic command of the form: <code class="docutils literal notranslate"><span class="pre">%sql-fts</span> <span class="pre">'king</span> <span class="pre">&quot;three</span> <span class="pre">sons&quot;'</span></code> and return the result.</p>
+</div>
+<p>We can also run commands on a single line using the <code class="docutils literal notranslate"><span class="pre">%sql</span></code> line magic:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> SELECT title, first_line FROM books LIMIT 5
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///lang_fairy_tale.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <tr>
+        <th>title</th>
+        <th>first_line</th>
+    </tr>
+    <tr>
+        <td>The Bronze Ring</td>
+        <td>Once upon a time in a certain country there lived a king whose palace was surrounded by a spacious garden.</td>
+    </tr>
+    <tr>
+        <td>Prince Hyacinth And The Dear Little Princess</td>
+        <td>Once upon a time there lived a king who was deeply in love with a princess, but she could not marry anyone, because she was under an enchantment.</td>
+    </tr>
+    <tr>
+        <td>East Of The Sun And West Of The Moon</td>
+        <td>Once upon a time there was a poor husbandman who had many children and little to give them in the way either of food or clothing.</td>
+    </tr>
+    <tr>
+        <td>The Yellow Dwarf</td>
+        <td>Once upon a time there lived a queen who had been the mother of a great many children, and of them all only one daughter was left.</td>
+    </tr>
+    <tr>
+        <td>Little Red Riding Hood</td>
+        <td>Once upon a time there lived in a certain village a little country girl, the prettiest creature was ever seen.</td>
+    </tr>
+</table></div></div>
+</div>
+<p>This response can also be assigned to an object that can then be cast to a magical <em>pandas</em> dataframe object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_lines</span> <span class="o">=</span> <span class="o">%</span><span class="k">sql</span> SELECT title, first_line FROM books LIMIT 5
+
+<span class="n">first_lines_df</span> <span class="o">=</span> <span class="n">first_lines</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">first_lines_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///lang_fairy_tale.db
+Done.
+</pre></div>
+</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3411,1314 +2140,41 @@ Name: entity_value, dtype: int64
     <tr style="text-align: right;">
       <th></th>
       <th>title</th>
-      <th>matches</th>
+      <th>first_line</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>The Bronze Ring</td>
-      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Prince Hyacinth and the Dear Little Princess</td>
+      <td>Once upon a time there lived a king who was de...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>East Of The Sun And West Of The Moon</td>
-      <td>East of the Sun and West of the Moon</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>The Yellow Dwarf</td>
-      <td>The Yellow Dwarf</td>
+      <td>Once upon a time there lived a queen who had b...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Little Red Riding Hood</td>
-      <td>Little Red Riding Hood</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>The Sleeping Beauty In The Wood</td>
-      <td>Sleeping Beauty</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>Cinderella</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Aladdin And The Wonderful Lamp</td>
-      <td>Aladdin</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Rumpelstiltzkin</td>
-      <td>Rumpelstiltskin</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Beauty And The Beast</td>
-      <td>Beauty and the Beast</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The Master-Maid</td>
-      <td>The Master Maid</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Why The Sea Is Salt</td>
-      <td>Why the Sea Is Salt</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>The Master Cat; Or, Puss In Boots</td>
-      <td>Puss in Boots</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Felicia And The Pot Of Pinks</td>
-      <td>Felicia and the Pot of Pinks</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>The White Cat</td>
-      <td>The White Cat (fairy tale)</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>The Water-Lily. The Gold-Spinners</td>
-      <td>The Water-lily. The Gold-spinners</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>The Terrible Head</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>The Story Of Pretty Goldilocks</td>
-      <td>The Story of Pretty Goldilocks</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>The History Of Whittington</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>The Wonderful Sheep</td>
-      <td>The Wonderful Sheep</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Little Thumb</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>The Forty Thieves</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Hansel And Grettel</td>
-      <td>Hansel and Gretel</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Snow-White And Rose-Red</td>
-      <td>Snow-White and Rose-Red</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>The Goose-Girl</td>
-      <td>The Goose Girl</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Toads And Diamonds</td>
-      <td>Diamonds and Toads</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Prince Darling</td>
-      <td>Prince Darling</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Blue Beard</td>
-      <td>Bluebeard</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Trusty John</td>
-      <td>Trusty John</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>The Brave Little Tailor</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>A Voyage To Lilliput</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>The Princess On The Glass Hill</td>
-      <td>The Princess on the Glass Hill</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>The Story Of Prince Ahmed And The Fairy Paribanou</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>The History Of Jack The Giant-Killer</td>
-      <td>Jack the Giant Killer</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>The Black Bull Of Norroway</td>
-      <td>The Black Bull of Norroway</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>The Red Etin</td>
-      <td>The Red Ettin</td>
+      <td>Once upon a time there lived in a certain vill...</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://github.com/jsoma/fuzzy_pandas/</span>
-
-<span class="c1"># This is probably overkill...</span>
-<span class="c1">#%pip install fuzzy_pandas</span>
-<span class="kn">import</span> <span class="nn">fuzzy_pandas</span> <span class="k">as</span> <span class="nn">fpd</span>
-
-<span class="n">fpd</span><span class="o">.</span><span class="n">fuzzy_merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">]],</span> <span class="n">wp_book_df</span><span class="p">,</span>
-            <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
-            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
-            <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">ignore_nonalpha</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;jaro&#39;</span><span class="p">,</span> <span class="c1">#bilenko, levenshtein, metaphone, jaro</span>
-            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.86</span><span class="p">,</span> <span class="c1"># If we move to 0.86 we get a false positive...</span>
-            <span class="n">keep_left</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
-            <span class="n">keep_right</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
-               <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>title</th>
-      <th>path</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Bronze Ring</td>
-      <td>The Bronze Ring</td>
-      <td>/wiki/The_Bronze_Ring</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Prince Hyacinth and the Dear Little Princess</td>
-      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>East of the Sun and West of the Moon</td>
-      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Yellow Dwarf</td>
-      <td>The Yellow Dwarf</td>
-      <td>/wiki/The_Yellow_Dwarf</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Little Red Riding Hood</td>
-      <td>Little Red Riding Hood</td>
-      <td>/wiki/Little_Red_Riding_Hood</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>Cinderella</td>
-      <td>/wiki/Cinderella</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Rumpelstiltzkin</td>
-      <td>Rumpelstiltskin</td>
-      <td>/wiki/Rumpelstiltskin</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Beauty And The Beast</td>
-      <td>Beauty and the Beast</td>
-      <td>/wiki/Beauty_and_the_Beast</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>The Master-Maid</td>
-      <td>The Master Maid</td>
-      <td>/wiki/The_Master_Maid</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Why The Sea Is Salt</td>
-      <td>Why the Sea Is Salt</td>
-      <td>/wiki/Why_the_Sea_Is_Salt</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Felicia And The Pot Of Pinks</td>
-      <td>Felicia and the Pot of Pinks</td>
-      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The White Cat</td>
-      <td>The White Cat (fairy tale)</td>
-      <td>/wiki/The_White_Cat_(fairy_tale)</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>The Water-Lily. The Gold-Spinners</td>
-      <td>The Water-lily. The Gold-spinners</td>
-      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>The Story Of Pretty Goldilocks</td>
-      <td>The Story of Pretty Goldilocks</td>
-      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>The Wonderful Sheep</td>
-      <td>The Wonderful Sheep</td>
-      <td>/wiki/The_Wonderful_Sheep</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Hansel And Grettel</td>
-      <td>Hansel and Gretel</td>
-      <td>/wiki/Hansel_and_Gretel</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Snow-White And Rose-Red</td>
-      <td>Snow-White and Rose-Red</td>
-      <td>/wiki/Snow-White_and_Rose-Red</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>The Goose-Girl</td>
-      <td>The Goose Girl</td>
-      <td>/wiki/The_Goose_Girl</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Prince Darling</td>
-      <td>Prince Darling</td>
-      <td>/wiki/Prince_Darling</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Blue Beard</td>
-      <td>Bluebeard</td>
-      <td>/wiki/Bluebeard</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Trusty John</td>
-      <td>Trusty John</td>
-      <td>/wiki/Trusty_John</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>The Princess On The Glass Hill</td>
-      <td>The Princess on the Glass Hill</td>
-      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>The Black Bull Of Norroway</td>
-      <td>The Black Bull of Norroway</td>
-      <td>/wiki/The_Black_Bull_of_Norroway</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>The Red Etin</td>
-      <td>The Red Ettin</td>
-      <td>/wiki/The_Red_Ettin</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fpd</span><span class="o">.</span><span class="n">fuzzy_merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">]],</span> <span class="n">wp_book_df</span><span class="p">,</span>
-            <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
-            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
-            <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">ignore_nonalpha</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;metaphone&#39;</span><span class="p">,</span> <span class="c1">#levenshtein, metaphone, jaro, bilenko</span>
-            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.86</span><span class="p">,</span>
-            <span class="n">keep_left</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
-            <span class="n">keep_right</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
-               <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>title</th>
-      <th>title</th>
-      <th>path</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>The Bronze Ring</td>
-      <td>The Bronze Ring</td>
-      <td>/wiki/The_Bronze_Ring</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Prince Hyacinth And The Dear Little Princess</td>
-      <td>Prince Hyacinth and the Dear Little Princess</td>
-      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>East Of The Sun And West Of The Moon</td>
-      <td>East of the Sun and West of the Moon</td>
-      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>The Yellow Dwarf</td>
-      <td>The Yellow Dwarf</td>
-      <td>/wiki/The_Yellow_Dwarf</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Little Red Riding Hood</td>
-      <td>Little Red Riding Hood</td>
-      <td>/wiki/Little_Red_Riding_Hood</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Rumpelstiltzkin</td>
-      <td>Rumpelstiltskin</td>
-      <td>/wiki/Rumpelstiltskin</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Beauty And The Beast</td>
-      <td>Beauty and the Beast</td>
-      <td>/wiki/Beauty_and_the_Beast</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>The Master-Maid</td>
-      <td>The Master Maid</td>
-      <td>/wiki/The_Master_Maid</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Why The Sea Is Salt</td>
-      <td>Why the Sea Is Salt</td>
-      <td>/wiki/Why_the_Sea_Is_Salt</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Felicia And The Pot Of Pinks</td>
-      <td>Felicia and the Pot of Pinks</td>
-      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>The Water-Lily. The Gold-Spinners</td>
-      <td>The Water-lily. The Gold-spinners</td>
-      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>The Story Of Pretty Goldilocks</td>
-      <td>The Story of Pretty Goldilocks</td>
-      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>The Wonderful Sheep</td>
-      <td>The Wonderful Sheep</td>
-      <td>/wiki/The_Wonderful_Sheep</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Hansel And Grettel</td>
-      <td>Hansel and Gretel</td>
-      <td>/wiki/Hansel_and_Gretel</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Snow-White And Rose-Red</td>
-      <td>Snow-White and Rose-Red</td>
-      <td>/wiki/Snow-White_and_Rose-Red</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>The Goose-Girl</td>
-      <td>The Goose Girl</td>
-      <td>/wiki/The_Goose_Girl</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Prince Darling</td>
-      <td>Prince Darling</td>
-      <td>/wiki/Prince_Darling</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Blue Beard</td>
-      <td>Bluebeard</td>
-      <td>/wiki/Bluebeard</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Trusty John</td>
-      <td>Trusty John</td>
-      <td>/wiki/Trusty_John</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>The Princess On The Glass Hill</td>
-      <td>The Princess on the Glass Hill</td>
-      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>The Black Bull Of Norroway</td>
-      <td>The Black Bull of Norroway</td>
-      <td>/wiki/The_Black_Bull_of_Norroway</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>The Red Etin</td>
-      <td>The Red Ettin</td>
-      <td>/wiki/The_Red_Ettin</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<p>## Other Things to Link In</p>
-<p>Have other people generated data sets that can be linked in?</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://www.mythfolklore.net/andrewlang/indexbib.htm">http://www.mythfolklore.net/andrewlang/indexbib.htm</a> /via &#64;OnlineCrsLady</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#--SPLITHERE--</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="common-refrains-repeating-phrases">
-<h2>Common Refrains / Repeating Phrases<a class="headerlink" href="#common-refrains-repeating-phrases" title="Permalink to this headline">¶</a></h2>
-<p>Many stories incorporate a repeating phrase or refrain in the story, but you may need to read quite a long way into a story before you can identify that repeating phrase. So are there any tools we might be able to use</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#db = Database(db_name)</span>
-              
-<span class="n">q2</span> <span class="o">=</span> <span class="s1">&#39;&quot;pretty hen&quot;&#39;</span>
-
-<span class="n">_q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM books_fts WHERE books_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span><span class="si">}</span><span class="s1"> ;&#39;</span>
-
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The House In The Wood
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">from</span> <span class="nn">nltk.util</span> <span class="kn">import</span> <span class="n">ngrams</span> <span class="k">as</span> <span class="n">nltk_ngrams</span>
-
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
-
-<span class="n">size</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="c1">#for i in nltk_ngrams(tokens, size):</span>
-<span class="c1">#    print(&#39; &#39;.join(i))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We could then look for repeating phrases:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;phrase&#39;</span><span class="p">:[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nltk_ngrams</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">size</span><span class="p">)]})</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>, pretty brindled cow ,        4
-And you , pretty brindled      4
-you , pretty brindled cow      4
-pretty brindled cow , What     4
-brindled cow , What do         4
-                              ..
-leaving him all day without    1
-for leaving him all day        1
-wife for leaving him all       1
-his wife for leaving him       1
-to go hungry . &#39;               1
-Name: phrase, Length: 1787, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>Really, we need to do a scan down from large token size until we find a match (longest match phrase).</p>
-<p>But for now, let’s see what repeating elements we get from one of those search phrases:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
-
-<span class="n">_q</span> <span class="o">=</span> <span class="s1">&#39;pretty brindled cow&#39;</span>
-
-<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">_q</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]):</span>
-    <span class="c1"># Display the matched terms and the 50 characters</span>
-    <span class="c1"># immediately preceding and following the phrase </span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;===</span><span class="se">\n</span><span class="si">{</span><span class="n">q2</span><span class="si">}</span><span class="s1">: &#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">(),</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">][</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">-</span><span class="mi">50</span><span class="p">):</span><span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span><span class="o">+</span><span class="mi">50</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===
-&quot;pretty hen&quot;:  1566 1585 
-The man said:
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-&#39;Duks,&#39; answered the beast
-===
-&quot;pretty hen&quot;:  3505 3524 ed the beasts:
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-The beasts answered, &#39;Duks
-===
-&quot;pretty hen&quot;:  4932 4951  beasts again:
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-&#39;Duks,&#39; they said. Then th
-===
-&quot;pretty hen&quot;:  6119 6138  to rest now?&#39;
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-The animals said, &#39;Duks:
-</pre></div>
-</div>
-</div>
-</div>
-<p>Make a function for that:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_contexts</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">phrase</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find the context(s) of the phrase.&quot;&quot;&quot;</span>
-    <span class="n">contexts</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">phrase</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-        <span class="c1"># Display the matched terms and the `width` characters</span>
-        <span class="c1"># immediately preceding and following the phrase </span>
-        <span class="n">contexts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">-</span><span class="n">width</span><span class="p">):</span><span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span><span class="o">+</span><span class="n">width</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">contexts</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">find_contexts</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s1">&#39;pretty brindled cow&#39;</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">==&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The man said:
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-&#39;Duks,&#39; answered the beast 
-==
-ed the beasts:
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-The beasts answered, &#39;Duks 
-==
- beasts again:
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-&#39;Duks,&#39; they said. Then th 
-==
- to rest now?&#39;
-
-Pretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?
-
-The animals said, &#39;Duks:
-
- 
-==
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">find_contexts</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s1">&#39;pretty brindled cow&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&quot;\nThe man said:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\n&#39;Duks,&#39; answered the beast&quot;,
- &quot;ed the beasts:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\nThe beasts answered, &#39;Duks&quot;,
- &quot; beasts again:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\n&#39;Duks,&#39; they said. Then th&quot;,
- &quot; to rest now?&#39;\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\nThe animals said, &#39;Duks:\n\n&quot;]
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can also make this a SQLite lookup function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vtfunc</span> <span class="kn">import</span> <span class="n">TableFunction</span>
-
-<span class="k">def</span> <span class="nf">concordances</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">phrase</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Find the concordances of a phrase in a text.&quot;&quot;&quot;</span>
-    <span class="n">contexts</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">phrase</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-        <span class="c1"># Display the matched terms and the `width` characters</span>
-        <span class="c1"># immediately preceding and following the phrase</span>
-        <span class="n">context</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span><span class="o">-</span><span class="n">width</span><span class="p">):</span><span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span><span class="o">+</span><span class="n">width</span><span class="p">]</span>
-        <span class="n">contexts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">(),</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">())</span> <span class="p">)</span>
-    <span class="k">return</span> <span class="n">contexts</span>
-
-
-<span class="k">class</span> <span class="nc">Concordances</span><span class="p">(</span><span class="n">TableFunction</span><span class="p">):</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">]</span>
-    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;match&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">]</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;concordance&#39;</span>
-
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">phrase</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">concordances</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">phrase</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">iterate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-        <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,)</span>
-
-<span class="n">Concordances</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">concordances</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s1">&#39;pretty brindled cow&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&quot;\nThe man said:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\n&#39;Duks,&#39; answered the beast&quot;,
-  1566,
-  1585),
- (&quot;ed the beasts:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\nThe beasts answered, &#39;Duks&quot;,
-  3505,
-  3524),
- (&quot; beasts again:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\n&#39;Duks,&#39; they said. Then th&quot;,
-  4932,
-  4951),
- (&quot; to rest now?&#39;\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\nThe animals said, &#39;Duks:\n\n&quot;,
-  6119,
-  6138)]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT matched.*</span>
-<span class="s2">  FROM books, concordance(&quot;pretty brindled cow&quot;, books.text) AS matched</span>
-<span class="s2">  WHERE title=&quot;The House In The Wood&quot;;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&quot;\nThe man said:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\n&#39;Duks,&#39; answered the beast&quot;, 1566, 1585)
-(&quot;ed the beasts:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\nThe beasts answered, &#39;Duks&quot;, 3505, 3524)
-(&quot; beasts again:\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\n&#39;Duks,&#39; they said. Then th&quot;, 4932, 4951)
-(&quot; to rest now?&#39;\n\nPretty cock, Pretty hen, And you, pretty brindled cow, What do you say now?\n\nThe animals said, &#39;Duks:\n\n&quot;, 6119, 6138)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># allow different tokenisers</span>
-<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">RegexpTokenizer</span>
-
-<span class="k">def</span> <span class="nf">scanner</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">minlen</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">startlen</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">min_repeats</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">autostop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Search a text for repeated phrases above a minimum length.&quot;&quot;&quot;</span>
-    <span class="c1"># Tokenise the text</span>
-    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
-    <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s1">&#39;Eighty-seven miles to go, yet.  Onward!&#39;</span><span class="p">)</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    
-    <span class="c1">#nltk_ngrams returns an empty list if we ask for an ngram longer than the sentence</span>
-    <span class="c1"># So set the (long) start length to the lesser of the original provided</span>
-    <span class="c1"># start length or the token length of the original text;</span>
-    <span class="c1"># which is to say, the minimum of the provided start length </span>
-    <span class="c1"># or the length of the text</span>
-    <span class="n">startlen</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">startlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>
-    
-    <span class="c1"># Start with a long sequence then iterate down to a minumum length sequence</span>
-    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">startlen</span><span class="p">,</span> <span class="n">minlen</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="c1"># Generate a dataframe containing all the ngrams, one row per ngram</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;phrase&#39;</span><span class="p">:[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nltk_ngrams</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">size</span><span class="p">)]})</span>
-        
-        <span class="c1"># Find the occurrence counts of each phrase</span>
-        <span class="n">value_counts_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-
-        <span class="c1"># If we have at least the specified number of occurrences</span>
-        <span class="c1"># don&#39;t bother searching for any more</span>
-        <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">value_counts_series</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_repeats</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">autostop</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="k">pass</span>
-    <span class="c1"># Return a pandas series (an indexed list, essentially)</span>
-    <span class="c1"># containing the longest (or phrases) we found</span>
-    
-    <span class="k">return</span> <span class="n">value_counts_series</span><span class="p">[(</span><span class="n">value_counts_series</span><span class="o">&gt;=</span><span class="n">min_repeats</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">value_counts_series</span><span class="o">==</span><span class="nb">max</span><span class="p">(</span><span class="n">value_counts_series</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?    3
-Name: phrase, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the first (0&#39;th indexed) item</span>
-<span class="c1"># (In this case there is only one item hat repeats this number of times anyway.)</span>
-<span class="n">scanner</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scanner</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span> <span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;,
- 3)
-</pre></div>
-</div>
-</div>
-</div>
-<p>If we constrain this function to return a single item, we can create a simple SQLite function that will search through records and return the longest phrase above a certain minimum length (or the first longest phrase, if several long phrases of the same length are found):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_repeating_phrase</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the longest repeating phrase found in a text.</span>
-<span class="sd">       If there are more than one of the same length, return the first.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">phrase</span> <span class="o">=</span> <span class="n">scanner</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    
-    <span class="c1">#If there is at least one response, take the first</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">phrase</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">phrase</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">find_repeating_phrase</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The `db` object is a sqlite_utils database object</span>
-<span class="c1"># Pass in:</span>
-<span class="c1"># - the name of the function we want to use in the database</span>
-<span class="c1"># - the number of arguments it takes</span>
-<span class="c1"># - the function we want to invoke</span>
-<span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">create_function</span><span class="p">(</span><span class="s1">&#39;find_repeating_phrase&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
-                        <span class="n">find_repeating_phrase</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT book, title, find_repeating_phrase(text) AS phrase </span>
-<span class="s2">FROM books WHERE title=&quot;The House In The Wood&quot; ;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="k">for</span> <span class="n">row2</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">row2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT title, find_repeating_phrase(text) AS phrase</span>
-<span class="s2">FROM books WHERE book=&quot;The Pink Fairy Book&quot; ;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="k">for</span> <span class="n">row3</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">row3</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">row3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Catherine And Her Destiny&#39;, &#39;phrase&#39;: &#39;the court , and&#39;}
-{&#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &quot;? &#39; &#39;Ye -- e -- s ! &#39; &#39;Are you coming back again ? &#39; &#39;That may be , &#39; said Esben . &#39;Then you &#39;ll catch it , &#39;&quot;}
-{&#39;title&#39;: &quot;Hans, The Mermaid&#39;s Son&quot;, &#39;phrase&#39;: &quot;, &#39; said Hans ; &#39; I&quot;}
-{&#39;title&#39;: &#39;How The Dragon Was Tricked&#39;, &#39;phrase&#39;: &quot;, &#39; said the dragon&quot;}
-{&#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &quot;&#39;Ask him if he will come with us&quot;}
-{&#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
-{&#39;title&#39;: &#39;King Lindorm&#39;, &#39;phrase&#39;: &#39;rode out into the forest&#39;}
-{&#39;title&#39;: &#39;Maiden Bright-Eye&#39;, &#39;phrase&#39;: &quot;. &#39;Good evening , &#39; it said . &#39;Thanks , Maiden Bright-eye , &#39; said the dog . &#39;Where is my brother ? &#39; &#39;He is in the serpent-pit . &#39; &#39;Where is my wicked sister ? &#39; &#39;She is with the noble king . &#39; &#39;Alas ! alas !&quot;}
-{&#39;title&#39;: &#39;Master And Pupil&#39;, &#39;phrase&#39;: &quot;, &#39; said the boy .&quot;}
-{&#39;title&#39;: &#39;Peter Bull&#39;, &#39;phrase&#39;: &quot;&#39;Oh , yes , &#39; said the&quot;}
-{&#39;title&#39;: &#39;Princess Minon-Minette&#39;, &#39;phrase&#39;: &quot;, &#39; replied the old woman&quot;}
-{&#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes&#39;}
-{&#39;title&#39;: &#39;The Cunning Shoemaker&#39;, &#39;phrase&#39;: &quot;, &#39; replied the shoemaker&quot;}
-{&#39;title&#39;: &#39;The Fir-Tree&#39;, &#39;phrase&#39;: &quot;&#39; thought the tree .&quot;}
-{&#39;title&#39;: &#39;The Flying Trunk&#39;, &#39;phrase&#39;: &quot;. &#39;&#39; &#39; &#39;&#39;&quot;}
-{&#39;title&#39;: &#39;The Goblin And The Grocer&#39;, &#39;phrase&#39;: &#39;, and he had&#39;}
-{&#39;title&#39;: &#39;The Golden Lion&#39;, &#39;phrase&#39;: &#39;, and the young man&#39;}
-{&#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;}
-{&#39;title&#39;: &#39;The Jackal, The Dove, And The Panther&#39;, &#39;phrase&#39;: &quot;which side do you turn to ? &#39;&quot;}
-{&#39;title&#39;: &#39;The King Who Would Have A Beautiful Wife&#39;, &#39;phrase&#39;: &quot;. &#39; &#39;And I&quot;}
-{&#39;title&#39;: &#39;The Little Hare&#39;, &#39;phrase&#39;: &#39;the little hare , the little hare ,&#39;}
-{&#39;title&#39;: &#39;The Man Without A Heart&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
-{&#39;title&#39;: &#39;The Merry Wives&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
-{&#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &quot;&#39;Sentry , where are you ? Sentry , where are you ?&quot;}
-{&#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &quot;! &#39; said the shirt-collar ,&quot;}
-{&#39;title&#39;: &#39;The Slaying Of The Tanuki&#39;, &#39;phrase&#39;: &#39;. The Tanuki ,&#39;}
-{&#39;title&#39;: &#39;The Snow-Man&#39;, &#39;phrase&#39;: &quot;? &#39; asked the Snow-man .&quot;}
-{&#39;title&#39;: &#39;The Snow-Queen&#39;, &#39;phrase&#39;: &quot;, &#39; said the crow ,&quot;}
-{&#39;title&#39;: &#39;The Sparrow With The Slit Tongue&#39;, &#39;phrase&#39;: &#39;the house , and&#39;}
-{&#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &quot;&#39;Do you , rich as you are ,&quot;}
-{&#39;title&#39;: &#39;The Story Of Ciccu&#39;, &#39;phrase&#39;: &quot;accept them with my humble duty . &#39;&quot;}
-{&#39;title&#39;: &#39;The Three Brothers&#39;, &#39;phrase&#39;: &quot;the house . &#39;&quot;}
-{&#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea .&#39;}
-{&#39;title&#39;: &#39;The Two Brothers&#39;, &#39;phrase&#39;: &#39;seven years and seven months&#39;}
-{&#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird , and a branch of the tree of beauty&#39;}
-{&#39;title&#39;: &#39;The White Dove&#39;, &#39;phrase&#39;: &quot;, &#39; said the prince ,&quot;}
-{&#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;will hire me for a servant ?&#39;}
-{&#39;title&#39;: &#39;Uraschimataro And The Turtle&#39;, &#39;phrase&#39;: &#39;the sea , and&#39;}
-</pre></div>
-</div>
-</div>
-</div>
-<p>The punctuation gets in the way somewhat, so it might be useful if removed the punctuation and tried again:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Allow param and de-punctuate</span>
-
-<span class="k">def</span> <span class="nf">scanner2</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">minlen</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">startlen</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">min_repeats</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">autostop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokeniser</span><span class="o">=</span><span class="s1">&#39;word&#39;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Search a text for repeated phrases above a minimum length.&quot;&quot;&quot;</span>
-    <span class="c1"># Tokenise the text</span>
-    <span class="k">if</span> <span class="n">tokeniser</span> <span class="o">==</span> <span class="s1">&#39;depunc_word&#39;</span><span class="p">:</span>
-        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
-        <span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">tokeniser</span> <span class="o">==</span> <span class="s1">&#39;sent&#39;</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># eg for default: tokeniser=&#39;word&#39;</span>
-        <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
-        <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="s1">&#39;Eighty-seven miles to go, yet.  Onward!&#39;</span><span class="p">)</span>
-        <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    
-    <span class="c1">#nltk_ngrams returns an empty list if we ask for an ngram longer than the sentence</span>
-    <span class="c1"># So set the (long) start length to the lesser of the original provided</span>
-    <span class="c1"># start length or the token length of the original text;</span>
-    <span class="c1"># which is to say, the minimum of the provided start length </span>
-    <span class="c1"># or the lenth of the text</span>
-    <span class="n">startlen</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">startlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>
-    
-    <span class="c1"># Start with a long sequence then iterate down to a minumum length sequence</span>
-    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">startlen</span><span class="p">,</span> <span class="n">minlen</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        
-        <span class="c1"># Generate a dataframe containing all the ngrams, one row per ngram</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;phrase&#39;</span><span class="p">:[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nltk_ngrams</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span><span class="n">size</span><span class="p">)]})</span>
-        
-        <span class="c1"># Find the occurrence counts of each phrase</span>
-        <span class="n">value_counts_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-        
-        <span class="c1"># If we have at least the specified number of occurrences</span>
-        <span class="c1"># don&#39;t bother searching for any more</span>
-        <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">value_counts_series</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_repeats</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">autostop</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="k">pass</span>
-    <span class="c1"># Return a pandas series (an indexed list, essentially)</span>
-    <span class="c1"># containing the long phrase (or phrases) we found</span>
-    <span class="k">return</span> <span class="n">value_counts_series</span><span class="p">[(</span><span class="n">value_counts_series</span><span class="o">&gt;=</span><span class="n">min_repeats</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">value_counts_series</span><span class="o">==</span><span class="nb">max</span><span class="p">(</span><span class="n">value_counts_series</span><span class="p">))]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_repeating_phrase_depunc</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">minlen</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the longest repeating phrase found in a text.</span>
-<span class="sd">       If there are more than one of the same lentgh, return the first.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    
-    <span class="c1"># Accepts a specified minimum phrase length (minlin)</span>
-    <span class="c1"># Reduce the required number of repeats</span>
-    <span class="n">phrase</span> <span class="o">=</span> <span class="n">scanner2</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">minlen</span><span class="o">=</span><span class="n">minlen</span><span class="p">,</span> <span class="n">min_repeats</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-                      <span class="n">tokeniser</span><span class="o">=</span><span class="s1">&#39;depunc_word&#39;</span><span class="p">)</span>
-    
-    <span class="c1">#If there is at least one response, take the first</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">phrase</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">phrase</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">find_repeating_phrase_depunc</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Pretty cock Pretty hen And you pretty brindled cow What do you say now&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>Register the function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note we need to update the number of arguments (max. 2)</span>
-<span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="o">.</span><span class="n">create_function</span><span class="p">(</span><span class="s1">&#39;find_repeating_phrase_depunc&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
-                        <span class="n">find_repeating_phrase_depunc</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Try again:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT book, title, find_repeating_phrase_depunc(text, 7) AS phrase</span>
-<span class="s2">FROM books WHERE book=&quot;The Pink Fairy Book&quot; ;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="k">for</span> <span class="n">row5</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">row5</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">row5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &#39;Ye e s Are you coming back again That may be said Esben Then you ll catch it&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;Ask him if he will come with us&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;Maiden Bright-Eye&#39;, &#39;phrase&#39;: &#39;Good evening it said Thanks Maiden Bright eye said the dog Where is my brother He is in the serpent pit Where is my wicked sister She is with the noble king Alas alas&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes and&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;Pretty cock Pretty hen And you pretty brindled cow What do you say now&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &#39;My father has set no sentry in War and Pest&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &#39;a boot jack and a hair brush&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &#39;listened and was sorry for her and&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea He&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird and a branch of the tree of beauty&#39;}
-{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;Who will hire me for a servant&#39;}
-</pre></div>
-</div>
-</div>
-</div>
-<p>Check the context:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">SELECT text, find_repeating_phrase(text) AS phrase</span>
-<span class="s2">FROM books WHERE title=&quot;Maiden Bright-Eye&quot; ;</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="k">for</span> <span class="n">row6</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">find_contexts</span><span class="p">(</span><span class="n">row6</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s2">&quot;Where is my wicked &quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===&quot;</span><span class="p">)</span>
-    <span class="c1">#print(row6[&#39;phrase&#39;])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Thanks, Maiden Bright-eye,&#39; said the dog.
-
-&#39;Where is my brother?&#39;
-
-&#39;He is in the serpent-pit.&#39;
-
-&#39;Where is my wicked sister?&#39;
-
-&#39;She is with the noble king.&#39;
-
-&#39;Alas! alas! I am here this evening, and shall be for two e 
-===
-
-
-&#39;Thanks, Maiden Bright-eye,&#39; said the dog.
-
-&#39;Where is my brother?&#39;
-
-&#39;He is in the serpent-pit.&#39;
-
-&#39;Where is my wicked sister?&#39;
-
-&#39;She is with the noble king.&#39;
-
-&#39;Alas! alas! I am here this evening, and shall be for one e 
-===
-
-
-&#39;Thanks, Maiden Bright-eye,&#39; said the dog.
-
-&#39;Where is my brother?&#39;
-
-&#39;He is in the serpent-pit.&#39;
-
-&#39;Where is my wicked sister?&#39;
-
-&#39;She is with the noble king.&#39;
-
-&#39;Alas! alas! now I shall never come again.&#39; With this it sl 
-===
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row6</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">_q</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">find_contexts</span><span class="p">(</span><span class="n">row6</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="s2">&quot;the king&#39;s palace&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> something about the stepson. He had gone out into the world to look about him, and took service in the king&#39;s palace. About this time he got permission to go home and see his sister, and when he saw how lovely and be 
-===
- he saw how lovely and beautiful she was, he was so pleased and delighted that when he came back to the king&#39;s palace everyone there wanted to know what he was always so happy about. He told them that it was because h 
-===
-r life, and she was at once transformed into a duck. The duck swam away after the ship, and came to the king&#39;s palace on the next evening. There it waddled up the drain, and so into the kitchen, where her little dog l 
-===
-it.
-
-At this time the brother in the serpent-pit dreamed that his right sister had come swimming to the king&#39;s palace in the shape of a duck, and that she could not regain her own form until her beak was cut off. He g 
-===
-</pre></div>
-</div>
-</div>
-</div>
-<p>We need to be able to find short sentences down to the minimum that are not in a longer phrase:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scanner_all</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">minlen</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">startlen</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-                <span class="n">min_repeats</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">autostop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">long_phrases</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">startlen</span><span class="p">,</span> <span class="n">minlen</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;phrase&#39;</span><span class="p">:[</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nltk_ngrams</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="p">)))]})</span>
-        <span class="n">value_counts_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;phrase&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-        
-        <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">value_counts_series</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_repeats</span><span class="p">:</span>
-            <span class="n">test_phrases</span> <span class="o">=</span> <span class="n">value_counts_series</span><span class="p">[</span><span class="n">value_counts_series</span><span class="o">==</span><span class="nb">max</span><span class="p">(</span><span class="n">value_counts_series</span><span class="p">)]</span>
-            <span class="k">for</span> <span class="p">(</span><span class="n">test_phrase</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="n">test_phrases</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">test_phrase</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">long_phrases</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">test_phrase</span> <span class="ow">in</span> <span class="n">long_phrase</span> <span class="k">for</span> <span class="n">long_phrase</span> <span class="ow">in</span> <span class="n">long_phrases</span><span class="p">):</span>
-                    <span class="n">long_phrases</span><span class="p">[</span><span class="n">test_phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
-            
-    <span class="k">return</span> <span class="n">long_phrases</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">txt_reps</span> <span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">Nota that There once was a thing that and 5 There once was a thing that and 4 There once was a thing that and 3</span>
-<span class="s2">There once was a thing that and 1 There once was a thing that and  6 There once was a thing that and 7</span>
-<span class="s2">there was another that 1 and there was another that 2 and there was another that 3 and there was another that and</span>
-<span class="s2">there was another that and there was another that 5 and there was another that 9 and there was another that</span>
-<span class="s2">&quot;&quot;&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner</span><span class="p">(</span> <span class="n">txt_reps</span> <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There once was a thing that and    6
-Name: phrase, dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_all</span><span class="p">(</span><span class="n">txt_reps</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;There once was a thing that and&#39;: 6, &#39;and there was another that&#39;: 7}
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scanner_all</span><span class="p">(</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;: 4}
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="longest-common-substring">
-<h2>Longest Common Substring<a class="headerlink" href="#longest-common-substring" title="Permalink to this headline">¶</a></h2>
-<p>Could we use <code class="docutils literal notranslate"><span class="pre">difflib.SequenceMatcher.find_longest_match()</span></code> on first and second half of doc, or various docs samples, to try to find common refrains?</p>
-<p>Or chunk into paragraphs and compare every paragraph with every other paragraph?</p>
-<p>Here’s how the to call the <code class="docutils literal notranslate"><span class="pre">SequenceMatcher().find_longest_match()</span></code> function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">difflib</span> <span class="kn">import</span> <span class="n">SequenceMatcher</span>
-
-<span class="n">m</span> <span class="o">=</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">txt_reps</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="n">txt_reps</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">find_longest_match</span><span class="p">()</span>
-<span class="n">m</span><span class="p">,</span> <span class="n">txt_reps</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">a</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Match(a=9, b=33, size=33), &#39; There once was a thing that and &#39;)
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="doc2vec-search-engine">
-<h2>Doc2Vec Search Engine<a class="headerlink" href="#doc2vec-search-engine" title="Permalink to this headline">¶</a></h2>
-<p>To explore: a simple <code class="docutils literal notranslate"><span class="pre">Doc2Vec</span></code> powered search engine based on <a class="reference external" href="https://www.kaggle.com/hgilles06/a-doc2vec-search-engine-cord19-new-version">https://www.kaggle.com/hgilles06/a-doc2vec-search-engine-cord19-new-version</a> .</p>
+<p>In this recipe, we have seen how to scrape content from a website and add it to a database. By processing the raw files, we were also able to extract some provenance data. Although this data extraction was far from ideal, it is arguably better than nothing.</p>
+<p>We can search the database using <em>full text search</em>, entering simple search terms as we would in a search engine, or we can perform more exact, structured searches using the SQL query language. The use of IPython magics simplifies the invocation of SQL queries to a connected database.</p>
 </div>
 </div>
 
@@ -4753,13 +2209,13 @@ Name: phrase, dtype: int64
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Running the Code Contained in This Book</p>
+            <p class="prev-next-title">Invoking the Incantations Contained in This Book</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="Ashliman_folk_texts_scraper.html" title="next page">
+    <a class='right-next' id="next-link" href="lang-fairy-books-db_PART_2.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Ashliman “Folklore and Mythology Electronic Texts” Scraper</p>
+        <p class="prev-next-title">Finding Book Index-Like Things In Lang’s Fairy Stories…</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
