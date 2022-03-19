@@ -4,5 +4,11 @@ beautifulsoup4
 parse
 sqlite_utils
 
+ipython-sql
+
+pandas
+spacy
+quantulum3
+
 jupyterlab-myst
 
