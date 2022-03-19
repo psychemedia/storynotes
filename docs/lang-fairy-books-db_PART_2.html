@@ -1,0 +1,1444 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finding Book Index-Like Things In Lang’s Fairy Stories… &#8212; Story Notes - Technical Recipes</title>
+    
+    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Annotating Lang’s Fairy Tales With Wikipedia Links" href="lang-fairy-books-db_PART_3.html" />
+    <link rel="prev" title="A Full Text Searchable Database of Lang’s Fairy Books" href="lang-fairy-books-db.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
+    <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-read-this-book.html">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./lang-fairy-books-db_PART_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="./lite/retro/notebooks?path=./lang-fairy-books-db_PART_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch via RetroLite"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterlite.svg">
+  </span>
+<span class="headerbtn__text-container">RetroLite</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/psychemedia/storynotes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-to-the-database">
+   Connecting to the Database
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detecting-entities-the-spacy-way">
+   Detecting Entities the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     spacy
+    </span>
+   </code>
+   Way
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-much">
+     How Much?!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-far-have-we-still-to-go">
+     How Far Have We Still To Go?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-many-did-you-say">
+     How Many Did You Say?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#who-s-there">
+     Who’s There?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-s-there">
+     When’s There?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#organisationally-speaking">
+     Organisationally Speaking…
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Finding Book Index-Like Things In Lang’s Fairy Stories…</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-to-the-database">
+   Connecting to the Database
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#detecting-entities-the-spacy-way">
+   Detecting Entities the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     spacy
+    </span>
+   </code>
+   Way
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-much">
+     How Much?!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-far-have-we-still-to-go">
+     How Far Have We Still To Go?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-many-did-you-say">
+     How Many Did You Say?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#who-s-there">
+     Who’s There?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-s-there">
+     When’s There?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#organisationally-speaking">
+     Organisationally Speaking…
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="section" id="finding-book-index-like-things-in-lang-s-fairy-stories">
+<h1>Finding Book Index-Like Things In Lang’s Fairy Stories…<a class="headerlink" href="#finding-book-index-like-things-in-lang-s-fairy-stories" title="Permalink to this headline">¶</a></h1>
+<p>One of the problems associated with <em>search</em> as a form of discovery is knowing what to search for. If you have a traditional print book, it contains various navigational clues that let you quickly get a sense of what the book contains, and in what order.</p>
+<p>A look at the table of contents gives you great big signposts in the form of chapter headings, and the distance from one signpost to the net is given not in leagues or miles, but pages.</p>
+<p>At the back of the book, the index provides a jewellery box of trinkets, each with its own story, or stories, to tell, at a signposted location inside the book. Skimming the index gives you a summary of the key players and key topics contained inside the book: the indexer is truly of the cunning kind. A large index entry suggests the important role the perosn, or place, or topic so indexed, plays within the book.</p>
+<p>So for our fairy tales, if we aren’t sure <em>what</em> to search for in order to discover, can we create an index like thing that will tell us what the key nouns are – the names, places and events – and perhaps other key references, such as to large sums of money mentioned somewhere within the tales?</p>
+<p>As well as the precious objects worthy of mention, there are other things we can tease out of the text that might make it easier to search for what we want. For example, if we want to find a story that explicitly mentions a large financial reward, it might be useful if we could search for tales mentioning at least 500 gold pieces (or equivalent). But how could we possibly do that, you might ask…</p>
+<p>In <em>technicalese</em>, by extracting entities we can search around, that’s how… And I don’t necessarily mean “entities” of the supernatural kind, the bogles and boggarts and other things that come out at night that we might generically class as <em>“ghouls”</em>.</p>
+<p>So what sorts of <em>entity</em> might we be able to find in the stories…?!</p>
+</div>
+<div class="section" id="connecting-to-the-database">
+<h1>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h1>
+<p>Let’s start by connecting to the database of Lang’s fairy stories that we created earlier, as well as loading in some magic that let’s us talk to it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;lang_fairy_tale.db&quot;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+
+<span class="c1"># Load in the sql magic</span>
+<span class="o">%</span><span class="k">load_ext</span> sql
+<span class="o">%</span><span class="k">sql</span> sqlite:///$db_name
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can test it works with a simple query:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+SELECT title FROM books LIMIT 3;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///lang_fairy_tale.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <tr>
+        <th>title</th>
+    </tr>
+    <tr>
+        <td>A Voyage To Lilliput</td>
+    </tr>
+    <tr>
+        <td>Aladdin And The Wonderful Lamp</td>
+    </tr>
+    <tr>
+        <td>Beauty And The Beast</td>
+    </tr>
+</table></div></div>
+</div>
+</div>
+<div class="section" id="detecting-entities-the-spacy-way">
+<h1>Detecting Entities the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> Way<a class="headerlink" href="#detecting-entities-the-spacy-way" title="Permalink to this headline">¶</a></h1>
+<p>To try to identify “things” in the stories, we can invoke the powers of the great God <code class="docutils literal notranslate"><span class="pre">spacy</span></code>, which walks amongst us in the guise of a natural language processing toolkit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%pip install --upgrade spacy</span>
+<span class="c1"># Get the spell book from a library shelf</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+
+<span class="c1"># And summon some magic from it</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also need some text to work with, so load in a dataframe from the database containing our book records:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="o">%</span><span class="k">sql</span> SELECT * FROM books;
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///lang_fairy_tale.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>text</th>
+      <th>last_para</th>
+      <th>first_line</th>
+      <th>provenance</th>
+      <th>chapter_order</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>[1] Le Prince Desir et la Princesse Mignonne. ...</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Blue Fairy Book</td>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>[1] Asbjornsen and Moe.</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>Asbjornsen and Moe.</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Yellow Dwarf</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>[1] Madame d'Aulnoy.</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>Madame d'Aulnoy.</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td>And, saying these words, this wicked wolf fell...</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td></td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now let’s have a go at extracting some entities (this may take some time!).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The invocation is a little cryptic, but what it boils down to is that we define a <code class="docutils literal notranslate"><span class="pre">get_entities</span></code> invocation that uses an entity divining <code class="docutils literal notranslate"><span class="pre">nlp</span></code> spell from the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> spell book, and then we use some <em>pandas</em> magic to call a genie with that spell on the book <code class="docutils literal notranslate"><span class="pre">text</span></code> from every row in the dataframe.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract a set of entities, rather than a list...</span>
+<span class="n">get_entities</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">desc</span><span class="p">:</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">label_</span><span class="si">}</span><span class="s2"> :: </span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">nlp</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span><span class="o">.</span><span class="n">ents</span><span class="p">}</span>
+
+<span class="c1"># Apply the entity extraction routine to the text column element in each row</span>
+<span class="c1"># The full run takes some time....</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;entities&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_entities</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>text</th>
+      <th>last_para</th>
+      <th>first_line</th>
+      <th>provenance</th>
+      <th>chapter_order</th>
+      <th>entities</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>{DATE :: mid-day, CARDINAL :: three, GPE :: Ma...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>[1] Le Prince Desir et la Princesse Mignonne. ...</td>
+      <td>Once upon a time there lived a king who was de...</td>
+      <td>Le Prince Desir et la Princesse Mignonne. Par ...</td>
+      <td>1</td>
+      <td>{NORP :: Greek, NORP :: Roman, LAW :: the Dear...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Blue Fairy Book</td>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>[1] Asbjornsen and Moe.</td>
+      <td>Once upon a time there was a poor husbandman w...</td>
+      <td>Asbjornsen and Moe.</td>
+      <td>2</td>
+      <td>{FAC :: the White Bear, DATE :: day, DATE :: a...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Yellow Dwarf</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>[1] Madame d'Aulnoy.</td>
+      <td>Once upon a time there lived a queen who had b...</td>
+      <td>Madame d'Aulnoy.</td>
+      <td>3</td>
+      <td>{CARDINAL :: seven, CARDINAL :: six, CARDINAL ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td>And, saying these words, this wicked wolf fell...</td>
+      <td>Once upon a time there lived in a certain vill...</td>
+      <td></td>
+      <td>4</td>
+      <td>{ORG :: Grandmamma, PERSON :: Gaffer Wolf, PER...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Sleeping Beauty In The Wood</td>
+      <td>There were formerly a king and a queen, who we...</td>
+      <td>No one dared to tell him, when the Ogress, all...</td>
+      <td>There were formerly a king and a queen, who we...</td>
+      <td></td>
+      <td>5</td>
+      <td>{CARDINAL :: seven, CARDINAL :: three, WORK_OF...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>The Blue Fairy Book</td>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>Once there was a gentleman who married, for hi...</td>
+      <td>[1] Charles Perrault.</td>
+      <td>Once there was a gentleman who married, for hi...</td>
+      <td>Charles Perrault.</td>
+      <td>6</td>
+      <td>{CARDINAL :: six, CARDINAL :: three, CARDINAL ...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>The Blue Fairy Book</td>
+      <td>Aladdin And The Wonderful Lamp</td>
+      <td>There once lived a poor tailor, who had a son ...</td>
+      <td>[1] Arabian Nights.</td>
+      <td>There once lived a poor tailor, who had a son ...</td>
+      <td>Arabian Nights.</td>
+      <td>7</td>
+      <td>{CARDINAL :: forty, CARDINAL :: six, PERSON ::...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
+      <td>A father had two sons, of whom the eldest was ...</td>
+      <td>[1] Grimm.</td>
+      <td>A father had two sons, of whom the eldest was ...</td>
+      <td>Grimm.</td>
+      <td>8</td>
+      <td>{CARDINAL :: seven, CARDINAL :: six, CARDINAL ...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>The Blue Fairy Book</td>
+      <td>Rumpelstiltzkin</td>
+      <td>There was once upon a time a poor miller who h...</td>
+      <td>[1] Grimm.</td>
+      <td>There was once upon a time a poor miller who h...</td>
+      <td>Grimm.</td>
+      <td>9</td>
+      <td>{TIME :: early dawn, PERSON :: Rumpelstiltzkin...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>We should probably just do this once and add an appropriate table of entities to the database…</p>
+</div>
+<p>We can use some more <em>pandas</em> magic to explode these entity lists out into a long format dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Series</span>
+
+<span class="c1"># Explode the entities one per row...</span>
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;entities&#39;</span><span class="p">)</span>
+<span class="n">df_long</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;entities&quot;</span><span class="p">:</span><span class="s2">&quot;entity&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># And then separate out entity type and value</span>
+<span class="n">df_long</span><span class="p">[[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">,</span> <span class="s2">&quot;entity_value&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; :: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Series</span><span class="p">)</span>
+<span class="n">df_long</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>text</th>
+      <th>last_para</th>
+      <th>first_line</th>
+      <th>provenance</th>
+      <th>chapter_order</th>
+      <th>entity</th>
+      <th>entity_typ</th>
+      <th>entity_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>DATE :: mid-day</td>
+      <td>DATE</td>
+      <td>mid-day</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>CARDINAL :: three</td>
+      <td>CARDINAL</td>
+      <td>three</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>GPE :: Maisonneuve</td>
+      <td>GPE</td>
+      <td>Maisonneuve</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>GPE :: Albania</td>
+      <td>GPE</td>
+      <td>Albania</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>[1] Traditions Populaires de l'Asie Mineure. C...</td>
+      <td>Once upon a time in a certain country there li...</td>
+      <td>Traditions Populaires de l'Asie Mineure. Carno...</td>
+      <td>0</td>
+      <td>CARDINAL :: one</td>
+      <td>CARDINAL</td>
+      <td>one</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The data frame object can often be quite helpful. If we ask it nicely, it will tell us what different entity types it contains, and how many rows are associated with each one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE           3108
+CARDINAL       2536
+TIME           1928
+ORG            1564
+PERSON         1499
+ORDINAL         879
+GPE             564
+WORK_OF_ART     358
+NORP            343
+QUANTITY        209
+LOC             165
+PRODUCT         144
+FAC             126
+MONEY            41
+LAW              34
+EVENT            28
+LANGUAGE         12
+Name: entity_typ, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-much">
+<h2>How Much?!<a class="headerlink" href="#how-much" title="Permalink to this headline">¶</a></h2>
+<p>What sort of money has been identified in the stories?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money_filter</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;MONEY&quot;</span>
+
+<span class="n">df_long</span><span class="p">[</span><span class="n">money_filter</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a penny                     6
+a hundred dollars           5
+a few pence                 4
+three hundred dollars       4
+two hundred dollars         3
+the hundred dollars         2
+ten dollars                 2
+the thousand dollars        1
+only a few hundred yards    1
+the hundred marks           1
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Dollars? Really??? What about gold coins?!</p>
+<p>The magic works using a <em>classifier</em>, a special type of gossip that has read everything there is to read about everything, and recognises from text we provide what sorts of things various things are likely to be in a text, based on how they appear in the text and what other words appear around them.</p>
+<p>So I wonder: do I need to train a new classifier that is a bit more specialised in terms of its familiarity with the sorts of thing you find in fairy tales?! Or was the original text really like that (are there really lots of mentions of “dollar” amounts?!) Or has the text been got at someway, perhaps in editing translation on its way to the website I downloaded my source texts from?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Maybe I should do my own digitisation project to extract the text from copies of the original books on the Internet Archive?</p>
+</div>
+<p>Having identified various fragments of text as currency related, can we actually convert those phrases into something evening more abstract, such as a numerical amounts and recognisable currencies or units?</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">quantulum3</span></code> spell book is useful to us here… so let’s create an invocation of our own around it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%pip install quantulum3</span>
+<span class="kn">from</span> <span class="nn">quantulum3.parser</span> <span class="kn">import</span> <span class="n">parse</span> <span class="k">as</span> <span class="n">qp</span>
+
+<span class="k">def</span> <span class="nf">quantity_conversions</span><span class="p">(</span><span class="n">quantities</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attempt to identify quanities and units.&quot;&quot;&quot;</span>
+    <span class="c1"># We&#39;ll keep track of which monetary amounts we can convert</span>
+    <span class="n">conversions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># and those we can&#39;t</span>
+    <span class="n">not_converted</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Let&#39;s try with just a few monetary amounts</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">quantities</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">conversions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">q</span><span class="p">,</span> <span class="n">qp</span><span class="p">(</span><span class="n">q</span><span class="p">)))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">not_converted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+    <span class="c1"># How did we do?</span>
+    <span class="k">return</span> <span class="n">conversions</span><span class="p">,</span> <span class="n">not_converted</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now let’s see if we can identify some monetary amounts and currencies, or units:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">money</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="n">money_filter</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">quantity_conversions</span><span class="p">(</span><span class="n">money</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(&#39;a penny&#39;,
+   [Quantity(1, &quot;Unit(name=&quot;penny&quot;, entity=Entity(&quot;currency&quot;), uri=Penny)&quot;)]),
+  (&#39;a hundred dollars&#39;,
+   [Quantity(100, &quot;Unit(name=&quot;dollar&quot;, entity=Entity(&quot;currency&quot;), uri=Dollar)&quot;)]),
+  (&#39;three hundred dollars&#39;,
+   [Quantity(300, &quot;Unit(name=&quot;dollar&quot;, entity=Entity(&quot;currency&quot;), uri=Dollar)&quot;)]),
+  (&#39;two hundred dollars&#39;,
+   [Quantity(200, &quot;Unit(name=&quot;dollar&quot;, entity=Entity(&quot;currency&quot;), uri=Dollar)&quot;)]),
+  (&#39;the hundred dollars&#39;, []),
+  (&#39;ten dollars&#39;,
+   [Quantity(10, &quot;Unit(name=&quot;dollar&quot;, entity=Entity(&quot;currency&quot;), uri=Dollar)&quot;)]),
+  (&#39;the thousand dollars&#39;, []),
+  (&#39;the hundred marks&#39;, [])],
+ [&#39;a few pence&#39;, &#39;only a few hundred yards&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we can start to glue these various pieces together, it’s not hard to imagine labeling each story with monetary amounts, which means we can then start to search for stories that mention sums of a certain magnitude (for example, <em>“more than a thousand dollars”</em>).</p>
+<p>Various currency conversion package also exist, which means we could start to imagine searching across currencies, <em>if</em> we can identify appropriate currency conversion rates. For example, <em>“give me all stories mentioning an amount of at least 1000 gold coins, <strong>or equivalent</strong>”</em>.</p>
+</div>
+<div class="section" id="how-far-have-we-still-to-go">
+<h2>How Far Have We Still To Go?<a class="headerlink" href="#how-far-have-we-still-to-go" title="Permalink to this headline">¶</a></h2>
+<p>As with as monetary amounts, did our classifier genie spot any other quantities in the texts?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quantity_filter</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;QUANTITY&quot;</span>
+
+<span class="n">df_long</span><span class="p">[</span><span class="n">quantity_filter</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one foot           15
+a mile             12
+a few miles         7
+twenty miles        6
+a hundred miles     5
+three miles         5
+seven miles         3
+a few yards         3
+a few feet          3
+several miles       3
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also attempt to parse these values using the <code class="docutils literal notranslate"><span class="pre">quantulum3</span></code> incantation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a list of quantities extracted from out texts</span>
+<span class="n">quantities</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="n">quantity_filter</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">quantity_conversions</span><span class="p">(</span><span class="n">quantities</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(&#39;one foot&#39;,
+   [Quantity(1, &quot;Unit(name=&quot;foot&quot;, entity=Entity(&quot;length&quot;), uri=Foot_(unit))&quot;)]),
+  (&#39;a mile&#39;,
+   [Quantity(1, &quot;Unit(name=&quot;mile&quot;, entity=Entity(&quot;length&quot;), uri=Mile)&quot;)]),
+  (&#39;twenty miles&#39;,
+   [Quantity(20, &quot;Unit(name=&quot;mile&quot;, entity=Entity(&quot;length&quot;), uri=Mile)&quot;)]),
+  (&#39;a hundred miles&#39;,
+   [Quantity(100, &quot;Unit(name=&quot;mile&quot;, entity=Entity(&quot;length&quot;), uri=Mile)&quot;)]),
+  (&#39;three miles&#39;,
+   [Quantity(3, &quot;Unit(name=&quot;mile&quot;, entity=Entity(&quot;length&quot;), uri=Mile)&quot;)]),
+  (&#39;seven miles&#39;,
+   [Quantity(7, &quot;Unit(name=&quot;mile&quot;, entity=Entity(&quot;length&quot;), uri=Mile)&quot;)]),
+  (&#39;several miles&#39;, [])],
+ [&#39;a few miles&#39;, &#39;a few yards&#39;, &#39;a few feet&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-many-did-you-say">
+<h2>How Many Did You Say?<a class="headerlink" href="#how-many-did-you-say" title="Permalink to this headline">¶</a></h2>
+<p>We can also identify cardinal values, which is to say, numbers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cardinal_filter</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;CARDINAL&quot;</span>
+
+<span class="n">cardinals</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="n">cardinal_filter</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">cardinals</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;one&#39;,
+ &#39;two&#39;,
+ &#39;three&#39;,
+ &#39;half&#39;,
+ &#39;One&#39;,
+ &#39;four&#39;,
+ &#39;six&#39;,
+ &#39;twelve&#39;,
+ &#39;seven&#39;,
+ &#39;thousand&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, can we cast these to numerics by the power of <code class="docutils literal notranslate"><span class="pre">quantulum3</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quantity_conversions</span><span class="p">(</span><span class="n">cardinals</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([(&#39;one&#39;, []),
+  (&#39;two&#39;,
+   [Quantity(2, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;three&#39;,
+   [Quantity(3, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;half&#39;,
+   [Quantity(0, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;One&#39;, []),
+  (&#39;four&#39;,
+   [Quantity(4, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;six&#39;,
+   [Quantity(6, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;twelve&#39;,
+   [Quantity(12, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;seven&#39;,
+   [Quantity(7, &quot;Unit(name=&quot;dimensionless&quot;, entity=Entity(&quot;dimensionless&quot;), uri=Dimensionless_quantity)&quot;)]),
+  (&#39;thousand&#39;, [])],
+ [])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="who-s-there">
+<h2>Who’s There?<a class="headerlink" href="#who-s-there" title="Permalink to this headline">¶</a></h2>
+<p>As well as quantities, what people or sorts of people have been identified?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;PERSON&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fairy       31
+Majesty     29
+Prince      29
+Queen       27
+bush        12
+wolf        11
+Madam       11
+Campbell    11
+Lang        11
+Jack        10
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>### Where’s There?</p>
+<p>How about geo-political entities (GPEs)?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;GPE&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>thou                11
+Paris               10
+France               9
+Japan                8
+Greece               7
+Denmark              6
+Ireland              6
+Contes Armeniens     5
+Gedichte             5
+Finland              5
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="when-s-there">
+<h2>When’s There?<a class="headerlink" href="#when-s-there" title="Permalink to this headline">¶</a></h2>
+<p>When did things happen?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;DATE&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>one day         188
+One day         154
+the day          86
+three days       79
+next day         62
+the next day     61
+a few days       50
+all day          44
+many years       41
+that day         40
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>And how about time considerations?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;TIME&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>night            117
+evening          115
+a few minutes     77
+morning           69
+next morning      63
+one morning       58
+Next morning      53
+the night         47
+midnight          44
+one night         40
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="organisationally-speaking">
+<h2>Organisationally Speaking…<a class="headerlink" href="#organisationally-speaking" title="Permalink to this headline">¶</a></h2>
+<p>Were organisations or organisational types recognised?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;ORG&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>King        102
+Princess     71
+Court        48
+Prince       42
+Grimm        28
+King&#39;s       23
+Quick        18
+eagle        12
+Majesty      11
+I.           10
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>What’s a <code class="docutils literal notranslate"><span class="pre">NORP</span></code>? (Ah… <em>Nationalities Or Religious or Political groups.)</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_long</span><span class="p">[</span><span class="n">df_long</span><span class="p">[</span><span class="s2">&quot;entity_typ&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;NORP&quot;</span><span class="p">][</span><span class="s2">&quot;entity_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>German        24
+Danish        18
+French        14
+Russian       11
+Indian        10
+Christian      9
+Italian        8
+Portuguese     7
+Spanish        7
+Chinese        6
+Name: entity_value, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "psychemedia/storynotes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lang-fairy-books-db.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">A Full Text Searchable Database of Lang’s Fairy Books</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lang-fairy-books-db_PART_3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Annotating Lang’s Fairy Tales With Wikipedia Links</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  
+
+  </body>
+</html>

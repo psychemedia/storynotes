@@ -1,0 +1,2041 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annotating Lang’s Fairy Tales With Wikipedia Links &#8212; Story Notes - Technical Recipes</title>
+    
+    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections" href="lang-fairy-books-db_PART_4.html" />
+    <link rel="prev" title="Finding Book Index-Like Things In Lang’s Fairy Stories…" href="lang-fairy-books-db_PART_2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
+    <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-read-this-book.html">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./lang-fairy-books-db_PART_3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="./lite/retro/notebooks?path=./lang-fairy-books-db_PART_3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch via RetroLite"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterlite.svg">
+  </span>
+<span class="headerbtn__text-container">RetroLite</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/psychemedia/storynotes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Annotating Lang’s Fairy Tales With Wikipedia Links</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="annotating-lang-s-fairy-tales-with-wikipedia-links">
+<h1>Annotating Lang’s Fairy Tales With Wikipedia Links<a class="headerlink" href="#annotating-lang-s-fairy-tales-with-wikipedia-links" title="Permalink to this headline">¶</a></h1>
+<p>The Wikipedia page <a class="reference external" href="https://en.wikipedia.org/wiki/Lang%27s_Fairy_Books"><code class="docutils literal notranslate"><span class="pre">Lang's_Fairy_Books</span></code></a> lists the contents of Lang’s coloured fairy books (as well as several other books), along with links to the Wikipedia page associated with each tale, if available.</p>
+<p>This means we can have a go at annotating our database with Wikipedia links for each story. From those pages in turn, or associated <em>DBpedia</em> pages, we might also be able to extract Aarne-Thompson classification codes for the corresponding stories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;lang_fairy_tale.db&quot;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span>
+
+<span class="c1"># Load in the sql magic</span>
+<span class="o">%</span><span class="k">load_ext</span> sql
+<span class="o">%</span><span class="k">sql</span> sqlite:///$db_name
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load in the Wikipedia page that lists Lang’s Fairy Book collections and provides links to other WIkipedia pages associated with stories contained in them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://en.wikipedia.org/wiki/Lang&#39;s_Fairy_Books&quot;</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now make some lovely soup from the page that we can then start to fish entrails out of:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wp_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the span for a particular book</span>
+<span class="n">wp_book_loc</span> <span class="o">=</span>  <span class="n">wp_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;span&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;The_Blue_Fairy_Book_(1889)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Then navigate relative to this to get the (linked) story list</span>
+<span class="n">wp_book_stories</span> <span class="o">=</span> <span class="n">wp_book_loc</span><span class="o">.</span><span class="n">find_parent</span><span class="p">()</span><span class="o">.</span><span class="n">find_next</span><span class="p">(</span><span class="s2">&quot;ul&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
+<span class="n">wp_book_stories</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;li&gt;&quot;&lt;a href=&quot;/wiki/The_Bronze_Ring&quot; title=&quot;The Bronze Ring&quot;&gt;The Bronze Ring&lt;/a&gt;&quot;&lt;/li&gt;,
+ &lt;li&gt;&quot;&lt;a href=&quot;/wiki/Prince_Hyacinth_and_the_Dear_Little_Princess&quot; title=&quot;Prince Hyacinth and the Dear Little Princess&quot;&gt;Prince Hyacinth and the Dear Little Princess&lt;/a&gt;&quot;&lt;/li&gt;,
+ &lt;li&gt;&quot;&lt;a href=&quot;/wiki/East_of_the_Sun_and_West_of_the_Moon&quot; title=&quot;East of the Sun and West of the Moon&quot;&gt;East of the Sun and West of the Moon&lt;/a&gt;&quot;&lt;/li&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get the Wikipedia path for stories with a Wikipedia page:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wp_book_paths</span> <span class="o">=</span> <span class="p">[(</span><span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">),</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">wp_book_stories</span><span class="p">]</span>
+
+<span class="n">wp_book_paths</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Bronze Ring&#39;, &#39;/wiki/The_Bronze_Ring&#39;),
+ (&#39;Prince Hyacinth and the Dear Little Princess&#39;,
+  &#39;/wiki/Prince_Hyacinth_and_the_Dear_Little_Princess&#39;),
+ (&#39;East of the Sun and West of the Moon&#39;,
+  &#39;/wiki/East_of_the_Sun_and_West_of_the_Moon&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Useful as a list of <code class="docutils literal notranslate"><span class="pre">dict</span></code>s or <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">wp_book_paths_wide</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">wp_book_paths</span><span class="p">:</span>
+    <span class="n">wp_book_paths_wide</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span> <span class="p">)</span>
+    
+<span class="n">wp_book_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wp_book_paths_wide</span><span class="p">)</span>
+<span class="n">wp_book_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Bronze Ring</td>
+      <td>/wiki/The_Bronze_Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prince Hyacinth and the Dear Little Princess</td>
+      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>East of the Sun and West of the Moon</td>
+      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Yellow Dwarf</td>
+      <td>/wiki/The_Yellow_Dwarf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Little Red Riding Hood</td>
+      <td>/wiki/Little_Red_Riding_Hood</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Sleeping Beauty</td>
+      <td>/wiki/Sleeping_Beauty</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Cinderella</td>
+      <td>/wiki/Cinderella</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Aladdin</td>
+      <td>/wiki/Aladdin</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Story of the Youth Who Went Forth to Learn...</td>
+      <td>/wiki/The_Story_of_the_Youth_Who_Went_Forth_to...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Rumpelstiltskin</td>
+      <td>/wiki/Rumpelstiltskin</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Beauty and the Beast</td>
+      <td>/wiki/Beauty_and_the_Beast</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>The Master Maid</td>
+      <td>/wiki/The_Master_Maid</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Why the Sea Is Salt</td>
+      <td>/wiki/Why_the_Sea_Is_Salt</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Puss in Boots</td>
+      <td>/wiki/Puss_in_Boots</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Felicia and the Pot of Pinks</td>
+      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>The White Cat (fairy tale)</td>
+      <td>/wiki/The_White_Cat_(fairy_tale)</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>The Water-lily. The Gold-spinners</td>
+      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Perseus</td>
+      <td>/wiki/Perseus</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>The Story of Pretty Goldilocks</td>
+      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Dick Whittington</td>
+      <td>/wiki/Dick_Whittington</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>The Wonderful Sheep</td>
+      <td>/wiki/The_Wonderful_Sheep</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Hop o' My Thumb</td>
+      <td>/wiki/Hop_o%27_My_Thumb</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Ali Baba</td>
+      <td>/wiki/Ali_Baba</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Hansel and Gretel</td>
+      <td>/wiki/Hansel_and_Gretel</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Snow-White and Rose-Red</td>
+      <td>/wiki/Snow-White_and_Rose-Red</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>The Goose Girl</td>
+      <td>/wiki/The_Goose_Girl</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Diamonds and Toads</td>
+      <td>/wiki/Diamonds_and_Toads</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Prince Darling</td>
+      <td>/wiki/Prince_Darling</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Bluebeard</td>
+      <td>/wiki/Bluebeard</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Trusty John</td>
+      <td>/wiki/Trusty_John</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>The Valiant Little Tailor</td>
+      <td>/wiki/The_Valiant_Little_Tailor</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Gulliver's Travels</td>
+      <td>/wiki/Gulliver%27s_Travels#Part_I:_A_Voyage_to...</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>The Princess on the Glass Hill</td>
+      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Ahmed (Arabian Nights)</td>
+      <td>/wiki/Ahmed_(Arabian_Nights)</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Jack the Giant Killer</td>
+      <td>/wiki/Jack_the_Giant_Killer</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>The Black Bull of Norroway</td>
+      <td>/wiki/The_Black_Bull_of_Norroway</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>The Red Ettin</td>
+      <td>/wiki/The_Red_Ettin</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>See if we can then cross reference these with stories in the database?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT book, title, chapter_order FROM books WHERE book=&#39;The Blue Fairy Book&#39; ORDER BY chapter_order ASC&quot;</span>
+<span class="n">df_blue</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="n">df_blue</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>title</th>
+      <th>chapter_order</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Bronze Ring</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>The Blue Fairy Book</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Blue Fairy Book</td>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Blue Fairy Book</td>
+      <td>The Yellow Dwarf</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s see if the chapters align in terms of order as presented:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;book&quot;</span><span class="p">:</span><span class="n">df_blue</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="s2">&quot;wp&quot;</span><span class="p">:</span><span class="n">wp_book_df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="s2">&quot;wp_path&quot;</span><span class="p">:</span><span class="n">wp_book_df</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>book</th>
+      <th>wp</th>
+      <th>wp_path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Bronze Ring</td>
+      <td>The Bronze Ring</td>
+      <td>/wiki/The_Bronze_Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Prince Hyacinth and the Dear Little Princess</td>
+      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>East of the Sun and West of the Moon</td>
+      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Yellow Dwarf</td>
+      <td>The Yellow Dwarf</td>
+      <td>/wiki/The_Yellow_Dwarf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Little Red Riding Hood</td>
+      <td>Little Red Riding Hood</td>
+      <td>/wiki/Little_Red_Riding_Hood</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Sleeping Beauty In The Wood</td>
+      <td>Sleeping Beauty</td>
+      <td>/wiki/Sleeping_Beauty</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>Cinderella</td>
+      <td>/wiki/Cinderella</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Aladdin And The Wonderful Lamp</td>
+      <td>Aladdin</td>
+      <td>/wiki/Aladdin</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
+      <td>The Story of the Youth Who Went Forth to Learn...</td>
+      <td>/wiki/The_Story_of_the_Youth_Who_Went_Forth_to...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Rumpelstiltzkin</td>
+      <td>Rumpelstiltskin</td>
+      <td>/wiki/Rumpelstiltskin</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Beauty And The Beast</td>
+      <td>Beauty and the Beast</td>
+      <td>/wiki/Beauty_and_the_Beast</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>The Master-Maid</td>
+      <td>The Master Maid</td>
+      <td>/wiki/The_Master_Maid</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Why The Sea Is Salt</td>
+      <td>Why the Sea Is Salt</td>
+      <td>/wiki/Why_the_Sea_Is_Salt</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>The Master Cat; Or, Puss In Boots</td>
+      <td>Puss in Boots</td>
+      <td>/wiki/Puss_in_Boots</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Felicia And The Pot Of Pinks</td>
+      <td>Felicia and the Pot of Pinks</td>
+      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>The White Cat</td>
+      <td>The White Cat (fairy tale)</td>
+      <td>/wiki/The_White_Cat_(fairy_tale)</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>The Water-Lily. The Gold-Spinners</td>
+      <td>The Water-lily. The Gold-spinners</td>
+      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>The Terrible Head</td>
+      <td>Perseus</td>
+      <td>/wiki/Perseus</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>The Story Of Pretty Goldilocks</td>
+      <td>The Story of Pretty Goldilocks</td>
+      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>The History Of Whittington</td>
+      <td>Dick Whittington</td>
+      <td>/wiki/Dick_Whittington</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>The Wonderful Sheep</td>
+      <td>The Wonderful Sheep</td>
+      <td>/wiki/The_Wonderful_Sheep</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Little Thumb</td>
+      <td>Hop o' My Thumb</td>
+      <td>/wiki/Hop_o%27_My_Thumb</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>The Forty Thieves</td>
+      <td>Ali Baba</td>
+      <td>/wiki/Ali_Baba</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Hansel And Grettel</td>
+      <td>Hansel and Gretel</td>
+      <td>/wiki/Hansel_and_Gretel</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Snow-White And Rose-Red</td>
+      <td>Snow-White and Rose-Red</td>
+      <td>/wiki/Snow-White_and_Rose-Red</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>The Goose-Girl</td>
+      <td>The Goose Girl</td>
+      <td>/wiki/The_Goose_Girl</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Toads And Diamonds</td>
+      <td>Diamonds and Toads</td>
+      <td>/wiki/Diamonds_and_Toads</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Prince Darling</td>
+      <td>Prince Darling</td>
+      <td>/wiki/Prince_Darling</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Blue Beard</td>
+      <td>Bluebeard</td>
+      <td>/wiki/Bluebeard</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Trusty John</td>
+      <td>Trusty John</td>
+      <td>/wiki/Trusty_John</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>The Brave Little Tailor</td>
+      <td>The Valiant Little Tailor</td>
+      <td>/wiki/The_Valiant_Little_Tailor</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>A Voyage To Lilliput</td>
+      <td>Gulliver's Travels</td>
+      <td>/wiki/Gulliver%27s_Travels#Part_I:_A_Voyage_to...</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>The Princess On The Glass Hill</td>
+      <td>The Princess on the Glass Hill</td>
+      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>The Story Of Prince Ahmed And The Fairy Paribanou</td>
+      <td>Ahmed (Arabian Nights)</td>
+      <td>/wiki/Ahmed_(Arabian_Nights)</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>The History Of Jack The Giant-Killer</td>
+      <td>Jack the Giant Killer</td>
+      <td>/wiki/Jack_the_Giant_Killer</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>The Black Bull Of Norroway</td>
+      <td>The Black Bull of Norroway</td>
+      <td>/wiki/The_Black_Bull_of_Norroway</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>The Red Etin</td>
+      <td>The Red Ettin</td>
+      <td>/wiki/The_Red_Ettin</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Yes, they do so we can use that as a basis of a merge. That said, in the genral case it would probably also be useful to generate a fuzzy match score between matched titles with a report on any low scoring matches, just in case the alignment has gone awry.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DO  - wp table for links, story and story order?</span>
+<span class="c1"># TO DO fuzzy match score test just to check ingest and allow user to check poor matches</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In passing,what if we wanted to try to match on the titles themselves?</p>
+<p>If we use decased, but otherwise exact, matching, we see it’s bit flaky….</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">wp_book_df</span><span class="p">,</span>
+         <span class="n">left_on</span><span class="o">=</span><span class="n">df_blue</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+         <span class="n">right_on</span><span class="o">=</span><span class="n">wp_book_df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+         <span class="n">how</span> <span class="o">=</span><span class="s2">&quot;left&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>key_0</th>
+      <th>title_x</th>
+      <th>title_y</th>
+      <th>path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>the bronze ring</td>
+      <td>The Bronze Ring</td>
+      <td>The Bronze Ring</td>
+      <td>/wiki/The_Bronze_Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>prince hyacinth and the dear little princess</td>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Prince Hyacinth and the Dear Little Princess</td>
+      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>east of the sun and west of the moon</td>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>East of the Sun and West of the Moon</td>
+      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>the yellow dwarf</td>
+      <td>The Yellow Dwarf</td>
+      <td>The Yellow Dwarf</td>
+      <td>/wiki/The_Yellow_Dwarf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>little red riding hood</td>
+      <td>Little Red Riding Hood</td>
+      <td>Little Red Riding Hood</td>
+      <td>/wiki/Little_Red_Riding_Hood</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>the sleeping beauty in the wood</td>
+      <td>The Sleeping Beauty In The Wood</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>cinderella, or the little glass slipper</td>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>aladdin and the wonderful lamp</td>
+      <td>Aladdin And The Wonderful Lamp</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>the tale of a youth who set out to learn what ...</td>
+      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>rumpelstiltzkin</td>
+      <td>Rumpelstiltzkin</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>beauty and the beast</td>
+      <td>Beauty And The Beast</td>
+      <td>Beauty and the Beast</td>
+      <td>/wiki/Beauty_and_the_Beast</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>the master-maid</td>
+      <td>The Master-Maid</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>why the sea is salt</td>
+      <td>Why The Sea Is Salt</td>
+      <td>Why the Sea Is Salt</td>
+      <td>/wiki/Why_the_Sea_Is_Salt</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>the master cat; or, puss in boots</td>
+      <td>The Master Cat; Or, Puss In Boots</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>felicia and the pot of pinks</td>
+      <td>Felicia And The Pot Of Pinks</td>
+      <td>Felicia and the Pot of Pinks</td>
+      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>the white cat</td>
+      <td>The White Cat</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>the water-lily. the gold-spinners</td>
+      <td>The Water-Lily. The Gold-Spinners</td>
+      <td>The Water-lily. The Gold-spinners</td>
+      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>the terrible head</td>
+      <td>The Terrible Head</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>the story of pretty goldilocks</td>
+      <td>The Story Of Pretty Goldilocks</td>
+      <td>The Story of Pretty Goldilocks</td>
+      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>the history of whittington</td>
+      <td>The History Of Whittington</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>the wonderful sheep</td>
+      <td>The Wonderful Sheep</td>
+      <td>The Wonderful Sheep</td>
+      <td>/wiki/The_Wonderful_Sheep</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>little thumb</td>
+      <td>Little Thumb</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>the forty thieves</td>
+      <td>The Forty Thieves</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>hansel and grettel</td>
+      <td>Hansel And Grettel</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>snow-white and rose-red</td>
+      <td>Snow-White And Rose-Red</td>
+      <td>Snow-White and Rose-Red</td>
+      <td>/wiki/Snow-White_and_Rose-Red</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>the goose-girl</td>
+      <td>The Goose-Girl</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>toads and diamonds</td>
+      <td>Toads And Diamonds</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>prince darling</td>
+      <td>Prince Darling</td>
+      <td>Prince Darling</td>
+      <td>/wiki/Prince_Darling</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>blue beard</td>
+      <td>Blue Beard</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>trusty john</td>
+      <td>Trusty John</td>
+      <td>Trusty John</td>
+      <td>/wiki/Trusty_John</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>the brave little tailor</td>
+      <td>The Brave Little Tailor</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>a voyage to lilliput</td>
+      <td>A Voyage To Lilliput</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>the princess on the glass hill</td>
+      <td>The Princess On The Glass Hill</td>
+      <td>The Princess on the Glass Hill</td>
+      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>the story of prince ahmed and the fairy paribanou</td>
+      <td>The Story Of Prince Ahmed And The Fairy Paribanou</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>the history of jack the giant-killer</td>
+      <td>The History Of Jack The Giant-Killer</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>the black bull of norroway</td>
+      <td>The Black Bull Of Norroway</td>
+      <td>The Black Bull of Norroway</td>
+      <td>/wiki/The_Black_Bull_of_Norroway</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>the red etin</td>
+      <td>The Red Etin</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>A fuzzy match might be able to improve things…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reused from on https://stackoverflow.com/a/56315491/454773</span>
+<span class="kn">from</span> <span class="nn">fuzzywuzzy</span> <span class="kn">import</span> <span class="n">fuzz</span>
+<span class="kn">from</span> <span class="nn">fuzzywuzzy</span> <span class="kn">import</span> <span class="n">process</span>
+
+<span class="k">def</span> <span class="nf">fuzzy_merge</span><span class="p">(</span><span class="n">df_1</span><span class="p">,</span> <span class="n">df_2</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="n">key2</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param df_1: the left table to join</span>
+<span class="sd">    :param df_2: the right table to join</span>
+<span class="sd">    :param key1: key column of the left table</span>
+<span class="sd">    :param key2: key column of the right table</span>
+<span class="sd">    :param threshold: how close the matches should be to return a match, based on Levenshtein distance</span>
+<span class="sd">    :param limit: the amount of matches that will get returned, these are sorted high to low</span>
+<span class="sd">    :return: dataframe with boths keys and matches</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">df_2</span><span class="p">[</span><span class="n">key2</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    
+    <span class="n">m</span> <span class="o">=</span> <span class="n">df_1</span><span class="p">[</span><span class="n">key1</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">process</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">))</span>  
+    <span class="n">df_1</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+    
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">df_1</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span> <span class="k">if</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">]))</span>
+    <span class="n">df_1</span><span class="p">[</span><span class="s1">&#39;matches&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m2</span>
+    <span class="k">return</span> <span class="n">df_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzzy_merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">,</span> <span class="n">wp_book_df</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="mi">88</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)[[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;matches&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Bronze Ring</td>
+      <td>The Bronze Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Prince Hyacinth and the Dear Little Princess</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>East of the Sun and West of the Moon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Yellow Dwarf</td>
+      <td>The Yellow Dwarf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Little Red Riding Hood</td>
+      <td>Little Red Riding Hood</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>The Sleeping Beauty In The Wood</td>
+      <td>Sleeping Beauty</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>Cinderella</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Aladdin And The Wonderful Lamp</td>
+      <td>Aladdin</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Tale Of A Youth Who Set Out To Learn What ...</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Rumpelstiltzkin</td>
+      <td>Rumpelstiltskin</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Beauty And The Beast</td>
+      <td>Beauty and the Beast</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>The Master-Maid</td>
+      <td>The Master Maid</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Why The Sea Is Salt</td>
+      <td>Why the Sea Is Salt</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>The Master Cat; Or, Puss In Boots</td>
+      <td>Puss in Boots</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Felicia And The Pot Of Pinks</td>
+      <td>Felicia and the Pot of Pinks</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>The White Cat</td>
+      <td>The White Cat (fairy tale)</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>The Water-Lily. The Gold-Spinners</td>
+      <td>The Water-lily. The Gold-spinners</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>The Terrible Head</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>The Story Of Pretty Goldilocks</td>
+      <td>The Story of Pretty Goldilocks</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>The History Of Whittington</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>The Wonderful Sheep</td>
+      <td>The Wonderful Sheep</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Little Thumb</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>The Forty Thieves</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Hansel And Grettel</td>
+      <td>Hansel and Gretel</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Snow-White And Rose-Red</td>
+      <td>Snow-White and Rose-Red</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>The Goose-Girl</td>
+      <td>The Goose Girl</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Toads And Diamonds</td>
+      <td>Diamonds and Toads</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Prince Darling</td>
+      <td>Prince Darling</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Blue Beard</td>
+      <td>Bluebeard</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Trusty John</td>
+      <td>Trusty John</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>The Brave Little Tailor</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>A Voyage To Lilliput</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>The Princess On The Glass Hill</td>
+      <td>The Princess on the Glass Hill</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>The Story Of Prince Ahmed And The Fairy Paribanou</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>The History Of Jack The Giant-Killer</td>
+      <td>Jack the Giant Killer</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>The Black Bull Of Norroway</td>
+      <td>The Black Bull of Norroway</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>The Red Etin</td>
+      <td>The Red Ettin</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#https://github.com/jsoma/fuzzy_pandas/</span>
+
+<span class="c1"># This is probably overkill...</span>
+<span class="c1">#%pip install fuzzy_pandas</span>
+<span class="kn">import</span> <span class="nn">fuzzy_pandas</span> <span class="k">as</span> <span class="nn">fpd</span>
+
+<span class="n">fpd</span><span class="o">.</span><span class="n">fuzzy_merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">]],</span> <span class="n">wp_book_df</span><span class="p">,</span>
+            <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
+            <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">ignore_nonalpha</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;jaro&#39;</span><span class="p">,</span> <span class="c1">#bilenko, levenshtein, metaphone, jaro</span>
+            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.86</span><span class="p">,</span> <span class="c1"># If we move to 0.86 wee get a false positive...</span>
+            <span class="n">keep_left</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
+            <span class="n">keep_right</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+               <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>title</th>
+      <th>path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Bronze Ring</td>
+      <td>The Bronze Ring</td>
+      <td>/wiki/The_Bronze_Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Prince Hyacinth and the Dear Little Princess</td>
+      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>East of the Sun and West of the Moon</td>
+      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Yellow Dwarf</td>
+      <td>The Yellow Dwarf</td>
+      <td>/wiki/The_Yellow_Dwarf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Little Red Riding Hood</td>
+      <td>Little Red Riding Hood</td>
+      <td>/wiki/Little_Red_Riding_Hood</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Cinderella, Or The Little Glass Slipper</td>
+      <td>Cinderella</td>
+      <td>/wiki/Cinderella</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Rumpelstiltzkin</td>
+      <td>Rumpelstiltskin</td>
+      <td>/wiki/Rumpelstiltskin</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Beauty And The Beast</td>
+      <td>Beauty and the Beast</td>
+      <td>/wiki/Beauty_and_the_Beast</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>The Master-Maid</td>
+      <td>The Master Maid</td>
+      <td>/wiki/The_Master_Maid</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Why The Sea Is Salt</td>
+      <td>Why the Sea Is Salt</td>
+      <td>/wiki/Why_the_Sea_Is_Salt</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Felicia And The Pot Of Pinks</td>
+      <td>Felicia and the Pot of Pinks</td>
+      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>The White Cat</td>
+      <td>The White Cat (fairy tale)</td>
+      <td>/wiki/The_White_Cat_(fairy_tale)</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>The Water-Lily. The Gold-Spinners</td>
+      <td>The Water-lily. The Gold-spinners</td>
+      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>The Story Of Pretty Goldilocks</td>
+      <td>The Story of Pretty Goldilocks</td>
+      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>The Wonderful Sheep</td>
+      <td>The Wonderful Sheep</td>
+      <td>/wiki/The_Wonderful_Sheep</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Hansel And Grettel</td>
+      <td>Hansel and Gretel</td>
+      <td>/wiki/Hansel_and_Gretel</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Snow-White And Rose-Red</td>
+      <td>Snow-White and Rose-Red</td>
+      <td>/wiki/Snow-White_and_Rose-Red</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>The Goose-Girl</td>
+      <td>The Goose Girl</td>
+      <td>/wiki/The_Goose_Girl</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Prince Darling</td>
+      <td>Prince Darling</td>
+      <td>/wiki/Prince_Darling</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Blue Beard</td>
+      <td>Bluebeard</td>
+      <td>/wiki/Bluebeard</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Trusty John</td>
+      <td>Trusty John</td>
+      <td>/wiki/Trusty_John</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>The Princess On The Glass Hill</td>
+      <td>The Princess on the Glass Hill</td>
+      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>The Black Bull Of Norroway</td>
+      <td>The Black Bull of Norroway</td>
+      <td>/wiki/The_Black_Bull_of_Norroway</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>The Red Etin</td>
+      <td>The Red Ettin</td>
+      <td>/wiki/The_Red_Ettin</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fpd</span><span class="o">.</span><span class="n">fuzzy_merge</span><span class="p">(</span><span class="n">df_blue</span><span class="p">[[</span><span class="s2">&quot;title&quot;</span><span class="p">]],</span> <span class="n">wp_book_df</span><span class="p">,</span>
+            <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
+            <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span>
+            <span class="n">ignore_case</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">ignore_nonalpha</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;metaphone&#39;</span><span class="p">,</span> <span class="c1">#levenshtein, metaphone, jaro, bilenko</span>
+            <span class="n">threshold</span><span class="o">=</span><span class="mf">0.86</span><span class="p">,</span>
+            <span class="n">keep_left</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
+            <span class="n">keep_right</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+               <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>title</th>
+      <th>path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>The Bronze Ring</td>
+      <td>The Bronze Ring</td>
+      <td>/wiki/The_Bronze_Ring</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prince Hyacinth And The Dear Little Princess</td>
+      <td>Prince Hyacinth and the Dear Little Princess</td>
+      <td>/wiki/Prince_Hyacinth_and_the_Dear_Little_Prin...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>East Of The Sun And West Of The Moon</td>
+      <td>East of the Sun and West of the Moon</td>
+      <td>/wiki/East_of_the_Sun_and_West_of_the_Moon</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>The Yellow Dwarf</td>
+      <td>The Yellow Dwarf</td>
+      <td>/wiki/The_Yellow_Dwarf</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Little Red Riding Hood</td>
+      <td>Little Red Riding Hood</td>
+      <td>/wiki/Little_Red_Riding_Hood</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Rumpelstiltzkin</td>
+      <td>Rumpelstiltskin</td>
+      <td>/wiki/Rumpelstiltskin</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Beauty And The Beast</td>
+      <td>Beauty and the Beast</td>
+      <td>/wiki/Beauty_and_the_Beast</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>The Master-Maid</td>
+      <td>The Master Maid</td>
+      <td>/wiki/The_Master_Maid</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Why The Sea Is Salt</td>
+      <td>Why the Sea Is Salt</td>
+      <td>/wiki/Why_the_Sea_Is_Salt</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Felicia And The Pot Of Pinks</td>
+      <td>Felicia and the Pot of Pinks</td>
+      <td>/wiki/Felicia_and_the_Pot_of_Pinks</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>The Water-Lily. The Gold-Spinners</td>
+      <td>The Water-lily. The Gold-spinners</td>
+      <td>/wiki/The_Water-lily._The_Gold-spinners</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>The Story Of Pretty Goldilocks</td>
+      <td>The Story of Pretty Goldilocks</td>
+      <td>/wiki/The_Story_of_Pretty_Goldilocks</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>The Wonderful Sheep</td>
+      <td>The Wonderful Sheep</td>
+      <td>/wiki/The_Wonderful_Sheep</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Hansel And Grettel</td>
+      <td>Hansel and Gretel</td>
+      <td>/wiki/Hansel_and_Gretel</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Snow-White And Rose-Red</td>
+      <td>Snow-White and Rose-Red</td>
+      <td>/wiki/Snow-White_and_Rose-Red</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>The Goose-Girl</td>
+      <td>The Goose Girl</td>
+      <td>/wiki/The_Goose_Girl</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Prince Darling</td>
+      <td>Prince Darling</td>
+      <td>/wiki/Prince_Darling</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Blue Beard</td>
+      <td>Bluebeard</td>
+      <td>/wiki/Bluebeard</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Trusty John</td>
+      <td>Trusty John</td>
+      <td>/wiki/Trusty_John</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>The Princess On The Glass Hill</td>
+      <td>The Princess on the Glass Hill</td>
+      <td>/wiki/The_Princess_on_the_Glass_Hill</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>The Black Bull Of Norroway</td>
+      <td>The Black Bull of Norroway</td>
+      <td>/wiki/The_Black_Bull_of_Norroway</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>The Red Etin</td>
+      <td>The Red Ettin</td>
+      <td>/wiki/The_Red_Ettin</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>## Other Things to Link In</p>
+<p>Have other people generated data sets that can be linked in?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.mythfolklore.net/andrewlang/indexbib.htm">http://www.mythfolklore.net/andrewlang/indexbib.htm</a> /via &#64;OnlineCrsLady</p></li>
+</ul>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "psychemedia/storynotes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lang-fairy-books-db_PART_2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Finding Book Index-Like Things In Lang’s Fairy Stories…</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lang-fairy-books-db_PART_4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  
+
+  </body>
+</html>

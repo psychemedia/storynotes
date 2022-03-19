@@ -7,6 +7,9 @@ parts:
 - caption: Story Collection Scrapers and Search
   chapters:
   - file: lang-fairy-books-db
+  - file: lang-fairy-books-db_PART_2
+  - file: lang-fairy-books-db_PART_3
+  - file: lang-fairy-books-db_PART_4
   - file: Ashliman_folk_texts_scraper
   - file: MFTD-Multilingual_Folk_Tale_Database
 
