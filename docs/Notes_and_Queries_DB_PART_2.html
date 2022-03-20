@@ -442,12 +442,12 @@ title="Print to PDF"
    </code>
    Table to the Database
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extracting-pages">
+   Extracting Pages
+  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extracting-pages">
-     Extracting Pages
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modifying-the-pages-metadata-table-in-the-database">
      Modifying the
@@ -459,24 +459,24 @@ title="Print to PDF"
      Table in the Database
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
-     Automatically Populating the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pages
-      </span>
-     </code>
-     Table from the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       issues
-      </span>
-     </code>
-     Table
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
+   Automatically Populating the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pages
+    </span>
+   </code>
+   Table from the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     issues
+    </span>
+   </code>
+   Table
+  </a>
  </li>
 </ul>
 
@@ -507,12 +507,12 @@ title="Print to PDF"
    </code>
    Table to the Database
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extracting-pages">
+   Extracting Pages
+  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#extracting-pages">
-     Extracting Pages
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modifying-the-pages-metadata-table-in-the-database">
      Modifying the
@@ -524,24 +524,24 @@ title="Print to PDF"
      Table in the Database
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
-     Automatically Populating the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       pages
-      </span>
-     </code>
-     Table from the
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       issues
-      </span>
-     </code>
-     Table
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
+   Automatically Populating the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pages
+    </span>
+   </code>
+   Table from the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     issues
+    </span>
+   </code>
+   Table
+  </a>
  </li>
 </ul>
 
@@ -1272,8 +1272,9 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="extracting-pages">
-<h3>Extracting Pages<a class="headerlink" href="#extracting-pages" title="Permalink to this headline">¶</a></h3>
+<h2>Extracting Pages<a class="headerlink" href="#extracting-pages" title="Permalink to this headline">¶</a></h2>
 <p>To make for more efficient granular searching, it would be useful if our content was stored in a more granular way.</p>
 <p>Ideally, we would extract items at the “article” level, but there is no simple way of chunking the document at this level. We could process it to extract items at the sentence or paragraph level and add those to their own table, but that might be <em>too</em> granular.</p>
 <p>However, by inspection of the files available for each issue, there appears to be another level of organisation that we can access: the <em>page</em> level.</p>
@@ -1742,7 +1743,6 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="modifying-the-pages-metadata-table-in-the-database">
 <h3>Modifying the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> Table in the Database<a class="headerlink" href="#modifying-the-pages-metadata-table-in-the-database" title="Permalink to this headline">¶</a></h3>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">chunk_page_text()</span></code> function, we can add page content to our pages metadata <em>in-memory</em>. But what if we want to add it to the database. The <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> already exists, but does not include a <code class="docutils literal notranslate"><span class="pre">text</span></code> column. However, we can modify that table to include just such a column:</p>
@@ -2018,15 +2018,15 @@ title="Print to PDF"
 </div></div></div>
 </div>
 </div>
+</div>
 <div class="section" id="automatically-populating-the-pages-table-from-the-issues-table">
-<h3>Automatically Populating the <code class="docutils literal notranslate"><span class="pre">pages</span></code> Table from the <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table<a class="headerlink" href="#automatically-populating-the-pages-table-from-the-issues-table" title="Permalink to this headline">¶</a></h3>
+<h2>Automatically Populating the <code class="docutils literal notranslate"><span class="pre">pages</span></code> Table from the <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table<a class="headerlink" href="#automatically-populating-the-pages-table-from-the-issues-table" title="Permalink to this headline">¶</a></h2>
 <p>Rather than manually adding the page data to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table, we can automatically create the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table from the content contained in the <code class="docutils literal notranslate"><span class="pre">issues</span></code> table and the page metadata in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> table.</p>
 <p>TO DO  - CREATE TABLE AS ;</p>
 <ul class="simple">
 <li><p>maybe also as an extra demonstrate how to generate this automatically from a trigger</p></li>
 <li><p>discuss various advantages and disadvantages of each approach; one is a step wise pipeline (create as) other is reactive and automatic ( trigger)</p></li>
 </ul>
-</div>
 </div>
 </div>
 
