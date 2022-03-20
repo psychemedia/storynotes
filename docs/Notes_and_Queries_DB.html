@@ -583,6 +583,7 @@ title="Print to PDF"
 <h2>Searching the Internet Archive<a class="headerlink" href="#searching-the-internet-archive" title="Permalink to this headline">¶</a></h2>
 <p>Many people will be familiar with the web interface to the <a class="reference external" href="https://archive.org">Internet Archive</a> (and I suspect many more are not aware of the existence of the Internet Archive at all). This provides tools for discovering documents available in the archive, previewing the scanned versions of them, and even searching within them.</p>
 <p>At times, the search inside a book can be a bit hit and miss, in part depending on the quality of the scanned images and the ability of the OCR tools - where “OCR” stands for “optical character recognition” - to convert the pictures of text into actual text. Which is to say, <em>searchable</em> text.</p>
+<p>One of the advantages of creating our own database is that as well as having the corpus available locally, we can use various fuzzy search tools to find partial matches to text to supplement our full text search activities.</p>
 <p>To work with the archive, we’ll use the Python programming language. This lets us write instructions for our machine helpers to follow. One of the machine helpers comes in the form of the <a class="reference external" href="https://archive.org/services/docs/api/internetarchive/index.html"><code class="docutils literal notranslate"><span class="pre">internetarchive</span></code> Python package</a>, a collection of routines that can access the Internet Archive at the programming, rather than human user interface, level.</p>
 <p><em>The human  level interface simply provides graphical tools that we can understand, such as menu items and toolbar buttons. Selecting or clicking these simply invokes machine level commands in a useable-for-us way. Writing program code lets us call those commands directly, in a textual way, rather than visually, by clicking menu items and buttons. Copying and pasting simple text instructions that can be used to perform a particular function is often quite straightforward. Modifying such commands may also be relatively straightforward. (For example, given a block of code that downloads a file from a web location using code of the form <code class="docutils literal notranslate"><span class="pre">download_file(&quot;https://example.com/this_file.pdf&quot;)</span></code>, you could probably work out how to download a file from <code class="docutils literal notranslate"><span class="pre">http://another.example.com/myfile.pdf</span></code>.) Creating graphical user interfaces is hard. Graphical user interfaces also constrains users to using just the functions and features that the designers and developers of the user interface chose to support in the user interface, in just the way that the user interface allows. Being able to instruct a machine using code, even copied and pasted code, gives the end-use far more power over the machine.</em></p>
 <p>Within any particular programming language, <em>packages</em> are often used to bundle together various tools and functions that can be used to support particular activities or tasks, or work with particular resources or resource types.</p>
@@ -754,7 +755,7 @@ Scandata
 <p>The following cell contains a set of instructions bundled together to define a <em>function</em> under a unique function name. Functions provide us with a shorthand way of writing a set of instructions once, then calling on them repeatedly via their function name.</p>
 <p>In particular, the function takes in an item metadata record, tidies it up a little and returns just the fields we are interested in.</p>
 <p>In the following cell, we use some magic to write the contents of the cell to a package file; in the next cell after that, we import the function from the file. This provides us with a convenient way of saving code to a file that we can also reuse elsewhere.</p>
-<div class="cell tag_hide-output docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/out_ia_metadata.py
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -777,11 +778,6 @@ Scandata
     <span class="n">restricted</span> <span class="o">=</span> <span class="n">_get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span><span class="s1">&#39;access-restricted-item&#39;</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="p">[</span><span class="n">identifier</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">issue</span><span class="p">,</span> <span class="n">prev_</span><span class="p">,</span> <span class="n">next_</span><span class="p">,</span> <span class="n">restricted</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/out_ia_metadata.py
 </pre></div>
 </div>
 </div>
@@ -951,7 +947,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <p>To begin with, we can load in our list of <em>Notes and Queries</em> record data downloaded from the Internet Archive.</p>
-<div class="cell tag_hide-output docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/open_metadata_records.py
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -973,11 +969,6 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
         <span class="n">data_records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_data</span><span class="p">)</span>
         
     <span class="k">return</span> <span class="n">data_records</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/open_metadata_records.py
 </pre></div>
 </div>
 </div>
@@ -1030,7 +1021,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 </div>
-<div class="cell tag_hide-output docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_metadata.py
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -1055,11 +1046,6 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/create_db_table_metadata.py
-</pre></div>
-</div>
-</div>
 </div>
 <p>Now we can load the function back in from out package and call it:</p>
 <div class="cell docutils container">
@@ -1072,7 +1058,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <p>We need to do a little tidying of the records, but then we can add them directly to the database:</p>
-<div class="cell tag_hide-output docutils container">
+<div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/add_patched_metadata_records_to_db.py
 <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
@@ -1094,11 +1080,6 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 
     <span class="c1"># Add records to the database</span>
     <span class="n">db</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">data_records</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/add_patched_metadata_records_to_db.py
 </pre></div>
 </div>
 </div>
@@ -1565,7 +1546,8 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 {"model_id": "f04d8dc670134807b3001a24b5f79eaf", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
-<p>The resulting PDF document is a large document that collects all the separate indexes in one place, although not as a single, <em>reconciled</em> index: if the same index terms exist in multiple index documents, there will be multiple occurrences of that term in the longer document.</p>
+<p>The resulting PDF document is a large document (about 100MB) that collects all the separate indexes in one place, although not as a single, <em>reconciled</em> index: if the same index terms exist in multiple index documents, there will be multiple occurrences of that term in the longer document.</p>
+<p>However, if we do need a PDF reference to the index, it is useful to have to hand.</p>
 </div>
 </div>
 </div>
