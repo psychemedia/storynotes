@@ -5,3 +5,4 @@ _build
 ia-downloads
 full_nq*
 __pycache__
+*big_index.pdf
