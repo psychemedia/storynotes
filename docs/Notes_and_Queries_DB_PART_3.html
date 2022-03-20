@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Building a 19th c. Notes &amp; Queries Full Text Search Engine &#8212; Story Notes - Technical Recipes</title>
+    
+    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating a 19th c. Notes &amp; Queries Index Database" href="Notes_and_Queries_DB_PART_4.html" />
+    <link rel="prev" title="Generating a Full Text Searchable Database for Notes &amp; Queries" href="Notes_and_Queries_DB_PART_2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
+    <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-read-this-book.html">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./Notes_and_Queries_DB_PART_3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="./lite/retro/notebooks?path=./Notes_and_Queries_DB_PART_3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch via RetroLite"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterlite.svg">
+  </span>
+<span class="headerbtn__text-container">RetroLite</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/psychemedia/storynotes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Building a 19th c. Notes & Queries Full Text Search Engine</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="building-a-19th-c-notes-queries-full-text-search-engine">
+<h1>Building a 19th c. Notes &amp; Queries Full Text Search Engine<a class="headerlink" href="#building-a-19th-c-notes-queries-full-text-search-engine" title="Permalink to this headline">¶</a></h1>
+<p>Having got various pieces in place, we’re now in a position to attempt to create a comprehensive full text search engine over 19th century issue of <em>Notes &amp; Queries</em>. As we use the database, there may well be “optimisations” we can make, for example in trying to tidy up the content a little. But for now, let’s just put the pieces we’ve already assembled together and see how it looks.</p>
+<p>Start off by loading some essentially packages, as well as package files we created for ourselves previously:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="kn">from</span> <span class="nn">ia_utils.create_db_table_metadata</span> <span class="kn">import</span> <span class="n">create_db_table_metadata</span>
+<span class="kn">from</span> <span class="nn">ia_utils.open_metadata_records</span> <span class="kn">import</span> <span class="n">open_metadata_records</span>
+<span class="kn">from</span> <span class="nn">ia_utils.add_patched_metadata_records_to_db</span> <span class="kn">import</span> <span class="n">add_patched_metadata_records_to_db</span>
+<span class="kn">from</span> <span class="nn">ia_utils.create_db_table_issues</span> <span class="kn">import</span> <span class="n">create_db_table_issues</span>
+<span class="kn">from</span> <span class="nn">ia_utils.create_db_table_pages_metadata</span> <span class="kn">import</span> <span class="n">create_db_table_pages_metadata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It takes several hours to download the datafiles, so if we already have a full database file, we may want to put in some guards so we don’t overwrite it an lose all that previously downloaded data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RECREATE_FULL_DB</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">full_db_name</span> <span class="o">=</span> <span class="s2">&quot;full_nq.db&quot;</span>
+
+<span class="n">db_exists</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;full_nq.db&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+
+<span class="n">dirname</span> <span class="o">=</span> <span class="s2">&quot;ia-downloads&quot;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+
+<span class="c1"># Extra cautious...</span>
+<span class="k">if</span> <span class="n">RECREATE_FULL_DB</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">db_exists</span><span class="p">:</span>
+    <span class="n">db_full</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">full_db_name</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">create_db_table_metadata</span><span class="p">(</span><span class="n">db_full</span><span class="p">)</span>
+    <span class="n">data_records</span> <span class="o">=</span> <span class="n">open_metadata_records</span><span class="p">()</span>
+    <span class="n">add_patched_metadata_records_to_db</span><span class="p">(</span><span class="n">db_full</span><span class="p">,</span> <span class="n">data_records</span><span class="p">)</span>
+
+    <span class="n">create_db_table_issues</span><span class="p">(</span><span class="n">db_full</span><span class="p">)</span>
+
+    <span class="n">create_db_table_pages_metadata</span><span class="p">(</span><span class="n">db_full</span><span class="p">)</span>
+    <span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s2">&quot;page_text&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;pages_metadata_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;page_idx&quot;</span><span class="p">,</span> <span class="s2">&quot;page_text&quot;</span><span class="p">],</span>
+                                         <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">db_full</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">full_db_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+
+<span class="c1"># Get the records for a particular year</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT id, title, date, is_index</span>
+<span class="s2">FROM metadata</span>
+<span class="s2">WHERE is_index = 0</span>
+<span class="s2">    AND strftime(&#39;%Y&#39;, datetime) = &#39;</span><span class="si">{year}</span><span class="s2">&#39;;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">results_19th_cent</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">1849</span><span class="p">),</span> <span class="n">db_full</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+<span class="n">results_19th_cent</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>title</th>
+      <th>date</th>
+      <th>is_index</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>Notes and Queries  1849-11-03: Vol 1 Iss 1</td>
+      <td>1849-11-03</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>Notes and Queries  1849-11-10: Vol 1 Iss 2</td>
+      <td>1849-11-10</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>Notes and Queries  1849-11-17: Vol 1 Iss 3</td>
+      <td>1849-11-17</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>Notes and Queries  1849-11-24: Vol 1 Iss 4</td>
+      <td>1849-11-24</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1849-12-01_1_5</td>
+      <td>Notes and Queries  1849-12-01: Vol 1 Iss 5</td>
+      <td>1849-12-01</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1849-12-08_1_6</td>
+      <td>Notes and Queries  1849-12-08: Vol 1 Iss 6</td>
+      <td>1849-12-08</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1849-12-15_1_7</td>
+      <td>Notes and Queries  1849-12-15: Vol 1 Iss 7</td>
+      <td>1849-12-15</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1849-12-22_1_8</td>
+      <td>Notes and Queries  1849-12-22: Vol 1 Iss 8</td>
+      <td>1849-12-22</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1849-12-29_1_9</td>
+      <td>Notes and Queries  1849-12-29: Vol 1 Iss 9</td>
+      <td>1849-12-29</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We now need to:</p>
+<ul class="simple">
+<li><p>iterate through the records;</p></li>
+<li><p>download the issue;</p></li>
+<li><p>carve it into various parts;</p></li>
+<li><p>add the parts to the database.</p></li>
+</ul>
+<p>We have all the pieces we need, so let’s do it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dowload the tqdm progrss bar tools</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="c1">#And enable the pandas extensions</span>
+<span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">ia_utils.download_and_extract_text</span> <span class="kn">import</span> <span class="n">download_and_extract_text</span>
+<span class="kn">from</span> <span class="nn">ia_utils.download_ia_records_by_format</span> <span class="kn">import</span> <span class="n">download_ia_records_by_format</span>
+<span class="kn">from</span> <span class="nn">ia_utils.add_page_metadata_to_db</span> <span class="kn">import</span> <span class="n">add_page_metadata_to_db</span>
+<span class="kn">from</span> <span class="nn">ia_utils.chunk_page_text</span> <span class="kn">import</span> <span class="n">chunk_page_text</span>
+
+<span class="c1"># Extra cautious</span>
+<span class="k">if</span> <span class="n">RECREATE_FULL_DB</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">db_exists</span><span class="p">:</span>
+    <span class="c1"># Iterate through all the years we want to search over</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1849</span><span class="p">,</span> <span class="mi">1900</span><span class="p">)):</span>
+        <span class="c1"># Get issues by year</span>
+        <span class="n">results_by_year</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)),</span> <span class="n">db_full</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+
+        <span class="c1"># Download issue content by year</span>
+        <span class="n">results_by_year</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_by_year</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">download_and_extract_text</span><span class="p">,</span>
+                                                                 <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Add issues content to database</span>
+        <span class="n">results_by_year</span><span class="p">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;issues&quot;</span><span class="p">,</span>
+                                                  <span class="n">db_full</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span>
+                                                  <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">)</span>
+
+        <span class="c1"># For each issue, we need to grab the metadata and store it in the database</span>
+        <span class="n">download_ia_records_by_format</span><span class="p">(</span><span class="n">results_by_year</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">),</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">add_page_metadata_to_db</span><span class="p">(</span><span class="n">db_full</span><span class="p">,</span> <span class="n">results_by_year</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">),</span>
+                                <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">record_id_val</span> <span class="ow">in</span> <span class="n">results_by_year</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">():</span>
+            <span class="n">updated_pages</span> <span class="o">=</span> <span class="n">chunk_page_text</span><span class="p">(</span><span class="n">db_full</span><span class="p">,</span> <span class="n">record_id_val</span><span class="p">)</span>
+            <span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">upsert_all</span><span class="p">(</span><span class="n">updated_pages</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;page_idx&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT COUNT(*)</span>
+<span class="s2">FROM pages_metadata;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db_full</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>COUNT(*)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58406</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT COUNT(*) FROM issues;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db_full</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>COUNT(*)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2565</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;sin eater&quot;</span>
+
+<span class="c1">#q = f&quot;&quot;&quot;</span>
+<span class="c1">#SELECT * FROM pages_metadata_fts</span>
+<span class="c1">#WHERE pages_metadata_fts MATCH {db.quote(search_term)};</span>
+<span class="c1">#&quot;&quot;&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT id, snippet(pages_metadata_fts, -1, &quot;__&quot;, &quot;__&quot;, &quot;...&quot;, 10) as clip</span>
+<span class="s2">FROM pages_metadata_fts WHERE pages_metadata_fts MATCH </span><span class="si">{query}</span><span class="s2"> ;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">db_full</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)),</span> <span class="n">db_full</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>clip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1851-09-20_4_99</td>
+      <td>...Minor Queries :— Mazer Wood __eaters__ —“ A...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1851-09-20_4_99</td>
+      <td>...Mazer Wood and __Sin__-__eaters__ (Vol. iii...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1851-12-27_4_113</td>
+      <td>...on mazer-wood and __sin__-__eaters__, 211. ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1851-12-27_4_113</td>
+      <td>...__Sin__-__eaters__, notices respecting, 211...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1852-10-23_6_156</td>
+      <td>...Coffins - -\nMinor Queries ANSwereD : — __S...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1852-10-23_6_156</td>
+      <td>...__Sin__-__eater__.— Can any of your readers...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1852-12-04_6_162</td>
+      <td>...furnish its quota The __Sin__-__eater__, by...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1852-12-04_6_162</td>
+      <td>...regoi — irst line, THE __SIN__-__EATER__. I...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1852-12-25_6_165</td>
+      <td>...B. “CE. ) on the __sin__-__eater__, 541.\nB...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sim_notes-and-queries_1852-12-25_6_165</td>
+      <td>...Leeper ( Alex.) on the __sin__-__eater__, 5...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>sim_notes-and-queries_1852-12-25_6_165</td>
+      <td>...off, 288, — origin of __sin__-__eater__, 30...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>sim_notes-and-queries_1856-07-12_2_28</td>
+      <td>...MARRIOT THE GREAT __EATER__. (2™ §. ii. 6.)...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>sim_notes-and-queries_1856-12-27_2_52</td>
+      <td>...the great __eater__, 33. “ Rebukes for __Si...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>sim_notes-and-queries_1864-10-29_6_148</td>
+      <td>...John into __Sin__- jon, St. Clair into Sinc...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sim_notes-and-queries_1865-05-20_7_177</td>
+      <td>...this crying __sin__ did drawe downe\n__eate...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>sim_notes-and-queries_1867-11-02_12_305</td>
+      <td>...4s ; __sin__ rle volumes, 288 . 48.3; sing ...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>sim_notes-and-queries_1870-11-12_6_150</td>
+      <td>...The origin of the __Sin__-__eater__ is need...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>sim_notes-and-queries_1876-12-23_6_156</td>
+      <td>...We are well rid of the __sin__-__eater__, w...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>sim_notes-and-queries_1876-12-30_6_157</td>
+      <td>...364, 423\nSicilian, 507\n__Sin__-__eater__,...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>sim_notes-and-queries_1876-12-30_6_157</td>
+      <td>...and the Bible, 509 __Sin__-__eater__, 505 W...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>sim_notes-and-queries_1877-06-30_7_183</td>
+      <td>...local name, on the __Sin__-__eater__, 14 n ...</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>sim_notes-and-queries_1877-06-30_7_183</td>
+      <td>...66\nShrove Tuesday, 120\n__Sin__-__eater__,...</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>sim_notes-and-queries_1879-07-26_12_291</td>
+      <td>...Writings of the opium-__eater__. In one of ...</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>sim_notes-and-queries_1882-01-28_5_109</td>
+      <td>...and Hastings.\nEp. MarsHatt.\n__Sin__ Curis...</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>sim_notes-and-queries_1882-06-24_5_130</td>
+      <td>...on Franklin, 288\n \nMoon, __sin__ to point...</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>sim_notes-and-queries_1883-01-13_7_159</td>
+      <td>...The superstition of the __Sin__-__Eater__ i...</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>sim_notes-and-queries_1883-06-30_7_183</td>
+      <td>...for, 410, 448, 474 __Sin__-__eater__, 25, 3...</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>sim_notes-and-queries_1883-09-29_8_196</td>
+      <td>...John Aubrey has three passages concerning _...</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>sim_notes-and-queries_1883-12-29_8_209</td>
+      <td>...Swithin, 46 Scrofula, touching for, 113, 29...</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>sim_notes-and-queries_1885-02-21_11_269</td>
+      <td>...from Tennyson, The Lotos __Eaters__, stanza...</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>sim_notes-and-queries_1889-12-28_8_209</td>
+      <td>...Good night! There goes another year! (__Eat...</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>sim_notes-and-queries_1892-01-30_1_5</td>
+      <td>...prevailed, certain persons called “__sin__ ...</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>sim_notes-and-queries_1892-10-29_2_44</td>
+      <td>...it were not lead, that is, __sinful__, yet ...</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>sim_notes-and-queries_1893-11-04_4_97</td>
+      <td>...LOTOS-__EATER__ in CAPRI. By Dr. ALAN WALTE...</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>sim_notes-and-queries_1895-10-12_8_198</td>
+      <td>...Charterhouse — ‘‘ Oyster of Veal” — __Sin__...</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>sim_notes-and-queries_1895-10-12_8_198</td>
+      <td>...Here the __sin__-__eater__ was supposed to ...</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>sim_notes-and-queries_1895-10-26_8_200</td>
+      <td>...Moore, 331—Lan Stam\nct — __Sin__-__eaters_...</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>sim_notes-and-queries_1895-11-09_8_202</td>
+      <td>...Heene, Worthing :—‘ Though the __sin__-__ea...</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>sim_notes-and-queries_1895-12-28_8_209</td>
+      <td>...and Burns, 205, 515 __Sin__-__eaters__, 288...</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>sim_notes-and-queries_1895-12-28_8_209</td>
+      <td>...Westminster, anchorite at, 408 __Sin__-__ea...</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>sim_notes-and-queries_1896-02-08_9_215</td>
+      <td>...REPLIES :—__Sin__-__Eater__, 109—Vatican Em...</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>sim_notes-and-queries_1896-02-08_9_215</td>
+      <td>...Beylics,\n__SIN__-__EATER__. (8™ §S. viii. ...</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>sim_notes-and-queries_1896-02-08_9_215</td>
+      <td>...the myth of the __sin__-__eater__. The only...</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>sim_notes-and-queries_1896-02-29_9_218</td>
+      <td>...REPLIES :—__Sin__-__eater__, 169—Bream’s Bu...</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>sim_notes-and-queries_1896-02-29_9_218</td>
+      <td>...Beplies,\n__SIN__ - __EATER__, (8 §, viii, ...</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>sim_notes-and-queries_1896-03-21_9_221</td>
+      <td>...Revels for Scotland—Milton—__Sin__-__eater_...</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>sim_notes-and-queries_1896-03-21_9_221</td>
+      <td>...w.c.B\nSrn-__EaTER__ (8 §, viii, 288, 332 ;...</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>sim_notes-and-queries_1896-04-11_9_224</td>
+      <td>...s ‘ Richard III.,’ 295—__Sin__-__eater__—Th...</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...Mass, its etymology, 334 __Sin__-__eaters__...</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...38\nRose-galls, 93\n__Sin__-__eaters__, 110...</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...Gastayne, 232 Senses, the seven, 493 __Sin_...</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...438 Rose-gall, 93 __Sin__-__eaters__, 109, ...</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...271 Penn (William), 243 __Sin__-__eaters__,...</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...Trunion, 34 __Sin__-__eaters__, 110 Sterlin...</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...P.) on __sin__-__eaters__, 109, 236 Owen (M...</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...M. ) on maypoles, 10 __Sin__-__eaters__, 11...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...1, ‘‘ Bare bodkin,” 362, | __Sin__-__eaters...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>sim_notes-and-queries_1896-06-27_9_235</td>
+      <td>...W.) on __sin__-__eaters__, 169 Thomas (R.) ...</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>sim_notes-and-queries_1897-08-28_12_296</td>
+      <td>...I am sorry that __Sin__ Hersert Maxwett wil...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "psychemedia/storynotes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Notes_and_Queries_DB_PART_2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Generating a Full Text Searchable Database for <em>Notes &amp; Queries</em></p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Notes_and_Queries_DB_PART_4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Creating a 19th c. Notes &amp; Queries Index Database</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  
+
+  </body>
+</html>

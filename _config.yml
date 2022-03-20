@@ -18,7 +18,7 @@ launch_buttons:
   retrolite_url: ./lite/retro/notebooks/
 
 execute:
-  execute_notebooks: cache
+  execute_notebooks: off
   timeout: 60  
 parse:
   myst_dmath_double_inline: true

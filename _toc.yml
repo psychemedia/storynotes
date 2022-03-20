@@ -13,6 +13,13 @@ parts:
   - file: Ashliman_folk_texts_scraper
   - file: MFTD-Multilingual_Folk_Tale_Database
 
+- caption: Notes & Queries
+  chapters:
+  - file: Notes_and_Queries_DB
+  - file: Notes_and_Queries_DB_PART_2
+  - file: Notes_and_Queries_DB_PART_3
+  - file: Notes_and_Queries_DB_PART_4
+
 - caption: Advanced Search Techniques
   chapters:
   - file: Lang_Doc2Vec

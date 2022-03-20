@@ -2,3 +2,6 @@
 .ipynb_checkpoints
 _build
 *.txt.gz
+ia-downloads
+full_nq*
+__pycache__

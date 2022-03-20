@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Ashliman “Folklore and Mythology Electronic Texts” Scraper" href="Ashliman_folk_texts_scraper.html" />
@@ -156,6 +154,36 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
    Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
   </a>
  </li>
 </ul>
@@ -853,84 +881,42 @@ Name: phrase, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Catherine And Her Destiny&#39;, &#39;phrase&#39;: &#39;the court , and&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &quot;? &#39; &#39;Ye -- e -- s ! &#39; &#39;Are you coming back again ? &#39; &#39;That may be , &#39; said Esben . &#39;Then you &#39;ll catch it , &#39;&quot;}
+{&#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &quot;? &#39; &#39;Ye -- e -- s ! &#39; &#39;Are you coming back again ? &#39; &#39;That may be , &#39; said Esben . &#39;Then you &#39;ll catch it , &#39;&quot;}
 {&#39;title&#39;: &quot;Hans, The Mermaid&#39;s Son&quot;, &#39;phrase&#39;: &quot;, &#39; said Hans ; &#39; I&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;How The Dragon Was Tricked&#39;, &#39;phrase&#39;: &quot;, &#39; said the dragon&quot;}
+{&#39;title&#39;: &#39;How The Dragon Was Tricked&#39;, &#39;phrase&#39;: &quot;, &#39; said the dragon&quot;}
 {&#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &quot;&#39;Ask him if he will come with us&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
+{&#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
 {&#39;title&#39;: &#39;King Lindorm&#39;, &#39;phrase&#39;: &#39;rode out into the forest&#39;}
 {&#39;title&#39;: &#39;Maiden Bright-Eye&#39;, &#39;phrase&#39;: &quot;. &#39;Good evening , &#39; it said . &#39;Thanks , Maiden Bright-eye , &#39; said the dog . &#39;Where is my brother ? &#39; &#39;He is in the serpent-pit . &#39; &#39;Where is my wicked sister ? &#39; &#39;She is with the noble king . &#39; &#39;Alas ! alas !&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Master And Pupil&#39;, &#39;phrase&#39;: &quot;, &#39; said the boy .&quot;}
+{&#39;title&#39;: &#39;Master And Pupil&#39;, &#39;phrase&#39;: &quot;, &#39; said the boy .&quot;}
 {&#39;title&#39;: &#39;Peter Bull&#39;, &#39;phrase&#39;: &quot;&#39;Oh , yes , &#39; said the&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Princess Minon-Minette&#39;, &#39;phrase&#39;: &quot;, &#39; replied the old woman&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Cunning Shoemaker&#39;, &#39;phrase&#39;: &quot;, &#39; replied the shoemaker&quot;}
+{&#39;title&#39;: &#39;Princess Minon-Minette&#39;, &#39;phrase&#39;: &quot;, &#39; replied the old woman&quot;}
+{&#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes&#39;}
+{&#39;title&#39;: &#39;The Cunning Shoemaker&#39;, &#39;phrase&#39;: &quot;, &#39; replied the shoemaker&quot;}
 {&#39;title&#39;: &#39;The Fir-Tree&#39;, &#39;phrase&#39;: &quot;&#39; thought the tree .&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Flying Trunk&#39;, &#39;phrase&#39;: &quot;. &#39;&#39; &#39; &#39;&#39;&quot;}
+{&#39;title&#39;: &#39;The Flying Trunk&#39;, &#39;phrase&#39;: &quot;. &#39;&#39; &#39; &#39;&#39;&quot;}
 {&#39;title&#39;: &#39;The Goblin And The Grocer&#39;, &#39;phrase&#39;: &#39;, and he had&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Golden Lion&#39;, &#39;phrase&#39;: &#39;, and the young man&#39;}
+{&#39;title&#39;: &#39;The Golden Lion&#39;, &#39;phrase&#39;: &#39;, and the young man&#39;}
 {&#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;: Pretty cock , Pretty hen , And you , pretty brindled cow , What do you say now ?&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Jackal, The Dove, And The Panther&#39;, &#39;phrase&#39;: &quot;which side do you turn to ? &#39;&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The King Who Would Have A Beautiful Wife&#39;, &#39;phrase&#39;: &quot;. &#39; &#39;And I&quot;}
+{&#39;title&#39;: &#39;The Jackal, The Dove, And The Panther&#39;, &#39;phrase&#39;: &quot;which side do you turn to ? &#39;&quot;}
+{&#39;title&#39;: &#39;The King Who Would Have A Beautiful Wife&#39;, &#39;phrase&#39;: &quot;. &#39; &#39;And I&quot;}
 {&#39;title&#39;: &#39;The Little Hare&#39;, &#39;phrase&#39;: &#39;the little hare , the little hare ,&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Man Without A Heart&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Merry Wives&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
+{&#39;title&#39;: &#39;The Man Without A Heart&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
+{&#39;title&#39;: &#39;The Merry Wives&#39;, &#39;phrase&#39;: &quot;, &#39; said the&quot;}
 {&#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &quot;&#39;Sentry , where are you ? Sentry , where are you ?&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &quot;! &#39; said the shirt-collar ,&quot;}
+{&#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &quot;! &#39; said the shirt-collar ,&quot;}
 {&#39;title&#39;: &#39;The Slaying Of The Tanuki&#39;, &#39;phrase&#39;: &#39;. The Tanuki ,&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Snow-Man&#39;, &#39;phrase&#39;: &quot;? &#39; asked the Snow-man .&quot;}
+{&#39;title&#39;: &#39;The Snow-Man&#39;, &#39;phrase&#39;: &quot;? &#39; asked the Snow-man .&quot;}
 {&#39;title&#39;: &#39;The Snow-Queen&#39;, &#39;phrase&#39;: &quot;, &#39; said the crow ,&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Sparrow With The Slit Tongue&#39;, &#39;phrase&#39;: &#39;the house , and&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &quot;&#39;Do you , rich as you are ,&quot;}
+{&#39;title&#39;: &#39;The Sparrow With The Slit Tongue&#39;, &#39;phrase&#39;: &#39;the house , and&#39;}
+{&#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &quot;&#39;Do you , rich as you are ,&quot;}
 {&#39;title&#39;: &#39;The Story Of Ciccu&#39;, &#39;phrase&#39;: &quot;accept them with my humble duty . &#39;&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Three Brothers&#39;, &#39;phrase&#39;: &quot;the house . &#39;&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea .&#39;}
+{&#39;title&#39;: &#39;The Three Brothers&#39;, &#39;phrase&#39;: &quot;the house . &#39;&quot;}
+{&#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea .&#39;}
 {&#39;title&#39;: &#39;The Two Brothers&#39;, &#39;phrase&#39;: &#39;seven years and seven months&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird , and a branch of the tree of beauty&#39;}
+{&#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird , and a branch of the tree of beauty&#39;}
 {&#39;title&#39;: &#39;The White Dove&#39;, &#39;phrase&#39;: &quot;, &#39; said the prince ,&quot;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;will hire me for a servant ?&#39;}
+{&#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;will hire me for a servant ?&#39;}
 {&#39;title&#39;: &#39;Uraschimataro And The Turtle&#39;, &#39;phrase&#39;: &#39;the sea , and&#39;}
 </pre></div>
 </div>
@@ -1039,35 +1025,17 @@ Name: phrase, dtype: int64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;Esben And The Witch&#39;, &#39;phrase&#39;: &#39;Ye e s Are you coming back again That may be said Esben Then you ll catch it&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;Ask him if he will come with us&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;How The Hermit Helped To Win The King&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;Ask him if he will come with us&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;I Know What I Have Learned&#39;, &#39;phrase&#39;: &#39;and asked his wife whether the cow had calved&#39;}
 {&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;Maiden Bright-Eye&#39;, &#39;phrase&#39;: &#39;Good evening it said Thanks Maiden Bright eye said the dog Where is my brother He is in the serpent pit Where is my wicked sister She is with the noble king Alas alas&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes and&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;Pretty cock Pretty hen And you pretty brindled cow What do you say now&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &#39;My father has set no sentry in War and Pest&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Bird &#39;Grip&#39;&quot;, &#39;phrase&#39;: &#39;the horse with the golden shoes and&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The House In The Wood&#39;, &#39;phrase&#39;: &#39;Pretty cock Pretty hen And you pretty brindled cow What do you say now&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Princess In The Chest&#39;, &#39;phrase&#39;: &#39;My father has set no sentry in War and Pest&#39;}
 {&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Shirt-Collar&#39;, &#39;phrase&#39;: &#39;a boot jack and a hair brush&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &#39;listened and was sorry for her and&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea He&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird and a branch of the tree of beauty&#39;}
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;Who will hire me for a servant&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Sprig Of Rosemary&#39;, &#39;phrase&#39;: &#39;listened and was sorry for her and&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &quot;The Troll&#39;s Daughter&quot;, &#39;phrase&#39;: &#39;at the bottom of the sea He&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Water Of Life&#39;, &#39;phrase&#39;: &#39;the talking bird and a branch of the tree of beauty&#39;}
+{&#39;book&#39;: &#39;The Pink Fairy Book&#39;, &#39;title&#39;: &#39;The Wounded Lion&#39;, &#39;phrase&#39;: &#39;Who will hire me for a servant&#39;}
 </pre></div>
 </div>
 </div>

@@ -1,0 +1,2119 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generating a Full Text Searchable Database for Notes &amp; Queries &#8212; Story Notes - Technical Recipes</title>
+    
+    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Building a 19th c. Notes &amp; Queries Full Text Search Engine" href="Notes_and_Queries_DB_PART_3.html" />
+    <link rel="prev" title="Exploring Notes &amp; Queries" href="Notes_and_Queries_DB.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
+    <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-read-this-book.html">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./Notes_and_Queries_DB_PART_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="./lite/retro/notebooks?path=./Notes_and_Queries_DB_PART_2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch via RetroLite"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterlite.svg">
+  </span>
+<span class="headerbtn__text-container">RetroLite</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/psychemedia/storynotes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-an-issues-table-to-the-database">
+   Adding an
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     issues
+    </span>
+   </code>
+   Table to the Database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-pages">
+     Extracting Pages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
+     Automatically Populating the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pages
+      </span>
+     </code>
+     Table from the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       issues
+      </span>
+     </code>
+     Table
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Generating a Full Text Searchable Database for Notes & Queries</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-an-issues-table-to-the-database">
+   Adding an
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     issues
+    </span>
+   </code>
+   Table to the Database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-pages">
+     Extracting Pages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
+     Automatically Populating the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pages
+      </span>
+     </code>
+     Table from the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       issues
+      </span>
+     </code>
+     Table
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="generating-a-full-text-searchable-database-for-notes-queries">
+<h1>Generating a Full Text Searchable Database for <em>Notes &amp; Queries</em><a class="headerlink" href="#generating-a-full-text-searchable-database-for-notes-queries" title="Permalink to this headline">¶</a></h1>
+<p>Whilst the PDF documents corresponding to each issue of <em>Notes and Queries</em> are quite large files, the searchable, OCR retrieved text documents are much smaller and can be easily added to a full-text searchable database.</p>
+<p>We can create a simple, file based SQLite database that will provide a full-text search facility over each issue of <em>Notes and Queries</em>.</p>
+<p>Recall that we previously downloaded the metadata for issues of <em>Notes &amp; Queries</em> held by the Internet Archive to a CSV file.</p>
+<p>We can load that metadata in from the CSV file using the function we created and put into a simple Python package directory previously:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.open_metadata_records</span> <span class="kn">import</span> <span class="n">open_metadata_records</span>
+
+<span class="n">data_records</span> <span class="o">=</span> <span class="n">open_metadata_records</span><span class="p">()</span>
+<span class="n">data_records</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;date&#39;: &#39;1849-11-03&#39;,
+  &#39;title&#39;: &#39;Notes and Queries  1849-11-03: Vol 1 Iss 1&#39;,
+  &#39;vol&#39;: &#39;1&#39;,
+  &#39;iss&#39;: &#39;1&#39;,
+  &#39;prev_id&#39;: &#39;sim_notes-and-queries_1849-1850_1_index&#39;,
+  &#39;next_id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;restricted&#39;: &#39;&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;date&#39;: &#39;1849-11-10&#39;,
+  &#39;title&#39;: &#39;Notes and Queries  1849-11-10: Vol 1 Iss 2&#39;,
+  &#39;vol&#39;: &#39;1&#39;,
+  &#39;iss&#39;: &#39;2&#39;,
+  &#39;prev_id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;next_id&#39;: &#39;sim_notes-and-queries_1849-11-17_1_3&#39;,
+  &#39;restricted&#39;: &#39;&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-17_1_3&#39;,
+  &#39;date&#39;: &#39;1849-11-17&#39;,
+  &#39;title&#39;: &#39;Notes and Queries  1849-11-17: Vol 1 Iss 3&#39;,
+  &#39;vol&#39;: &#39;1&#39;,
+  &#39;iss&#39;: &#39;3&#39;,
+  &#39;prev_id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;next_id&#39;: &#39;sim_notes-and-queries_1849-11-24_1_4&#39;,
+  &#39;restricted&#39;: &#39;&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also saved the data to a simple local database, so we could alternatively retrieve the data from there.</p>
+<p>First open up a connection to the database:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;nq_demo.db&quot;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And then make a simple query onto it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM metadata;&quot;</span>
+
+<span class="n">data_records_from_db</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+<span class="n">data_records_from_db</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>date</th>
+      <th>datetime</th>
+      <th>series</th>
+      <th>vol</th>
+      <th>iss</th>
+      <th>title</th>
+      <th>next_id</th>
+      <th>prev_id</th>
+      <th>is_index</th>
+      <th>restricted</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>1849-11-03</td>
+      <td>1849-11-03T00:00:00</td>
+      <td>None</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Notes and Queries  1849-11-03: Vol 1 Iss 1</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>1849-11-10</td>
+      <td>1849-11-10T00:00:00</td>
+      <td>None</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Notes and Queries  1849-11-10: Vol 1 Iss 2</td>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>1849-11-17</td>
+      <td>1849-11-17T00:00:00</td>
+      <td>None</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Notes and Queries  1849-11-17: Vol 1 Iss 3</td>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="adding-an-issues-table-to-the-database">
+<h2>Adding an <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table to the Database<a class="headerlink" href="#adding-an-issues-table-to-the-database" title="Permalink to this headline">¶</a></h2>
+<p>We already have a metadata table in the database, but we can also add more tables to it.</p>
+<p>For at least the 19th century issues of <em>Notes &amp; Queries</em>, a file is available for each issue that contains searchable text extracted from that issue. If we download those text files and add them to our own database, then we can create our own full text searchable database over the content of those issues.</p>
+<p>Let’s create a simple table structure for the searchable text extracted from each issue of <em>Notes &amp; Queries</em> containing the content and a unique identifier for each record.</p>
+<p>We can relate this table to the metadata table through a <em>foreign key</em>. What this means is that for each entry in the issues table, we also expect to find an entry in the metadata table under the same identifier value.</p>
+<p>We will also create a full text search table associated with the table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_issues.py
+<span class="k">def</span> <span class="nf">create_db_table_issues</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create and issues database table and an associated full-text search table.&quot;&quot;&quot;</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="s2">&quot;issues&quot;</span>
+    <span class="c1"># If required, drop any previously defined tables of the same name</span>
+    <span class="k">if</span> <span class="n">drop</span><span class="p">:</span>
+        <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">db</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> exists...&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Create the table structure for the simple issues table</span>
+    <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="p">},</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="n">foreign_keys</span><span class="o">=</span><span class="p">[</span> <span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;metadata&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="c1"># local-table-id, foreign-table, foreign-table-id)</span>
+    <span class="p">])</span>
+    
+    <span class="c1"># Enable full text search</span>
+    <span class="c1"># This creates an extra virtual table (issues_fts) to support the full text search</span>
+    <span class="c1"># A stemmer is applied to support the efficacy of the full-text searching</span>
+    <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">],</span>
+                            <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/create_db_table_issues.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load that function in from the local package and call it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.create_db_table_issues</span> <span class="kn">import</span> <span class="n">create_db_table_issues</span>
+
+<span class="n">create_db_table_issues</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To add the content data to the database, we need to download the searchable text associated with each record from the Internet Archive.</p>
+<p>Before we add the data in bulk, let’s do a dummy run of the steps we need to follow.</p>
+<p>First, we need to download the full text file from the Internet Archive, given a record identifier. We’ll use the first data record to provide us with the identifier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_records</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+ &#39;date&#39;: &#39;1849-11-03&#39;,
+ &#39;title&#39;: &#39;Notes and Queries  1849-11-03: Vol 1 Iss 1&#39;,
+ &#39;vol&#39;: &#39;1&#39;,
+ &#39;iss&#39;: &#39;1&#39;,
+ &#39;prev_id&#39;: &#39;sim_notes-and-queries_1849-1850_1_index&#39;,
+ &#39;next_id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+ &#39;restricted&#39;: &#39;&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The download step takes the identifier and requests the <code class="docutils literal notranslate"><span class="pre">OCR</span> <span class="pre">Search</span> <span class="pre">Text</span></code> file.</p>
+<p>We will download the Internet Archive files to the directory we specified previously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Create download dir file path, as before</span>
+<span class="n">dirname</span> <span class="o">=</span> <span class="s2">&quot;ia-downloads&quot;</span> <span class="c1"># This is a default</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now download the text file for the sample record:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the necessary packages</span>
+<span class="kn">from</span> <span class="nn">internetarchive</span> <span class="kn">import</span> <span class="n">download</span>
+
+<span class="n">download</span><span class="p">(</span><span class="n">data_records</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">destdir</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+         <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;OCR Search Text&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Recall that the files are download into a directory with a name that corresponds to the record identifier.</p>
+<p>The data files are actually download as compressed archive files, as we can see if we review the download directory we saved our test download to:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span> <span class="n">p</span> <span class="o">/</span> <span class="n">data_records</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;sim_notes-and-queries_1849-11-03_1_1_hocr_searchtext.txt.gz&#39;,
+ &#39;sim_notes-and-queries_1849-11-03_1_1_hocr_pageindex.json.gz&#39;,
+ &#39;sim_notes-and-queries_1849-11-03_1_1_hocr_searchtext.txt&#39;,
+ &#39;sim_notes-and-queries_1849-11-03_1_1_page_numbers.json&#39;,
+ &#39;sim_notes-and-queries_1849-11-03_1_1_hocr_pageindex.json&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now need to uncompress the <code class="docutils literal notranslate"><span class="pre">.txt.gz</span></code> file to access the fully formed text file.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">gzip</span></code> package provides us with the utility we need to access the contents of the archive file.</p>
+<p>In fact, we don’t need to actually uncompress the file into the directory, we can open it and extract its contents “in memory”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/get_txt_from_file.py
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+
+<span class="c1"># Create a simple function to make it even easier to extract the full text content</span>
+<span class="k">def</span> <span class="nf">get_txt_from_file</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">dirname</span><span class="o">=</span><span class="s2">&quot;ia-downloads&quot;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;searchtext&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Retrieve text from downloaded text file.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">typ</span><span class="o">==</span><span class="s2">&quot;searchtext&quot;</span><span class="p">:</span>
+        <span class="n">p_</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="o">/</span> <span class="n">id_val</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">_hocr_searchtext.txt.gz&#39;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">p_</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">typ</span><span class="o">==</span><span class="s2">&quot;djvutxt&quot;</span><span class="p">:</span>
+        <span class="n">p_</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="o">/</span> <span class="n">id_val</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">_djvu.txt&#39;</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">p_</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">content</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/get_txt_from_file.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how it works, previewing the first 200 characters of the unarchived text file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.get_txt_from_file</span> <span class="kn">import</span> <span class="n">get_txt_from_file</span>
+
+<span class="n">get_txt_from_file</span><span class="p">(</span><span class="n">data_records</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">])[:</span><span class="mi">200</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39; \n \n \n \nNOTES anp QUERIES:\nA Medium of Enter-Communication\nFOR\nLITERARY MEN, ARTISTS, ANTIQUARIES, GENEALOGISTS, ETC.\n‘* When found, make a note of.’—Carrain Corrie.\nVOLUME FIRST.\nNoveMBER, 1849—May, &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we inspect the text in more detail, we see there are various things in it that we might want to simplify. For example, quotation marks appear in various guises, such as opening and closing quotes of different flavours. We <em>could</em> normalise these to a simpler form (for example, “straight” quotes <code class="docutils literal notranslate"><span class="pre">'</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>), However, <em>if</em> opening and closing quotes are reliably recognised they do provide us with a simple text for matching text contained <em>within</em> the quotes. So for now, let’s leave the originally detected quotes in place.</p>
+<p>Having got a method in place, let’s now download the contents of the non-index issues for 1849.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT id, title</span>
+<span class="s2">FROM metadata</span>
+<span class="s2">WHERE is_index = 0</span>
+<span class="s2">    AND strftime(&#39;%Y&#39;, datetime) = &#39;1849&#39;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>Notes and Queries  1849-11-03: Vol 1 Iss 1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>Notes and Queries  1849-11-10: Vol 1 Iss 2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>Notes and Queries  1849-11-17: Vol 1 Iss 3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>Notes and Queries  1849-11-24: Vol 1 Iss 4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1849-12-01_1_5</td>
+      <td>Notes and Queries  1849-12-01: Vol 1 Iss 5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1849-12-08_1_6</td>
+      <td>Notes and Queries  1849-12-08: Vol 1 Iss 6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1849-12-15_1_7</td>
+      <td>Notes and Queries  1849-12-15: Vol 1 Iss 7</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1849-12-22_1_8</td>
+      <td>Notes and Queries  1849-12-22: Vol 1 Iss 8</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1849-12-29_1_9</td>
+      <td>Notes and Queries  1849-12-29: Vol 1 Iss 9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The data is return from the <code class="docutils literal notranslate"><span class="pre">read_sql()</span></code> function as a <em>pandas</em> dataframe.</p>
+<p>This <em>pandas</em> package provides a very powerful set of tools for working with tabular data, including being able to iterate over he rows of the table and apply a function to each one.</p>
+<p>If we define a function to download the corresponding search text file from the Internet Archive and extract the text from the downloaded archive file, we can apply that function with a particular column value taken from each row of the dataframe and add the returned content to a new column in the same dataframe.</p>
+<p>Here’s an example function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/download_and_extract_text.py
+<span class="kn">from</span> <span class="nn">internetarchive</span> <span class="kn">import</span> <span class="n">download</span>
+<span class="kn">from</span> <span class="nn">ia_utils.get_txt_from_file</span> <span class="kn">import</span> <span class="n">get_txt_from_file</span>
+
+<span class="k">def</span> <span class="nf">download_and_extract_text</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="s2">&quot;ia-downloads&quot;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;searchtext&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Download search text from Internet Archive, extract the text and return it.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s2"> issue text&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">typ</span><span class="o">==</span><span class="s2">&quot;searchtext&quot;</span><span class="p">:</span>
+        <span class="n">download</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">destdir</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+             <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;OCR Search Text&quot;</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">typ</span><span class="o">==</span><span class="s2">&quot;djvutxt&quot;</span><span class="p">:</span>
+        <span class="n">download</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">destdir</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+             <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DjVuTXT&quot;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    
+    <span class="n">text</span> <span class="o">=</span> <span class="n">get_txt_from_file</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="n">typ</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/download_and_extract_text.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Python <em>pandas</em> package natively provides an <code class="docutils literal notranslate"><span class="pre">apply()</span></code> function. However, the <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> progress bar package also provides an “apply with progress bar” function, <code class="docutils literal notranslate"><span class="pre">.progress_apply()</span></code> if we enable the appropriate extensions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dowload the tqdm progrss bar tools</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1">#And enable the pandas extensions</span>
+<span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s apply our <code class="docutils literal notranslate"><span class="pre">download_and_extract_text()</span></code> function to each row of our records table for 1849, keeping track of progress with a progress bar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.download_and_extract_text</span> <span class="kn">import</span> <span class="n">download_and_extract_text</span>
+
+<span class="n">results</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="n">download_and_extract_text</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5434626a75f4444dbf088776685d3464", "version_major": 2, "version_minor": 0}
+</script><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>title</th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>Notes and Queries  1849-11-03: Vol 1 Iss 1</td>
+      <td>\n \n \n \nNOTES anp QUERIES:\nA Medium of En...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>Notes and Queries  1849-11-10: Vol 1 Iss 2</td>
+      <td>|\n \nA MEDIUM OF INTER-COMMUNICATION\nFOR\nLI...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>Notes and Queries  1849-11-17: Vol 1 Iss 3</td>
+      <td>\n \n \nceeeeeeeeee eee\nA MEDIUM OF\nLITERAR...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>Notes and Queries  1849-11-24: Vol 1 Iss 4</td>
+      <td>\n \n \n \n~ NOTES anp QUERIES:\nA MEDIUM OF\...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1849-12-01_1_5</td>
+      <td>Notes and Queries  1849-12-01: Vol 1 Iss 5</td>
+      <td>\n \n \nNOTES anp\nQUERIES:\nA MEDIUM OF INTE...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1849-12-08_1_6</td>
+      <td>Notes and Queries  1849-12-08: Vol 1 Iss 6</td>
+      <td>\n \nOTES\nAND QUERIES\nA MEDIUM OF INTER-COM...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1849-12-15_1_7</td>
+      <td>Notes and Queries  1849-12-15: Vol 1 Iss 7</td>
+      <td>\n \n \nNOTES\nA MEDIUM OF\nAND QUERIES\nINTE...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1849-12-22_1_8</td>
+      <td>Notes and Queries  1849-12-22: Vol 1 Iss 8</td>
+      <td>\n \nNOTES ann QUERIES\nA MEDIUM OF\nINTER-CO...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1849-12-29_1_9</td>
+      <td>Notes and Queries  1849-12-29: Vol 1 Iss 9</td>
+      <td>\nNOTE\nA MEDIUM OF\nAND QUERIES\nINTER-COMMU...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can now add that data table directly to our database using the <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">.to_sql()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the issue database table</span>
+<span class="n">table_name</span> <span class="o">=</span> <span class="s2">&quot;issues&quot;</span>
+<span class="n">results</span><span class="p">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Note that this recipe does not represent a very efficient way of handling things: the pandas dataframe is held in memory, so as we add more rows, the memory requirements to store the data increase. A more efficient approach might be to create a function that retrieves each file, adds its contents to the database, and then perhaps even deletes the downloaded file, rather than adding the content to the in-memory dataframe.</em></p>
+<p>Let’s see if we can query it, first at the basic table level:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT id, content</span>
+<span class="s2">FROM issues</span>
+<span class="s2">WHERE LOWER(content) LIKE &quot;</span><span class="si">%c</span><span class="s2">ustoms%&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>\n \n \nceeeeeeeeee eee\nA MEDIUM OF\nLITERAR...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>\n \n \n \n~ NOTES anp QUERIES:\nA MEDIUM OF\...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-12-15_1_7</td>
+      <td>\n \n \nNOTES\nA MEDIUM OF\nAND QUERIES\nINTE...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-12-29_1_9</td>
+      <td>\nNOTE\nA MEDIUM OF\nAND QUERIES\nINTER-COMMU...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This is not overly helpful, perhaps. We can do better with the full text search, which will also allow us to return a snippet around the first, or highest ranked, location of any matched search terms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;customs&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT id, snippet(issues_fts, -1, &quot;__&quot;, &quot;__&quot;, &quot;...&quot;, 10) as clip</span>
+<span class="s2">FROM issues_fts WHERE issues_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)</span><span class="si">}</span><span class="s2"> ;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>clip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>...At length the __custom__ became general in ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>...royal domains, leases of __customs__, &amp;c., ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>...the Manners and __Customs__ of Ancient Gree...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-12-01_1_5</td>
+      <td>...Morning, as was his __Custom__, attended by...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1849-12-15_1_7</td>
+      <td>...So far as English usages and __customs__ ar...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1849-12-22_1_8</td>
+      <td>...Sessions House and the __Custom__ House of ...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1849-12-29_1_9</td>
+      <td>...elucidation of old world __customs__ and ob...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This is okay as far as is goes: we can identify <em>issues</em> of <em>Notes and Queries</em> that contain a particular search term, retrieve the whole document, and even display a concordance for the first (or highest ranking) occurrence of the search term(s) to provide context for the response. But it’s not ideal. For example, to display a concordance of each term in the full text document that matches our search term, we need to generate our own concordance, which may be difficulat where matches are inexact (for example if the match relies on stemming). There are also many pages in each issue of <em>Notes and Queries</em> and it would be useful if we could get the result at a better level of granularity.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ouseful_sqlite_search_utils</span></code> package includes various functions for allowing us to tunnel into a text document to retrieve The tools aren’t necessarily the <em>fastest</em> utilities to run, particularly on large databases, but they get their eventually.</p>
+<p>One particular utility will split a document into sentences and return each sentence on a separate row of a newly created virtual table. We can then search within these values for our search term, although we are limited to running <em>exact match</em> queries, rather than the more forgiving full text search queries:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ouseful_sqlite_search_utils</span> <span class="kn">import</span> <span class="n">snippets</span>
+
+<span class="n">snippets</span><span class="o">.</span><span class="n">register_snippets</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM</span>
+<span class="s2">    (SELECT id, sentence</span>
+<span class="s2">     FROM issues, get_sentences(1, NULL, issues.content)</span>
+<span class="s2">     WHERE issues.id = &quot;sim_notes-and-queries_1849-11-10_1_2&quot;)</span>
+<span class="s2">WHERE sentence LIKE &quot;</span><span class="si">% c</span><span class="s2">ustom %&quot;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Show the full result record in each case</span>
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Couldn&#39;t import dot_parser, loading of dot files will not be possible.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;sentence&#39;: &#39;An examination of the structure of books of this period would confirm this view, and show that their apparent clumsiness is to be explained by the facility it was then the custom to afford for the interpolation or extraction of “sheets,” by a contrivance somewhat resembling that\npapers in a cover, and known as the “ patent leaf-holder,”\n&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;sentence&#39;: &#39;At length the custom became general in Aden ; and it was not only drunk in the\nnight by those who were desirous of being kept awake, but in the day for the sake of its other agreeable qualities.&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;sentence&#39;: &#39;From hence the custom extended itself to many other towns of Arabia, particularly to Medina, and then to Grand Cairo in Egypt, where the dervises of Yemen, who lived in a district by themselves, drank coffee on the nights they intended to spend in\n| devotion.&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;sentence&#39;: &#39;In that year, Soliman Aga, ambassador from the Sultan Mahomet the Fourth, arrived, who, with his retinue, brought a considerable quantity of coffee with them, and made presents of it to per- sons both of the court and city, and is sup- posed to have established the custom of drinking it.&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-10_1_2&#39;,
+  &#39;sentence&#39;: &#39;How often\nman stumble upon some elucidation of a doubtful |\nphrase, or disputed passage ;—some illustration of an obsolete custom hitherto unnoticed ; — some biogra- phical aneedote or precise date hitherto unrecorded ;— some book, or some edition, hitherto unknown or im- perfectly described.&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extracting-pages">
+<h3>Extracting Pages<a class="headerlink" href="#extracting-pages" title="Permalink to this headline">¶</a></h3>
+<p>To make for more efficient granular searching, it would be useful if our content was stored in a more granular way.</p>
+<p>Ideally, we would extract items at the “article” level, but there is no simple way of chunking the document at this level. We could process it to extract items at the sentence or paragraph level and add those to their own table, but that might be <em>too</em> granular.</p>
+<p>However, by inspection of the files available for each issue, there appears to be another level of organisation that we can access: the <em>page</em> level.</p>
+<p><em>Page</em> metadata is provided in the the form of two files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OCR</span> <span class="pre">Page</span> <span class="pre">Index</span></code>: downloaded as a compressed <code class="docutils literal notranslate"><span class="pre">.gz</span></code> file the expanded file contains a list of lists. Each inner list contains four integers and each page has an associated inner list. The first and second integers in each inner list are the character count in the search text file representing the first and last characters on the corresponding page;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Page</span> <span class="pre">Numbers</span> <span class="pre">JSON</span></code>: the pages numbers JSON file, which is downloaded as an uncompressed JSON file contains a JSON object with a <code class="docutils literal notranslate"><span class="pre">&quot;pages&quot;</span></code> attribute that returns a list of records; each record has four attributes: <code class="docutils literal notranslate"><span class="pre">&quot;leafNum&quot;:</span> <span class="pre">int</span></code> (starting with index value 1), <code class="docutils literal notranslate"><span class="pre">&quot;ocr_value&quot;:</span> <span class="pre">list</span></code> (a list of candidate OCR values), <code class="docutils literal notranslate"><span class="pre">&quot;pageNumber&quot;:</span> <span class="pre">str</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;confidence&quot;:</span> <span class="pre">float</span></code>. A top-level <code class="docutils literal notranslate"><span class="pre">&quot;confidence&quot;</span></code> attribute gives an indication of how likely it is that page numbers are available across the whole document.</p></li>
+</ul>
+<p>We also need the <code class="docutils literal notranslate"><span class="pre">OCR</span> <span class="pre">Search</span> <span class="pre">Text</span></code> file.</p>
+<p>Let’s get a complete set of necessary files for a few sample records:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/download_ia_records_by_format.py
+<span class="c1"># Dowload the tqdm progress bar tools</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">internetarchive</span> <span class="kn">import</span> <span class="n">download</span>
+
+<span class="k">def</span> <span class="nf">download_ia_records_by_format</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Download records from Internet Archive given ID and desired format(s)&quot;&quot;&quot;</span>
+    <span class="n">formats</span> <span class="o">=</span> <span class="n">formats</span> <span class="k">if</span> <span class="n">formats</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;OCR Search Text&quot;</span><span class="p">,</span> <span class="s2">&quot;OCR Page Index&quot;</span><span class="p">,</span> <span class="s2">&quot;Page Numbers JSON&quot;</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">records</span><span class="p">):</span>
+        <span class="n">_id</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">download</span><span class="p">(</span><span class="n">_id</span><span class="p">,</span> <span class="n">destdir</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+                 <span class="n">formats</span><span class="o">=</span><span class="n">formats</span><span class="p">,</span>
+                 <span class="n">silent</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/download_ia_records_by_format.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.download_ia_records_by_format</span> <span class="kn">import</span> <span class="n">download_ia_records_by_format</span>
+
+<span class="c1"># Grab page counts and page structure files</span>
+<span class="n">sample_records</span> <span class="o">=</span> <span class="n">data_records</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="n">download_ia_records_by_format</span><span class="p">(</span><span class="n">sample_records</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f30991d914bc4312b9f68ef380a4980b", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<p>We now need to figure out how to open and parse the page index and page numbers files, and check the lists are the correct lengths.</p>
+<p>The Python <code class="docutils literal notranslate"><span class="pre">zip</span></code> function  lets us “zip” together elements from different, parallel lists. We can also insert the same item, repeatedly, into each row using the <code class="docutils literal notranslate"><span class="pre">itertools.repeat()</span></code> function to generate as many repetitions of the same character as are required:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Example of using <code class="docutils literal notranslate"><span class="pre">itertools.repeat()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example of list</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">),</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;a&#39;, 1, &#39;x&#39;), (&#39;a&#39;, 2, &#39;y&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now use this approach to create a zipped combination of the record ID values, page numbers and page character indexes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="c1">#for record in tqdm(sample_records):</span>
+
+<span class="n">record</span> <span class="o">=</span> <span class="n">sample_records</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">id_val</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span class="n">p_</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="o">/</span> <span class="n">id_val</span> 
+
+<span class="c1"># Get the page numbers</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">p_</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">_page_numbers.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">page_numbers</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Get the page character indexes</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">p_</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">_hocr_pageindex.json.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+    <span class="c1"># The last element seems to be redundant</span>
+    <span class="n">page_indexes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Optionally text the record counts are the same for page numbers and character indexes</span>
+<span class="c1">#assert len(page_indexes) == len(page_numbers[&#39;pages&#39;])</span>
+
+<span class="c1"># Preview the result</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">id_val</span><span class="p">),</span> <span class="n">page_numbers</span><span class="p">[</span><span class="s1">&#39;pages&#39;</span><span class="p">],</span> <span class="n">page_indexes</span><span class="p">))[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  {&#39;leafNum&#39;: 1, &#39;ocr_value&#39;: [], &#39;pageNumber&#39;: &#39;&#39;, &#39;confidence&#39;: 0},
+  [0, 301, 559, 14345]),
+ (&#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  {&#39;leafNum&#39;: 2, &#39;ocr_value&#39;: [&#39;4&#39;, &#39;3&#39;], &#39;pageNumber&#39;: &#39;&#39;, &#39;confidence&#39;: 0},
+  [301, 307, 14345, 15954]),
+ (&#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  {&#39;leafNum&#39;: 3, &#39;ocr_value&#39;: [&#39;2&#39;], &#39;pageNumber&#39;: &#39;2&#39;, &#39;confidence&#39;: 100},
+  [307, 3212, 15954, 101879]),
+ (&#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  {&#39;leafNum&#39;: 4, &#39;ocr_value&#39;: [&#39;3&#39;], &#39;pageNumber&#39;: &#39;3&#39;, &#39;confidence&#39;: 100},
+  [3212, 7431, 101879, 228974]),
+ (&#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  {&#39;leafNum&#39;: 5, &#39;ocr_value&#39;: [], &#39;pageNumber&#39;: &#39;4&#39;, &#39;confidence&#39;: 100},
+  [7431, 12267, 228974, 370105])]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could add this page related data directly to the pages table, or we could create another simple database table to store it.</p>
+<p>Here’s what a separate table might look like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_pages_metadata.py
+<span class="k">def</span> <span class="nf">create_db_table_pages_metadata</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">drop</span><span class="p">:</span>
+        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;page_idx&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="c1"># This is just a count as we work through the pages </span>
+        <span class="s2">&quot;page_char_start&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="s2">&quot;page_char_end&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="s2">&quot;page_leaf_num&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
+        <span class="s2">&quot;page_num&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;page_num_conf&quot;</span><span class="p">:</span> <span class="nb">float</span> <span class="c1"># A confidence value relating to the page number detection</span>
+    <span class="p">},</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;page_idx&quot;</span><span class="p">))</span> <span class="c1"># compound foreign keys not currently available via sqlite_utils?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/create_db_table_pages_metadata.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import that function from the local package and run it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.create_db_table_pages_metadata</span> <span class="kn">import</span> <span class="n">create_db_table_pages_metadata</span>
+
+<span class="n">create_db_table_pages_metadata</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following function “zips” together the contents of the page index and page numbers files. Each “line item” is a rather unwieldy mixmatch of elements, but we’ll deal with those in a moment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/raw_pages_metadata.py
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">def</span> <span class="nf">raw_pages_metadata</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">dirname</span><span class="o">=</span><span class="s2">&quot;ia-downloads&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get page metadata.&quot;&quot;&quot;</span>
+
+    <span class="n">p_</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span> <span class="o">/</span> <span class="n">id_val</span>
+
+    <span class="c1"># Get the page numbers</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">p_</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">_page_numbers.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># We can ignore the last value</span>
+        <span class="n">page_numbers</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+    <span class="c1"># Get the page character indexes</span>
+    <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">p_</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">_hocr_pageindex.json.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+        <span class="c1"># The last element seems to be redundant</span>
+        <span class="n">page_indexes</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Add the id and an index count</span>
+    <span class="k">return</span> <span class="nb">zip</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">id_val</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">page_indexes</span><span class="p">)),</span>
+               <span class="n">page_numbers</span><span class="p">[</span><span class="s1">&#39;pages&#39;</span><span class="p">],</span> <span class="n">page_indexes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/raw_pages_metadata.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each line item in the zipped datastructure, we can parse out values into a more readable data object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/parse_page_metadata.py
+
+<span class="k">def</span> <span class="nf">parse_page_metadata</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse out page attributes from the raw page metadata construct.&quot;&quot;&quot;</span>
+    <span class="n">_id</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">page_idx</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">_page_nums</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ix</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">_id</span><span class="p">,</span>
+           <span class="s1">&#39;page_idx&#39;</span><span class="p">:</span> <span class="n">page_idx</span><span class="p">,</span> <span class="c1"># Maintain our own count, just in case; should be page_leaf_num-1</span>
+           <span class="s1">&#39;page_char_start&#39;</span><span class="p">:</span> <span class="n">ix</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+           <span class="s1">&#39;page_char_end&#39;</span><span class="p">:</span> <span class="n">ix</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+           <span class="s1">&#39;page_leaf_num&#39;</span><span class="p">:</span> <span class="n">_page_nums</span><span class="p">[</span><span class="s1">&#39;leafNum&#39;</span><span class="p">],</span>
+           <span class="s1">&#39;page_num&#39;</span><span class="p">:</span> <span class="n">_page_nums</span><span class="p">[</span><span class="s1">&#39;pageNumber&#39;</span><span class="p">],</span>
+           <span class="s1">&#39;page_num_conf&#39;</span><span class="p">:</span><span class="n">_page_nums</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span>
+          <span class="p">}</span>
+    <span class="k">return</span> <span class="n">obj</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/parse_page_metadata.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how that looks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.raw_pages_metadata</span> <span class="kn">import</span> <span class="n">raw_pages_metadata</span>
+<span class="kn">from</span> <span class="nn">ia_utils.parse_page_metadata</span> <span class="kn">import</span> <span class="n">parse_page_metadata</span>
+
+<span class="n">sample_pages_metadata_item</span> <span class="o">=</span> <span class="n">raw_pages_metadata</span><span class="p">(</span><span class="n">id_val</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">pmi</span> <span class="ow">in</span> <span class="n">sample_pages_metadata_item</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">parse_page_metadata</span><span class="p">(</span><span class="n">pmi</span><span class="p">))</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;, &#39;page_idx&#39;: 0, &#39;page_char_start&#39;: 0, &#39;page_char_end&#39;: 301, &#39;page_leaf_num&#39;: 1, &#39;page_num&#39;: &#39;&#39;, &#39;page_num_conf&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now trivially add the page metadata to the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> database table. Let’s try it with our sample:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/add_page_metadata_to_db.py
+<span class="kn">from</span> <span class="nn">ia_utils.parse_page_metadata</span> <span class="kn">import</span> <span class="n">parse_page_metadata</span>
+<span class="kn">from</span> <span class="nn">ia_utils.raw_pages_metadata</span> <span class="kn">import</span> <span class="n">raw_pages_metadata</span>
+
+<span class="k">def</span> <span class="nf">add_page_metadata_to_db</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">records</span><span class="p">,</span> <span class="n">dirname</span><span class="o">=</span><span class="s2">&quot;ia-downloads&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add page metadata to database.&quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">id_val</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">id_val</span><span class="p">)</span>
+            
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[</span><span class="n">parse_page_metadata</span><span class="p">(</span><span class="n">pmi</span><span class="p">)</span> <span class="k">for</span> <span class="n">pmi</span> <span class="ow">in</span> <span class="n">raw_pages_metadata</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">dirname</span><span class="p">)]</span>
+    
+        <span class="c1"># Add records to the database</span>
+        <span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/add_page_metadata_to_db.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>And run it with the page metadata records selected via a <code class="docutils literal notranslate"><span class="pre">id_val</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.add_page_metadata_to_db</span> <span class="kn">import</span> <span class="n">add_page_metadata_to_db</span>
+
+<span class="c1"># Clear the db table</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+
+<span class="c1"># Add the metadata to the table</span>
+<span class="n">add_page_metadata_to_db</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">sample_records</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how that looks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM pages_metadata LIMIT 5&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>page_idx</th>
+      <th>page_char_start</th>
+      <th>page_char_end</th>
+      <th>page_leaf_num</th>
+      <th>page_num</th>
+      <th>page_num_conf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>301</td>
+      <td>1</td>
+      <td></td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>1</td>
+      <td>301</td>
+      <td>307</td>
+      <td>2</td>
+      <td></td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>2</td>
+      <td>307</td>
+      <td>3212</td>
+      <td>3</td>
+      <td>2</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>3</td>
+      <td>3212</td>
+      <td>7431</td>
+      <td>4</td>
+      <td>3</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1849-11-03_1_1</td>
+      <td>4</td>
+      <td>7431</td>
+      <td>12267</td>
+      <td>5</td>
+      <td>4</td>
+      <td>100.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Alternatively, we can view the results as a Python dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;page_idx&#39;: 0,
+  &#39;page_char_start&#39;: 0,
+  &#39;page_char_end&#39;: 301,
+  &#39;page_leaf_num&#39;: 1,
+  &#39;page_num&#39;: &#39;&#39;,
+  &#39;page_num_conf&#39;: 0.0},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;page_idx&#39;: 1,
+  &#39;page_char_start&#39;: 301,
+  &#39;page_char_end&#39;: 307,
+  &#39;page_leaf_num&#39;: 2,
+  &#39;page_num&#39;: &#39;&#39;,
+  &#39;page_num_conf&#39;: 0.0},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;page_idx&#39;: 2,
+  &#39;page_char_start&#39;: 307,
+  &#39;page_char_end&#39;: 3212,
+  &#39;page_leaf_num&#39;: 3,
+  &#39;page_num&#39;: &#39;2&#39;,
+  &#39;page_num_conf&#39;: 100.0}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each file containg the search text for a particular issue, we also need a routine to extract the page level content. Which is to say, we need to chunk the content based on character indices associated with the first and last characters on each page in the corresponding search text file.</p>
+<p>This essentially boils down to:</p>
+<ul class="simple">
+<li><p>grabbing the page index values;</p></li>
+<li><p>grabbing the page search text;</p></li>
+<li><p>chunking the search text according to the page index values.</p></li>
+</ul>
+<p>We can apply a page chunker at the document level, paginating the content file, and adding things to the database.</p>
+<p>The following function will load</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/chunk_page_text.py
+
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+<span class="kn">from</span> <span class="nn">ia_utils.get_txt_from_file</span> <span class="kn">import</span> <span class="n">get_txt_from_file</span>
+
+<span class="k">def</span> <span class="nf">chunk_page_text</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">id_val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Chunk text according to page_index values.&quot;&quot;&quot;</span>
+    
+    <span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT * FROM pages_metadata WHERE id=&quot;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+    <span class="n">page_indexes</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+    
+    <span class="n">text</span> <span class="o">=</span> <span class="n">get_txt_from_file</span><span class="p">(</span><span class="n">id_val</span><span class="p">)</span>
+        
+    <span class="k">for</span> <span class="n">ix</span> <span class="ow">in</span> <span class="n">page_indexes</span><span class="p">:</span>
+        <span class="n">ix</span><span class="p">[</span><span class="s2">&quot;page_text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;page_char_start&quot;</span><span class="p">]:</span><span class="n">ix</span><span class="p">[</span><span class="s2">&quot;page_char_end&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">page_indexes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ia_utils/chunk_page_text.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see if we’ve managed to pull out some page text:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.chunk_page_text</span> <span class="kn">import</span> <span class="n">chunk_page_text</span>
+
+<span class="c1"># Create a sample index ID</span>
+<span class="n">sample_id_val</span> <span class="o">=</span> <span class="n">sample_records</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+<span class="c1"># Get the chunked text back as part of the metadata record</span>
+<span class="n">sample_pages</span> <span class="o">=</span> <span class="n">chunk_page_text</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">sample_id_val</span><span class="p">)</span>
+
+<span class="n">sample_pages</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;page_idx&#39;: 0,
+  &#39;page_char_start&#39;: 0,
+  &#39;page_char_end&#39;: 301,
+  &#39;page_leaf_num&#39;: 1,
+  &#39;page_num&#39;: &#39;&#39;,
+  &#39;page_num_conf&#39;: 0.0,
+  &#39;page_text&#39;: &#39;NOTES anp QUERIES:\nA Medium of Enter-Communication\nFOR\nLITERARY MEN, ARTISTS, ANTIQUARIES, GENEALOGISTS, ETC.\n‘* When found, make a note of.’—Carrain Corrie.\nVOLUME FIRST.\nNoveMBER, 1849—May, 1850.\nLONDON: GEORGE BELL, 186. FLEET STREET 1850.\n[SOLD BY ALL BOOKSELLERS AND NEWSMEN. |&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;page_idx&#39;: 1,
+  &#39;page_char_start&#39;: 301,
+  &#39;page_char_end&#39;: 307,
+  &#39;page_leaf_num&#39;: 2,
+  &#39;page_num&#39;: &#39;&#39;,
+  &#39;page_num_conf&#39;: 0.0,
+  &#39;page_text&#39;: &#39;&#39;},
+ {&#39;id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;page_idx&#39;: 2,
+  &#39;page_char_start&#39;: 307,
+  &#39;page_char_end&#39;: 3212,
+  &#39;page_leaf_num&#39;: 3,
+  &#39;page_num&#39;: &#39;2&#39;,
+  &#39;page_num_conf&#39;: 100.0,
+  &#39;page_text&#39;: &#39;NOTES ann QUERIES:\nA MEDIUM OF\n——_——s\nINTER-COMMUNICATION\nFOR\nLITERARY MEN, ARTISTS,\nANTIQUARIES, GENEALOGISTS, ETC.\n“When found, make a note of.” — Carrain Currie.\nNOTES AND QUERIES.\nTue nature and design of the present work have been so fully stated in the Prospectus, and are indeed so far explained by its very Title, that it is unnecessary to occupy any great portion of its first number with details on the subject. We are under no temptation to fill its columns with an account of what we hope future numbers will be. Indeed, we would rather give a specimen than a de- scription; and only regret that, from the wide range of subjects which it is intended to embrace, and the correspondence and contri- butions of various kinds which we are led to expect, even this can only be done gradually. A few words of introduction and explanation may, however, be allowed; and, indeed, ought to be prefixed, that we may be understood by those readers who have not seen our Pro- spectus.\n“ WHEN FOUND, MAKE A NOTE OF,” is a most admirable rule; and if the excellent Captain had never uttered another word, he might have passed for a profound philosopher. It is a rule which should shine in gilt letters on the gingerbread of youth, and the specta- ele-case of age. Every man who reads with any view beyond mere pastime, knows the value of it. Every one, more or less, acts upon it. Every one regrets and suffers who\n \nSATURDAY, NOVEMBER 3. 1849.\nPrice Threepence. Stamped Edition, 4 d.\n \nneglects it. There is some trouble in it, to be sure; but in what good thing is there not? and what trouble does it save! Nay, what mischief! Half the lies that are current in the world owe their origin to a misplaced confidence in memory, rather than to inten- tional falsehood. We have never known more than one man who could deliberately and con- scientiously say that his memory had never deceived him; and he (when he saw that he had excited the surprise of his hearers, espe- cially those who knew how many years he had spent in the management of important com- mercial affairs) used to. add, — because he had never trusted it; but had uniformly written down what he was anxious to remember.\nBut, on the other hand, it cannot be denied that reading and writing men, of moderate industry, who act on this rule for any con- siderable length of time, will aceumulate a good deal of matter in various forms, shapes, and sizes—some more, some less legible and intelligible —some unposted in old pocket books — some on whole or half sheets, or mere seraps of paper, and backs of letters— some, lost sight of and forgotten, stuffing out old portfolios, or getting smoky edges in bundles tied up with faded tape. There are, we are quite sure, countless boxes and drawers, and pigeon-holes of such things, which want look- ing over, and would well repay the trouble.\n \n \nFOURTH EDITION.&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>### Modifying the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> Table in the Database</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">chunk_page_text()</span></code> function, we can add page content to our pages metadata <em>in-memory</em>. But what if we want to add it to the database. The <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> already exists, but does not include a <code class="docutils literal notranslate"><span class="pre">text</span></code> column. However, we can modify that table to include just such a column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="s2">&quot;page_text&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table pages_metadata (id, page_idx, page_char_start, page_char_end, page_leaf_num, page_num, page_num_conf, page_text)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also enable a full text search facility over the table. Our interest is primarily in searching over the <code class="docutils literal notranslate"><span class="pre">page_text</span></code>, bit if we include a couple of other columns that can help us key into records in other tables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable full text search</span>
+<span class="c1"># This creates an extra virtual table to support the full text search</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;page_idx&quot;</span><span class="p">,</span> <span class="s2">&quot;page_text&quot;</span><span class="p">],</span> <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table pages_metadata (id, page_idx, page_char_start, page_char_end, page_leaf_num, page_num, page_num_conf, page_text)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now update the records in the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> table so they include the <code class="docutils literal notranslate"><span class="pre">page_text</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT DISTINCT(id) FROM pages_metadata;&#39;</span>
+<span class="n">id_vals</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sample_id_val</span> <span class="ow">in</span> <span class="n">id_vals</span><span class="p">:</span>
+    <span class="n">updated_pages</span> <span class="o">=</span> <span class="n">chunk_page_text</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">sample_id_val</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;pages_metadata&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">upsert_all</span><span class="p">(</span><span class="n">updated_pages</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;page_idx&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We should now be able to search at the page level:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;customs&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM pages_metadata_fts</span>
+<span class="s2">WHERE pages_metadata_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>page_idx</th>
+      <th>page_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>5</td>
+      <td>22 NOTES\n \nAND QUERIES.\nCatalogue — in whic...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>8</td>
+      <td>Nov. 10. 1849.)\nNOTES AND QUERIES.\n25\n \nne...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>9</td>
+      <td>bring with him some coffee, which he believed ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>12</td>
+      <td>Nov. 10. 1849.]\nActing her passions on our st...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>14</td>
+      <td>~—\n \n|\n \nNov. 10. 1849.]\nNOTES AND QUERIE...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>8</td>
+      <td>= 17. 1849.] }\nreceive his representations an...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>2</td>
+      <td>~vwe eS | FY\nweNTe 6 FS-r—lCUcUOrlClC hLOOlhC...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>6</td>
+      <td>NOTES AND QUERIES.\n \n \n \nNov. 24. 1849.]\n...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>15</td>
+      <td>NOTES AND QUERIES.\nJust published, Part II., ...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sim_notes-and-queries_1849-12-01_1_5</td>
+      <td>5</td>
+      <td>NOTES AND QUERIES.\n \nmore than three Passeng...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can then bring in additional columns from the original <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;customs&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT page_num, page_leaf_num, pages_metadata_fts.* FROM pages_metadata_fts, pages_metadata</span>
+<span class="s2">WHERE pages_metadata_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span>
+<span class="s2">    AND pages_metadata.id = pages_metadata_fts.id</span>
+<span class="s2">    AND pages_metadata.page_idx = pages_metadata_fts.page_idx;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>page_num</th>
+      <th>page_leaf_num</th>
+      <th>id</th>
+      <th>page_idx</th>
+      <th>page_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>23</td>
+      <td>6</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>5</td>
+      <td>22 NOTES\n \nAND QUERIES.\nCatalogue — in whic...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>26</td>
+      <td>9</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>8</td>
+      <td>Nov. 10. 1849.)\nNOTES AND QUERIES.\n25\n \nne...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>27</td>
+      <td>10</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>9</td>
+      <td>bring with him some coffee, which he believed ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>30</td>
+      <td>13</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>12</td>
+      <td>Nov. 10. 1849.]\nActing her passions on our st...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>32</td>
+      <td>15</td>
+      <td>sim_notes-and-queries_1849-11-10_1_2</td>
+      <td>14</td>
+      <td>~—\n \n|\n \nNov. 10. 1849.]\nNOTES AND QUERIE...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>42</td>
+      <td>9</td>
+      <td>sim_notes-and-queries_1849-11-17_1_3</td>
+      <td>8</td>
+      <td>= 17. 1849.] }\nreceive his representations an...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>52</td>
+      <td>3</td>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>2</td>
+      <td>~vwe eS | FY\nweNTe 6 FS-r—lCUcUOrlClC hLOOlhC...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>56</td>
+      <td>7</td>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>6</td>
+      <td>NOTES AND QUERIES.\n \n \n \nNov. 24. 1849.]\n...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>65</td>
+      <td>16</td>
+      <td>sim_notes-and-queries_1849-11-24_1_4</td>
+      <td>15</td>
+      <td>NOTES AND QUERIES.\nJust published, Part II., ...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>71</td>
+      <td>6</td>
+      <td>sim_notes-and-queries_1849-12-01_1_5</td>
+      <td>5</td>
+      <td>NOTES AND QUERIES.\n \nmore than three Passeng...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="automatically-populating-the-pages-table-from-the-issues-table">
+<h3>Automatically Populating the <code class="docutils literal notranslate"><span class="pre">pages</span></code> Table from the <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table<a class="headerlink" href="#automatically-populating-the-pages-table-from-the-issues-table" title="Permalink to this headline">¶</a></h3>
+<p>Rather than manually adding the page data to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table, we can automatically create the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table from the content contained in the <code class="docutils literal notranslate"><span class="pre">issues</span></code> table and the page metadata in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> table.</p>
+<p>TO DO  - CREATE TABLE AS ;</p>
+<ul class="simple">
+<li><p>maybe also as an extra demonstrate how to generate this automatically from a trigger</p></li>
+<li><p>discuss various advantages and disadvantages of each approach; one is a step wise pipeline (create as) other is reactive and automatic ( trigger)</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "psychemedia/storynotes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Notes_and_Queries_DB.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Exploring Notes &amp; Queries</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Notes_and_Queries_DB_PART_3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Building a 19th c. Notes &amp; Queries Full Text Search Engine</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  
+
+  </body>
+</html>

@@ -1,0 +1,2344 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating a 19th c. Notes &amp; Queries Index Database &#8212; Story Notes - Technical Recipes</title>
+    
+    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  
+    
+    <link rel="stylesheet"
+      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+    
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Doc2Vec Searching of Lang Database" href="Lang_Doc2Vec.html" />
+    <link rel="prev" title="Building a 19th c. Notes &amp; Queries Full Text Search Engine" href="Notes_and_Queries_DB_PART_3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
+    <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-read-this-book.html">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Creating a 19th c. Notes &amp; Queries Index Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./Notes_and_Queries_DB_PART_4.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="./lite/retro/notebooks?path=./Notes_and_Queries_DB_PART_4.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch via RetroLite"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterlite.svg">
+  </span>
+<span class="headerbtn__text-container">RetroLite</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/psychemedia/storynotes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-the-text">
+   Cleaning the Text
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reinserting-line-breaks">
+     Reinserting Line Breaks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-unwanted-line-breaks">
+     Removing Unwanted Line Breaks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parsing-entries-and-adding-them-to-a-database">
+     Parsing Entries and Adding Them to a Database
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Creating a 19th c. Notes & Queries Index Database</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaning-the-text">
+   Cleaning the Text
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reinserting-line-breaks">
+     Reinserting Line Breaks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-unwanted-line-breaks">
+     Removing Unwanted Line Breaks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parsing-entries-and-adding-them-to-a-database">
+     Parsing Entries and Adding Them to a Database
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="creating-a-19th-c-notes-queries-index-database">
+<h1>Creating a 19th c. Notes &amp; Queries Index Database<a class="headerlink" href="#creating-a-19th-c-notes-queries-index-database" title="Permalink to this headline">¶</a></h1>
+<p>Although putting textual content into a database allows us to create full text search tools over that content, a lot of work and effort went into creating the original indexes. So can we scrape the text data from the indexes and generate add the index data to a database <code class="docutils literal notranslate"><span class="pre">original_index</span></code> table to create a comprehensive searchable index?</p>
+<p>To start with, what columns might such a table need? Let’s review an example index issue of <em>Notes &amp; Queries</em>. We can get the ID for such a page by querying the metadata database table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;nq_demo.db&quot;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># And the default download dir file path</span>
+<span class="n">dirname</span> <span class="o">=</span> <span class="s1">&#39;ia-downloads&#39;</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_sql</span>
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;SELECT id FROM metadata WHERE is_index=1 AND date LIKE &#39;1849%&#39; LIMIT 1&quot;</span>
+
+<span class="n">sample_index_id</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sample_index_id</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sim_notes-and-queries_1849-1850_1_index&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Really we should ensure we have downloaded a copy of that index document, although as we assume here, it should be in the download cache already from when we created the monolithic index PDF.</em></p>
+<div class="section" id="cleaning-the-text">
+<h2>Cleaning the Text<a class="headerlink" href="#cleaning-the-text" title="Permalink to this headline">¶</a></h2>
+<p>If we preview the PDF of an index issue, we see it has a regular two column structure. We can also see structure in the way that the index terms, and the subsidiary index terms, are organised:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+
+<span class="n">IFrame</span><span class="p">(</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">sample_index_id</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sample_index_id</span><span class="si">}</span><span class="s1">.pdf&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">as_posix</span><span class="p">(),</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="600"
+    height="500"
+    src="ia-downloads/sim_notes-and-queries_1849-1850_1_index/sim_notes-and-queries_1849-1850_1_index.pdf"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>Let’s also have a look at some of the raw search text for an index issue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.download_and_extract_text</span> <span class="kn">import</span> <span class="n">download_and_extract_text</span>
+
+<span class="n">simple_index_text</span> <span class="o">=</span> <span class="n">download_and_extract_text</span><span class="p">(</span><span class="n">sample_index_id</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">simple_index_text</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 
+ 
+ 
+ 
+A.
+Apsey of St. Wandrille, 382. 486.
+Abdication of James I1., 39. 489.
+Aberdeen, Burnet prize at, 91.
+Aboriginal chambers near Tilbury, 462.
+A. (B.) on emancipation of the Jews, 475.
+Accuracy of references, 170.
+Addison&#39;s books, 212.
+Adolphus on a recent novel, 231.
+Advent bells, 121.
+Adversaria, 73. 86.
+Elfric’s colloquy, 168. 197, 232. 248. 278.
+Elian, translation of, 267. 284.
+A. (F. RB.) on Sterne’s Koran, 418.
+—— on a passage in Goldsmith, 83.
+— Queen of Hearts, 320.
+Agricola(C.), Propugnaculum anti-Pistori- anum, 203.
+A. (J. D.) on swords worn in public, 415.
+Alban’s (St.) Day, 399.
+—._, law courts at, 306.
+Albert (Le Petit), 474.
+Alchemy, metrical writings on, 60.
+Ale »xandria a (Ptolemy of), 142. 170.
+Alfred’s (King) Geography of Europe, 257. 313.
+— works, 93.
+Alicui on Bec ket’s grace-cup, 143.
+—— on Bishop Barnaby, 132.
+All Angels and St. Michael’s, feast of, 235.
+* All to-broke,” 490.
+Allusion in Friar Brackley’s sermon, 35).
+Almanack (Poor Robia’s), 470.
+Alms-basins
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_index_text</span> <span class="o">=</span> <span class="n">download_and_extract_text</span><span class="p">(</span><span class="n">sample_index_id</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;djvutxt&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sample_index_text</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A. 
+
+
+Apsey of St. Wandrille, 382. 486. 
+
+Abdication of James I1., 39. 489. 
+
+Aberdeen, Burnet prize at, 91. 
+
+Aboriginal chambers near Tilbury, 462. 
+
+A. (B.) on emancipation of the Jews, 475. 
+
+Accuracy of references, 170. 
+
+Addison&#39;s books, 212. 
+
+Adolphus on a recent novel, 231. 
+
+Advent bells, 121. 
+
+Adversaria, 73. 86. 
+
+Elfric’s colloquy, 168. 197, 232. 248. 278. 
+
+Elian, translation of, 267. 284. 
+
+A. (F. RB.) on Sterne’s Koran, 418. 
+
+—— on a passage in Goldsmith, 83. 
+
+— Queen of Hearts, 320. 
+
+Agricola(C.), Propugnaculum anti-Pistori- 
+anum, 203. 
+
+A. (J. D.) on swords worn in public, 415. 
+
+Alban’s (St.) Day, 399. 
+
+—._, law courts at, 306. 
+
+Albert (Le Petit), 474. 
+
+Alchemy, metrical writings on, 60. 
+
+Ale »xandria a (Ptolemy of), 142. 170. 
+
+Alfred’s (King) Geography of Europe, 257. 
+313. 
+
+
+— works, 93. 
+
+Alicui on Bec ket’s grace-cup, 143. 
+
+—— on Bishop Barnaby, 132. 
+
+All Angels and St. Michael’s, feast of, 235. 
+
+* All to-broke,” 490. 
+
+Allusion in Friar
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_index_id</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;sim_notes-and-queries_1849-1850_1_index&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspecting some of the documents shows that there is no guarantee that the search text correctly represents index items on a new line, although in certain documents it appears as if line breaks after each entry are provided (as in the original scanned image).</p>
+<p>There are also “sub-elements” on separate lines that relate to a major heading that we really need to “fill down” on, although there is may be no indication in the text (e.g. no series of dashes or a tab characters) to indicate the the subsidiary nature of a reference. (Note that there may be further clues in the original XML, for example, from the location of the text.) However, subsidiary entries do often appear to start with a lower case letter, so let’s use that as a heuristic: <em>if the line starts with a lower case letter, it’s a subsidiary entry</em>. More detailed inspection of the index search text also suggests that in some cases <code class="docutils literal notranslate"><span class="pre">-</span></code> separator characters may appear in the search text.</p>
+<p>To create a complete index, one possible approach is to:</p>
+<ul class="simple">
+<li><p>normalise a single entry and all its subsidiary entries onto a single line;</p></li>
+<li><p>parse a single entry and all its subsidiary entries into appropriate database records.</p></li>
+</ul>
+<p>Rather than consider the XML and all the additional processing that incurs, let’s try to “repair” the document as best we can. Another thing we <em>could</em> try to exploit is the alphabetical order of entries, but let’s leave that as an open question and only return to it if we find issues occurring that alphabetisation might help us address.</p>
+<p>So let’s start by repairing the text and normalising the lines before considering how to parse the entries.</p>
+<div class="section" id="reinserting-line-breaks">
+<h3>Reinserting Line Breaks<a class="headerlink" href="#reinserting-line-breaks" title="Permalink to this headline">¶</a></h3>
+<p>If we can identify where line breaks are likely to be missing, we should be able to reinsert them.</p>
+<p>By inspection of the raw search text, it seems that we have a page number (digits), space character, and then typically the next entry start by a capital letter (subsidiary lines seem to start with a lower case character). We can perform a regular expression substitution to match this pattern and replace the space after the final page number with an end-of-line character.</p>
+<p>Some lines also start with opening quotes of various flavours (<code class="docutils literal notranslate"><span class="pre">‘</span></code> or <code class="docutils literal notranslate"><span class="pre">“</span></code> for example), or incorrectly recognised quotes rendered as a <code class="docutils literal notranslate"><span class="pre">*</span></code> character. We can also insert line breaks in advance of these:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="k">def</span> <span class="nf">repair_index_missing_line_breaks</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attempt to repair missing line breaks.&quot;&quot;&quot;</span>
+    <span class="c1"># Add line break after page number</span>
+    <span class="c1"># allowing a single optional grace character at end for incorrect OCR</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([0-9].?\s*\.?)[\s]+([\(‘“</span><span class="se">\&quot;</span><span class="s2">&#39;\*A-Z])&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1\n\2&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">repaired_text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how that looks:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repaired_sample_index</span> <span class="o">=</span> <span class="n">repair_index_missing_line_breaks</span><span class="p">(</span> <span class="n">sample_index_text</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">repaired_sample_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A. 
+
+
+Apsey of St. Wandrille, 382. 486.
+Abdication of James I1., 39. 489.
+Aberdeen, Burnet prize at, 91.
+Aboriginal chambers near Tilbury, 462.
+A. (B.) on emancipation of the Jews, 475.
+Accuracy of references, 170.
+Addison&#39;s books, 212.
+Adolphus on a recent novel, 231.
+Advent bells, 121.
+Adversaria, 73. 86.
+Elfric’s colloquy, 168. 197, 232. 248. 278.
+Elian, translation of, 267. 284.
+A. (F. RB.) on Sterne’s Koran, 418. 
+
+—— on a passage in Goldsmith, 83. 
+
+— Queen of Hearts, 320.
+Agricola(C.), Propugnaculum anti-Pistori- 
+anum, 203.
+A. (J. D.) on swords worn in public, 415.
+Alban’s (St.) Day, 399. 
+
+—._, law courts at, 306.
+Albert (Le Petit), 474.
+Alchemy, metrical writings on, 60.
+Ale »xandria a (Ptolemy of), 142. 170.
+Alfred’s (King) Geography of Europe, 257. 
+313. 
+
+
+— works, 93.
+Alicui on Bec ket’s grace-cup, 143. 
+
+—— on Bishop Barnaby, 132.
+All Angels and St. Michael’s, feast of, 235.
+* All to-broke,” 490.
+Allusion in Friar
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="removing-unwanted-line-breaks">
+<h3>Removing Unwanted Line Breaks<a class="headerlink" href="#removing-unwanted-line-breaks" title="Permalink to this headline">¶</a></h3>
+<p>If what appear to be page numbers appear on the their own line, they should presumably appear as page numbers for the previous reference.</p>
+<p>In other cases, a subsidiary reference might incorrectly be place on one line, or a line might end on a comma. In such cases, we might assume the associated line breaks to be unwanted.</p>
+<p>So let’s replace the line breaks in those locations with spaces, and then also replace any double spaces we might have introduced (or that were present withing the original scanned text) with a single space:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">repair_index_unwanted_line_breaks</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attempt to repair extraneous line breaks.&quot;&quot;&quot;</span>
+    <span class="c1"># Fix unwanted line end before page number</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\n([0-9].*)&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39; \1&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Fix unwanted line end before subsidiary entry (initial lower case character)</span>
+    <span class="c1"># Identify subsidiary split with a ::: separator</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\n([a-z].*)&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39; ::: \1&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># Fix unwanted line break after comma</span>
+    <span class="c1">#repaired_text  = re.sub(r&quot;,\s*\n&quot;, r&#39;, ZZ&#39;, repaired_text)</span>
+    
+    <span class="c1"># Remove duplicate spaces</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">repaired_text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>How do things look now?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repaired_sample_index</span> <span class="o">=</span> <span class="n">repair_index_missing_line_breaks</span><span class="p">(</span> <span class="n">sample_index_text</span><span class="p">[:</span><span class="mi">1000</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">repaired_sample_index</span> <span class="o">=</span> <span class="n">repair_index_unwanted_line_breaks</span><span class="p">(</span> <span class="n">repaired_sample_index</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">repaired_sample_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A. 
+
+
+Apsey of St. Wandrille, 382. 486.
+Abdication of James I1., 39. 489.
+Aberdeen, Burnet prize at, 91.
+Aboriginal chambers near Tilbury, 462.
+A. (B.) on emancipation of the Jews, 475.
+Accuracy of references, 170.
+Addison&#39;s books, 212.
+Adolphus on a recent novel, 231.
+Advent bells, 121.
+Adversaria, 73. 86.
+Elfric’s colloquy, 168. 197, 232. 248. 278.
+Elian, translation of, 267. 284.
+A. (F. RB.) on Sterne’s Koran, 418. 
+
+—— on a passage in Goldsmith, 83. 
+
+— Queen of Hearts, 320.
+Agricola(C.), Propugnaculum anti-Pistori- ::: anum, 203.
+A. (J. D.) on swords worn in public, 415.
+Alban’s (St.) Day, 399. 
+
+—._, law courts at, 306.
+Albert (Le Petit), 474.
+Alchemy, metrical writings on, 60.
+Ale »xandria a (Ptolemy of), 142. 170.
+Alfred’s (King) Geography of Europe, 257. 313. 
+
+
+— works, 93.
+Alicui on Bec ket’s grace-cup, 143. 
+
+—— on Bishop Barnaby, 132.
+All Angels and St. Michael’s, feast of, 235.
+* All to-broke,” 490.
+Allusion in Friar
+</pre></div>
+</div>
+</div>
+</div>
+<p>Inspecting the above, we see there are “issues” that we might be able to address, such as line entries that should be separated, based on a closer inspection of the XML returned from the scan that includes the position on the page.</p>
+<p>But at least we have something to work with.</p>
+</div>
+<div class="section" id="parsing-entries-and-adding-them-to-a-database">
+<h3>Parsing Entries and Adding Them to a Database<a class="headerlink" href="#parsing-entries-and-adding-them-to-a-database" title="Permalink to this headline">¶</a></h3>
+<p>Let’s now consider how we might structure our database entries.</p>
+<p>First, we have simple “primary” entries, such as <em>Agincourt, Sir Hilary charged at, 158. 190.</em></p>
+<p>We might put this into a record of the form:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>[{&quot;source_id&quot;: id_val, &quot;index_term&quot;: &quot;Agincourt, Sir Hilary charged at&quot;, &quot;page&quot;: 158}
+{&quot;source_id&quot;: id_val, &quot;index_term&quot;: &quot;Agincourt, Sir Hilary charged at&quot;, &quot;page&quot;: 190}]
+</pre></div>
+</div>
+<p>The page numbers are relative to a particular volume, so we also need to be able to capture information to identify what the page numbers are with reference to. The index document filenames take the form <em>Notes and Queries 1875: Vol 3 Index</em> so we can parse out the year and volume and add these to the record too.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parse</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="k">def</span> <span class="nf">get_index_metadata_from_title</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get year and volume from title.&quot;&quot;&quot;</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="s2">&quot;Notes and Queries </span><span class="si">{year}</span><span class="s2">: Vol </span><span class="si">{vol}</span><span class="s2"> Index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="s2">&quot;vol&quot;</span><span class="p">:</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;vol&quot;</span><span class="p">]}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;vol&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">metadata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s how it works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_index_page_title</span> <span class="o">=</span> <span class="s2">&quot;Notes and Queries 1875: Vol 3 Index&quot;</span>
+
+<span class="n">get_index_metadata_from_title</span><span class="p">(</span><span class="n">sample_index_page_title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;year&#39;: &#39;1875&#39;, &#39;vol&#39;: &#39;3&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the table, we might also provide a <code class="docutils literal notranslate"><span class="pre">type</span></code> column to distinguish between primary (<code class="docutils literal notranslate"><span class="pre">P</span></code>) and subsidiary (<code class="docutils literal notranslate"><span class="pre">S</span></code>) entries, along with subsidiary column which should be empty in simple cases.</p>
+<p>For a line entry such as <em>A. (E. H.) on baptismal superstition, 197. on curfew, at Morpeth, 312. on Duresme and Dunelm, 206.</em> we not the the first entry is actually a subsidiary entry, the <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword identifying the subsidiarity to the main term <code class="docutils literal notranslate"><span class="pre">A.</span> <span class="pre">(E.</span> <span class="pre">H.)</span></code>.</p>
+<p>We might then desire to have partial records of the form:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="nt">&quot;index_term&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A. (E. H.)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">197</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;subsidiary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on baptismal superstition&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="p">{</span><span class="nt">&quot;index_term&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A. (E. H.)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">312</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;subsidiary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on curfew, at Morpeth&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="p">{</span><span class="nt">&quot;index_term&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A. (E. H.)&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;typ&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;page&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">206</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;subsidiary&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on Duresme and Dunelm,&quot;</span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Inspection of other records with subsidiary terms suggests that a comma may also be used as to denote initial subsidiarity, as or example illustrated here:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Berkeley</span> <span class="pre">(Bishop),</span> <span class="pre">adventures</span> <span class="pre">of</span> <span class="pre">Gau-</span> <span class="pre">dentio</span> <span class="pre">di</span> <span class="pre">Lucca,</span> <span class="pre">247.successful</span> <span class="pre">experiments,</span> <span class="pre">217.</span></code></p>
+<p>In this case, the multiple items are based on the original term before the initial comma (this might be a hasty assumption if the key term itself includes a comma, but the we might hope for an “on” separator to clarify the position.</p>
+<p><em>We also note in that example a possible repair we could make to the original text: removing the <code class="docutils literal notranslate"><span class="pre">word-</span> <span class="pre">split</span></code> hyphenation.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_text_remove_word_split_hyphenation</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Remove word split hyphenation.&quot;&quot;&quot;</span>
+    <span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([a-z])[-—–][\n]([a-z])&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1\2&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">cleaned_text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s do a quick test of that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_eol_hyphenation</span> <span class="o">=</span> <span class="s2">&quot;Berkeley (Bishop), adventures of Gau-</span><span class="se">\n</span><span class="s2">dentio di Lucca, 247.successful experiments, 217.&quot;</span>
+
+<span class="n">clean_text_remove_word_split_hyphenation</span><span class="p">(</span><span class="n">test_eol_hyphenation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Berkeley (Bishop), adventures of Gaudentio di Lucca, 247.successful experiments, 217.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>So let’s start by suggesting the following database record structure as something to work towards:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we want to remove the table completely, we can drop  it</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="s2">&quot;source_id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;vol&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;index_term&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+    <span class="s2">&quot;typ&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;subsidiary&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;page_num&quot;</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">})</span>
+
+
+<span class="c1"># Enable full text search</span>
+<span class="c1"># This creates an extra virtual table (books_fts) to support the full text search</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;source_id&quot;</span><span class="p">,</span> <span class="s2">&quot;index_term&quot;</span><span class="p">,</span> <span class="s2">&quot;subsidiary&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;vol&quot;</span><span class="p">,</span> <span class="s2">&quot;page_num&quot;</span><span class="p">],</span>
+                             <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table index_entries (source_id, year, vol, index_term, typ, subsidiary, page_num)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now need to consider various ways of parsing line items, including:</p>
+<ul class="simple">
+<li><p>extracting multiple page numbers for a single entry;</p></li>
+<li><p>identifying entries that mask subsidiary terms.</p></li>
+</ul>
+<p>We have already adopted a convention of using <code class="docutils literal notranslate"><span class="pre">:::</span></code> to separate subsidiary items, so let’s apply that a bit further to separate out “on” terms and comma separated terms. We might also have a catch all in case there are elements appearing after a page number that are perhaps rightly new entries but that we shall treat as subsidiaries.</p>
+<p>We could possibly also try to “fudge” page numbers that look like numbers-ish, for eexample, if there is a set of numbers that ends with an <code class="docutils literal notranslate"><span class="pre">s</span></code> or a <code class="docutils literal notranslate"><span class="pre">z</span></code>. where we might guess (possibly incorrectly) at a <code class="docutils literal notranslate"><span class="pre">5</span></code> or <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_repair_index_subsidiary_separator_line</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Repair entries at line level.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Very risky number substitutions</span>
+    <span class="c1"># We want to access \1 so we need the alternative syntax</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([0-9])[sS]\.?&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\g&lt;1&gt;5&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([0-9])[zZ]\.?&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\g&lt;1&gt;2&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    
+    <span class="c1"># Subsidiary terms based on &quot;on&quot; - this may be overly aggressive to be starting with</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([^(on)]*)( on .*)&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1 ::: \2&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># Subsidiary terms based on dashes at start of line</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[-—–]+&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39; ::: &#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># Subsidiary terms based on multiple dashes within line (unlikely to be hyphen)</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[-—–]{2,}&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39; ::: &#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># Subsidiary terms based on dash after a number</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([0-9\.,]+\s*)[-—–]+&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1 :::&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    
+    <span class="c1"># Subsidiary terms based on page numbers</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([0-9]\.) *([‘“</span><span class="se">\&quot;</span><span class="s2">&#39;\*A-Za-z])&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1 ::: \2&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># Subsidiary terms based on &quot;on&quot; - this may be overly aggressive</span>
+    <span class="c1">#repaired_text  = re.sub(r&quot;^([^:]*)( on .*)&quot;, r&#39;\1 ::: \2&#39;, repaired_text)</span>
+    <span class="c1"># Or only apply after a number</span>
+    <span class="c1">#repaired_text  = re.sub(r&quot;([0-9]\.)\s*(on)&quot;, r&#39;\1 ::: \2&#39;, repaired_text)</span>
+    <span class="k">if</span> <span class="s2">&quot;::: on&quot;</span> <span class="ow">in</span> <span class="n">repaired_text</span><span class="p">:</span>
+        <span class="c1"># Also split at start</span>
+        <span class="n">repaired_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([^(on)]*) (on)&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;\1 ::: \2&quot;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># Subsidiary terms based on &quot;,&quot;</span>
+    <span class="c1">#elif &quot;:::&quot; in repaired_text:</span>
+    <span class="c1"># If we have numbers separated by commas, replace the commas with a .</span>
+    <span class="n">repaired_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\s+[0-9]+)\s*,\s*([0-9]+)&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;\1. \2&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># If we have a comma before a number, separate after the number</span>
+    <span class="c1"># Allow a grace character</span>
+    <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([^:,]*),\s*([0-9][0-9\.\s]+[A-Za-z]?)[^\n]&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1 \2:::&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    <span class="c1"># If we have a comma appear before a separator, separate on it</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([^:,]*),\s*([^0-9]+)&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1 :::\2&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+
+    <span class="c1"># Provide a catch all to add separators after what look like page numbers</span>
+    <span class="n">repaired_text</span>  <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([0-9]\s*[^:].?)\s*([A-Za-z].*)$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1 ::: \2&#39;</span><span class="p">,</span> <span class="n">repaired_text</span><span class="p">)</span>
+    
+    <span class="c1"># Remove uncaught dashes at start and end of phrase</span>
+    <span class="n">repaired_text</span> <span class="o">=</span> <span class="s2">&quot;:::&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;-—– &quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">repaired_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:::&quot;</span><span class="p">)])</span>
+    
+    <span class="k">return</span> <span class="n">repaired_text</span>
+
+
+<span class="k">def</span> <span class="nf">repair_index_subsidiary_separator</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attempt to identify where subsidiary splits occur.&quot;&quot;&quot;</span>
+    <span class="c1"># These are applied at the line level</span>
+    <span class="n">repaired_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">_repair_index_subsidiary_separator_line</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">line</span><span class="p">]</span>
+    
+    <span class="c1"># Patch back any overly aggressively split lines</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repaired_lines</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">:::&quot;</span><span class="p">,</span> <span class="s2">&quot;:::&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how that works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repaired_sample_index2</span> <span class="o">=</span> <span class="n">repaired_sample_index</span>
+<span class="n">repaired_sample_index2</span> <span class="o">=</span> <span class="n">repair_index_subsidiary_separator</span><span class="p">(</span><span class="n">repaired_sample_index2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">repaired_sample_index2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A.
+Apsey of St. Wandrille:::382. 486.
+Abdication of James I1.:::39. 489.
+Aberdeen:::Burnet prize at, 91.
+Aboriginal chambers near Tilbury:::462.
+A. (B.):::on emancipation of the Jews, 475.
+Accuracy of references:::170.
+Addison&#39;s books:::212.
+Adolphus:::on a recent novel, 231.
+Advent bells:::121.
+Adversaria:::73. 86.
+Elfric’s colloquy:::168. 197. 232. 248. 278.
+Elian:::translation of, 267. 284.
+A. (F. RB.):::on Sterne’s Koran, 418.::::::on a passage in Goldsmith, 83.:::Queen of Hearts, 320.
+Agricola(C.):::Propugnaculum anti-Pistori:::anum, 203.
+A. (J. D.):::on swords worn in public, 415.
+Alban’s (St.) Day:::399.:::._, law courts at, 306.
+Albert (Le Petit):::474.
+Alchemy:::metrical writings on, 60.
+Ale »xandria a (Ptolemy of):::142. 170.
+Alfred’s (King) Geography of Europe:::257. 313.:::works, 93.
+Alicui:::on Bec ket’s grace-cup, 143.::::::on Bishop Barnaby, 132.
+All Angels and St. Michael’s:::feast of, 235.
+* All to-broke:::” 490.
+Allusion in Friar
+</pre></div>
+</div>
+</div>
+</div>
+<p>And for the comma separator:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_comma_subsidiary</span> <span class="o">=</span> <span class="s2">&quot;Berkeley (Bishop), adventures of Gau- dentio di Lucca, 247.successful experiments, 217.&quot;</span>
+
+<span class="n">repair_index_subsidiary_separator</span><span class="p">(</span><span class="n">text_comma_subsidiary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Berkeley (Bishop):::adventures of Gau- dentio di Lucca, 247.:::successful experiments, 217.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Having made an attempt at some subsidiary separators, we can now try to parse out the various components. At the start of the line we have the primary entry, then we may have one or more line numbers or one or more subsidiary phrases.</p>
+<p>Let’s look at how to parse out page numbers. There may be one or more page numbers separated by spaces or by <code class="docutils literal notranslate"><span class="pre">.</span></code> characters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a rather crude approach that just grabs all the numbers we can find</span>
+<span class="k">def</span> <span class="nf">extract_page_numbers_from_line</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Extract one or more page numbers from text.&quot;&quot;&quot;</span>
+    <span class="c1"># Try to nudge things towards finding numbers at the end of the phrase</span>
+    <span class="n">end_of_text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^[^0-9]*([0-9\.,\s]*$)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="n">start_of_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">end_of_text</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="c1"># Then just bludgeon out all the possible page numbers</span>
+    <span class="n">page_numbers</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">end_of_text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">start_of_text</span><span class="p">,</span> <span class="n">page_numbers</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how that works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a test example of subsidiary elements; there is no page number in the first part</span>
+<span class="p">[</span><span class="n">extract_page_numbers_from_line</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">repair_index_subsidiary_separator</span><span class="p">(</span><span class="n">text_comma_subsidiary</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:::&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;adventures of Gau- dentio di Lucca, &#39;, [&#39;247&#39;]),
+ (&#39;successful experiments, &#39;, [&#39;217&#39;])]
+</pre></div>
+</div>
+</div>
+</div>
+<p>And if there are no numbers?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">extract_page_numbers_from_line</span><span class="p">(</span><span class="s2">&quot;No numbers here&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;No numbers here&#39;, [])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_index_line</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse out elements of the index entry.&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Split the entry in subsidiary parts and clean white space</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:::&quot;</span><span class="p">)]</span>
+
+    <span class="c1"># Do we have one entry or many?</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># There are no subsidiary parts</span>
+        <span class="c1"># The first part is the main index entry</span>
+        <span class="c1"># from which we need to separate one or more page references</span>
+        <span class="n">entry_text</span><span class="p">,</span> <span class="n">page_numbers</span> <span class="o">=</span> <span class="n">extract_page_numbers_from_line</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">index_entries</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;index_term&quot;</span><span class="p">:</span> <span class="n">entry_text</span><span class="p">,</span> <span class="s2">&quot;typ&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;page_numbers&quot;</span><span class="p">:</span> <span class="n">page_numbers</span><span class="p">}]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># There are subsidiary parts</span>
+        <span class="c1"># In this case, we get each subsidiary part and its page references</span>
+        <span class="c1"># Get the subsidiary parts</span>
+        <span class="n">index_entries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="n">entry_text</span><span class="p">,</span> <span class="n">page_numbers</span> <span class="o">=</span> <span class="n">extract_page_numbers_from_line</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">subsidiary_entry</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;index_term&quot;</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="s2">&quot;subsidiary&quot;</span><span class="p">:</span> <span class="n">entry_text</span><span class="p">,</span> <span class="s2">&quot;typ&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;page_numbers&quot;</span><span class="p">:</span> <span class="n">page_numbers</span><span class="p">}</span>
+            <span class="n">index_entries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsidiary_entry</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">index_entries</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_index_line</span><span class="p">(</span><span class="s1">&#39;“ Noise&quot; derivations of 81. 106. 138. 218. 35&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;index_term&#39;: &#39;“ Noise&quot; derivations of &#39;,
+  &#39;typ&#39;: &#39;P&#39;,
+  &#39;page_numbers&#39;: [&#39;81&#39;, &#39;106&#39;, &#39;138&#39;, &#39;218&#39;, &#39;35&#39;]}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So does that work?!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parse_index_line</span><span class="p">(</span><span class="n">repaired_sample_index2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;index_term&#39;: &#39;Aboriginal chambers near Tilbury&#39;,
+  &#39;subsidiary&#39;: &#39;&#39;,
+  &#39;typ&#39;: &#39;S&#39;,
+  &#39;page_numbers&#39;: [&#39;462&#39;]}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above case, we have an error in that we have rolled one index entry as a subsidiary to an initial index entry because of a missing page number for the first entry.</p>
+<p><em>In this case, alphabetic sorting checks across several index entries (and subsidiaries) might help us detect this error; for example, if a subsidiary term sorts between the index term and the next index term, we might guess that the subsidiary is actually a main index term.</em></p>
+<p>Note that if we construct a full text search across the <code class="docutils literal notranslate"><span class="pre">index_term</span></code> and <code class="docutils literal notranslate"><span class="pre">subsidiary</span></code> columns, we are likely to get false positives but we shouldn’t miss anything…</p>
+<p>We can now try to create a complete set of records that we could upload to out database.</p>
+<p>To start with, we need the metadata, which means we need the title.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_title_from_id</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">id_val</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;get the title of the issue from the database.&quot;&quot;&quot;</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;SELECT title FROM metadata WHERE id=&quot;</span><span class="si">{</span><span class="n">id_val</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
+
+    <span class="k">return</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)[</span><span class="s2">&quot;title&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_base_data</span> <span class="o">=</span> <span class="n">get_index_metadata_from_title</span><span class="p">(</span><span class="n">get_title_from_id</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">sample_index_id</span><span class="p">))</span>
+<span class="n">index_base_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;year&#39;: &#39; 1849 - 1850&#39;, &#39;vol&#39;: &#39;1&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we need to separate each line item into multiple items. The <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframe can come to out aid here, with its ability to easily split out listed items in one cell onto multiple rows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">example_subsidiary_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parse_index_line</span><span class="p">(</span><span class="n">repaired_sample_index2</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">4</span><span class="p">]))</span>
+<span class="n">example_subsidiary_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index_term</th>
+      <th>subsidiary</th>
+      <th>typ</th>
+      <th>page_numbers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aboriginal chambers near Tilbury</td>
+      <td></td>
+      <td>S</td>
+      <td>[462]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can now “explode” that dataframe against the lists of page numbers to get one row per item:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_subsidiary_df</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;page_numbers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;page_numbers&quot;</span><span class="p">:</span> <span class="s2">&quot;page_num&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index_term</th>
+      <th>subsidiary</th>
+      <th>typ</th>
+      <th>page_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Aboriginal chambers near Tilbury</td>
+      <td></td>
+      <td>S</td>
+      <td>462</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s see if we can now put all those pieces together. Essentially, for each index line, we need to generate the complete set of records we want to add to the database.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">construct_index_records</span><span class="p">(</span><span class="n">id_val</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">retval</span><span class="o">=</span><span class="s2">&quot;explode&quot;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a complete set of index records from original search text document.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">id_val</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">download_and_extract_text</span><span class="p">(</span><span class="n">id_val</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;djvutxt&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">text</span>
+
+    <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Repair the text</span>
+    <span class="n">repaired_text</span> <span class="o">=</span> <span class="n">repair_index_missing_line_breaks</span><span class="p">(</span> <span class="n">text</span> <span class="p">)</span>
+    <span class="n">repaired_text</span> <span class="o">=</span> <span class="n">repair_index_unwanted_line_breaks</span><span class="p">(</span> <span class="n">repaired_text</span> <span class="p">)</span>
+    <span class="n">repaired_text</span> <span class="o">=</span> <span class="n">repair_index_subsidiary_separator</span><span class="p">(</span> <span class="n">repaired_text</span> <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">repaired_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">new_line</span> <span class="o">=</span> <span class="n">parse_index_line</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="n">records</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">retval</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;df&quot;</span><span class="p">,</span> <span class="s2">&quot;explode&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="n">id_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Return the list of dicts, without the metadata</span>
+        <span class="k">return</span> <span class="n">records</span>
+
+    <span class="c1"># WARNING - if we used provided text, the id_val and the text may actually be inconsistent</span>
+    <span class="n">index_base_data</span> <span class="o">=</span> <span class="n">get_index_metadata_from_title</span><span class="p">(</span><span class="n">get_title_from_id</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">id_val</span><span class="p">))</span>
+    <span class="c1"># Generate a dataframe</span>
+    <span class="n">records_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+    
+    <span class="n">records_df</span><span class="p">[</span><span class="s2">&quot;source_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_val</span>
+    <span class="n">records_df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_base_data</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span>
+    <span class="n">records_df</span><span class="p">[</span><span class="s2">&quot;vol&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_base_data</span><span class="p">[</span><span class="s2">&quot;vol&quot;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">retval</span><span class="o">==</span><span class="s2">&quot;explode&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">records_df</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s1">&#39;page_numbers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;page_numbers&quot;</span><span class="p">:</span> <span class="s2">&quot;page_num&quot;</span><span class="p">})</span>
+    <span class="k">elif</span> <span class="n">retval</span><span class="o">==</span><span class="s2">&quot;df&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">records_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And when we run it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">construct_index_records</span><span class="p">(</span><span class="n">sample_index_id</span><span class="p">)[</span><span class="mi">1000</span><span class="p">:</span> <span class="mi">1200</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index_term</th>
+      <th>typ</th>
+      <th>page_num</th>
+      <th>subsidiary</th>
+      <th>source_id</th>
+      <th>year</th>
+      <th>vol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>844</th>
+      <td>Complutensian Polygiot</td>
+      <td>S</td>
+      <td>402</td>
+      <td></td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>844</th>
+      <td>Complutensian Polygiot</td>
+      <td>S</td>
+      <td>431</td>
+      <td></td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>845</th>
+      <td>Compton Street</td>
+      <td>S</td>
+      <td>228</td>
+      <td>Soho,</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>846</th>
+      <td>Conrad of Salisbury’</td>
+      <td>P</td>
+      <td>8</td>
+      <td>NaN</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>847</th>
+      <td>Descriptio utriusque</td>
+      <td>P</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1015</th>
+      <td>D.</td>
+      <td>P</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1016</th>
+      <td>D.</td>
+      <td>S</td>
+      <td>NaN</td>
+      <td>on Lord Chatham's speech on American</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1017</th>
+      <td>D.</td>
+      <td>S</td>
+      <td>12</td>
+      <td>stamp act,</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1018</th>
+      <td>D.</td>
+      <td>S</td>
+      <td>214</td>
+      <td>iden frog,</td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1019</th>
+      <td>D.</td>
+      <td>S</td>
+      <td>NaN</td>
+      <td></td>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>It’s far from ideal, but at least gives us something to work with. So let’s add it to the database, and see how a search feels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span><span class="n">construct_index_records</span><span class="p">(</span><span class="n">sample_index_id</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table index_entries (source_id, year, vol, index_term, typ, subsidiary, page_num)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s try a search:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;cure&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM index_entries_fts</span>
+<span class="s2">WHERE index_entries_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>source_id</th>
+      <th>index_term</th>
+      <th>subsidiary</th>
+      <th>year</th>
+      <th>vol</th>
+      <th>page_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>Cure for the hooping-cough</td>
+      <td></td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+      <td>397</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>G. (J.)</td>
+      <td>charm to cure the murrain in cows,</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+      <td>349</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>Warts</td>
+      <td>charms for cure of,</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+      <td>349</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1849-1850_1_index</td>
+      <td>Warts</td>
+      <td>charms for cure of,</td>
+      <td>1849 - 1850</td>
+      <td>1</td>
+      <td>482</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s create a search index over all the index issues up to 1900 excluding the cumulative indexes.</p>
+<p>First, grab all the indexes from the database and then filter to just the years we are interested in.</p>
+<p><em>We really should support convenient year searching by adding a year column to the table, or creating a convenient, custom query function to handle years.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM (SELECT CAST(strftime(&quot;%Y&quot;, datetime) AS INT) AS year, *</span>
+<span class="s2">    FROM metadata</span>
+<span class="s2">    WHERE is_index=1 AND id NOT LIKE &quot;</span><span class="si">%c</span><span class="s2">umulative%&quot;) WHERE year &lt; 1900;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">indexes</span> <span class="o">=</span> <span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)</span>
+
+<span class="n">indexes</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
+<span class="n">indexes</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;year&#39;: 1850,
+  &#39;id&#39;: &#39;sim_notes-and-queries_1849-1850_1_index&#39;,
+  &#39;date&#39;: &#39;1849 - 1850&#39;,
+  &#39;datetime&#39;: &#39;1850-03-20T00:00:00&#39;,
+  &#39;series&#39;: None,
+  &#39;vol&#39;: &#39;1&#39;,
+  &#39;iss&#39;: &#39;Index&#39;,
+  &#39;title&#39;: &#39;Notes and Queries  1849 - 1850: Vol 1 Index&#39;,
+  &#39;next_id&#39;: &#39;sim_notes-and-queries_1849-11-03_1_1&#39;,
+  &#39;prev_id&#39;: &#39;&#39;,
+  &#39;is_index&#39;: 1,
+  &#39;restricted&#39;: &#39;&#39;},
+ {&#39;year&#39;: 1850,
+  &#39;id&#39;: &#39;sim_notes-and-queries_1850_2_index&#39;,
+  &#39;date&#39;: &#39;1850&#39;,
+  &#39;datetime&#39;: &#39;1850-03-20T00:00:00&#39;,
+  &#39;series&#39;: None,
+  &#39;vol&#39;: &#39;2&#39;,
+  &#39;iss&#39;: &#39;Index&#39;,
+  &#39;title&#39;: &#39;Notes and Queries  1850: Vol 2 Index&#39;,
+  &#39;next_id&#39;: &#39;sim_notes-and-queries_1850-06-01_2_31&#39;,
+  &#39;prev_id&#39;: &#39;sim_notes-and-queries_1850-05-25_1_30&#39;,
+  &#39;is_index&#39;: 1,
+  &#39;restricted&#39;: &#39;&#39;},
+ {&#39;year&#39;: 1851,
+  &#39;id&#39;: &#39;sim_notes-and-queries_1851_3_index&#39;,
+  &#39;date&#39;: &#39;1851&#39;,
+  &#39;datetime&#39;: &#39;1851-03-20T00:00:00&#39;,
+  &#39;series&#39;: None,
+  &#39;vol&#39;: &#39;3&#39;,
+  &#39;iss&#39;: &#39;Index&#39;,
+  &#39;title&#39;: &#39;Notes and Queries  1851: Vol 3 Index&#39;,
+  &#39;next_id&#39;: &#39;sim_notes-and-queries_1851-01-04_3_62&#39;,
+  &#39;prev_id&#39;: &#39;sim_notes-and-queries_1850-12-28_2_61&#39;,
+  &#39;is_index&#39;: 1,
+  &#39;restricted&#39;: &#39;&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dowload the tqdm progrss bar tools</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+
+<span class="c1"># List of indexes already loaded: indexes</span>
+
+<span class="k">for</span> <span class="n">index_record</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">indexes</span><span class="p">):</span>
+    <span class="n">index_records</span> <span class="o">=</span> <span class="n">construct_index_records</span><span class="p">(</span><span class="n">index_record</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span> <span class="n">index_records</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ab7496a6daea495380343170b183930f", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+<p>And how about a search…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;sin eater&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM index_entries_fts</span>
+<span class="s2">WHERE index_entries_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)[:</span><span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>source_id</th>
+      <th>index_term</th>
+      <th>subsidiary</th>
+      <th>year</th>
+      <th>vol</th>
+      <th>page_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1851_4_index</td>
+      <td>B. (E. H.)</td>
+      <td>on mazer-wood and sin-eaters,</td>
+      <td>1851</td>
+      <td>4</td>
+      <td>211</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1851_4_index</td>
+      <td>Sin-eaters</td>
+      <td>notices respecting,</td>
+      <td>1851</td>
+      <td>4</td>
+      <td>211</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1852_6_index</td>
+      <td>E .)</td>
+      <td>on the sin-eater,</td>
+      <td>1852</td>
+      <td>6</td>
+      <td>541</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1852_6_index</td>
+      <td>I eeper ( (Alex.)</td>
+      <td>on the sin-eater,</td>
+      <td>1852</td>
+      <td>6</td>
+      <td>541</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1852_6_index</td>
+      <td>Symons Jelinger C.)</td>
+      <td>origin of sin-eater,</td>
+      <td>1852</td>
+      <td>6</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1870_6_index</td>
+      <td>Sin-eater</td>
+      <td>origin of the,</td>
+      <td>1870</td>
+      <td>6</td>
+      <td>450</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1876_6_index</td>
+      <td>Sin-eater</td>
+      <td></td>
+      <td>1876</td>
+      <td>6</td>
+      <td>505</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1876_6_index</td>
+      <td>Sin-eater</td>
+      <td></td>
+      <td>1876</td>
+      <td>6</td>
+      <td>505</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1877_7_index</td>
+      <td>B. (A. C.)</td>
+      <td>on the Sin-eater,</td>
+      <td>1877</td>
+      <td>7</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sim_notes-and-queries_1877_7_index</td>
+      <td>Sin-eater</td>
+      <td></td>
+      <td>1877</td>
+      <td>7</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>sim_notes-and-queries_1883_7_index</td>
+      <td>Sin-eater</td>
+      <td></td>
+      <td>1883</td>
+      <td>7</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>sim_notes-and-queries_1883_7_index</td>
+      <td>Sin-eater</td>
+      <td></td>
+      <td>1883</td>
+      <td>7</td>
+      <td>334</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>sim_notes-and-queries_1883_8_index</td>
+      <td>Sin-eater</td>
+      <td></td>
+      <td>1883</td>
+      <td>8</td>
+      <td>255</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>sim_notes-and-queries_1895_8_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1895</td>
+      <td>8</td>
+      <td>288</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sim_notes-and-queries_1895_8_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1895</td>
+      <td>8</td>
+      <td>288</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>sim_notes-and-queries_1895_8_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1895</td>
+      <td>8</td>
+      <td>332</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>169</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>296</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>109</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>169</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>236</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>296</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Owen (J. P.)</td>
+      <td>on sin-eaters,</td>
+      <td>1896</td>
+      <td>9</td>
+      <td>109</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Owen (J. P.)</td>
+      <td>on sin-eaters,</td>
+      <td>1896</td>
+      <td>9</td>
+      <td>236</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>110</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>109</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>169</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>236</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Sin-eaters</td>
+      <td></td>
+      <td>1896</td>
+      <td>9</td>
+      <td>296</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>sim_notes-and-queries_1896_9_index</td>
+      <td>Thomas (N. W.)</td>
+      <td>on sin-eaters,</td>
+      <td>1896</td>
+      <td>9</td>
+      <td>169</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_term</span> <span class="o">=</span> <span class="s2">&quot;boggart&quot;</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT * FROM index_entries_fts</span>
+<span class="s2">WHERE index_entries_fts MATCH </span><span class="si">{</span><span class="n">db</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="n">search_term</span><span class="p">)</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">read_sql</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">conn</span><span class="p">)[:</span><span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>source_id</th>
+      <th>index_term</th>
+      <th>subsidiary</th>
+      <th>year</th>
+      <th>vol</th>
+      <th>page_num</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sim_notes-and-queries_1869_4_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1869</td>
+      <td>4</td>
+      <td>508</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sim_notes-and-queries_1869_4_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1869</td>
+      <td>4</td>
+      <td>508</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sim_notes-and-queries_1869_4_index</td>
+      <td>Higson (John)</td>
+      <td>on Boggarts and Feorin,</td>
+      <td>1869</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1870</td>
+      <td>5</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1870</td>
+      <td>5</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1870</td>
+      <td>5</td>
+      <td>216</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1870</td>
+      <td>5</td>
+      <td>287</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1870</td>
+      <td>5</td>
+      <td>365</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts and Feorin</td>
+      <td></td>
+      <td>1870</td>
+      <td>5</td>
+      <td>517</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Bowker (James)</td>
+      <td>on Boggarts, Feorin, &amp;c.</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>365</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts</td>
+      <td>Feorin,</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>287</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Davies (Wm.)</td>
+      <td>on Boggarts, Feorin, &amp;c.,</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>216</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Hermentrude</td>
+      <td>on Boggarts,</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Boggarts</td>
+      <td>Feorin, &amp;c.,</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Riley (H. T.)</td>
+      <td>on Boggarts, Feorin, &amp;c.,</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>216</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>sim_notes-and-queries_1870_5_index</td>
+      <td>Smith (W. J. B.)</td>
+      <td>on Boggarts, Feorin, &amp;e.,</td>
+      <td>1870</td>
+      <td>5</td>
+      <td>317</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>sim_notes-and-queries_1895_8_index</td>
+      <td>: Boggart, 85</td>
+      <td>ah by a sheep,</td>
+      <td>1895</td>
+      <td>8</td>
+      <td>170</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>sim_notes-and-queries_1895_8_index</td>
+      <td>Boggart=ghost</td>
+      <td></td>
+      <td>1895</td>
+      <td>8</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>sim_notes-and-queries_1895_8_index</td>
+      <td>Boggart=ghost</td>
+      <td></td>
+      <td>1895</td>
+      <td>8</td>
+      <td>255</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "psychemedia/storynotes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Notes_and_Queries_DB_PART_3.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Building a 19th c. Notes &amp; Queries Full Text Search Engine</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Lang_Doc2Vec.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Doc2Vec Searching of Lang Database</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  
+
+  </body>
+</html>
