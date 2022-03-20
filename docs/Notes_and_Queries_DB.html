@@ -754,7 +754,7 @@ Scandata
 <p>The following cell contains a set of instructions bundled together to define a <em>function</em> under a unique function name. Functions provide us with a shorthand way of writing a set of instructions once, then calling on them repeatedly via their function name.</p>
 <p>In particular, the function takes in an item metadata record, tidies it up a little and returns just the fields we are interested in.</p>
 <p>In the following cell, we use some magic to write the contents of the cell to a package file; in the next cell after that, we import the function from the file. This provides us with a convenient way of saving code to a file that we can also reuse elsewhere.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/out_ia_metadata.py
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -951,7 +951,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <p>To begin with, we can load in our list of <em>Notes and Queries</em> record data downloaded from the Internet Archive.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/open_metadata_records.py
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -1030,7 +1030,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_metadata.py
 <span class="kn">import</span> <span class="nn">datetime</span>
@@ -1072,7 +1072,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <p>We need to do a little tidying of the records, but then we can add them directly to the database:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/add_patched_metadata_records_to_db.py
 <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
