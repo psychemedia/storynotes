@@ -449,6 +449,17 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modifying-the-pages-metadata-table-in-the-database">
+     Modifying the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pages_metadata
+      </span>
+     </code>
+     Table in the Database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#automatically-populating-the-pages-table-from-the-issues-table">
      Automatically Populating the
      <code class="docutils literal notranslate">
@@ -500,6 +511,17 @@ title="Print to PDF"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#extracting-pages">
      Extracting Pages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modifying-the-pages-metadata-table-in-the-database">
+     Modifying the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pages_metadata
+      </span>
+     </code>
+     Table in the Database
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -685,7 +707,7 @@ title="Print to PDF"
 <p>Let’s create a simple table structure for the searchable text extracted from each issue of <em>Notes &amp; Queries</em> containing the content and a unique identifier for each record.</p>
 <p>We can relate this table to the metadata table through a <em>foreign key</em>. What this means is that for each entry in the issues table, we also expect to find an entry in the metadata table under the same identifier value.</p>
 <p>We will also create a full text search table associated with the table:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_issues.py
 <span class="k">def</span> <span class="nf">create_db_table_issues</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -805,7 +827,7 @@ title="Print to PDF"
 <p>We now need to uncompress the <code class="docutils literal notranslate"><span class="pre">.txt.gz</span></code> file to access the fully formed text file.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">gzip</span></code> package provides us with the utility we need to access the contents of the archive file.</p>
 <p>In fact, we don’t need to actually uncompress the file into the directory, we can open it and extract its contents “in memory”.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/get_txt_from_file.py
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
@@ -940,7 +962,7 @@ title="Print to PDF"
 <p>This <em>pandas</em> package provides a very powerful set of tools for working with tabular data, including being able to iterate over he rows of the table and apply a function to each one.</p>
 <p>If we define a function to download the corresponding search text file from the Internet Archive and extract the text from the downloaded archive file, we can apply that function with a particular column value taken from each row of the dataframe and add the returned content to a new column in the same dataframe.</p>
 <p>Here’s an example function:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/download_and_extract_text.py
 <span class="kn">from</span> <span class="nn">internetarchive</span> <span class="kn">import</span> <span class="n">download</span>
@@ -1277,7 +1299,7 @@ title="Print to PDF"
 </ul>
 <p>We also need the <code class="docutils literal notranslate"><span class="pre">OCR</span> <span class="pre">Search</span> <span class="pre">Text</span></code> file.</p>
 <p>Let’s get a complete set of necessary files for a few sample records:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/download_ia_records_by_format.py
 <span class="c1"># Dowload the tqdm progress bar tools</span>
@@ -1396,7 +1418,7 @@ title="Print to PDF"
 </div>
 <p>We could add this page related data directly to the pages table, or we could create another simple database table to store it.</p>
 <p>Here’s what a separate table might look like:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_pages_metadata.py
 <span class="k">def</span> <span class="nf">create_db_table_pages_metadata</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -1431,7 +1453,7 @@ title="Print to PDF"
 </div>
 </div>
 <p>The following function “zips” together the contents of the page index and page numbers files. Each “line item” is a rather unwieldy mixmatch of elements, but we’ll deal with those in a moment:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/raw_pages_metadata.py
 <span class="kn">import</span> <span class="nn">itertools</span>
@@ -1467,7 +1489,7 @@ title="Print to PDF"
 </div>
 </div>
 <p>For each line item in the zipped datastructure, we can parse out values into a more readable data object:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/parse_page_metadata.py
 
@@ -1516,7 +1538,7 @@ title="Print to PDF"
 </div>
 </div>
 <p>We can now trivially add the page metadata to the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> database table. Let’s try it with our sample:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/add_page_metadata_to_db.py
 <span class="kn">from</span> <span class="nn">ia_utils.parse_page_metadata</span> <span class="kn">import</span> <span class="n">parse_page_metadata</span>
@@ -1693,7 +1715,7 @@ title="Print to PDF"
 </ul>
 <p>We can apply a page chunker at the document level, paginating the content file, and adding things to the database.</p>
 <p>The following function will load</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/chunk_page_text.py
 
@@ -1765,7 +1787,9 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>### Modifying the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> Table in the Database</p>
+</div>
+<div class="section" id="modifying-the-pages-metadata-table-in-the-database">
+<h3>Modifying the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> Table in the Database<a class="headerlink" href="#modifying-the-pages-metadata-table-in-the-database" title="Permalink to this headline">¶</a></h3>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">chunk_page_text()</span></code> function, we can add page content to our pages metadata <em>in-memory</em>. But what if we want to add it to the database. The <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> already exists, but does not include a <code class="docutils literal notranslate"><span class="pre">text</span></code> column. However, we can modify that table to include just such a column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
