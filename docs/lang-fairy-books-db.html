@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Finding Book Index-Like Things In Lang’s Fairy Stories…" href="lang-fairy-books-db_PART_2.html" />
@@ -156,6 +154,36 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
    Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
   </a>
  </li>
 </ul>
@@ -517,6 +545,7 @@ title="Print to PDF"
 <h1>A Full Text Searchable Database of Lang’s Fairy Books<a class="headerlink" href="#a-full-text-searchable-database-of-lang-s-fairy-books" title="Permalink to this headline">¶</a></h1>
 <p>In the late 19th and early 20th century, Andrew Lang published various collections of fairy tales, starting with <em>The Blue Fairy Book</em> and then progressing though various other colours to <em>The Olive Fairy Book</em>.</p>
 <p>This notebook represents a playful aside in trying to build various searchable contexts over the stories.</p>
+<p>The resulting search engine will support full text search over all the stories contained in all the coloured story books.</p>
 <p>To begin with, let’s start by ingesting the stories into a database and building a full text search over them.</p>
 <div class="section" id="obtain-source-texts">
 <h2>Obtain Source Texts<a class="headerlink" href="#obtain-source-texts" title="Permalink to this headline">¶</a></h2>
@@ -752,8 +781,6 @@ Story db search examples.ipynb
 Thompson_Motif_Index.ipynb
 <span class=" -Color -Color-Blue">_build</span>
 _config.yml
-<span class=" -Color -Color-Blue">_content</span>
-<span class=" -Color -Color-Blue">_contents</span>
 _toc.yml
 ashliman_demo.db
 blfb.txt.gz
@@ -763,25 +790,22 @@ demo.db
 <span class=" -Color -Color-Blue">docs</span>
 gnfb.txt.gz
 gyfb.txt.gz
-how-to-read-this-book.ipynb
 <span class=" -Color -Color-Blue">images</span>
-lang-fairy-books-db_PART_1.ipynb
-lang-fairy-books-db_PART_2.ipynb
-lang-fairy-books-db_PART_3.ipynb
-lang-fairy-books-db_PART_4.ipynb
+lang-fairy-books-db.ipynb
+lang-fairy-books-db_PART 1.ipynb
+lang-fairy-books-db_PART 2.ipynb
+lang-fairy-books-db_PART 3.ipynb
+lang-fairy-books-db_PART 4.ipynb
 lang_fairy_tale.db
 lang_model.gensim
 lifb.txt.gz
 motifs_demo.db
 mtdf_demo.db
-<span class=" -Color -Color-Blue">old</span>
 olfb.txt.gz
 orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
-requirements.txt
-running-the-book-code.ipynb
 tale_types_demo.db
 thompson_motif_index.csv
 vifb.txt.gz
@@ -838,8 +862,6 @@ Story db search examples.ipynb
 Thompson_Motif_Index.ipynb
 <span class=" -Color -Color-Blue">_build</span>
 _config.yml
-<span class=" -Color -Color-Blue">_content</span>
-<span class=" -Color -Color-Blue">_contents</span>
 _toc.yml
 ashliman_demo.db
 blfb.txt.gz
@@ -849,25 +871,22 @@ demo.db
 <span class=" -Color -Color-Blue">docs</span>
 gnfb.txt.gz
 gyfb.txt.gz
-how-to-read-this-book.ipynb
 <span class=" -Color -Color-Blue">images</span>
-lang-fairy-books-db_PART_1.ipynb
-lang-fairy-books-db_PART_2.ipynb
-lang-fairy-books-db_PART_3.ipynb
-lang-fairy-books-db_PART_4.ipynb
+lang-fairy-books-db.ipynb
+lang-fairy-books-db_PART 1.ipynb
+lang-fairy-books-db_PART 2.ipynb
+lang-fairy-books-db_PART 3.ipynb
+lang-fairy-books-db_PART 4.ipynb
 lang_fairy_tale.db
 lang_model.gensim
 lifb.txt.gz
 motifs_demo.db
 mtdf_demo.db
-<span class=" -Color -Color-Blue">old</span>
 olfb.txt.gz
 orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
-requirements.txt
-running-the-book-code.ipynb
 tale_types_demo.db
 thompson_motif_index.csv
 vifb.txt.gz
@@ -1821,7 +1840,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Connection at 0x1204ceb70&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Connection at 0x116bc0d50&gt;
 </pre></div>
 </div>
 </div>

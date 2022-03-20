@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Annotating Lang’s Fairy Tales With Wikipedia Links" href="lang-fairy-books-db_PART_3.html" />
@@ -156,6 +154,36 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
    Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
   </a>
  </li>
 </ul>
@@ -404,17 +432,12 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Finding Book Index-Like Things In Lang’s Fairy Stories…
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#connecting-to-the-database">
    Connecting to the Database
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#detecting-entities-the-spacy-way">
    Detecting Entities the
    <code class="docutils literal notranslate">
@@ -424,33 +447,33 @@ title="Print to PDF"
    </code>
    Way
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-much">
      How Much?!
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-far-have-we-still-to-go">
      How Far Have We Still To Go?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-many-did-you-say">
      How Many Did You Say?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#who-s-there">
      Who’s There?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#when-s-there">
      When’s There?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#organisationally-speaking">
      Organisationally Speaking…
     </a>
@@ -476,17 +499,12 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Finding Book Index-Like Things In Lang’s Fairy Stories…
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#connecting-to-the-database">
    Connecting to the Database
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#detecting-entities-the-spacy-way">
    Detecting Entities the
    <code class="docutils literal notranslate">
@@ -496,33 +514,33 @@ title="Print to PDF"
    </code>
    Way
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-much">
      How Much?!
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-far-have-we-still-to-go">
      How Far Have We Still To Go?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-many-did-you-say">
      How Many Did You Say?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#who-s-there">
      Who’s There?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#when-s-there">
      When’s There?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#organisationally-speaking">
      Organisationally Speaking…
     </a>
@@ -539,7 +557,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <div class="section" id="finding-book-index-like-things-in-lang-s-fairy-stories">
+  <div class="tex2jax_ignore mathjax_ignore section" id="finding-book-index-like-things-in-lang-s-fairy-stories">
 <h1>Finding Book Index-Like Things In Lang’s Fairy Stories…<a class="headerlink" href="#finding-book-index-like-things-in-lang-s-fairy-stories" title="Permalink to this headline">¶</a></h1>
 <p>One of the problems associated with <em>search</em> as a form of discovery is knowing what to search for. If you have a traditional print book, it contains various navigational clues that let you quickly get a sense of what the book contains, and in what order.</p>
 <p>A look at the table of contents gives you great big signposts in the form of chapter headings, and the distance from one signpost to the net is given not in leagues or miles, but pages.</p>
@@ -548,9 +566,8 @@ title="Print to PDF"
 <p>As well as the precious objects worthy of mention, there are other things we can tease out of the text that might make it easier to search for what we want. For example, if we want to find a story that explicitly mentions a large financial reward, it might be useful if we could search for tales mentioning at least 500 gold pieces (or equivalent). But how could we possibly do that, you might ask…</p>
 <p>In <em>technicalese</em>, by extracting entities we can search around, that’s how… And I don’t necessarily mean “entities” of the supernatural kind, the bogles and boggarts and other things that come out at night that we might generically class as <em>“ghouls”</em>.</p>
 <p>So what sorts of <em>entity</em> might we be able to find in the stories…?!</p>
-</div>
 <div class="section" id="connecting-to-the-database">
-<h1>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h1>
+<h2>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start by connecting to the database of Lang’s fairy stories that we created earlier, as well as loading in some magic that let’s us talk to it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -596,7 +613,7 @@ Done.
 </div>
 </div>
 <div class="section" id="detecting-entities-the-spacy-way">
-<h1>Detecting Entities the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> Way<a class="headerlink" href="#detecting-entities-the-spacy-way" title="Permalink to this headline">¶</a></h1>
+<h2>Detecting Entities the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> Way<a class="headerlink" href="#detecting-entities-the-spacy-way" title="Permalink to this headline">¶</a></h2>
 <p>To try to identify “things” in the stories, we can invoke the powers of the great God <code class="docutils literal notranslate"><span class="pre">spacy</span></code>, which walks amongst us in the guise of a natural language processing toolkit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1020,7 +1037,7 @@ Name: entity_typ, dtype: int64
 </div>
 </div>
 <div class="section" id="how-much">
-<h2>How Much?!<a class="headerlink" href="#how-much" title="Permalink to this headline">¶</a></h2>
+<h3>How Much?!<a class="headerlink" href="#how-much" title="Permalink to this headline">¶</a></h3>
 <p>What sort of money has been identified in the stories?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1112,7 +1129,7 @@ Name: entity_value, dtype: int64
 <p>Various currency conversion package also exist, which means we could start to imagine searching across currencies, <em>if</em> we can identify appropriate currency conversion rates. For example, <em>“give me all stories mentioning an amount of at least 1000 gold coins, <strong>or equivalent</strong>”</em>.</p>
 </div>
 <div class="section" id="how-far-have-we-still-to-go">
-<h2>How Far Have We Still To Go?<a class="headerlink" href="#how-far-have-we-still-to-go" title="Permalink to this headline">¶</a></h2>
+<h3>How Far Have We Still To Go?<a class="headerlink" href="#how-far-have-we-still-to-go" title="Permalink to this headline">¶</a></h3>
 <p>As with as monetary amounts, did our classifier genie spot any other quantities in the texts?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1169,7 +1186,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="how-many-did-you-say">
-<h2>How Many Did You Say?<a class="headerlink" href="#how-many-did-you-say" title="Permalink to this headline">¶</a></h2>
+<h3>How Many Did You Say?<a class="headerlink" href="#how-many-did-you-say" title="Permalink to this headline">¶</a></h3>
 <p>We can also identify cardinal values, which is to say, numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1227,7 +1244,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="who-s-there">
-<h2>Who’s There?<a class="headerlink" href="#who-s-there" title="Permalink to this headline">¶</a></h2>
+<h3>Who’s There?<a class="headerlink" href="#who-s-there" title="Permalink to this headline">¶</a></h3>
 <p>As well as quantities, what people or sorts of people have been identified?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1277,7 +1294,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="when-s-there">
-<h2>When’s There?<a class="headerlink" href="#when-s-there" title="Permalink to this headline">¶</a></h2>
+<h3>When’s There?<a class="headerlink" href="#when-s-there" title="Permalink to this headline">¶</a></h3>
 <p>When did things happen?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1326,7 +1343,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="organisationally-speaking">
-<h2>Organisationally Speaking…<a class="headerlink" href="#organisationally-speaking" title="Permalink to this headline">¶</a></h2>
+<h3>Organisationally Speaking…<a class="headerlink" href="#organisationally-speaking" title="Permalink to this headline">¶</a></h3>
 <p>Were organisations or organisational types recognised?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1370,6 +1387,7 @@ Spanish        7
 Chinese        6
 Name: entity_value, dtype: int64
 </pre></div>
+</div>
 </div>
 </div>
 </div>

@@ -51,12 +51,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tale Types Scraper" href="Missouri_Tale_Types.html" />
-    <link rel="prev" title="Multilingual Folk Tale Database (MFTD)" href="MFTD-Multilingual_Folk_Tale_Database.html" />
+    <link rel="prev" title="Creating a 19th c. Notes &amp; Queries Index Database" href="Notes_and_Queries_DB_PART_4.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -156,6 +154,36 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
    Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
   </a>
  </li>
 </ul>
@@ -589,11 +617,11 @@ END;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Princess In The Chest
-The Girl Who Pretended To Be A Boy
-The Enchanted Head
-The Story Of The Seven Simons
-Fairy Gifts
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Unlooked-For Prince
+Kupti And Imani
+The Four Gifts
+The Groac&#39;H Of The Isle Of Lok
+The Ratcatcher
 </pre></div>
 </div>
 </div>
@@ -783,17 +811,16 @@ Fairy Gifts
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Hansel And Grettel&#39;, 0.800534725189209),
- (&#39;The Yellow Fairy Book::The Witch&#39;, 0.6330927610397339),
- (&#39;The Red Fairy Book::Brother And Sister&#39;, 0.5269677639007568),
- (&#39;The Yellow Fairy Book::The Nixy&#39;, 0.49985405802726746),
- (&#39;The Red Fairy Book::Mother Holle&#39;, 0.4991131126880646),
- (&#39;The Yellow Fairy Book::The White Duck&#39;, 0.494681179523468),
- (&#39;The Red Fairy Book::The Twelve Brothers&#39;, 0.4721028208732605),
- (&#39;The Yellow Fairy Book::The Boy And The Wolves, Or The Broken Promise&#39;,
-  0.4632461369037628),
- (&#39;The Yellow Fairy Book::The Dead Wife&#39;, 0.4586355686187744),
- (&#39;The Pink Fairy Book::The House In The Wood&#39;, 0.4530189037322998)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Hansel And Grettel&#39;, 0.7961461544036865),
+ (&#39;The Yellow Fairy Book::The Witch&#39;, 0.6063660383224487),
+ (&#39;The Red Fairy Book::The Three Dwarfs&#39;, 0.559844970703125),
+ (&#39;The Red Fairy Book::Mother Holle&#39;, 0.5185045003890991),
+ (&#39;The Yellow Fairy Book::The White Duck&#39;, 0.5038011074066162),
+ (&#39;The Red Fairy Book::The Twelve Brothers&#39;, 0.48387056589126587),
+ (&#39;The Yellow Fairy Book::The Nixy&#39;, 0.4508531987667084),
+ (&#39;The Orange Fairy Book::The Two Caskets&#39;, 0.4431432783603668),
+ (&#39;The Pink Fairy Book::The House In The Wood&#39;, 0.44245651364326477),
+ (&#39;The Blue Fairy Book::Snow-White And Rose-Red&#39;, 0.4365008771419525)]
 </pre></div>
 </div>
 </div>
@@ -817,17 +844,17 @@ Fairy Gifts
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;The Blue Fairy Book::Cinderella, Or The Little Glass Slipper&#39;,
-  0.5124593377113342),
- (&#39;The Yellow Fairy Book::How To Tell A True Princess&#39;, 0.4451325833797455),
- (&#39;The Pink Fairy Book::Peter Bull&#39;, 0.43727990984916687),
- (&#39;The Green Fairy Book::Spindle, Shuttle, And Needle&#39;, 0.43580400943756104),
- (&#39;The Blue Fairy Book::Rumpelstiltzkin&#39;, 0.4314611256122589),
- (&#39;The Violet Fairy Book::The Maiden With The Wooden Helmet&#39;,
-  0.42764878273010254),
- (&#39;The Orange Fairy Book::The White Slipper&#39;, 0.42290282249450684),
- (&#39;The Red Fairy Book::Soria Moria Castle&#39;, 0.4187081456184387),
- (&#39;The Yellow Fairy Book::The Swineherd&#39;, 0.41834720969200134),
- (&#39;The Pink Fairy Book::The Merry Wives&#39;, 0.407776415348053)]
+  0.5173451900482178),
+ (&#39;The Green Fairy Book::Spindle, Shuttle, And Needle&#39;, 0.4916827380657196),
+ (&#39;The Pink Fairy Book::Peter Bull&#39;, 0.4613841474056244),
+ (&#39;The Green Fairy Book::The Dirty Shepherdess&#39;, 0.45047491788864136),
+ (&#39;The Lilac Fairy Book::The Hoodie-Crow.&#39;, 0.44015979766845703),
+ (&#39;The Violet Fairy Book::The Child Who Came From An Egg&#39;,
+  0.43603673577308655),
+ (&#39;The Orange Fairy Book::The Two Caskets&#39;, 0.42958685755729675),
+ (&#39;The Red Fairy Book::Kari Woodengown&#39;, 0.4291730225086212),
+ (&#39;The Olive Fairy Book::The Steel Cane&#39;, 0.4258474111557007),
+ (&#39;The Orange Fairy Book::The White Slipper&#39;, 0.4201371967792511)]
 </pre></div>
 </div>
 </div>
@@ -889,7 +916,8 @@ Fairy Gifts
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Orange Fairy Book&#39;, &#39;The White Slipper&#39;, 0.48174434900283813)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;The Blue Fairy Book&#39;, &#39;Cinderella, Or The Little Glass Slipper&#39;, 0.5239671468734741)
+(&#39;The Pink Fairy Book&#39;, &#39;Peter Bull&#39;, 0.4727884829044342)
 </pre></div>
 </div>
 </div>
@@ -985,7 +1013,7 @@ Fairy Gifts
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Cursor at 0x12d08e2d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Cursor at 0x1292fa810&gt;
 </pre></div>
 </div>
 </div>
@@ -1027,8 +1055,8 @@ Fairy Gifts
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Blue Fairy Book::The Bronze Ring The Blue Fairy Book The Bronze Ring [ 0.7989061  -1.2222406   0.4779425   2.7761877  -1.0348022  -0.2618015
- -0.64061546 -0.33284596 -2.4155512  -0.8832718 ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Blue Fairy Book::The Bronze Ring The Blue Fairy Book The Bronze Ring [ 0.56616807 -2.5802138   2.5976605   1.5524981  -0.28211096 -1.3443254
+  0.3347375  -0.09426717 -1.7258285   0.60298014]
 </pre></div>
 </div>
 </div>
@@ -1073,21 +1101,21 @@ Fairy Gifts
     <tr>
       <th>0</th>
       <td>The Blue Fairy Book::The Bronze Ring</td>
-      <td>[0.7989061, -1.2222406, 0.4779425, 2.7761877, ...</td>
+      <td>[0.56616807, -2.5802138, 2.5976605, 1.5524981,...</td>
       <td>The Blue Fairy Book</td>
       <td>The Bronze Ring</td>
     </tr>
     <tr>
       <th>1</th>
       <td>The Blue Fairy Book::Prince Hyacinth And The D...</td>
-      <td>[-0.15688154, -1.4392536, 0.7923174, -0.011578...</td>
+      <td>[-0.7000589, -0.88261044, 0.43879077, 0.536742...</td>
       <td>The Blue Fairy Book</td>
       <td>Prince Hyacinth And The Dear Little Princess</td>
     </tr>
     <tr>
       <th>2</th>
       <td>The Blue Fairy Book::East Of The Sun And West ...</td>
-      <td>[0.7284216, -0.643654, -0.43641645, 0.13540305...</td>
+      <td>[0.5863348, -2.1303906, -1.0785638, 0.744412, ...</td>
       <td>The Blue Fairy Book</td>
       <td>East Of The Sun And West Of The Moon</td>
     </tr>
@@ -1142,10 +1170,34 @@ Fairy Gifts
     <tr>
       <th>6</th>
       <td>The Blue Fairy Book::Cinderella, Or The Little...</td>
-      <td>[1.2476189, 0.24854077, 0.59708637, 3.117421, ...</td>
+      <td>[-1.3786544, -1.8230438, 0.5969568, -1.4560668...</td>
       <td>The Blue Fairy Book</td>
       <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>0.512459</td>
+      <td>0.517345</td>
+    </tr>
+    <tr>
+      <th>389</th>
+      <td>The Green Fairy Book::Spindle, Shuttle, And Ne...</td>
+      <td>[-0.12479335, -0.41848448, -0.91993994, -0.539...</td>
+      <td>The Green Fairy Book</td>
+      <td>Spindle, Shuttle, And Needle</td>
+      <td>0.491683</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>The Pink Fairy Book::Peter Bull</td>
+      <td>[-0.51788574, -0.22128965, -0.7936501, 1.01394...</td>
+      <td>The Pink Fairy Book</td>
+      <td>Peter Bull</td>
+      <td>0.461384</td>
+    </tr>
+    <tr>
+      <th>376</th>
+      <td>The Green Fairy Book::The Dirty Shepherdess</td>
+      <td>[-0.07771229, 0.035443965, -1.046181, 0.390570...</td>
+      <td>The Green Fairy Book</td>
+      <td>The Dirty Shepherdess</td>
+      <td>0.450475</td>
     </tr>
   </tbody>
 </table>
@@ -1234,19 +1286,19 @@ Fairy Gifts
       <th>0</th>
       <td>The Blue Fairy Book</td>
       <td>Cinderella, Or The Little Glass Slipper</td>
-      <td>0.502818</td>
+      <td>0.533719</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Yellow Fairy Book</td>
-      <td>How To Tell A True Princess</td>
-      <td>0.482012</td>
+      <td>The Green Fairy Book</td>
+      <td>The Dirty Shepherdess</td>
+      <td>0.486121</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Violet Fairy Book</td>
-      <td>The Maiden With The Wooden Helmet</td>
-      <td>0.471168</td>
+      <td>The Pink Fairy Book</td>
+      <td>Peter Bull</td>
+      <td>0.479932</td>
     </tr>
   </tbody>
 </table>
@@ -1300,19 +1352,19 @@ Fairy Gifts
       <th>0</th>
       <td>The Red Fairy Book</td>
       <td>The Nettle Spinner</td>
-      <td>0.635440</td>
+      <td>0.641024</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Rumpelstiltzkin</td>
-      <td>0.519806</td>
+      <td>The Violet Fairy Book</td>
+      <td>The Frog</td>
+      <td>0.497438</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Violet Fairy Book</td>
-      <td>The Frog</td>
-      <td>0.469709</td>
+      <td>The Brown Fairy Book</td>
+      <td>Which Was The Foolishest?</td>
+      <td>0.491698</td>
     </tr>
   </tbody>
 </table>
@@ -1361,63 +1413,63 @@ Fairy Gifts
   <tbody>
     <tr>
       <th>0</th>
-      <td>The Yellow Fairy Book</td>
-      <td>The Yellow Fairy Book</td>
-      <td>0.593387</td>
+      <td>The Blue Fairy Book</td>
+      <td>Little Red Riding Hood</td>
+      <td>0.631199</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>The Blue Fairy Book</td>
-      <td>Little Red Riding Hood</td>
-      <td>0.586253</td>
+      <td>The Red Fairy Book</td>
+      <td>The True History Of Little Golden Hood</td>
+      <td>0.608049</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The Red Fairy Book</td>
-      <td>The Six Sillies</td>
-      <td>0.580983</td>
+      <td>The Yellow Fairy Book</td>
+      <td>The Yellow Fairy Book</td>
+      <td>0.602557</td>
     </tr>
     <tr>
       <th>3</th>
       <td>The Red Fairy Book</td>
-      <td>The True History Of Little Golden Hood</td>
-      <td>0.558142</td>
+      <td>The Six Sillies</td>
+      <td>0.574603</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>The Blue Fairy Book</td>
-      <td>Why The Sea Is Salt</td>
-      <td>0.523205</td>
+      <td>The Pink Fairy Book</td>
+      <td>The Merry Wives</td>
+      <td>0.533333</td>
     </tr>
     <tr>
       <th>5</th>
       <td>The Pink Fairy Book</td>
       <td>Peter Bull</td>
-      <td>0.511402</td>
+      <td>0.526505</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>The Lilac Fairy Book</td>
-      <td>A Lost Paradise</td>
-      <td>0.511371</td>
+      <td>The Blue Fairy Book</td>
+      <td>Rumpelstiltzkin</td>
+      <td>0.523165</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>The Blue Fairy Book</td>
-      <td>Rumpelstiltzkin</td>
-      <td>0.505327</td>
+      <td>The Pink Fairy Book</td>
+      <td>The Shirt-Collar</td>
+      <td>0.516309</td>
     </tr>
     <tr>
       <th>8</th>
       <td>The Pink Fairy Book</td>
-      <td>The House In The Wood</td>
-      <td>0.492768</td>
+      <td>The Snow-Man</td>
+      <td>0.515909</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>The Green Fairy Book</td>
-      <td>The Dirty Shepherdess</td>
-      <td>0.491929</td>
+      <td>The Yellow Fairy Book</td>
+      <td>Blockhead-Hans</td>
+      <td>0.498769</td>
     </tr>
   </tbody>
 </table>
@@ -1457,11 +1509,11 @@ Fairy Gifts
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="MFTD-Multilingual_Folk_Tale_Database.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Notes_and_Queries_DB_PART_4.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Multilingual Folk Tale Database (MFTD)</p>
+            <p class="prev-next-title">Creating a 19th c. Notes &amp; Queries Index Database</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Missouri_Tale_Types.html" title="next page">
