@@ -156,6 +156,11 @@ const thebe_selector_output = ".output, .cell_output"
    Multilingual Folk Tale Database (MFTD)
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
+   Duncan Williamson Audio Recordings
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -653,9 +658,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>In a list comprehension, we might write:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
-    <span class="n">new_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">process</span><span class="p">(</span><span class="n">items</span><span class="p">)</span> <span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -845,7 +848,8 @@ yefb.txt.gz
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The !ls command is a Linux command to list the files in the current directory</span>
+<span class="o">!</span>ls
 </pre></div>
 </div>
 </div>
@@ -916,7 +920,7 @@ yefb.txt.gz
 <div class="section" id="extract-stories">
 <h2>Extract Stories<a class="headerlink" href="#extract-stories" title="Permalink to this headline">¶</a></h2>
 <p>Having got the contents, let’s now extract all the stories.</p>
-<p>Within each book, the stories are delimited by a pattern <code class="docutils literal notranslate"><span class="pre">[fNN]</span></code> (for digits <code class="docutils literal notranslate"><span class="pre">N</span></code>). We can use this pattern to split out the stories.</p>
+<p>Within each book, the stories are delimited by a pattern <code class="docutils literal notranslate"><span class="pre">[fNN]</span></code> (for digits <code class="docutils literal notranslate"><span class="pre">N</span></code>; which is to say, the letter <code class="docutils literal notranslate"><span class="pre">f</span></code> followed by two digits). We can use this pattern to split out the stories.</p>
 <p>To do this, we’ll use the <code class="docutils literal notranslate"><span class="pre">re</span></code> regular expression package:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -929,6 +933,7 @@ yefb.txt.gz
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the file into separate chunks delimited by the pattern: [fNN]</span>
+<span class="c1"># the \d{2} expresssion says: look a digit (exactly 2 of them next to each other)</span>
 <span class="n">stories</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;\[f\d</span><span class="si">{2}</span><span class="s2">\]&quot;</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span>
 
 <span class="c1"># Strip whitespace at start and end</span>
