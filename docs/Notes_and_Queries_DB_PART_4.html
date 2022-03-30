@@ -156,6 +156,11 @@ const thebe_selector_output = ".output, .cell_output"
    Multilingual Folk Tale Database (MFTD)
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
+   Duncan Williamson Audio Recordings
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -454,6 +459,11 @@ title="Print to PDF"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-the-index-tables-to-the-full-database">
+   Add the Index Tables to the Full Database
+  </a>
+ </li>
 </ul>
 
     </nav>
@@ -494,6 +504,11 @@ title="Print to PDF"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#add-the-index-tables-to-the-full-database">
+   Add the Index Tables to the Full Database
+  </a>
  </li>
 </ul>
 
@@ -959,30 +974,43 @@ Allusion in Friar
 <p>So let’s start by suggesting the following database record structure as something to work towards:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we want to remove the table completely, we can drop  it</span>
-<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_index_entries.py
+<span class="k">def</span> <span class="nf">create_db_table_index_entries</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an index_entries database table and an associated full-text search table.&quot;&quot;&quot;</span>
+    <span class="c1"># If we want to remove the table completely, we can drop  it</span>
+    <span class="n">table_name</span> <span class="o">=</span> <span class="s2">&quot;index_entries&quot;</span>
+    <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">ignore</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
-    <span class="s2">&quot;source_id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-    <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="s2">&quot;vol&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="s2">&quot;index_term&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-    <span class="s2">&quot;typ&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="s2">&quot;subsidiary&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="s2">&quot;page_num&quot;</span><span class="p">:</span> <span class="nb">int</span>
-<span class="p">})</span>
+    <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+        <span class="s2">&quot;source_id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;vol&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;index_term&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+        <span class="s2">&quot;typ&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;subsidiary&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;page_num&quot;</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">})</span>
 
-
-<span class="c1"># Enable full text search</span>
-<span class="c1"># This creates an extra virtual table (books_fts) to support the full text search</span>
-<span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;source_id&quot;</span><span class="p">,</span> <span class="s2">&quot;index_term&quot;</span><span class="p">,</span> <span class="s2">&quot;subsidiary&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;vol&quot;</span><span class="p">,</span> <span class="s2">&quot;page_num&quot;</span><span class="p">],</span>
-                             <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
+    <span class="c1"># Enable full text search</span>
+    <span class="c1"># This creates an extra virtual table ({table_name}_fts) to support the full text search</span>
+    <span class="n">db</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;source_id&quot;</span><span class="p">,</span> <span class="s2">&quot;index_term&quot;</span><span class="p">,</span> <span class="s2">&quot;subsidiary&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;vol&quot;</span><span class="p">,</span> <span class="s2">&quot;page_num&quot;</span><span class="p">],</span>
+                                 <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="s2">&quot;porter&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table index_entries (source_id, year, vol, index_term, typ, subsidiary, page_num)&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting ia_utils/create_db_table_index_entries.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load in the package and create the index entries database table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ia_utils.create_db_table_index_entries</span> <span class="kn">import</span> <span class="n">create_db_table_index_entries</span>
+
+<span class="n">create_db_table_index_entries</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1685,7 +1713,7 @@ Allusion in Friar
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dowload the tqdm progrss bar tools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the tqdm progress bar tools</span>
 <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
 <span class="n">db</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
@@ -1701,7 +1729,7 @@ Allusion in Friar
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ab7496a6daea495380343170b183930f", "version_major": 2, "version_minor": 0}
+{"model_id": "6e2e84776c9842b8b7b9aca4b102ed87", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>And how about a search…</p>
@@ -2272,6 +2300,33 @@ Allusion in Friar
 </table>
 </div></div></div>
 </div>
+</div>
+</div>
+<div class="section" id="add-the-index-tables-to-the-full-database">
+<h2>Add the Index Tables to the Full Database<a class="headerlink" href="#add-the-index-tables-to-the-full-database" title="Permalink to this headline">¶</a></h2>
+<p>Let’s also add the index tables to our full database.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db_name_full</span> <span class="o">=</span> <span class="s2">&quot;full_nq.db&quot;</span>
+<span class="n">db_full</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name_full</span><span class="p">)</span>
+
+<span class="n">create_db_table_index_entries</span><span class="p">(</span><span class="n">db_full</span><span class="p">)</span>
+
+<span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+<span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;index_entries_fts&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">delete_where</span><span class="p">()</span>
+
+<span class="c1"># List of indexes already loaded: indexes</span>
+
+<span class="k">for</span> <span class="n">index_record</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">indexes</span><span class="p">):</span>
+    <span class="n">index_records</span> <span class="o">=</span> <span class="n">construct_index_records</span><span class="p">(</span><span class="n">index_record</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+    <span class="n">db_full</span><span class="p">[</span><span class="s2">&quot;index_entries&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">insert_all</span><span class="p">(</span> <span class="n">index_records</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "7a7dada260b94a78acff4fb89aa165d9", "version_major": 2, "version_minor": 0}
+</script></div>
 </div>
 </div>
 </div>

@@ -156,6 +156,11 @@ const thebe_selector_output = ".output, .cell_output"
    Multilingual Folk Tale Database (MFTD)
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
+   Duncan Williamson Audio Recordings
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -711,7 +716,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ia_utils/create_db_table_issues.py
 <span class="k">def</span> <span class="nf">create_db_table_issues</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create and issues database table and an associated full-text search table.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Create an issues database table and an associated full-text search table.&quot;&quot;&quot;</span>
     <span class="n">table_name</span> <span class="o">=</span> <span class="s2">&quot;issues&quot;</span>
     <span class="c1"># If required, drop any previously defined tables of the same name</span>
     <span class="k">if</span> <span class="n">drop</span><span class="p">:</span>
@@ -1411,7 +1416,9 @@ title="Print to PDF"
         <span class="s2">&quot;page_char_start&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="s2">&quot;page_char_end&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="s2">&quot;page_leaf_num&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> 
-        <span class="s2">&quot;page_num&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="s2">&quot;page_num&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="c1"># This is to allow for things like Roman numerals</span>
+        <span class="c1"># Should we perhaps try to cast an int for the page number</span>
+        <span class="c1"># and have a page_num_str for the original ?</span>
         <span class="s2">&quot;page_num_conf&quot;</span><span class="p">:</span> <span class="nb">float</span> <span class="c1"># A confidence value relating to the page number detection</span>
     <span class="p">},</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;page_idx&quot;</span><span class="p">))</span> <span class="c1"># compound foreign keys not currently available via sqlite_utils?</span>
 </pre></div>
