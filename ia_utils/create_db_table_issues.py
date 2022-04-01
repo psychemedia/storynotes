@@ -1,5 +1,5 @@
 def create_db_table_issues(db, drop=True):
-    """Create and issues database table and an associated full-text search table."""
+    """Create an issues database table and an associated full-text search table."""
     table_name = "issues"
     # If required, drop any previously defined tables of the same name
     if drop:
