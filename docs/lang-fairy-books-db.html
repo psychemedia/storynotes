@@ -453,6 +453,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coping-with-page-numbers">
+   Coping With Page Numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pulling-the-parser-together">
    Pulling the Parser Together
   </a>
@@ -512,6 +517,11 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coping-with-page-numbers">
+   Coping With Page Numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pulling-the-parser-together">
    Pulling the Parser Together
   </a>
@@ -550,7 +560,7 @@ title="Print to PDF"
 <h1>A Full Text Searchable Database of Lang’s Fairy Books<a class="headerlink" href="#a-full-text-searchable-database-of-lang-s-fairy-books" title="Permalink to this headline">¶</a></h1>
 <p>In the late 19th and early 20th century, Andrew Lang published various collections of fairy tales, starting with <em>The Blue Fairy Book</em> and then progressing though various other colours to <em>The Olive Fairy Book</em>.</p>
 <p>This notebook represents a playful aside in trying to build various searchable contexts over the stories.</p>
-<p>The resulting search engine will support full text search over all the stories contained in all the coloured story books.</p>
+<p>The resulting search engine will support full text search over all the stories contained in all the coloured story books. This will allow us to retrieve stories based on words and phrases of the form that we might use when performing a web search.</p>
 <p>To begin with, let’s start by ingesting the stories into a database and building a full text search over them.</p>
 <div class="section" id="obtain-source-texts">
 <h2>Obtain Source Texts<a class="headerlink" href="#obtain-source-texts" title="Permalink to this headline">¶</a></h2>
@@ -774,45 +784,76 @@ Example links: [(&#39;The Blue Fairy Book&#39;, &#39;https://www.sacred-texts.co
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ashliman_folk_texts_scraper.ipynb
 DBPedia_Aarne-Thompson-Uther_Search.ipynb
+Duncan_Williamson_Tobar_Audio.ipynb
 Jacobs&#39; Fairy Tales.ipynb
 LICENSE
 Lang_Doc2Vec.ipynb
 MFTD-Multilingual_Folk_Tale_Database.ipynb
 Missouri_Tale_Types.ipynb
+Notes and Queries DB-ORIGI.ipynb
+Notes_and_Queries_DB.ipynb
+Notes_and_Queries_DB_JUNK.ipynb
+Notes_and_Queries_DB_PART_2.ipynb
+Notes_and_Queries_DB_PART_3.ipynb
+Notes_and_Queries_DB_PART_4.ipynb
+Notes_and_Queries_DB_PART_5.ipynb
 README.md
+SOSS_007913_060155.mp4
 Story db search examples.ipynb
 Thompson_Motif_Index.ipynb
 <span class=" -Color -Color-Blue">_build</span>
 _config.yml
+<span class=" -Color -Color-Blue">_content</span>
 _toc.yml
 ashliman_demo.db
+<span class=" -Color -Color-Blue">audio</span>
+betsy_whyte_audio.csv
 blfb.txt.gz
 brfb.txt.gz
 crfb.txt.gz
 demo.db
 <span class=" -Color -Color-Blue">docs</span>
+duncan_williamson_audio.csv
+full_nq.db
+full_nqXX.db
+full_nq_backup.db
 gnfb.txt.gz
 gyfb.txt.gz
+how-to-read-this-book.ipynb
+<span class=" -Color -Color-Blue">ia-downloads</span>
+ia_iw_books_metadata.csv
+<span class=" -Color -Color-Blue">ia_utils</span>
 <span class=" -Color -Color-Blue">images</span>
+isle_wight_historical_books_db.ipynb
 lang-fairy-books-db.ipynb
-lang-fairy-books-db_PART 1.ipynb
-lang-fairy-books-db_PART 2.ipynb
-lang-fairy-books-db_PART 3.ipynb
-lang-fairy-books-db_PART 4.ipynb
+lang-fairy-books-db_PART_2.ipynb
+lang-fairy-books-db_PART_3.ipynb
+lang-fairy-books-db_PART_4.ipynb
 lang_fairy_tale.db
 lang_model.gensim
 lifb.txt.gz
 motifs_demo.db
 mtdf_demo.db
+nandq_internet_archive.txt
+notes_and_queries_big_index.pdf
+nq_demo.db
+nq_demoXX.db
+<span class=" -Color -Color-Blue">old</span>
 olfb.txt.gz
 orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
+requirements.txt
+running-the-book-code.ipynb
 tale_types_demo.db
+test-page.pdf
 thompson_motif_index.csv
+tobar_cache.sqlite
 vifb.txt.gz
 web_cache.sqlite
+whyte_audio.md
+williamson_audio.md
 yefb.txt.gz
 </pre></div>
 </div>
@@ -856,45 +897,76 @@ yefb.txt.gz
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ashliman_folk_texts_scraper.ipynb
 DBPedia_Aarne-Thompson-Uther_Search.ipynb
+Duncan_Williamson_Tobar_Audio.ipynb
 Jacobs&#39; Fairy Tales.ipynb
 LICENSE
 Lang_Doc2Vec.ipynb
 MFTD-Multilingual_Folk_Tale_Database.ipynb
 Missouri_Tale_Types.ipynb
+Notes and Queries DB-ORIGI.ipynb
+Notes_and_Queries_DB.ipynb
+Notes_and_Queries_DB_JUNK.ipynb
+Notes_and_Queries_DB_PART_2.ipynb
+Notes_and_Queries_DB_PART_3.ipynb
+Notes_and_Queries_DB_PART_4.ipynb
+Notes_and_Queries_DB_PART_5.ipynb
 README.md
+SOSS_007913_060155.mp4
 Story db search examples.ipynb
 Thompson_Motif_Index.ipynb
 <span class=" -Color -Color-Blue">_build</span>
 _config.yml
+<span class=" -Color -Color-Blue">_content</span>
 _toc.yml
 ashliman_demo.db
+<span class=" -Color -Color-Blue">audio</span>
+betsy_whyte_audio.csv
 blfb.txt.gz
 brfb.txt.gz
 crfb.txt.gz
 demo.db
 <span class=" -Color -Color-Blue">docs</span>
+duncan_williamson_audio.csv
+full_nq.db
+full_nqXX.db
+full_nq_backup.db
 gnfb.txt.gz
 gyfb.txt.gz
+how-to-read-this-book.ipynb
+<span class=" -Color -Color-Blue">ia-downloads</span>
+ia_iw_books_metadata.csv
+<span class=" -Color -Color-Blue">ia_utils</span>
 <span class=" -Color -Color-Blue">images</span>
+isle_wight_historical_books_db.ipynb
 lang-fairy-books-db.ipynb
-lang-fairy-books-db_PART 1.ipynb
-lang-fairy-books-db_PART 2.ipynb
-lang-fairy-books-db_PART 3.ipynb
-lang-fairy-books-db_PART 4.ipynb
+lang-fairy-books-db_PART_2.ipynb
+lang-fairy-books-db_PART_3.ipynb
+lang-fairy-books-db_PART_4.ipynb
 lang_fairy_tale.db
 lang_model.gensim
 lifb.txt.gz
 motifs_demo.db
 mtdf_demo.db
+nandq_internet_archive.txt
+notes_and_queries_big_index.pdf
+nq_demo.db
+nq_demoXX.db
+<span class=" -Color -Color-Blue">old</span>
 olfb.txt.gz
 orfb.txt.gz
 pifb.txt.gz
 preface.md
 refb.txt.gz
+requirements.txt
+running-the-book-code.ipynb
 tale_types_demo.db
+test-page.pdf
 thompson_motif_index.csv
+tobar_cache.sqlite
 vifb.txt.gz
 web_cache.sqlite
+whyte_audio.md
+williamson_audio.md
 yefb.txt.gz
 </pre></div>
 </div>
@@ -1030,14 +1102,21 @@ yefb.txt.gz
 </div>
 </div>
 </div>
-<p>We note that <code class="docutils literal notranslate"><span class="pre">contents_</span></code> conains a string with repeated end of line elements (<code class="docutils literal notranslate"><span class="pre">\n\n</span></code>) separating the titles in the form <code class="docutils literal notranslate"><span class="pre">[*STORY</span> <span class="pre">TITLE]</span></code> (for example, <code class="docutils literal notranslate"><span class="pre">[*LITTLE</span> <span class="pre">RED</span> <span class="pre">RIDING-HOOD]</span></code>).</p>
+<p>We note that <code class="docutils literal notranslate"><span class="pre">contents_</span></code> contains a string with repeated end of line elements (<code class="docutils literal notranslate"><span class="pre">\n\n</span></code>) separating the titles in the form <code class="docutils literal notranslate"><span class="pre">[*STORY</span> <span class="pre">TITLE]</span></code> (for example, <code class="docutils literal notranslate"><span class="pre">[*LITTLE</span> <span class="pre">RED</span> <span class="pre">RIDING-HOOD]</span></code>).</p>
 <p>We can parse out titles from the contents list based on the pattern delimiter <code class="docutils literal notranslate"><span class="pre">[*EXTRACT</span> <span class="pre">THIS</span> <span class="pre">PATTERN]</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Match against [* and ] and extract everything in between</span>
 <span class="n">contents</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;[*</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">contents_</span><span class="p">)</span>
-
-<span class="c1"># The title text available as item.fixed[0]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The object that is returned is an iterator over all the things that the pattern matcher found that match the <code class="docutils literal notranslate"><span class="pre">[*SOMETHING]</span></code> patter, which is to say, a set of titles in block capitals.</p>
+<p>We can iterate over these items, extracting the block capital titles and then casting them to a more readable title case format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The title text available as item.fixed[0]</span>
 <span class="c1"># Also convert the title to title case</span>
 <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">fixed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">]</span>
 <span class="n">titles</span>
@@ -1086,7 +1165,10 @@ yefb.txt.gz
 </div>
 </div>
 </div>
-<p>## Coping With Page Numbers</p>
+<p>This trick provides us with an easy way of identifying all the stories we have maaged to identify in, and extract from, the book.</p>
+</div>
+<div class="section" id="coping-with-page-numbers">
+<h2>Coping With Page Numbers<a class="headerlink" href="#coping-with-page-numbers" title="Permalink to this headline">¶</a></h2>
 <p>There seems to be work in progress adding page numbers to books using a pattern of the form <code class="docutils literal notranslate"><span class="pre">[p.</span> <span class="pre">ix]</span></code>, <code class="docutils literal notranslate"><span class="pre">[p.</span> <span class="pre">1]</span></code>, <code class="docutils literal notranslate"><span class="pre">[p.</span> <span class="pre">11]</span></code> and so on.</p>
 <p>For now, let’s create a regular expression substitution to remove those…</p>
 <div class="cell docutils container">
@@ -1845,7 +1927,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Connection at 0x116bc0d50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sqlite3.Connection at 0x11d6da5d0&gt;
 </pre></div>
 </div>
 </div>

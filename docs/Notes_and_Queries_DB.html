@@ -774,7 +774,7 @@ Scandata
 
     <span class="c1">#item = get_item(i.identifier)</span>
     <span class="n">identifier</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;identifier&#39;</span><span class="p">]</span>
-    <span class="n">date</span> <span class="o">=</span>  <span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span>
+    <span class="n">date</span> <span class="o">=</span>  <span class="n">_get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">)</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">_get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">)</span>
     <span class="n">volume</span> <span class="o">=</span><span class="n">_get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="s1">&#39;volume&#39;</span><span class="p">)</span>
     <span class="n">issue</span> <span class="o">=</span> <span class="n">_get</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">,</span> <span class="s1">&#39;issue&#39;</span><span class="p">)</span>
