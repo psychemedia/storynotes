@@ -553,6 +553,9 @@ title="Print to PDF"
 </div>
 <p>As well as “pure text”, the document includes <em>programming code</em>. DO NOT BE AFRAID…</p>
 <p>As you may well be versed in story traditions, think of programming code as a set of magical incantations that can be used to command a genie, demon, spirit or fairy godmother (the computer) to perform some sort of task on your behalf.</p>
+<p>The following element is a <em>code cell</em> (code spell..). When the code cell is “run” (when the code spell is cast, or the code wish made in the cell is granted) the instructions represented by any code contained within in will be followed by the computer.</p>
+<p>If the instructions create something useful, it can be provided as an offering back to us and  displayed as an “output” of the code cell directly below that code cell.</p>
+<p>We can also get the code to talk back to us, recalling the days before computers had screens and only had access to a line printer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Areas like this contain programming code</span>
@@ -587,7 +590,7 @@ title="Print to PDF"
 </div>
 </div>
 <p><em>Did you see what just happened?</em></p>
-<p>When you ask it, the computer <em>will</em> do what you told it. But be careful how you present your spell, because if you don’t phrase your instructions in <em>exactly</em> the right, that’s exatly what the computer will do…</p>
+<p>When you ask it, the computer <em>will</em> do what you told it. But be careful how you present your request, because if you don’t phrase your instructions in <em>exactly</em> the right way, any wrongness will be exactly what the computer will do…</p>
 <p>In many stories, the words used to represent a spell may look like a made up nonsense that make no sense to you, the teller, let alone the audience. It can be the same with programming code. If the code in this book makes no sense to you, the reader of this text, don’t worry. You should still come away with a sense of the sorts of things we can ask a computer to do, as well the sorts of things it will do in response to our commands.</p>
 <p>But just as a wish may have unforeseen consequences if you don’t phrase it <em>exactly</em> right, so too might code take you to places you hadn’t intended to go if you are careless with it.</p>
 <p>Even amidst the mumbo jumbo gobbledeygook of a made up spell, a listener may spot certain recognisable elements in a charm, such as the name of the person who will fall in love with a supplicant who has gone to ask the cunning woman who lives at the edge of the forest for help. It’s the same with code: amidst the cryptic commands, you will often be able to recognise certain words or elements in there, and from that make some sort of sense about what is being manipulated, and possibly how. The address of a web page, for example, which is to say, a “URL”. Or a search term that forms part of a query: <em>“wazza wayza oono wayza ‘the golden palace’”</em>.</p>
@@ -612,7 +615,7 @@ title="Print to PDF"
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><em>In a far off land, was a king, an evil king…</em></p>
-<p>As storyteller, we use such constructions to invoke a character that we can use in the rest of the story. We can be reasonably confident that we don’t need to go into a lot of detail, nor a long and complicated back story, to make sure that the audience knows what sort of character the king is.</p>
+<p>As storytellers, we use such constructions to invoke a character that we can use in the rest of the story. We can be reasonably confident that we don’t need to go into a lot of detail, nor a long and complicated back story, to make sure that the audience knows what sort of character the king is.</p>
 <p>They just know. Through the work of other stories and storytellers, and other tales told many times before. And we can tap directly into that knowledge and just get on with the story.</p>
 </div>
 <p>It’s the same with code:</p>
@@ -627,19 +630,18 @@ title="Print to PDF"
 </div>
 <p>Having invoked the character, we can get it do something:</p>
 <p><em>Every so often, the vizier would pass the evil king a note that caused the king to behave in a particular way.</em></p>
-<p>As with code:</p>
+<p>You can also make notes in code, and put them onto pieces of paper we can both pass around and refer to by name:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s put the message onto a piece of paper</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s make a note of the URL of a particular video on YouTube</span>
+<span class="c1"># and associate it with something we can refer to by name</span>
 <span class="n">video_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.youtube.com/watch?v=KdnGPQaICjk&quot;</span>
-<span class="c1"># You might perhaps have even recognised a part of the</span>
-<span class="c1"># previous line of the incantation as giving</span>
-<span class="c1"># the web address of a YouTube page</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">video_url</span></code> is a label by which we can refer to the web address of a particular YouTube video. The <code class="docutils literal notranslate"><span class="pre">YouTubeVideo</span></code> we “imported”, which is to say, brought into the story, takes the unique identifier (or “ID code”) of a Youtube video  — in the above case, <code class="docutils literal notranslate"><span class="pre">KdnGPQaICjk</span></code> — and then returns an embeddable video player that will play that video into the page.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">video_url</span></code> is a label by which we can refer to the web address of a particular YouTube video.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">YouTubeVideo</span></code> thing we previously “imported”, which is to say, brought into the story, takes the unique identifier (or “ID code”) of a Youtube video. In the above case, that would be the value <code class="docutils literal notranslate"><span class="pre">KdnGPQaICjk</span></code>. The <code class="docutils literal notranslate"><span class="pre">YouTubeVideo</span></code> command then returns a video player that will play that particular video and returns it as a thing than can be embedded as an “output” of the code cell.</p>
 <p>To get the ID code, we want the part of the web address that relates to the ID code, which is to sat, the part after the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign. To get it, we can “split” the URL on the <code class="docutils literal notranslate"><span class="pre">=</span></code> character into two pieces: the first piece is the text before the <code class="docutils literal notranslate"><span class="pre">=</span></code>, and the second piece, which is also the <em>last</em> piece, is the text after the <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
