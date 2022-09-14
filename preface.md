@@ -18,3 +18,5 @@ And you'll perhaps also come to realise that if you think of code as magic, it a
 
 Tony Hirst
 *Isle of Wight, March 2022+*
+
+[__Please support this and other related Storynotes initiatives via Patreon.__](https://www.patreon.com/bePatron?u=3266916)

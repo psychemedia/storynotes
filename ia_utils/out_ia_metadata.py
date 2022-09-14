@@ -9,7 +9,7 @@ def out_ia_metadata(item):
 
     #item = get_item(i.identifier)
     identifier = item.metadata['identifier']
-    date =  item.metadata['date']
+    date =  _get(item.metadata, 'date')
     title = _get(item.metadata, 'title')
     volume =_get(item.metadata, 'volume')
     issue = _get(item.metadata, 'issue')
