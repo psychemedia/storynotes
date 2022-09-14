@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creating a 19th c. Notes &amp; Queries Index Database &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -521,7 +530,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="creating-a-19th-c-notes-queries-index-database">
-<h1>Creating a 19th c. Notes &amp; Queries Index Database<a class="headerlink" href="#creating-a-19th-c-notes-queries-index-database" title="Permalink to this headline">¶</a></h1>
+<h1>Creating a 19th c. Notes &amp; Queries Index Database<a class="headerlink" href="#creating-a-19th-c-notes-queries-index-database" title="Permalink to this headline">#</a></h1>
 <p>Although putting textual content into a database allows us to create full text search tools over that content, a lot of work and effort went into creating the original indexes. So can we scrape the text data from the indexes and generate add the index data to a database <code class="docutils literal notranslate"><span class="pre">original_index</span></code> table to create a comprehensive searchable index?</p>
 <p>To start with, what columns might such a table need? Let’s review an example index issue of <em>Notes &amp; Queries</em>. We can get the ID for such a page by querying the metadata database table:</p>
 <div class="cell docutils container">
@@ -564,7 +573,7 @@ title="Print to PDF"
 </div>
 <p><em>Really we should ensure we have downloaded a copy of that index document, although as we assume here, it should be in the download cache already from when we created the monolithic index PDF.</em></p>
 <div class="section" id="cleaning-the-text">
-<h2>Cleaning the Text<a class="headerlink" href="#cleaning-the-text" title="Permalink to this headline">¶</a></h2>
+<h2>Cleaning the Text<a class="headerlink" href="#cleaning-the-text" title="Permalink to this headline">#</a></h2>
 <p>If we preview the PDF of an index issue, we see it has a regular two column structure. We can also see structure in the way that the index terms, and the subsidiary index terms, are organised:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -576,15 +585,15 @@ title="Print to PDF"
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<iframe
-    width="600"
-    height="500"
-    src="ia-downloads/sim_notes-and-queries_1849-1850_1_index/sim_notes-and-queries_1849-1850_1_index.pdf"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="600"
+            height="500"
+            src="ia-downloads/sim_notes-and-queries_1849-1850_1_index/sim_notes-and-queries_1849-1850_1_index.pdf"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
 <p>Let’s also have a look at some of the raw search text for an index issue:</p>
 <div class="cell docutils container">
@@ -736,7 +745,7 @@ Allusion in Friar
 <p>Rather than consider the XML and all the additional processing that incurs, let’s try to “repair” the document as best we can. Another thing we <em>could</em> try to exploit is the alphabetical order of entries, but let’s leave that as an open question and only return to it if we find issues occurring that alphabetisation might help us address.</p>
 <p>So let’s start by repairing the text and normalising the lines before considering how to parse the entries.</p>
 <div class="section" id="reinserting-line-breaks">
-<h3>Reinserting Line Breaks<a class="headerlink" href="#reinserting-line-breaks" title="Permalink to this headline">¶</a></h3>
+<h3>Reinserting Line Breaks<a class="headerlink" href="#reinserting-line-breaks" title="Permalink to this headline">#</a></h3>
 <p>If we can identify where line breaks are likely to be missing, we should be able to reinsert them.</p>
 <p>By inspection of the raw search text, it seems that we have a page number (digits), space character, and then typically the next entry start by a capital letter (subsidiary lines seem to start with a lower case character). We can perform a regular expression substitution to match this pattern and replace the space after the final page number with an end-of-line character.</p>
 <p>Some lines also start with opening quotes of various flavours (<code class="docutils literal notranslate"><span class="pre">‘</span></code> or <code class="docutils literal notranslate"><span class="pre">“</span></code> for example), or incorrectly recognised quotes rendered as a <code class="docutils literal notranslate"><span class="pre">*</span></code> character. We can also insert line breaks in advance of these:</p>
@@ -811,7 +820,7 @@ Allusion in Friar
 </div>
 </div>
 <div class="section" id="removing-unwanted-line-breaks">
-<h3>Removing Unwanted Line Breaks<a class="headerlink" href="#removing-unwanted-line-breaks" title="Permalink to this headline">¶</a></h3>
+<h3>Removing Unwanted Line Breaks<a class="headerlink" href="#removing-unwanted-line-breaks" title="Permalink to this headline">#</a></h3>
 <p>If what appear to be page numbers appear on the their own line, they should presumably appear as page numbers for the previous reference.</p>
 <p>In other cases, a subsidiary reference might incorrectly be place on one line, or a line might end on a comma. In such cases, we might assume the associated line breaks to be unwanted.</p>
 <p>So let’s replace the line breaks in those locations with spaces, and then also replace any double spaces we might have introduced (or that were present withing the original scanned text) with a single space:</p>
@@ -892,7 +901,7 @@ Allusion in Friar
 <p>But at least we have something to work with.</p>
 </div>
 <div class="section" id="parsing-entries-and-adding-them-to-a-database">
-<h3>Parsing Entries and Adding Them to a Database<a class="headerlink" href="#parsing-entries-and-adding-them-to-a-database" title="Permalink to this headline">¶</a></h3>
+<h3>Parsing Entries and Adding Them to a Database<a class="headerlink" href="#parsing-entries-and-adding-them-to-a-database" title="Permalink to this headline">#</a></h3>
 <p>Let’s now consider how we might structure our database entries.</p>
 <p>First, we have simple “primary” entries, such as <em>Agincourt, Sir Hilary charged at, 158. 190.</em></p>
 <p>We might put this into a record of the form:</p>
@@ -1728,9 +1737,7 @@ Allusion in Friar
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "6e2e84776c9842b8b7b9aca4b102ed87", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6e2e84776c9842b8b7b9aca4b102ed87", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>And how about a search…</p>
 <div class="cell docutils container">
@@ -2303,7 +2310,7 @@ Allusion in Friar
 </div>
 </div>
 <div class="section" id="add-the-index-tables-to-the-full-database">
-<h2>Add the Index Tables to the Full Database<a class="headerlink" href="#add-the-index-tables-to-the-full-database" title="Permalink to this headline">¶</a></h2>
+<h2>Add the Index Tables to the Full Database<a class="headerlink" href="#add-the-index-tables-to-the-full-database" title="Permalink to this headline">#</a></h2>
 <p>Let’s also add the index tables to our full database.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2324,9 +2331,7 @@ Allusion in Friar
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7a7dada260b94a78acff4fb89aa165d9", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7a7dada260b94a78acff4fb89aa165d9", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </div>
 </div>
@@ -2392,8 +2397,9 @@ Allusion in Friar
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

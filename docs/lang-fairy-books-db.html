@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Full Text Searchable Database of Lang’s Fairy Books &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -557,13 +566,13 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="a-full-text-searchable-database-of-lang-s-fairy-books">
-<h1>A Full Text Searchable Database of Lang’s Fairy Books<a class="headerlink" href="#a-full-text-searchable-database-of-lang-s-fairy-books" title="Permalink to this headline">¶</a></h1>
+<h1>A Full Text Searchable Database of Lang’s Fairy Books<a class="headerlink" href="#a-full-text-searchable-database-of-lang-s-fairy-books" title="Permalink to this headline">#</a></h1>
 <p>In the late 19th and early 20th century, Andrew Lang published various collections of fairy tales, starting with <em>The Blue Fairy Book</em> and then progressing though various other colours to <em>The Olive Fairy Book</em>.</p>
 <p>This notebook represents a playful aside in trying to build various searchable contexts over the stories.</p>
 <p>The resulting search engine will support full text search over all the stories contained in all the coloured story books. This will allow us to retrieve stories based on words and phrases of the form that we might use when performing a web search.</p>
 <p>To begin with, let’s start by ingesting the stories into a database and building a full text search over them.</p>
 <div class="section" id="obtain-source-texts">
-<h2>Obtain Source Texts<a class="headerlink" href="#obtain-source-texts" title="Permalink to this headline">¶</a></h2>
+<h2>Obtain Source Texts<a class="headerlink" href="#obtain-source-texts" title="Permalink to this headline">#</a></h2>
 <p>We can download the raw text for each of Lang’s coloured Fairy Books from the Sacred Texts website. The books are listed on a single index page:</p>
 <p><img alt="" src="_images/Sacred-Texts__Lang_Fairy_Books.png" /></p>
 <p>Let’s start by importing some packages that can help us download pages from the Sacred Texts website in an efficient and straightforward way:</p>
@@ -990,7 +999,7 @@ yefb.txt.gz
 </div>
 </div>
 <div class="section" id="extract-stories">
-<h2>Extract Stories<a class="headerlink" href="#extract-stories" title="Permalink to this headline">¶</a></h2>
+<h2>Extract Stories<a class="headerlink" href="#extract-stories" title="Permalink to this headline">#</a></h2>
 <p>Having got the contents, let’s now extract all the stories.</p>
 <p>Within each book, the stories are delimited by a pattern <code class="docutils literal notranslate"><span class="pre">[fNN]</span></code> (for digits <code class="docutils literal notranslate"><span class="pre">N</span></code>; which is to say, the letter <code class="docutils literal notranslate"><span class="pre">f</span></code> followed by two digits). We can use this pattern to split out the stories.</p>
 <p>To do this, we’ll use the <code class="docutils literal notranslate"><span class="pre">re</span></code> regular expression package:</p>
@@ -1016,7 +1025,7 @@ yefb.txt.gz
 </div>
 </div>
 <div class="section" id="extract-the-contents">
-<h2>Extract the contents<a class="headerlink" href="#extract-the-contents" title="Permalink to this headline">¶</a></h2>
+<h2>Extract the contents<a class="headerlink" href="#extract-the-contents" title="Permalink to this headline">#</a></h2>
 <p>The contents appear in the first “story chunk” (index <code class="docutils literal notranslate"><span class="pre">0</span></code>) in the text:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1168,7 +1177,7 @@ yefb.txt.gz
 <p>This trick provides us with an easy way of identifying all the stories we have maaged to identify in, and extract from, the book.</p>
 </div>
 <div class="section" id="coping-with-page-numbers">
-<h2>Coping With Page Numbers<a class="headerlink" href="#coping-with-page-numbers" title="Permalink to this headline">¶</a></h2>
+<h2>Coping With Page Numbers<a class="headerlink" href="#coping-with-page-numbers" title="Permalink to this headline">#</a></h2>
 <p>There seems to be work in progress adding page numbers to books using a pattern of the form <code class="docutils literal notranslate"><span class="pre">[p.</span> <span class="pre">ix]</span></code>, <code class="docutils literal notranslate"><span class="pre">[p.</span> <span class="pre">1]</span></code>, <code class="docutils literal notranslate"><span class="pre">[p.</span> <span class="pre">11]</span></code> and so on.</p>
 <p>For now, let’s create a regular expression substitution to remove those…</p>
 <div class="cell docutils container">
@@ -1206,7 +1215,7 @@ yefb.txt.gz
 </div>
 </div>
 <div class="section" id="pulling-the-parser-together">
-<h2>Pulling the Parser Together<a class="headerlink" href="#pulling-the-parser-together" title="Permalink to this headline">¶</a></h2>
+<h2>Pulling the Parser Together<a class="headerlink" href="#pulling-the-parser-together" title="Permalink to this headline">#</a></h2>
 <p>Let’s create a function to parse the book for us by pulling together all the previous fragments:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1243,7 +1252,7 @@ yefb.txt.gz
 </div>
 </div>
 <div class="section" id="create-simple-database-structure">
-<h2>Create Simple Database Structure<a class="headerlink" href="#create-simple-database-structure" title="Permalink to this headline">¶</a></h2>
+<h2>Create Simple Database Structure<a class="headerlink" href="#create-simple-database-structure" title="Permalink to this headline">#</a></h2>
 <p>Let’s create a simple database structure and configure it for full text search.</p>
 <p>We’ll use SQLite3 for the database. One of the easiest ways of working with SQLite3 databases is via the <a class="reference external" href="https://sqlite-utils.datasette.io/en/stable/"><code class="docutils literal notranslate"><span class="pre">sqlite_utils</span></code></a> package.</p>
 <div class="cell docutils container">
@@ -1305,7 +1314,7 @@ yefb.txt.gz
 </div>
 </div>
 <div class="section" id="build-database">
-<h2>Build Database<a class="headerlink" href="#build-database" title="Permalink to this headline">¶</a></h2>
+<h2>Build Database<a class="headerlink" href="#build-database" title="Permalink to this headline">#</a></h2>
 <p>Let’s now create a function that can populate our database based on the contents of one of the books:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1910,7 +1919,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 <p>There is possibly some more work we can do to improve things further, but we will leave this topic for now: we have something that partially works at least, and as we use the database, we may come across further tricks or observations that might help us extract higher quality or additional provenance data.</p>
 </div>
 <div class="section" id="returning-database-query-responses-as-a-table">
-<h2>Returning Database Query Responses as a Table<a class="headerlink" href="#returning-database-query-responses-as-a-table" title="Permalink to this headline">¶</a></h2>
+<h2>Returning Database Query Responses as a Table<a class="headerlink" href="#returning-database-query-responses-as-a-table" title="Permalink to this headline">#</a></h2>
 <p>The pandas package is a powerful package for working with tabular data. We can use the <em>pandas</em> <code class="docutils literal notranslate"><span class="pre">read_sql()</span></code> function to run queries against a database and return the result in a <em>padas</em> dataframe.</p>
 <p>Before making a query, we need to set up a connection to the database. The <code class="docutils literal notranslate"><span class="pre">read_sql()</span></code> function can then use this conection to make the query.</p>
 <p>One of the easiest ways to set up a database connection is using the <code class="docutils literal notranslate"><span class="pre">sqlite_utils</span></code> package:</p>
@@ -2046,7 +2055,7 @@ Asbjornsen and Moe. :: [1] Asbjornsen and Moe.
 </div>
 </div>
 <div class="section" id="using-magic-to-make-database-queries">
-<h2>Using Magic to Make Database Queries<a class="headerlink" href="#using-magic-to-make-database-queries" title="Permalink to this headline">¶</a></h2>
+<h2>Using Magic to Make Database Queries<a class="headerlink" href="#using-magic-to-make-database-queries" title="Permalink to this headline">#</a></h2>
 <p>It’s not just fairy tales that support the use of magic: Jupyter notebooks do to. A spacial class of commands, prefixed by a <code class="docutils literal notranslate"><span class="pre">%</span></code> (single line command) or <code class="docutils literal notranslate"><span class="pre">%%</span></code> (a block command) known as <em>IPython magics</em> perform easily scripted “power” commands, or modify code cell behaviour and turn them to our will…</p>
 <p>For example, load in Catherine Devlin’s <a class="reference external" href="https://github.com/catherinedevlin/ipython-sql"><code class="docutils literal notranslate"><span class="pre">catherinedevlin/ipython-sql</span></code></a> magics:</p>
 <div class="cell docutils container">
@@ -2345,8 +2354,9 @@ Done.
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

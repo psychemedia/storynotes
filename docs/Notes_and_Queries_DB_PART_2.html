@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generating a Full Text Searchable Database for Notes &amp; Queries &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -559,7 +568,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="generating-a-full-text-searchable-database-for-notes-queries">
-<h1>Generating a Full Text Searchable Database for <em>Notes &amp; Queries</em><a class="headerlink" href="#generating-a-full-text-searchable-database-for-notes-queries" title="Permalink to this headline">¶</a></h1>
+<h1>Generating a Full Text Searchable Database for <em>Notes &amp; Queries</em><a class="headerlink" href="#generating-a-full-text-searchable-database-for-notes-queries" title="Permalink to this headline">#</a></h1>
 <p>Whilst the PDF documents corresponding to each issue of <em>Notes and Queries</em> are quite large files, the searchable, OCR retrieved text documents are much smaller and can be easily added to a full-text searchable database.</p>
 <p>We can create a simple, file based SQLite database that will provide a full-text search facility over each issue of <em>Notes &amp; Queries</em>.</p>
 <p>Recall that we previously downloaded the metadata for issues of <em>Notes &amp; Queries</em> held by the Internet Archive to a CSV file.</p>
@@ -706,7 +715,7 @@ title="Print to PDF"
 </div></div></div>
 </div>
 <div class="section" id="adding-an-issues-table-to-the-database">
-<h2>Adding an <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table to the Database<a class="headerlink" href="#adding-an-issues-table-to-the-database" title="Permalink to this headline">¶</a></h2>
+<h2>Adding an <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table to the Database<a class="headerlink" href="#adding-an-issues-table-to-the-database" title="Permalink to this headline">#</a></h2>
 <p>We already have a metadata table in the database, but we can also add more tables to it.</p>
 <p>For at least the 19th century issues of <em>Notes &amp; Queries</em>, a file is available for each issue that contains searchable text extracted from that issue. If we download those text files and add them to our own database, then we can create our own full text searchable database over the content of those issues.</p>
 <p>Let’s create a simple table structure for the searchable text extracted from each issue of <em>Notes &amp; Queries</em> containing the content and a unique identifier for each record.</p>
@@ -1005,9 +1014,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "5434626a75f4444dbf088776685d3464", "version_major": 2, "version_minor": 0}
-</script><div class="output text_html"><div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "5434626a75f4444dbf088776685d3464", "version_major": 2, "version_minor": 0}</script><div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1279,7 +1286,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="extracting-pages">
-<h2>Extracting Pages<a class="headerlink" href="#extracting-pages" title="Permalink to this headline">¶</a></h2>
+<h2>Extracting Pages<a class="headerlink" href="#extracting-pages" title="Permalink to this headline">#</a></h2>
 <p>To make for more efficient granular searching, it would be useful if our content was stored in a more granular way.</p>
 <p>Ideally, we would extract items at the “article” level, but there is no simple way of chunking the document at this level. We could process it to extract items at the sentence or paragraph level and add those to their own table, but that might be <em>too</em> granular.</p>
 <p>However, by inspection of the files available for each issue, there appears to be another level of organisation that we can access: the <em>page</em> level.</p>
@@ -1289,6 +1296,10 @@ title="Print to PDF"
 <li><p><code class="docutils literal notranslate"><span class="pre">Page</span> <span class="pre">Numbers</span> <span class="pre">JSON</span></code>: the pages numbers JSON file, which is downloaded as an uncompressed JSON file contains a JSON object with a <code class="docutils literal notranslate"><span class="pre">&quot;pages&quot;</span></code> attribute that returns a list of records; each record has four attributes: <code class="docutils literal notranslate"><span class="pre">&quot;leafNum&quot;:</span> <span class="pre">int</span></code> (starting with index value 1), <code class="docutils literal notranslate"><span class="pre">&quot;ocr_value&quot;:</span> <span class="pre">list</span></code> (a list of candidate OCR values), <code class="docutils literal notranslate"><span class="pre">&quot;pageNumber&quot;:</span> <span class="pre">str</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;confidence&quot;:</span> <span class="pre">float</span></code>. A top-level <code class="docutils literal notranslate"><span class="pre">&quot;confidence&quot;</span></code> attribute gives an indication of how likely it is that page numbers are available across the whole document.</p></li>
 </ul>
 <p>We also need the <code class="docutils literal notranslate"><span class="pre">OCR</span> <span class="pre">Search</span> <span class="pre">Text</span></code> file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There seems to be an off-by-one error in the page numbering. For example, the scanned pages for <a class="reference external" href="https://archive.org/details/sim_notes-and-queries_1859-08-06_8_188/">https://archive.org/details/sim_notes-and-queries_1859-08-06_8_188/</a> range from page 101 to 120, whereas the <a class="reference external" href="https://ia802304.us.archive.org/15/items/sim_notes-and-queries_1859-08-06_8_188/sim_notes-and-queries_1859-08-06_8_188_page_numbers.json"><code class="docutils literal notranslate"><span class="pre">...page_numbers.json</span></code></a> file claims, with confidence 100%, that the pages range from 102 to 121?</p>
+</div>
 <p>Let’s get a complete set of necessary files for a few sample records:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
@@ -1324,9 +1335,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f30991d914bc4312b9f68ef380a4980b", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f30991d914bc4312b9f68ef380a4980b", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>We now need to figure out how to open and parse the page index and page numbers files, and check the lists are the correct lengths.</p>
 <p>The Python <code class="docutils literal notranslate"><span class="pre">zip</span></code> function  lets us “zip” together elements from different, parallel lists. We can also insert the same item, repeatedly, into each row using the <code class="docutils literal notranslate"><span class="pre">itertools.repeat()</span></code> function to generate as many repetitions of the same character as are required:</p>
@@ -1751,7 +1760,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="modifying-the-pages-metadata-table-in-the-database">
-<h3>Modifying the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> Table in the Database<a class="headerlink" href="#modifying-the-pages-metadata-table-in-the-database" title="Permalink to this headline">¶</a></h3>
+<h3>Modifying the <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> Table in the Database<a class="headerlink" href="#modifying-the-pages-metadata-table-in-the-database" title="Permalink to this headline">#</a></h3>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">chunk_page_text()</span></code> function, we can add page content to our pages metadata <em>in-memory</em>. But what if we want to add it to the database. The <code class="docutils literal notranslate"><span class="pre">pages_metadata</span></code> already exists, but does not include a <code class="docutils literal notranslate"><span class="pre">text</span></code> column. However, we can modify that table to include just such a column:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2027,7 +2036,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="automatically-populating-the-pages-table-from-the-issues-table">
-<h2>Automatically Populating the <code class="docutils literal notranslate"><span class="pre">pages</span></code> Table from the <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table<a class="headerlink" href="#automatically-populating-the-pages-table-from-the-issues-table" title="Permalink to this headline">¶</a></h2>
+<h2>Automatically Populating the <code class="docutils literal notranslate"><span class="pre">pages</span></code> Table from the <code class="docutils literal notranslate"><span class="pre">issues</span></code> Table<a class="headerlink" href="#automatically-populating-the-pages-table-from-the-issues-table" title="Permalink to this headline">#</a></h2>
 <p>Rather than manually adding the page data to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table, we can automatically create the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table from the content contained in the <code class="docutils literal notranslate"><span class="pre">issues</span></code> table and the page metadata in the <code class="docutils literal notranslate"><span class="pre">metadata</span></code> table.</p>
 <p>TO DO  - CREATE TABLE AS ;</p>
 <ul class="simple">
@@ -2098,8 +2107,9 @@ title="Print to PDF"
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

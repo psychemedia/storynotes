@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ashliman “Folklore and Mythology Electronic Texts” Scraper &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -477,7 +486,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="ashliman-folklore-and-mythology-electronic-texts-scraper">
-<h1>Ashliman “Folklore and Mythology Electronic Texts” Scraper<a class="headerlink" href="#ashliman-folklore-and-mythology-electronic-texts-scraper" title="Permalink to this headline">¶</a></h1>
+<h1>Ashliman “Folklore and Mythology Electronic Texts” Scraper<a class="headerlink" href="#ashliman-folklore-and-mythology-electronic-texts-scraper" title="Permalink to this headline">#</a></h1>
 <p>A scraper to grab all the stories edited / translated by D. L. Ashliman that are referenced from <a class="reference external" href="https://sites.pitt.edu/~dash/folktexts.html">https://sites.pitt.edu/~dash/folktexts.html</a> .</p>
 <p>Note that these are <em>Copyright D. L. Ashliman, University of Pittsburgh, 1996-2022</em>.</p>
 <p>My intention is to create personal collection of these stories to support personal search and discovery of stories.</p>
@@ -808,10 +817,41 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">/Users/tonyhirst/Documents/GitHub/storynotes/Ashliman_folk_texts_scraper.ipynb</span>, line 1)</p>
-<p>Non-consecutive header level increase; 0 to 2 [myst.header]</p>
-</div>
+<p class="rubric">Taken by the Good People</p>
+<p class="rubric">Ireland</p>
+<p>I was serving my time to the cattle trade, with a man the name of Lynch –
+God be good to him! I suppose I was no more than twelve years of age at
+the time. ‘Twas a very out of the way place and mountainy.</p>
+<p>Well, not far from my master’s house there was a family of the Brogans.
+‘Twas the will of God that Mrs. Brogan took sick, and there was a baby
+born, but the poor woman died. Well, the sister, a younger girl than the
+woman that died, came to nurse the child. After some time she began to
+look very delicate and uneasy. The naghbours were beginning to talk amongs
+themselves about her, and it came to Brogan’s ears, and, begor, it made
+him vexed. So he asked the sister what was up with her.</p>
+<p>“Well, John,” says she, “I did not like to tell you, but Ellie” – that
+was the name of the dead woman – “comes every night, and takes the baby
+and nurses it, and goes away without a word.”</p>
+<p>“By my word,” says John, “she is not dead at all, but taken, and I will
+watch her to-night.”</p>
+<p>Good enough, he remained up, and about 12 o’clock in she came, and he put
+his arms around her, but as he said, felt no substance.</p>
+<p>“You can’t keep me now,” says she, “for I’m married agin; but if you come
+to the Bottle Hill field to-morrow night, there will be about 40 of us
+goin’ t’words Blarney, and we will all be on horses, with our husbands.
+All the horses will be white, and I and my man will be last. Bring a hazel
+stick woud [with] you and strike the horse on the right side, and I will
+fall off. Just as I fall, ketch me with all your might. You will know my
+man, for he is the only one of them that has a red head.”</p>
+<p>Well, he went, and he must have a great heart, for on they come, gallopin’
+like mad. Just as the man with the red head’s horse came he stood one-side
+and struck. She fell and he gripped her like iron. Well, such a hullabaloo
+as there was, was never heard, and all the other men makin’ game of the
+red-headed man.</p>
+<p>Well, he brought her home, and they lived for years after, and had a good
+family, and were the happiest people around the place. I often see some of
+her children; of course they are all married now, and gone here and there,
+but that’s as true as my name is Tim Brosnan.</p>
 </div>
 </div>
 <p>If we look at the additional information, we see that it contains a list of items, which may contain links. The final list item is boilerplate and we can remove it.</p>
@@ -861,7 +901,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="create-a-simple-database">
-<h2>Create a Simple Database<a class="headerlink" href="#create-a-simple-database" title="Permalink to this headline">¶</a></h2>
+<h2>Create a Simple Database<a class="headerlink" href="#create-a-simple-database" title="Permalink to this headline">#</a></h2>
 <p>We can create a simple database structure to hold the stories.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1086,6 +1126,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;IPython.core.display.Markdown object&gt;
+</pre></div>
+</div>
 </div>
 </div>
 <p>We can add these to the database and have a go at querying them:</p>
@@ -1303,9 +1346,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "d33ff2b0f1f14bda9a77814ae5aeb149", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "d33ff2b0f1f14bda9a77814ae5aeb149", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Are there any pages that didn’t get parsed?</p>
 <div class="cell docutils container">
@@ -1576,8 +1617,9 @@ title="Print to PDF"
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

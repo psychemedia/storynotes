@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "https://jupyterlite.readthedocs.org/en/latest/schema-v0.html#",
+  "$id": "https://jupyterlite.readthedocs.org/en/latest/reference/schema-v0.html#",
   "title": "JupyterLite Schema v0",
   "description": "a schema for user-serviceable customizaton of a JupyterLite",
   "$ref": "#/definitions/top",
@@ -54,6 +54,11 @@
           "default": "./lab",
           "$ref": "#/definitions/non-trailing-slash-uri"
         },
+        "defaultKernelName": {
+          "description": "The name of the default kernel. If not available, the first kernel (by alphabetic ordering) will be chosen.",
+          "default": "python",
+          "type": "string"
+        },
         "faviconUrl": {
           "description": "browser tab icon to show",
           "type": "string",
@@ -70,9 +75,15 @@
           },
           "default": []
         },
+        "fileTypes": {
+          "description": "JupyterLab-compatible file types for serving and storing",
+          "additionalProperties": {
+            "$ref": "#/definitions/file-type"
+          }
+        },
         "fullLabextensionsUrl": {
           "description": "path to federated extensions, a folder organized by `({:org}/){package}`",
-          "default": "./lab/extensions",
+          "default": "./extensions",
           "$ref": "#/definitions/non-trailing-slash-uri"
         },
         "fullMathjaxUrl": {
@@ -87,7 +98,7 @@
             "type": "string",
             "format": "uri"
           },
-          "description": "WebSocket URLs to use for finding WebRTC peers",
+          "description": "WebSocket URLs to use for finding WebRTC peers. Requires `jupyterlab-webrtc-docprovider`.",
           "default": [
             "wss://signaling.yjs.dev",
             "wss://y-webrtc-signaling-eu.herokuapp.com",
@@ -102,13 +113,26 @@
         },
         "fullStaticUrl": {
           "description": "relative path to built static assets",
-          "default": "./lab/build",
+          "default": "./build",
           "$ref": "#/definitions/non-trailing-slash-uri"
+        },
+        "enableMemoryStorage": {
+          "description": "enable memory storage fallback which can lose data if the page is reloaded",
+          "type": "boolean",
+          "default": false
+        },
+        "contentsStorageDrivers": {
+          "description": "names of the localforage driver for contents, or `null` for the best available",
+          "$ref": "#/definitions/localforage-driver-set"
         },
         "contentsStorageName": {
           "description": "name used to store Jupyter contents in the browser",
           "type": "string",
           "default": "JupyterLite Storage"
+        },
+        "settingsStorageDrivers": {
+          "description": "names of the localforage driver for settings, or `null` for the best available",
+          "$ref": "#/definitions/localforage-driver-set"
         },
         "settingsStorageName": {
           "description": "name used to store Jupyter settings in the browser",
@@ -117,12 +141,17 @@
         },
         "settingsUrl": {
           "description": "relative path to bundled schemas",
-          "default": "./lab/build/schemas",
+          "default": "./build/schemas",
           "$ref": "#/definitions/non-trailing-slash-uri"
         },
         "themesUrl": {
           "description": "relative path to bundled themes",
-          "default": "./lab/build/themes",
+          "default": "./build/themes",
+          "$ref": "#/definitions/non-trailing-slash-uri"
+        },
+        "licensesUrl": {
+          "description": "relative path to bundled licenses",
+          "default": "./lab/api/licenses",
           "$ref": "#/definitions/non-trailing-slash-uri"
         },
         "disabledExtensions": {
@@ -154,7 +183,10 @@
         "retroPage": {
           "description": "The page corresponding the named Notebook Classic UI section",
           "anyOf": [
-            { "type": "string", "description": "an unknown retro page" },
+            {
+              "type": "string",
+              "description": "an unknown retro page"
+            },
             {
               "type": "string",
               "enum": ["consoles", "notebooks", "edit", "tree"],
@@ -181,7 +213,7 @@
         "pyodideUrl": {
           "description": "The path to the main pyodide.js entry point",
           "type": "string",
-          "default": "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js",
+          "default": "https://cdn.jsdelivr.net/pyodide/v0.21.0/full/pyodide.js",
           "format": "uri"
         },
         "disablePyPIFallback": {
@@ -236,10 +268,37 @@
         }
       }
     },
+    "file-type": {
+      "type": "object",
+      "description": "description of a named contents file format, with extensions and mime types.",
+      "required": ["name", "mimeTypes", "extensions", "fileFormat"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "mimeTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\..+"
+          }
+        },
+        "fileFormat": {
+          "type": "string",
+          "enum": ["base64", "text", "json"]
+        }
+      }
+    },
     "npm-package-name": {
       "title": "An NPM Package Name",
       "type": "string",
-      "description": "package.json-compatible extension name, with an optional organziation prefix. See https://github.com/dword-design/package-name-regex/blob/master/src/index.js",
+      "description": "package.json-compatible extension name, with an optional organization prefix. See https://github.com/dword-design/package-name-regex/blob/master/src/index.js",
       "pattern": "^(@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*$"
     },
     "lab-extension-plugin-name": {
@@ -247,6 +306,57 @@
       "type": "string",
       "description": "a package.json-compatible extension name followed by a colon (:) and a specific plugin name",
       "pattern": "^(@[a-z0-9-~][a-z0-9-._~]*/)?[a-z0-9-~][a-z0-9-._~]*:(.*)$"
+    },
+    "localforage-driver-set": {
+      "title": "A LocalForage Driver Set",
+      "anyOf": [
+        {
+          "type": "null",
+          "title": "detect",
+          "description": "choose the best available driver"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/localforage-driver"
+          }
+        }
+      ]
+    },
+    "localforage-driver": {
+      "title": "A LocalForage Driver",
+      "description": "choose a storage driver from any number of localForage drivers",
+      "anyOf": [
+        {
+          "type": "string",
+          "title": "custom",
+          "description": "use a custom driver added by a third-party plugin"
+        },
+        {
+          "title": "IndexedDB",
+          "description": "use the broadly-compatible IndexedDB key/value persistent store",
+          "type": "string",
+          "enum": ["asyncStorage"]
+        },
+        {
+          "title": "WebSQL",
+          "description": "use the WebSQL persistent store",
+          "type": "string",
+          "enum": ["webSQLStorage"]
+        },
+        {
+          "title": "localStorage",
+          "description": "use the localStorage persistent store",
+          "type": "string",
+          "enum": ["localStorageWrapper"]
+        },
+        {
+          "title": "memory",
+          "description": "use the memory-based, volatile store: must be enabled with enableMemoryStorage",
+          "type": "string",
+          "enum": ["localStorageWrapper"]
+        }
+      ]
     }
   }
 }

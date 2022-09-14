@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exploring Notes &amp; Queries &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -54,7 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Generating a Full Text Searchable Database for Notes &amp; Queries" href="Notes_and_Queries_DB_PART_2.html" />
-    <link rel="prev" title="Duncan Williamson Audio Recordings" href="Duncan_Williamson_Tobar_Audio.html" />
+    <link rel="prev" title="Gibbs Tiny Tales Collection" href="gibbs_tiny_tales.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -571,7 +580,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="exploring-notes-queries">
-<h1>Exploring Notes &amp; Queries<a class="headerlink" href="#exploring-notes-queries" title="Permalink to this headline">¶</a></h1>
+<h1>Exploring Notes &amp; Queries<a class="headerlink" href="#exploring-notes-queries" title="Permalink to this headline">#</a></h1>
 <p>This chapter, and several following ones, will describe how to create various search context for 19th century issues of <em>Notes &amp; Queries</em>. These include:</p>
 <ul class="simple">
 <li><p>a monolithic PDF of index issues up to 1900;</p></li>
@@ -580,12 +589,12 @@ title="Print to PDF"
 </ul>
 <p>Original scans of the original publication, as well as automatically extracted search text, are available, for free, from the Internet Archive.</p>
 <div class="section" id="working-with-documents-from-the-internet-archive">
-<h2>Working With Documents From the Internet Archive<a class="headerlink" href="#working-with-documents-from-the-internet-archive" title="Permalink to this headline">¶</a></h2>
+<h2>Working With Documents From the Internet Archive<a class="headerlink" href="#working-with-documents-from-the-internet-archive" title="Permalink to this headline">#</a></h2>
 <p>The Internet Archive – <a class="reference external" href="https://archive.org/"><code class="docutils literal notranslate"><span class="pre">archive.org</span></code></a> – is an incredible resource. Amongst other things, it is home to a large number of out-of-copyright digitised books scanned by the Google Book project as well as other book scanning initiatives.</p>
 <p>In this unbook, I will explore various ways in which can build tools around the Internet Archive and documents retrieved from it.</p>
 </div>
 <div class="section" id="searching-the-internet-archive">
-<h2>Searching the Internet Archive<a class="headerlink" href="#searching-the-internet-archive" title="Permalink to this headline">¶</a></h2>
+<h2>Searching the Internet Archive<a class="headerlink" href="#searching-the-internet-archive" title="Permalink to this headline">#</a></h2>
 <p>Many people will be familiar with the web interface to the <a class="reference external" href="https://archive.org">Internet Archive</a> (and I suspect many more are not aware of the existence of the Internet Archive at all). This provides tools for discovering documents available in the archive, previewing the scanned versions of them, and even searching within them.</p>
 <p>At times, the search inside a book can be a bit hit and miss, in part depending on the quality of the scanned images and the ability of the OCR tools - where “OCR” stands for “optical character recognition” - to convert the pictures of text into actual text. Which is to say, <em>searchable</em> text.</p>
 <p>One of the advantages of creating our own database is that as well as having the corpus available locally, we can use various fuzzy search tools to find partial matches to text to supplement our full text search activities.</p>
@@ -609,7 +618,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="section" id="item-metadata">
-<h3>Item Metadata<a class="headerlink" href="#item-metadata" title="Permalink to this headline">¶</a></h3>
+<h3>Item Metadata<a class="headerlink" href="#item-metadata" title="Permalink to this headline">#</a></h3>
 <p>At the data level, the Internet Archive has <em>metadata</em>, or “data about data” that provides key information or summary information about each data record. For example, works can be organised as part of different collections via <code class="docutils literal notranslate"><span class="pre">collection</span></code> elements such as <code class="docutils literal notranslate"><span class="pre">collection:&quot;pub_notes-and-queries&quot;</span></code>.</p>
 <p>For periodicals, there may also be a publication identifier associated with the periodical (for example, <code class="docutils literal notranslate"><span class="pre">sim_pubid:1250</span></code>) or metadata identifying which <em>volume</em> or <em>issue</em> a particular edition of a periodical may be.</p>
 <p>In the following bit of code, we search over the <em>Notes &amp; Queries</em> collection, retrieving data about each item in the collection.</p>
@@ -622,7 +631,7 @@ title="Print to PDF"
 <span class="c1"># returned, as well as each separate item</span>
 <span class="c1"># The count starts at 0...</span>
 <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">search_items</span><span class="p">(</span><span class="s1">&#39;collection:&quot;pub_notes-and-queries&quot; AND year:1867&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iter_as_items</span><span class="p">()):</span>
-    <span class="c1"># Display thecount, the item identifier and title</span>
+    <span class="c1"># Display the count, the item identifier and title</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
 
     <span class="c1"># If we see item with count value of at least 3, which is to say, the fourth item,</span>
@@ -679,7 +688,7 @@ title="Print to PDF"
 <p>In some cases, the identifier values may be human readable, if you look closely enough. For example, <em>Notes and Queries</em> was published weekly, typically with two volumes per year, and an index for each. In the <code class="docutils literal notranslate"><span class="pre">pub_notes-and-queries</span></code> collections, the identifier for Volume 11, issue 262, published on January 5th, 1867, is <code class="docutils literal notranslate"><span class="pre">sim_notes-and-queries_1867-01-05_11_262</span></code>; and the identifier for the index of volume 12, published in throughout the second half of 1867, is <code class="docutils literal notranslate"><span class="pre">sim_notes-and-queries_1867_12_index</span></code>.</p>
 </div>
 <div class="section" id="available-files">
-<h3>Available Files<a class="headerlink" href="#available-files" title="Permalink to this headline">¶</a></h3>
+<h3>Available Files<a class="headerlink" href="#available-files" title="Permalink to this headline">#</a></h3>
 <p>As well as the data record, certain other files may be associated with that item such as PDF scans, or files containing the raw scanned text of the document.</p>
 <p>We have already seen how we can retrieve an item given it’s identifier, but let’s see it in action again:</p>
 <div class="cell docutils container">
@@ -733,7 +742,7 @@ Scandata
 <p>For this item, then, we can get a PDF document, a file containing the search text, a record with information about page numbers, an XML version of the original scanned version, some image scans, and various other things containing who knows what!</p>
 </div>
 <div class="section" id="a-complete-list-of-notes-queries-issues">
-<h3>A Complete List of <em>Notes &amp; Queries</em> Issues<a class="headerlink" href="#a-complete-list-of-notes-queries-issues" title="Permalink to this headline">¶</a></h3>
+<h3>A Complete List of <em>Notes &amp; Queries</em> Issues<a class="headerlink" href="#a-complete-list-of-notes-queries-issues" title="Permalink to this headline">#</a></h3>
 <p>To help us work with the <em>pub_notes-and-queries</em> collection, let’s construct a local copy of the most important metadata associated with each item in the collection, specifically the item identifier, date and title, as well as the volume and issue. (<em>Notes and Queries</em> also has a higher level of organisation, a <em>Series</em>, which means that volume and issue numbers can actually recycle, so by itself, a particular <code class="docutils literal notranslate"><span class="pre">(volume,</span> <span class="pre">issue)</span></code> pair does not identify a unique item, but a <code class="docutils literal notranslate"><span class="pre">(series,</span> <span class="pre">volume,</span> <span class="pre">issue)</span></code> or <code class="docutils literal notranslate"><span class="pre">(year,</span> <span class="pre">volume,</span> <span class="pre">issue)</span></code> triple does.)</p>
 <p>For convenience, we might also collect the <em>previous</em> and <em>next</em> item identifiers, as well as a flag that tells us whether access is restricted or not. (For 19th century editions, there are no restrictions; but for more recent 20th century editions, access may be limited to library shelf access).</p>
 <p>As we construct various tools for working with the Internet Archive and various files downloaded from it, it will be useful to also save those tools in a way that we can can make use of them.</p>
@@ -743,7 +752,7 @@ Scandata
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
-<span class="c1"># Create the directory if it doesnlt already exist</span>
+<span class="c1"># Create the directory if it doesn&#39;t already exist</span>
 <span class="n">ia_utils</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;ia_utils&quot;</span><span class="p">)</span>
 <span class="n">ia_utils</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -940,7 +949,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <div class="section" id="generating-a-monolithic-pdf-index-for-notes-queries-up-to-1900">
-<h2>Generating a Monolithic PDF Index for <em>Notes &amp; Queries</em> Up To 1900<a class="headerlink" href="#generating-a-monolithic-pdf-index-for-notes-queries-up-to-1900" title="Permalink to this headline">¶</a></h2>
+<h2>Generating a Monolithic PDF Index for <em>Notes &amp; Queries</em> Up To 1900<a class="headerlink" href="#generating-a-monolithic-pdf-index-for-notes-queries-up-to-1900" title="Permalink to this headline">#</a></h2>
 <p>If we want to search for items in <em>Notes and Queries</em> “manually”, one of the most effective ways is to look up items in the volume indexes. With two volumes a year, this means checking almost 100 separate documents if we want to look up 19th century references. (That’s not quite true: from the 1890s, indexes were produced that started to to aggregate indices over several years.)</p>
 <p>So how might we go about producing a single index PDF for 19th c. editions of <em>Notes &amp; Queries</em>? As a conjoined set of original index PDFs, this wouldn’t provide us with unified index terms - a search on an index item would return separate entries for each volume index in which the term appeared – but it would mean we only needed to search one PDF document.</p>
 <p>We’ll use the Python <code class="docutils literal notranslate"><span class="pre">csv</span></code> package to simplify saving and load the data:</p>
@@ -1012,7 +1021,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <div class="section" id="populating-a-database-with-record-metadata">
-<h2>Populating a Database With Record Metadata<a class="headerlink" href="#populating-a-database-with-record-metadata" title="Permalink to this headline">¶</a></h2>
+<h2>Populating a Database With Record Metadata<a class="headerlink" href="#populating-a-database-with-record-metadata" title="Permalink to this headline">#</a></h2>
 <p>Let’s start by creating a table in the database that can store our metadata data records, as loaded in from the data file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1099,9 +1108,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "c85d638eef0f4108bac860ee4feaf8d6", "version_major": 2, "version_minor": 0}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/dateparser/date_parser.py:35: PytzUsageWarning: The localize method is no longer necessary, as this time zone supports the fold attribute (PEP 495). For more details on migrating to a PEP 495-compliant implementation, see https://pytz-deprecation-shim.readthedocs.io/en/latest/migration.html
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c85d638eef0f4108bac860ee4feaf8d6", "version_major": 2, "version_minor": 0}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/site-packages/dateparser/date_parser.py:35: PytzUsageWarning: The localize method is no longer necessary, as this time zone supports the fold attribute (PEP 495). For more details on migrating to a PEP 495-compliant implementation, see https://pytz-deprecation-shim.readthedocs.io/en/latest/migration.html
   date_obj = stz.localize(date_obj)
 </pre></div>
 </div>
@@ -1390,7 +1397,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 <li><p>optionally, delete the original PDF files.</p></li>
 </ul>
 <div class="section" id="working-with-pdf-files-downloaded-from-the-internet-archive">
-<h3>Working With PDF Files Downloaded from the Internet Archive<a class="headerlink" href="#working-with-pdf-files-downloaded-from-the-internet-archive" title="Permalink to this headline">¶</a></h3>
+<h3>Working With PDF Files Downloaded from the Internet Archive<a class="headerlink" href="#working-with-pdf-files-downloaded-from-the-internet-archive" title="Permalink to this headline">#</a></h3>
 <p>We can download files from the Internet Archive using the <code class="docutils literal notranslate"><span class="pre">internetarchive.download()</span></code> function. This takes a list of items via a <code class="docutils literal notranslate"><span class="pre">formats</span></code> parameter for the files we want to download. For example, we might want to download the “Text PDF” (a PDF file with full text search), or a simple text file containing just the OCR captured text (<code class="docutils literal notranslate"><span class="pre">OCR</span> <span class="pre">Search</span> <span class="pre">Text</span></code>), or both.</p>
 <p>We can also specify the directory into which the files are downloaded.</p>
 <p>Let’s import the packages that help simplify this task, and create a path to our desired download directory:</p>
@@ -1430,9 +1437,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f24eb59a82034f1c9bb0f4e0080c20f1", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f24eb59a82034f1c9bb0f4e0080c20f1", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>To create single monolithic PDF, we can use another fragment of code to iterate through the downloaded PDF files, adding each one to a single merged PDF file object. We can also create and insert a reference page between each of the original documents to provide provenance if the is no date on the index pages.</p>
 <p>Let’s start by seeing how to create a simple PDF page. The <code class="docutils literal notranslate"><span class="pre">reportlab</span></code> Python package provides various tools for creating simple PDF documents:</p>
@@ -1475,15 +1480,15 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-<iframe
-    width="600"
-    height="500"
-    src="test-page.pdf"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="600"
+            height="500"
+            src="test-page.pdf"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
 <p>A simple function lets us generate a simple page rendering a short text string:</p>
 <div class="cell docutils container">
@@ -1547,9 +1552,7 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f04d8dc670134807b3001a24b5f79eaf", "version_major": 2, "version_minor": 0}
-</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f04d8dc670134807b3001a24b5f79eaf", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>The resulting PDF document is a large document (about 100MB) that collects all the separate indexes in one place, although not as a single, <em>reconciled</em> index: if the same index terms exist in multiple index documents, there will be multiple occurrences of that term in the longer document.</p>
 <p>However, if we do need a PDF reference to the index, it is useful to have to hand.</p>
@@ -1584,11 +1587,11 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Duncan_Williamson_Tobar_Audio.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="gibbs_tiny_tales.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Duncan Williamson Audio Recordings</p>
+            <p class="prev-next-title">Gibbs Tiny Tales Collection</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="Notes_and_Queries_DB_PART_2.html" title="next page">
@@ -1618,8 +1621,9 @@ sim_notes-and-queries_1849-11-24_1_4,1849-11-24,Notes and Queries  1849-11-24: V
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

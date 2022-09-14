@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>How To Read This Book (Do Not Be Afraid) &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -541,7 +550,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="how-to-read-this-book-do-not-be-afraid">
-<span id="how-to-read-book"></span><h1>How To Read This Book (Do Not Be Afraid)<a class="headerlink" href="#how-to-read-this-book-do-not-be-afraid" title="Permalink to this headline">¶</a></h1>
+<span id="how-to-read-book"></span><h1>How To Read This Book (Do Not Be Afraid)<a class="headerlink" href="#how-to-read-this-book-do-not-be-afraid" title="Permalink to this headline">#</a></h1>
 <p>This book takes no prisoners: it will expose you to various arcane spells (otherwise known as computer programming code) that invoke untold magical powers (which is to say, get the computer to do stuff…).</p>
 <p>In part, the content may <em>look</em> quite technical; and in places, it <em>is</em> quite technical; but <em>DON’T PANIC</em>: it is still intended to be read <em>as a story</em>, even if you skip over the bits where the arcane squiggles, runes and glyphs make your head go fuzzy, and your eyes go blurry, and you just want to run away, terrified.</p>
 <p>If you skim through the book, you will notice several very striking stylistic elements.</p>
@@ -592,18 +601,18 @@ title="Print to PDF"
 <p><em>Did you see what just happened?</em></p>
 <p>When you ask it, the computer <em>will</em> do what you told it. But be careful how you present your request, because if you don’t phrase your instructions in <em>exactly</em> the right way, any wrongness will be exactly what the computer will do…</p>
 <p>In many stories, the words used to represent a spell may look like a made up nonsense that make no sense to you, the teller, let alone the audience. It can be the same with programming code. If the code in this book makes no sense to you, the reader of this text, don’t worry. You should still come away with a sense of the sorts of things we can ask a computer to do, as well the sorts of things it will do in response to our commands.</p>
-<p>But just as a wish may have unforeseen consequences if you don’t phrase it <em>exactly</em> right, so too might code take you to places you hadn’t intended to go if you are careless with it.</p>
+<p>But just as a wish may have unforeseen consequences if you don’t phrase it <em>exactly</em> right, so too might code take you to places you hadn’t intended to go to if you are careless with it.</p>
 <p>Even amidst the mumbo jumbo gobbledeygook of a made up spell, a listener may spot certain recognisable elements in a charm, such as the name of the person who will fall in love with a supplicant who has gone to ask the cunning woman who lives at the edge of the forest for help. It’s the same with code: amidst the cryptic commands, you will often be able to recognise certain words or elements in there, and from that make some sort of sense about what is being manipulated, and possibly how. The address of a web page, for example, which is to say, a “URL”. Or a search term that forms part of a query: <em>“wazza wayza oono wayza ‘the golden palace’”</em>.</p>
 <p>So there will be code. And there will be incantations. Nothing is hidden. All the tools and databases and collections of books, all the ways of searching them, are constructed from the code contained within these pages.</p>
 <div class="section" id="stories-not-theatre">
-<h2>Stories Not Theatre<a class="headerlink" href="#stories-not-theatre" title="Permalink to this headline">¶</a></h2>
+<h2>Stories Not Theatre<a class="headerlink" href="#stories-not-theatre" title="Permalink to this headline">#</a></h2>
 <p>At this point you may be wondering <em>why</em> there is such a focus on code to work with story data sources. Why should I put you through all this pain rather than just making a website that makes that lets you search through various story collections using a simple web based search form. And why is there a reliance on making cryptic search queries rather than just letting you enter words in a search box.</p>
 <p>That’s because user interfaces are hard to produce, hard to maintain, hard to get right, and often limiting in what they allow the user to do. They also need hosting somewhere (which costs money, and time to set up). And securing against attack (because people are forever trying to take over other peoples’ computers so they can use them to attack yet other people, or hijack them to mine for that cryptic treasure known as bitcoin.</p>
 <p>As far as user interfaces go, the designer always has to make certain decisions about what they think the user is likely to want to do. Someone else then typically makes various decisions about how to support that behaviour, decisions that lead to a particular user interface and system architecture. And then someone else — the programmer, the developer — has to find a way to implement the outcome of those decisions in code. And someone else has to make it look pretty and easy to use on the screen.</p>
 <p>By sticking with code, we are focusing on the bare bones of the story. This is not theatre. We don’t have the set designers making the user interface and the teams of people interpreting the story so that it can be told in a theatrical way. We’re just trying to get the basic story sorted out, in its rawest of forms.</p>
 </div>
 <div class="section" id="some-tricks-to-help-you-recognise-code-tropes-and-archetypes">
-<h2>Some Tricks to Help You Recognise Code Tropes and Archetypes<a class="headerlink" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes" title="Permalink to this headline">¶</a></h2>
+<h2>Some Tricks to Help You Recognise Code Tropes and Archetypes<a class="headerlink" href="#some-tricks-to-help-you-recognise-code-tropes-and-archetypes" title="Permalink to this headline">#</a></h2>
 <p>When telling a folk tale or a fairy tale from a particular tradition, we rely on tropes and archetypes. In Germanic fairy tales, the evil witch who lives in the forest, the trolls and giants of Scandinavian tales, the dragon-serpents of Eastern and Eastern European fairy tales, and so on.</p>
 <p>In a story, we invoke archetypes we can rely on to perform certain  certain roles:</p>
 <p><em>Once, there was a king…</em></p>
@@ -660,18 +669,18 @@ title="Print to PDF"
 </pre></div>
 </div>
 <div class="output text_html">
-<iframe
-    width="400"
-    height="300"
-    src="https://www.youtube.com/embed/KdnGPQaICjk"
-    frameborder="0"
-    allowfullscreen
-
-></iframe>
-</div></div>
+        <iframe
+            width="400"
+            height="300"
+            src="https://www.youtube.com/embed/KdnGPQaICjk"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
 </div>
 <div class="section" id="defining-our-own-shortcuts-spells-and-incantations">
-<h3>Defining Our Own Shortcuts, Spells and Incantations<a class="headerlink" href="#defining-our-own-shortcuts-spells-and-incantations" title="Permalink to this headline">¶</a></h3>
+<h3>Defining Our Own Shortcuts, Spells and Incantations<a class="headerlink" href="#defining-our-own-shortcuts-spells-and-incantations" title="Permalink to this headline">#</a></h3>
 <p>Sometimes, we need to package up a bit of the story so that we can reuse it. Or we need to teach the audience something they can do for us.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>When the man gets on the horse with the fairy queen, you say:
 
@@ -716,7 +725,7 @@ and they rode for a night and a day.
 </div>
 </div>
 <div class="section" id="again-and-again-and-again-and-again">
-<h3>Again, and Again, and Again, and Again…<a class="headerlink" href="#again-and-again-and-again-and-again" title="Permalink to this headline">¶</a></h3>
+<h3>Again, and Again, and Again, and Again…<a class="headerlink" href="#again-and-again-and-again-and-again" title="Permalink to this headline">#</a></h3>
 <p>Sometimes, we want to do the same thing several times.</p>
 <p>You may recall the three heads on the well who each made the same request?</p>
 <p>So does the following piece of code:</p>
@@ -801,7 +810,7 @@ say_refrain(refrain)
 <p><code class="docutils literal notranslate"><span class="pre">say_refrain(three_heads_refrain)</span></code></p>
 </div>
 <div class="section" id="call-and-response">
-<h3>Call and Response<a class="headerlink" href="#call-and-response" title="Permalink to this headline">¶</a></h3>
+<h3>Call and Response<a class="headerlink" href="#call-and-response" title="Permalink to this headline">#</a></h3>
 <p>If you’ve even been to a storytelling club or story festival, you’re probably familiar with the idea of “cric-crac”, a call and response technique used by the storyteller - who calls out “cric” - to keep an audience - who respond with “crac” - engaged, particularly during a long story, or between tales.</p>
 <p>In code, we can use a simple spell component that gives us a basis for simple, and direct, call-response behaviours:</p>
 <div class="cell docutils container">
@@ -823,7 +832,7 @@ say_refrain(refrain)
 </div>
 </div>
 <div class="section" id="if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess">
-<h3>If You Bring Me the Head of a Dragon, You May Marry the Princess…<a class="headerlink" href="#if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess" title="Permalink to this headline">¶</a></h3>
+<h3>If You Bring Me the Head of a Dragon, You May Marry the Princess…<a class="headerlink" href="#if-you-bring-me-the-head-of-a-dragon-you-may-marry-the-princess" title="Permalink to this headline">#</a></h3>
 <p>Let’s go back to the three heads.</p>
 <p>You might recall that each of the heads gave a different gift to the good natured heroine.</p>
 <p>That is, the gift given by each head was <em>conditional</em> on which head gave the gift.</p>
@@ -928,7 +937,7 @@ say_refrain(refrain)
 </div>
 </div>
 <div class="section" id="a-long-story-is-often-made-from-simpler-parts">
-<h3>A Long Story is Often Made From Simpler Parts<a class="headerlink" href="#a-long-story-is-often-made-from-simpler-parts" title="Permalink to this headline">¶</a></h3>
+<h3>A Long Story is Often Made From Simpler Parts<a class="headerlink" href="#a-long-story-is-often-made-from-simpler-parts" title="Permalink to this headline">#</a></h3>
 <p>Many longer stories are actually quite formulaic in their structure. They are often split into “chapters” or distinct phases, and each separate phase or part might have its own, often repeating, structure.</p>
 <p>And as with story, so with code.</p>
 <p>So let’s put several of those pieces we’ve sketched and tried out previously in slightly more elaborate code story incantation:</p>
@@ -1188,8 +1197,9 @@ And the third_head said: She shall become a poor peasant.
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

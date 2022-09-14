@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gibbs Tiny Tales Collection &#8212; Story Notes - Technical Recipes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Exploring Notes &amp; Queries" href="Notes_and_Queries_DB.html" />
+    <link rel="prev" title="Duncan Williamson Audio Recordings" href="Duncan_Williamson_Tobar_Audio.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Story Notes - Technical Recipes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="preface.html">
+                    Preface
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="how-to-read-this-book.html">
+   How To Read This Book (Do Not Be Afraid)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="running-the-book-code.html">
+   Invoking the Incantations Contained in This Book
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Story Collection Scrapers and Search
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db.html">
+   A Full Text Searchable Database of Lang’s Fairy Books
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_2.html">
+   Finding Book Index-Like Things In Lang’s Fairy Stories…
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_3.html">
+   Annotating Lang’s Fairy Tales With Wikipedia Links
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lang-fairy-books-db_PART_4.html">
+   Identifying Common Refrains / Repeating Phrases In Lang’s Fairy Story Collections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Ashliman_folk_texts_scraper.html">
+   Ashliman “Folklore and Mythology Electronic Texts” Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MFTD-Multilingual_Folk_Tale_Database.html">
+   Multilingual Folk Tale Database (MFTD)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
+   Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Gibbs Tiny Tales Collection
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notes &amp; Queries
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB.html">
+   Exploring Notes &amp; Queries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_2.html">
+   Generating a Full Text Searchable Database for
+   <em>
+    Notes &amp; Queries
+   </em>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_3.html">
+   Building a 19th c. Notes &amp; Queries Full Text Search Engine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notes_and_Queries_DB_PART_4.html">
+   Creating a 19th c. Notes &amp; Queries Index Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Advanced Search Techniques
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Lang_Doc2Vec.html">
+   Doc2Vec Searching of Lang Database
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tale Types
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Missouri_Tale_Types.html">
+   Tale Types Scraper
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Thompson_Motif_Index.html">
+   Thompson Motif Index
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Wikipedia and DBPedia
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="DBPedia_Aarne-Thompson-Uther_Search.html">
+   Aarne-Thompson-Uther (ATU) Search
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/psychemedia/storynotes/main?urlpath=lab/tree/./gibbs_tiny_tales.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="./lite/retro/notebooks?path=./gibbs_tiny_tales.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch via RetroLite"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterlite.svg">
+  </span>
+<span class="headerbtn__text-container">RetroLite</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/psychemedia/storynotes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scraping-the-text-versions">
+   Scraping the Text Versions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scraping-all-the-text-flavoured-books">
+   Scraping all the Text Flavoured Books
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-simple-database">
+   Creating a Simple Database
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Gibbs Tiny Tales Collection</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scraping-the-text-versions">
+   Scraping the Text Versions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scraping-all-the-text-flavoured-books">
+   Scraping all the Text Flavoured Books
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-simple-database">
+   Creating a Simple Database
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="gibbs-tiny-tales-collection">
+<h1>Gibbs Tiny Tales Collection<a class="headerlink" href="#gibbs-tiny-tales-collection" title="Permalink to this headline">#</a></h1>
+<p>Laura Gibbs has a huge collection of hundred word tales, a collection that is still growing, published via a series of openly licensed books.</p>
+<p>The tales are all 100 words long, so the collection provides a really concise sett of texts that might be interesting to try to analyse for structure.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These packages make it easy to download web pages so that we can work with them</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># &quot;Cacheing&quot; pages mans grabbing a local copy of the page so we only need to download it once</span>
+<span class="kn">import</span> <span class="nn">requests_cache</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="n">requests_cache</span><span class="o">.</span><span class="n">install_cache</span><span class="p">(</span><span class="s1">&#39;web_cache&#39;</span><span class="p">,</span>
+                             <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span>
+                             <span class="n">expire_after</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://microfables.blogspot.com/&quot;</span>
+
+<span class="c1"># And then grab the page</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The BeautifulSoup package provides a range of tools</span>
+<span class="c1"># that help us work with the downloaded web page,</span>
+<span class="c1"># such as extracting particular elements from it</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="c1"># The &quot;soup&quot; is a parsed and structured form of the page we downloaded</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+
+<span class="c1"># We can use browser developer tools to grab a CSS selector</span>
+<span class="c1"># for the books list, then extend it to pull just the links</span>
+<span class="n">selector</span> <span class="o">=</span> <span class="s2">&quot;#Label2 &gt; div &gt; ul &gt; li &gt; a&quot;</span>
+<span class="c1"># Find the span elements containing the links</span>
+<span class="n">items_</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span>
+
+<span class="n">book_index_urls</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items_</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Audiobooks&quot;</span><span class="p">,</span> <span class="s2">&quot;Book Indexes&quot;</span><span class="p">,</span> <span class="s2">&quot;Book: Teaching Guide&quot;</span><span class="p">]:</span>
+        <span class="n">book</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">book_index_urls</span><span class="p">[</span><span class="n">book</span><span class="p">]</span><span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">)</span>
+
+<span class="n">book_index_urls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Aesop&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Aesop&#39;,
+ &#39;Africa 1&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Africa%201&#39;,
+ &#39;Africa 2&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Africa%202&#39;,
+ &#39;Anansi&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Anansi&#39;,
+ &#39;India&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20India&#39;,
+ &#39;Mahabharata&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Mahabharata&#39;,
+ &#39;Nasruddin&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Nasruddin&#39;,
+ &#39;Ramayana&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Ramayana&#39;,
+ &#39;Sufis&#39;: &#39;https://microfables.blogspot.com/search/label/Book%3A%20Sufis&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>On each book page, there is a link to different formats of the book. Some have a text version, all have an HTML version. If we make the (dangerous!) assumption that the structure of the HTML pages are the same, we could just scrape those.</p>
+<p>But the text pages are simpler, so as a warm up exercise, let’s scrape those.</p>
+<div class="section" id="scraping-the-text-versions">
+<h2>Scraping the Text Versions<a class="headerlink" href="#scraping-the-text-versions" title="Permalink to this headline">#</a></h2>
+<p>Let’s start by seeing which books have text versions. The book pages have a set of well labeled links that we can easily search on from the link text:</p>
+<p><img alt="" src="_images/Tiny_Tales_links.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_urls</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">book</span> <span class="ow">in</span> <span class="n">book_index_urls</span><span class="p">:</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">book_index_urls</span><span class="p">[</span><span class="n">book</span><span class="p">])</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+    <span class="n">book_url</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;TXT&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">book_url</span><span class="p">:</span>
+        <span class="n">text_urls</span><span class="p">[</span><span class="n">book</span><span class="p">]</span> <span class="o">=</span> <span class="n">book_url</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span>
+
+<span class="n">text_urls</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Aesop&#39;: &#39;http://aesop.lauragibbs.net/Aesop.txt&#39;,
+ &#39;Anansi&#39;: &#39;http://Anansi.lauragibbs.net/Anansi.txt&#39;,
+ &#39;India&#39;: &#39;http://india.lauragibbs.net/India.txt&#39;,
+ &#39;Mahabharata&#39;: &#39;https://mahabharata.lauragibbs.net/mahabharata.txt&#39;,
+ &#39;Nasruddin&#39;: &#39;https://nasruddin.lauragibbs.net/Nasruddin.txt&#39;,
+ &#39;Ramayana&#39;: &#39;https://ramayana.lauragibbs.net/ramayana.txt&#39;,
+ &#39;Sufis&#39;: &#39;http://Sufis.lauragibbs.net/Sufis.txt&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>All but the two collections of African tales appear to have simple text versions.</p>
+<p>Let’s look at the content of one of those text versions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_doc</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">text_urls</span><span class="p">[</span><span class="s2">&quot;Aesop&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">text</span>
+<span class="n">text_doc</span><span class="p">[:</span><span class="mi">2500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;TINY TALES FROM AESOP: \nA Book of Two Hundred 100-Word Stories\nby Laura Gibbs\n\nCopyright 2020 by Laura Gibbs. This work is released under the terms of the Attribution - NonCommercial - ShareAlike 4.0 International (CC BY-NC-SA 4.0).\nVersion date: July 15, 2020\n\nABOUT THIS BOOK\n\nAesop was a legendary storyteller of ancient Greece, and the stories called &quot;Aesop\&#39;s fables&quot; have been going strong for three thousand years. This book contains a selection of classical, medieval, Renaissance, and modern Aesop\&#39;s fables, ranging from the ancient Roman poet Phaedrus to the 18th-century neo-Latin poet Desbillons. You will find famous fables here such as &quot;The Lion\&#39;s Share&quot; and &quot;The Boy Who Cried Wolf,&quot; plus many not-so-famous fables about animals, about people, and about the gods and goddesses too. The fables included here represent only a small fraction of the Aesopic fable tradition. For more Aesop\&#39;s fables, visit:\nAesop.LauraGibbs.net\n\nThe paragraph you just read about this book is 100 words long, as is this paragraph, and that\&#39;s also the length of each story in the book. These stories go fast, but you can slow down when you find one you like. Read it again. Let it sink in. Maybe even write your own version of the story, using your imagination to add more details. Meanwhile, if you don\&#39;t like a story, don\&#39;t get bogged down; just move on to the next one. There are more 100-word stories from Aesop, plus lots of stories from other cultural traditions, at:\n100Words.LauraGibbs.net\n\nTHE STORIES\n\n~ 1. The Lion\&#39;s Share ~\nA lion, a cow, a goat, and a sheep were working together as partners.\nThey managed to kill a stag, and the lion divided their prize into four equal parts.\n&quot;The first part is mine,&quot; he said, &quot;because I am the lion. The second part goes to me because I am the strongest. Next, I will take the third part for myself on account of my exceedingly hard work. Finally, if anyone so much as touches the fourth part, they will know my wrath!&quot;\nThat is the lion\&#39;s share: he pretends to share, but he takes it all for himself.\n\n~ 2. The Angry Lion ~\nThere was once an enraged lion, filled with anger and hatred, hoping to find another lion he could fight with and kill.\nThen, as he was looking down into a well, there it was: a lion had fallen in there. \nIt was just his own reflection in the water, of course, but he saw what he wanted to see.\nThe angry lion, convinced he had found the enemy he was hoping to find, sprang and jumped into the well, and he drowned.\nSo it is that thos&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s also check the end of the book to see if there is structure there:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_doc</span><span class="p">[</span><span class="o">-</span><span class="mi">7000</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;und that\&#39;s right in front of you.&quot;\n\n~ 200. The Man in the Tree ~\nFleeing a deadly unicorn, a man climbed a tree beside a lake.\nFour snakes were slithering around the lake, and a dragon rose up from the watery depths, its mouth gaping open.\nThen the man saw two mice, one white and one black, gnawing at the tree\&#39;s roots.\nHow could he escape all these evils?\nThen he looked up and saw honey dripping down from higher in the tree. As the honey fell into his mouth, he forgot all about the dangers.\nThe tree toppled and he fell into the dragon\&#39;s jaws, but his only thought was of the honey.\n\nSTORY TITLE INDEX\n\n1. The Lion\&#39;s Share\n2. The Angry Lion\n3. The Lion and the Rabbit\n4. The Lion and the Bulls\n5. The Lion and the Mouse\n6. The Lion\&#39;s Army\n7. The Lion Cub and Man\n8. The Lion in Love\n9. The Lion and the Man Debating\n10. The Lion and the Boar\n11. The Old Lion and the Horse\n12. The Lion and the Unicorn\n13. The Old Lion\&#39;s Last Breath\n14. The Lion and the Donkey Go Hunting\n15. Wild Donkey, Tame Donkey\n16. The Wild Donkey\n17. The Donkey and the Horse\&#39;s Barley\n18. The Cruel Horse and the Donkey\n19. The Horse and the Donkey\&#39;s Load\n20. Death and the Donkey\n21. The Donkey in Winter\n22. The Two Donkeys\n23. The Donkey and the Icon\n24. The Fox and the Leopard\n25. The Fox and the Dragon\n26. The Farmer and the Dragon\n27. The Fox in the Hut\n28. The Fox Meets the Lion\n29. The Lion and the Bear\n30. The Fox Visits the Lion\n31. The Fox in the Lion-King\&#39;s Palace\n32. The Fox and the Wolf, Courtiers\n33. The Fox and the Ape\n34. The Fox with a Short Tail\n35. The Fox and the Old Women\n36. The Fox and the Grapes\n37. The Fox and the Moon\n38. The Fox and the Boar\n39. The Fox and the Rooster\n40. The Fox Seeks an Eye Doctor\n41. The Fox and the Stork\n42. The Fox and the Mule\n43. The Wolf and the Fox in the Well\n44. The Fox and the Wolf in the Pit\n45. The Fox Teaches the Wolf to Fish\n46. The Fox and the Wolf and the Well-Buckets\n47. The Fox and the Wolf in the Shed\n48. The Wolf Becomes a Monk\n49. The Wolf and the Porcupine\n50. The Wolf and the Crane\n51. The Wolf and the Goat on a Rock\n52. The Wolf and the Goats in a Tub\n53. The Wolf and the Cow\n54. The Wolf and the Lamb at the Stream\n55. The Wolf and the Lamb in the Temple\n56. The Friendly Wolf\n57. The Wolves and their Allies\n58. The Treacherous Sheepdog\n59. The Lamb and the Nanny-Goat\n60. The Dogs and the River\n61. The Dog without a House\n62. The Hunting Dog and the Rabbit\n63. The Rabbit and the Wolf\n64. The War of the Rabbits and the Eagles\n65. The Rabbit and the Sparrow\n66. The Rabbit and the Weasel\n67. The Rabbit\&#39;s Resolution\n68. The Funeral of the Lion-Queen\n69. The Deer in the Cave\n70. The Deer in the Stable\n71. The Deer and his Reflection\n72. The Deer and the Vine\n73. The Deer and her Friends\n74. The Monkey\&#39;s Twin Children\n75. The Monkey and the Fishermen\n76. The King\&#39;s Dancing Monkeys\n77. The Monkey and the Camel\n78. The Kingdom of the Monkeys\n79. The Cat and the Rooster\n80. The Cat and the Chickens\n81. The Cat and her Neighbors\n82. The Cat and the Stork\n83. The Cat and the Sparrows\n84. Cat and Fox, Philosophers\n85. Brother Cat and Brother Rat\n86. The Miller\&#39;s Cat and the Mice\n87. The Mouse and the Cat on the Shelf\n88. The Cat and the Mouse in the Beer\n89. The War of the Cats and the Mice\n90. Belling the Cat\n91. The Mouse and the Cat in the Flour\n92. Country Mouse and City Mouse\n93. The Mouse in the Soup\n94. The Mouse in the Chest\n95. The Mouse and the Bull\n96. The Mouse Observes the World\n97. The Hawk and the Mouse\n98. The Hawk and the Nightingale\n99. The Hawk and the Nightingale\&#39;s Chicks\n100. The War of the Hawks\n101. The Two Doves\n102. The Stork and the Crow\n103. The Chicken and the Crow\n104. The Noisy Crow\n105. The Crow and the Fox\n106. The Fox who Played Dead\n107. The Eagle and the Crow\n108. The Eagle and the Peacock\n109. The Crow\&#39;s Warning\n110. The Ambitious Crow\n111. The Crane and the Eagle\n112. The Crane Goes Fishing\n113. The Halcyon and her Nest\n114. The Swallow and the Nightingale\n115. The Nightingale\&#39;s Advice\n116.  The Nightingale and the Glow-Worm\n117. The Beetle and the Eagle\n118. The Bees Go to Court\n119. The Bear and the Bees\n120. The Fly and the Mule\n121. The Gnat and the Bull\n122. The Frogs and the Bulls\n123. The Frogs and the Sun\n124. The Mouse and the Frog\n125. The Cunning Stork\n126. The Boys and the Frogs\n127. The Porcupine and the Snake\n128. The Dragon and the Eagle\n129. Zeus and the Wedding Gifts\n130. Zeus and the Dogs\n131. The Prayer of the Fox and the Wolf\n132. Zeus and the Camel\n133. Zeus and the Rabbit\n134. Aphrodite and the Cat\n135. Zeus and the Donkey\n136. Zeus and the Lost Calf\n137. Zeus and the Two Sacks\n138. Zeus and the Jar of Good Things\n139. Athena and the Shipwreck\n140. Hercules and the Farmer\n141. Fortuna and the Boy\n142. Fortuna and the Farmer\n143. The Farmer and the Wheat\n144. The Farmer and his Weather Wishes\n145. Prometheus and the Satyr\n146. The Satyr and the Traveler\n147. Hermes and the Traveler\n148. Hermes and the Woodcutter\n149. The Justice of the Gods\n150. Death\&#39;s Warnings\n151. Death and the Old Man\n152. Death and Cupid\n153. The Father and his Lazy Sons\n154. The Father and his Quarrelsome Sons\n155. The Man\&#39;s Loyal Dog\n156. The Goose that Laid the Golden Eggs\n157. The Woman and her Cat\n158. The Woman and her Hen\n159. The Milkmaid\&#39;s Bucket of Milk\n160. The Farmer and the Lion\n161. The Farmer and the Apple Trees\n162. Bushes and Hedges\n163. The Foolish Farmers and the Rabbit\n164. The Farmer\&#39;s Revenge\n165. The Farmer and the Frozen Snake\n166. The Widow and her Sheep\n167. The Shepherd and his Cloak\n168. The Shepherd and the Ram\n169. The Shepherd\&#39;s Big Sheepdog\n170. The Shepherd and the Wolf Cubs\n171. The Wolf Who Herded Sheep\n172. The Shepherd and the Friendly Wolf\n173. The Shepherd and the Lion\n174. The Boy Who Cried Wolf\n175. The Shepherd and the Rabbit\n176. The Three Travelers\n177. The Three Wise Men\n178. The Two Friends and the Bear\n179. The Two Travelers and the Ax\n180. The Two Men and the Donkey\n181. The Two Men and the Oyster\n182. The Merchant and the Copper\n183. The Man and his Mistresses\n184. Three Generations\n185. Father and Son and Donkey\n186.  The Philosopher and the Pumpkin\n187. The Monks and their Abbots\n188. The Abbot and the Bones\n189. The Hermit and his Disciple\n190. The Priest and the Weeping Woman\n191. Hiring a Donkey\n192. Seeing a Camel\n193. The Sailor and the Merchant\n194. The Introverted Philosopher\n195. The Miser and his Gold\n196. The Boy and the Thief\n197. The Boy and his Teacher\n198. The Trumpeter Captured\n199. The Star-Gazing Astrologer\n200. The Man in the Tree\n\nSTORY SOURCES\n\nAll the stories in this book are adapted from Mille Fabulae et Una [1001 Fables] by Laura Gibbs, a compendium of Aesop\&#39;s fables in Latin. Sources range from the Latin fabulist Phaedrus, to medieval fabulists such as Odo of Cheriton and Renaissance fabulists such as Abstemius, as well as the modern Latin fabulist FranÃ§ois-Joseph Desbillons. For story-specific bibliography and notes, visit:\nAesop.LauraGibbs.net\n\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>It looks like there is an index, separated by <code class="docutils literal notranslate"><span class="pre">STORY</span> <span class="pre">TITLE</span> <span class="pre">INDEX</span></code>, so we can clean that out.</p>
+<p>From the start of the document, it looks like the titles are wrapped in <code class="docutils literal notranslate"><span class="pre">~</span></code> characters, so we should be able to split the stories, and story titles, quite straightforwardly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get rid of the index</span>
+<span class="n">text_doc_</span> <span class="o">=</span> <span class="n">text_doc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;STORY TITLE INDEX&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_doc_</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_doc</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Seems like we removed the index...&quot;</span><span class="p">)</span>
+
+<span class="c1"># Split the seperate stories (omit the header section)</span>
+<span class="n">stories_</span> <span class="o">=</span> <span class="n">text_doc_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">~&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="c1"># Now parse into the separate stories</span>
+<span class="n">stories</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stories_</span><span class="p">:</span>
+    <span class="c1"># Separate out the title and body</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+    <span class="n">stories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="p">)</span>
+
+<span class="c1"># Did we get any?</span>
+<span class="n">stories</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Seems like we removed the index...
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&quot;1. The Lion&#39;s Share&quot;,
+  &#39;A lion, a cow, a goat, and a sheep were working together as partners.\nThey managed to kill a stag, and the lion divided their prize into four equal parts.\n&quot;The first part is mine,&quot; he said, &quot;because I am the lion. The second part goes to me because I am the strongest. Next, I will take the third part for myself on account of my exceedingly hard work. Finally, if anyone so much as touches the fourth part, they will know my wrath!&quot;\nThat is the lion\&#39;s share: he pretends to share, but he takes it all for himself.&#39;),
+ (&#39;2. The Angry Lion&#39;,
+  &#39;There was once an enraged lion, filled with anger and hatred, hoping to find another lion he could fight with and kill.\nThen, as he was looking down into a well, there it was: a lion had fallen in there. \nIt was just his own reflection in the water, of course, but he saw what he wanted to see.\nThe angry lion, convinced he had found the enemy he was hoping to find, sprang and jumped into the well, and he drowned.\nSo it is that those who are angry often do more harm to themselves than to anyone else.&#39;),
+ (&#39;3. The Lion and the Rabbit&#39;,
+  &#39;A lion found a sleeping rabbit and was about to gobble him up, but all of a sudden the lion then saw a deer passing by. The lion abandoned the rabbit, and he started to chase the deer.\nAwakened by the ruckus, the rabbit ran off.\nThe lion, meanwhile, chased the deer a long time but didn\&#39;t catch her, so he returned to the rabbit.\nWhen he discovered the rabbit had also escaped, the lion said, &quot;By Hercules, I got what I deserved: I cast aside food I already had in my paws, preferring to chase an uncertain hope instead.&quot;&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="scraping-all-the-text-flavoured-books">
+<h2>Scraping all the Text Flavoured Books<a class="headerlink" href="#scraping-all-the-text-flavoured-books" title="Permalink to this headline">#</a></h2>
+<p>Let’s see how consistent the text fomrat is by trying to scrape the other books using the same script:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tiny_text_scrape</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Scrape stories from text version of a Tiny Tales book.&quot;&quot;&quot;</span>
+    <span class="n">text_doc</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+    
+    <span class="c1"># Keep track of chunk cleaning progress...</span>
+    <span class="n">prev_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_doc</span><span class="p">)</span>
+    
+    <span class="c1"># Get rid of the index</span>
+    <span class="n">text_doc_</span> <span class="o">=</span> <span class="n">text_doc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;STORY TITLE INDEX&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_doc_</span><span class="p">)</span> <span class="o">!=</span> <span class="n">prev_len</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seems like we removed the index for </span><span class="si">{</span><span class="n">book</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get rid of &quot;LIST OF&quot; section</span>
+    <span class="n">prev_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_doc_</span><span class="p">)</span>
+    <span class="n">text_doc_</span> <span class="o">=</span> <span class="n">text_doc_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;LIST OF &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_doc_</span><span class="p">)</span> <span class="o">!=</span> <span class="n">prev_len</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seems like we removed a list of something for </span><span class="si">{</span><span class="n">book</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+
+
+    <span class="c1"># Split the seperate stories (omit the header section)</span>
+    <span class="n">stories_</span> <span class="o">=</span> <span class="n">text_doc_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">~&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="c1"># Now parse into the separate stories</span>
+    <span class="n">stories</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stories_</span><span class="p">:</span>
+        <span class="c1"># Separate out the title and body</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+        <span class="n">stories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="p">)</span>
+        
+    <span class="k">if</span> <span class="n">stories</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">stories</span><span class="p">)</span><span class="si">}</span><span class="s2"> tales in </span><span class="si">{</span><span class="n">book</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No stories found for </span><span class="si">{</span><span class="n">book</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">stories</span>
+
+<span class="k">for</span> <span class="n">book</span> <span class="ow">in</span> <span class="n">text_urls</span><span class="p">:</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">tiny_text_scrape</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">text_urls</span><span class="p">[</span><span class="n">book</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Seems like we removed the index for Aesop...
+Found 200 tales in Aesop
+Seems like we removed the index for Anansi...
+Found 200 tales in Anansi
+Seems like we removed the index for India...
+Found 200 tales in India
+Seems like we removed a list of something for Mahabharata...
+Found 200 tales in Mahabharata
+Seems like we removed the index for Nasruddin...
+Found 200 tales in Nasruddin
+Seems like we removed the index for Ramayana...
+Found 200 tales in Ramayana
+Seems like we removed the index for Sufis...
+Found 200 tales in Sufis
+</pre></div>
+</div>
+</div>
+</div>
+<p>Checking the <em>Mahabharata</em>, we see that rather than the <code class="docutils literal notranslate"><span class="pre">STORY</span> <span class="pre">TITLE</span> <span class="pre">INDEX</span></code> at the end of the book, the endnotes begin with a <code class="docutils literal notranslate"><span class="pre">LIST</span> <span class="pre">OF</span> <span class="pre">CHARACTERS</span> <span class="pre">AND</span> <span class="pre">GLOSSARY</span></code> which we can retrospetivly add to our earlier script.</p>
+</div>
+<div class="section" id="creating-a-simple-database">
+<h2>Creating a Simple Database<a class="headerlink" href="#creating-a-simple-database" title="Permalink to this headline">#</a></h2>
+<p>Let’s create a simple database for the stories. Obvious columns include:</p>
+<ul class="simple">
+<li><p>the book;</p></li>
+<li><p>the chapter number;</p></li>
+<li><p>the title;</p></li>
+<li><p>the story.</p></li>
+</ul>
+<p>As as unique key, we can use the book and the chapter number, or the book and the title.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlite_utils</span> <span class="kn">import</span> <span class="n">Database</span>
+
+<span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;gibbs_tiny_tales.db&quot;</span>
+
+<span class="c1"># Uncomment the following lines to connect to a pre-existing database</span>
+<span class="c1">#db = Database(db_name)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not run this cell if your database already exists!</span>
+
+<span class="c1"># While developing the script, recreate database each time...</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="n">db_name</span><span class="p">,</span> <span class="n">recreate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># This schema has been evolved iteratively as I have identified structure</span>
+<span class="c1"># that can be usefully mined...</span>
+
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;tiny_tales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;chapter_order&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="c1"># Sort order of stories in book</span>
+<span class="p">},</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;book&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">))</span>
+
+<span class="c1"># Enable full text search</span>
+<span class="c1"># This creates an extra virtual table (books_fts) to support the full text search</span>
+<span class="n">db</span><span class="p">[</span><span class="s2">&quot;tiny_tales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">enable_fts</span><span class="p">([</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">create_triggers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Table tiny_tales (book, title, text, chapter_order)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now add the tales for each book to the database.</p>
+<p>The stories are returned as a list of 2-tuples — (chapter number and title, text) — but we will extend that to give the database row 4-tuple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">book</span> <span class="ow">in</span> <span class="n">text_urls</span><span class="p">:</span>
+    <span class="n">tales</span> <span class="o">=</span> <span class="n">tiny_text_scrape</span><span class="p">(</span><span class="n">book</span><span class="p">,</span> <span class="n">text_urls</span><span class="p">[</span><span class="n">book</span><span class="p">])</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">title_</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span> <span class="ow">in</span> <span class="n">tales</span><span class="p">:</span>
+        <span class="c1"># Just in case, tidy the titles</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">title_</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="n">chapter_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">{</span><span class="s2">&quot;book&quot;</span><span class="p">:</span> <span class="n">book</span><span class="p">,</span>
+                      <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+                      <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">txt</span><span class="p">,</span>
+                      <span class="s2">&quot;chapter_order&quot;</span><span class="p">:</span> <span class="n">chapter_num</span> <span class="p">}</span> <span class="p">)</span>
+    
+    <span class="n">db</span><span class="p">[</span><span class="s2">&quot;tiny_tales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">upsert_all</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;book&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span> <span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Seems like we removed the index for Aesop...
+Found 200 tales in Aesop
+Seems like we removed the index for Anansi...
+Found 200 tales in Anansi
+Seems like we removed the index for India...
+Found 200 tales in India
+Seems like we removed a list of something for Mahabharata...
+Found 200 tales in Mahabharata
+Seems like we removed the index for Nasruddin...
+Found 200 tales in Nasruddin
+Seems like we removed the index for Ramayana...
+Found 200 tales in Ramayana
+Seems like we removed the index for Sufis...
+Found 200 tales in Sufis
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how many tales we have…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;SELECT COUNT(*) AS number_of_tales FROM tiny_tales&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;number_of_tales&#39;: 1400}
+</pre></div>
+</div>
+</div>
+</div>
+<p>How many stories do we have featuring a <em>dog</em> and <em>cat</em>?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;dog cat&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Search on: </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;tiny_tales&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">quote_fts</span><span class="p">(</span><span class="n">q</span><span class="p">),</span>
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;book&quot;</span><span class="p">,</span> <span class="s2">&quot;chapter_order&quot;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">story</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Search on: dog cat
+
+{&#39;title&#39;: &#39;Anansi Takes Pig Home&#39;, &#39;book&#39;: &#39;Anansi&#39;, &#39;chapter_order&#39;: 199}
+{&#39;title&#39;: &quot;Anansi and the Cats&#39; Wedding&quot;, &#39;book&#39;: &#39;Anansi&#39;, &#39;chapter_order&#39;: 74}
+{&#39;title&#39;: &#39;King Tiger and Anansi&#39;, &#39;book&#39;: &#39;Anansi&#39;, &#39;chapter_order&#39;: 28}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">SELECT title, text FROM tiny_tales</span>
+<span class="s2">WHERE book=&#39;Anansi&#39; AND chapter_order=199</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">story</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">story</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;title&#39;: &#39;Anansi Takes Pig Home&#39;, &#39;text&#39;: &#39;Anansi was taking Pig home, but Pig wouldn\&#39;t cross the stream.\n&quot;I refuse!&quot; said Pig.\n&quot;Dog, bite Pig!&quot; Dog refused.\n&quot;Stick, beat Dog!&quot; Stick refused.\n&quot;Fire, burn Stick!&quot; Fire refused.\n&quot;Water, douse Fire!&quot; Water refused.\n&quot;Cow, drink Water!&quot; Cow refused.\n&quot;Butcher, kill Cow!&quot; Butcher refused.\n&quot;Rope, hang Butcher!&quot; Rope refused.\n&quot;Rat, gnaw Rope!&quot; Rat refused.\n&quot;Cat, eat Rat!&quot;\n&quot;Gladly!&quot; said Cat, and Cat scared Rat who scared Rope who scared Butcher who scared Cow who scared Water who scared Fire who scared Stick who scared Dog who bit Pig, who jumped the stream.\nAnansi didn\&#39;t pay anybody for helping either!&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find the database here: <a class="reference external" href="https://github.com/psychemedia/storynotes/blob/main/gibbs_tiny_tales.db?raw=true">https://github.com/psychemedia/storynotes/blob/main/gibbs_tiny_tales.db?raw=true</a></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "psychemedia/storynotes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Duncan_Williamson_Tobar_Audio.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Duncan Williamson Audio Recordings</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Notes_and_Queries_DB.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exploring Notes &amp; Queries</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Tony Hirst<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

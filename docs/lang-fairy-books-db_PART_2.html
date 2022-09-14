@@ -7,44 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Finding Book Index-Like Things In Lang’s Fairy Stories… &#8212; Story Notes - Technical Recipes</title>
     
-    <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 <link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-  
+
     
-    <link rel="stylesheet"
-      href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-    <link rel="preload" as="font" type="font/woff2" crossorigin
-      href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-  
-    
-      
-  
-    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3e71fa63ecd7719e64b6668c6ad94fdbd645785a" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-    <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
-  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=4a2ab92203046145cabe39b99b7fdcd3c3c45e62"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +60,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
 <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
 <label class="overlay overlay-navbar" for="__navigation">
@@ -86,8 +84,9 @@ const thebe_selector_output = ".output, .cell_output"
       <div class="row">
           
 <!-- Sidebar -->
-<div class="pl-4 pr-3 bd-sidebar site-navigation noprint " id="site-navigation">
-    <div class="navbar-brand-box">
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
       
@@ -159,6 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="Duncan_Williamson_Tobar_Audio.html">
    Duncan Williamson Audio Recordings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gibbs_tiny_tales.html">
+   Gibbs Tiny Tales Collection
   </a>
  </li>
 </ul>
@@ -235,12 +239,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -563,7 +572,7 @@ title="Print to PDF"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="finding-book-index-like-things-in-lang-s-fairy-stories">
-<h1>Finding Book Index-Like Things In Lang’s Fairy Stories…<a class="headerlink" href="#finding-book-index-like-things-in-lang-s-fairy-stories" title="Permalink to this headline">¶</a></h1>
+<h1>Finding Book Index-Like Things In Lang’s Fairy Stories…<a class="headerlink" href="#finding-book-index-like-things-in-lang-s-fairy-stories" title="Permalink to this headline">#</a></h1>
 <p>One of the problems associated with <em>search</em> as a form of discovery is knowing what to search for. If you have a traditional print book, it contains various navigational clues that let you quickly get a sense of what the book contains, and in what order.</p>
 <p>A look at the table of contents gives you great big signposts in the form of chapter headings, and the distance from one signpost to the net is given not in leagues or miles, but pages.</p>
 <p>At the back of the book, the index provides a jewellery box of trinkets, each with its own story, or stories, to tell, at a signposted location inside the book. Skimming the index gives you a summary of the key players and key topics contained inside the book: the indexer is truly of the cunning kind. A large index entry suggests the important role the perosn, or place, or topic so indexed, plays within the book.</p>
@@ -572,7 +581,7 @@ title="Print to PDF"
 <p>In <em>technicalese</em>, by extracting entities we can search around, that’s how… And I don’t necessarily mean “entities” of the supernatural kind, the bogles and boggarts and other things that come out at night that we might generically class as <em>“ghouls”</em>.</p>
 <p>So what sorts of <em>entity</em> might we be able to find in the stories…?!</p>
 <div class="section" id="connecting-to-the-database">
-<h2>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">¶</a></h2>
+<h2>Connecting to the Database<a class="headerlink" href="#connecting-to-the-database" title="Permalink to this headline">#</a></h2>
 <p>Let’s start by connecting to the database of Lang’s fairy stories that we created earlier, as well as loading in some magic that let’s us talk to it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,7 +627,7 @@ Done.
 </div>
 </div>
 <div class="section" id="detecting-entities-the-spacy-way">
-<h2>Detecting Entities the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> Way<a class="headerlink" href="#detecting-entities-the-spacy-way" title="Permalink to this headline">¶</a></h2>
+<h2>Detecting Entities the <code class="docutils literal notranslate"><span class="pre">spacy</span></code> Way<a class="headerlink" href="#detecting-entities-the-spacy-way" title="Permalink to this headline">#</a></h2>
 <p>To try to identify “things” in the stories, we can invoke the powers of the great God <code class="docutils literal notranslate"><span class="pre">spacy</span></code>, which walks amongst us in the guise of a natural language processing toolkit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1042,7 +1051,7 @@ Name: entity_typ, dtype: int64
 </div>
 </div>
 <div class="section" id="how-much">
-<h3>How Much?!<a class="headerlink" href="#how-much" title="Permalink to this headline">¶</a></h3>
+<h3>How Much?!<a class="headerlink" href="#how-much" title="Permalink to this headline">#</a></h3>
 <p>What sort of money has been identified in the stories?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1134,7 +1143,7 @@ Name: entity_value, dtype: int64
 <p>Various currency conversion package also exist, which means we could start to imagine searching across currencies, <em>if</em> we can identify appropriate currency conversion rates. For example, <em>“give me all stories mentioning an amount of at least 1000 gold coins, <strong>or equivalent</strong>”</em>.</p>
 </div>
 <div class="section" id="how-far-have-we-still-to-go">
-<h3>How Far Have We Still To Go?<a class="headerlink" href="#how-far-have-we-still-to-go" title="Permalink to this headline">¶</a></h3>
+<h3>How Far Have We Still To Go?<a class="headerlink" href="#how-far-have-we-still-to-go" title="Permalink to this headline">#</a></h3>
 <p>As with as monetary amounts, did our classifier genie spot any other quantities in the texts?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1191,7 +1200,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="how-many-did-you-say">
-<h3>How Many Did You Say?<a class="headerlink" href="#how-many-did-you-say" title="Permalink to this headline">¶</a></h3>
+<h3>How Many Did You Say?<a class="headerlink" href="#how-many-did-you-say" title="Permalink to this headline">#</a></h3>
 <p>We can also identify cardinal values, which is to say, numbers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1249,7 +1258,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="who-s-there">
-<h3>Who’s There?<a class="headerlink" href="#who-s-there" title="Permalink to this headline">¶</a></h3>
+<h3>Who’s There?<a class="headerlink" href="#who-s-there" title="Permalink to this headline">#</a></h3>
 <p>As well as quantities, what people or sorts of people have been identified?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1299,7 +1308,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="when-s-there">
-<h3>When’s There?<a class="headerlink" href="#when-s-there" title="Permalink to this headline">¶</a></h3>
+<h3>When’s There?<a class="headerlink" href="#when-s-there" title="Permalink to this headline">#</a></h3>
 <p>When did things happen?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1348,7 +1357,7 @@ Name: entity_value, dtype: int64
 </div>
 </div>
 <div class="section" id="organisationally-speaking">
-<h3>Organisationally Speaking…<a class="headerlink" href="#organisationally-speaking" title="Permalink to this headline">¶</a></h3>
+<h3>Organisationally Speaking…<a class="headerlink" href="#organisationally-speaking" title="Permalink to this headline">#</a></h3>
 <p>Were organisations or organisational types recognised?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1460,8 +1469,9 @@ Name: entity_value, dtype: int64
       </div>
     </div>
   
-    <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
