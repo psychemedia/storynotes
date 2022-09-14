@@ -13,6 +13,7 @@ parts:
   - file: Ashliman_folk_texts_scraper
   - file: MFTD-Multilingual_Folk_Tale_Database
   - file: Duncan_Williamson_Tobar_Audio
+  - file: gibbs_tiny_tales
 
 - caption: Notes & Queries
   chapters:
