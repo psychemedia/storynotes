@@ -14,6 +14,7 @@ parts:
   - file: MFTD-Multilingual_Folk_Tale_Database
   - file: Duncan_Williamson_Tobar_Audio
   - file: gibbs_tiny_tales
+  - file: world_of_tales
 
 - caption: Notes & Queries
   chapters:
