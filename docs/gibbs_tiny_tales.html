@@ -447,6 +447,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boilerplate-tools-for-downloading-and-parsing-web-texts">
+   Boilerplate Tools for Downloading and Parsing Web Texts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scraping-the-text-versions">
    Scraping the Text Versions
   </a>
@@ -481,6 +486,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#boilerplate-tools-for-downloading-and-parsing-web-texts">
+   Boilerplate Tools for Downloading and Parsing Web Texts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#scraping-the-text-versions">
    Scraping the Text Versions
   </a>
@@ -509,6 +519,10 @@ title="Print to PDF"
 <h1>Gibbs Tiny Tales Collection<a class="headerlink" href="#gibbs-tiny-tales-collection" title="Permalink to this headline">#</a></h1>
 <p>Laura Gibbs has a huge collection of hundred word tales, a collection that is still growing, published via a series of openly licensed books.</p>
 <p>The tales are all 100 words long, so the collection provides a really concise sett of texts that might be interesting to try to analyse for structure.</p>
+<div class="section" id="boilerplate-tools-for-downloading-and-parsing-web-texts">
+<h2>Boilerplate Tools for Downloading and Parsing Web Texts<a class="headerlink" href="#boilerplate-tools-for-downloading-and-parsing-web-texts" title="Permalink to this headline">#</a></h2>
+<p>As ever, use the <code class="docutils literal notranslate"><span class="pre">requests</span></code> package, with cacheing, to download the web pages.</p>
+<p><em>Note that in order to download any updated pages, such as a the home page that contains book links (if new books are added), we will need to bust the cache. Can we do that for just a single URL?</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These packages make it easy to download web pages so that we can work with them</span>
@@ -524,6 +538,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">microfables.blogspot.com</span></code> website has a sidebar that contains links to all the <em>Tiny Tales</em> books.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://microfables.blogspot.com/&quot;</span>
@@ -534,6 +549,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>Parse the page, find the sidebar section linking to the books, and extract the book index page links:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The BeautifulSoup package provides a range of tools</span>
@@ -576,6 +592,7 @@ title="Print to PDF"
 </div>
 <p>On each book page, there is a link to different formats of the book. Some have a text version, all have an HTML version. If we make the (dangerous!) assumption that the structure of the HTML pages are the same, we could just scrape those.</p>
 <p>But the text pages are simpler, so as a warm up exercise, let’s scrape those.</p>
+</div>
 <div class="section" id="scraping-the-text-versions">
 <h2>Scraping the Text Versions<a class="headerlink" href="#scraping-the-text-versions" title="Permalink to this headline">#</a></h2>
 <p>Let’s start by seeing which books have text versions. The book pages have a set of well labeled links that we can easily search on from the link text:</p>
@@ -742,7 +759,7 @@ Found 200 tales in Sufis
 </div>
 </div>
 </div>
-<p>Checking the <em>Mahabharata</em>, we see that rather than the <code class="docutils literal notranslate"><span class="pre">STORY</span> <span class="pre">TITLE</span> <span class="pre">INDEX</span></code> at the end of the book, the endnotes begin with a <code class="docutils literal notranslate"><span class="pre">LIST</span> <span class="pre">OF</span> <span class="pre">CHARACTERS</span> <span class="pre">AND</span> <span class="pre">GLOSSARY</span></code> which we can retrospetivly add to our earlier script.</p>
+<p>Checking the <em>Mahabharata</em>, we see that rather than the <code class="docutils literal notranslate"><span class="pre">STORY</span> <span class="pre">TITLE</span> <span class="pre">INDEX</span></code> at the end of the book, the endnotes begin with a <code class="docutils literal notranslate"><span class="pre">LIST</span> <span class="pre">OF</span> <span class="pre">CHARACTERS</span> <span class="pre">AND</span> <span class="pre">GLOSSARY</span></code> which we can retrospectively add to our earlier script.</p>
 </div>
 <div class="section" id="creating-a-simple-database">
 <h2>Creating a Simple Database<a class="headerlink" href="#creating-a-simple-database" title="Permalink to this headline">#</a></h2>
