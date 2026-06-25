@@ -61,22 +61,40 @@
 
         form {
             display: grid;
-            grid-template-columns: 1fr auto auto;
-            gap: 0.6rem;
+            grid-template-columns: 1fr;
+            gap: 0.7rem;
             margin-bottom: 0.8rem;
         }
 
-        input[type="search"] {
+        .query-input {
             width: 100%;
-            padding: 0.72rem 0.8rem;
-            border-radius: 10px;
+            min-height: 5.6rem;
+            padding: 0.8rem 0.9rem;
+            border-radius: 12px;
             border: 1px solid var(--border);
             font-size: 1rem;
+            line-height: 1.45;
             background: #fff;
+            resize: vertical;
+        }
+
+        .query-input:focus,
+        select:focus,
+        button:focus {
+            outline: 2px solid color-mix(in srgb, var(--accent-2) 65%, white);
+            outline-offset: 1px;
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         select {
-            width: 100%;
+            min-width: 12rem;
             padding: 0.72rem 0.8rem;
             border-radius: 10px;
             border: 1px solid var(--border);
@@ -255,12 +273,21 @@
                 font-size: 1.6rem;
             }
 
-            form {
-                grid-template-columns: 1fr;
+            .query-input {
+                min-height: 6.4rem;
+            }
+
+            .search-controls {
+                justify-content: stretch;
             }
 
             button {
                 width: 100%;
+            }
+
+            select {
+                width: 100%;
+                min-width: 0;
             }
 
             .pager button {
@@ -280,14 +307,15 @@
             </p>
 
             <form id="search-form">
-                <input id="query" type="search" placeholder="Search terms, e.g. giant, princess, enchanted"
-                    autocomplete="off" required>
-                <select id="search-mode" aria-label="Search mode">
-                    <option value="fts">FTS</option>
-                    <option value="semantic">Semantic</option>
-                    <option value="both" selected>Both (Hybrid)</option>
-                </select>
-                <button id="search-btn" type="submit">Search</button>
+                <textarea id="query" class="query-input" placeholder="Describe the tale pattern or enter keywords, e.g. man buries stranger then receives supernatural help on journey" autocomplete="off" required></textarea>
+                <div class="search-controls">
+                    <select id="search-mode" aria-label="Search mode">
+                        <option value="fts">FTS</option>
+                        <option value="semantic">Semantic</option>
+                        <option value="both" selected>Both (Hybrid)</option>
+                    </select>
+                    <button id="search-btn" type="submit">Search</button>
+                </div>
             </form>
 
             <fieldset class="source-picker">
