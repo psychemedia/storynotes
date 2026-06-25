@@ -153,7 +153,7 @@
     <main class="wrap">
         <section class="card">
             <div class="toolbar">
-                <a id="back-link" class="button" href="./lang-fairy-search.html">Back To Search</a>
+                <a id="back-link" class="button" href="./traditional_tales_search.html">Back To Search</a>
                 <input id="find-input" type="search" placeholder="Find in this story..." autocomplete="off">
                 <button id="find-prev" type="button">Prev</button>
                 <button id="find-next" type="button">Next</button>
@@ -349,7 +349,7 @@
 
             const backParams = new URLSearchParams();
             if (q) backParams.set("q", q);
-            backLinkEl.href = `./lang-fairy-search.html${backParams.toString() ? `?${backParams.toString()}` : ""}`;
+            backLinkEl.href = `./traditional_tales_search.html${backParams.toString() ? `?${backParams.toString()}` : ""}`;
 
             if (!sourceKey || !tableKey || !rowid) {
                 titleEl.textContent = "Missing Story Parameters";
