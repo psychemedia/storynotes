@@ -11,4 +11,5 @@ spacy
 quantulum3
 
 jupyterlab-myst
+sentence-transformers
 

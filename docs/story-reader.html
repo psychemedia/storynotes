@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Traditional Tales Reader</title>
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --panel: #fffdf8;
+            --ink: #1f2a30;
+            --muted: #6b7377;
+            --accent: #005f73;
+            --accent-2: #0a9396;
+            --mark: #ffd166;
+            --border: #d7d2c6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 10% 10%, #ffffff 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, #e5f3f1 0%, transparent 35%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            padding: 1.2rem;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        a.button,
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 0.56rem 0.8rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        input[type="search"] {
+            width: 100%;
+            max-width: 340px;
+            padding: 0.58rem 0.72rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        h1 {
+            margin: 0 0 0.35rem;
+            font-size: 1.8rem;
+            line-height: 1.15;
+            color: var(--accent);
+        }
+
+        .meta,
+        .status {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .status {
+            min-height: 1.2em;
+            margin-top: 0.35rem;
+        }
+
+        .content {
+            margin-top: 0.9rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.8rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            max-height: 68vh;
+            overflow: auto;
+        }
+
+        mark.story-match {
+            background: var(--mark);
+        }
+
+        mark.story-match.active {
+            background: #ef476f;
+            color: #fff;
+        }
+
+        .credits {
+            margin-top: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .credits h2 {
+            margin: 0 0 0.45rem;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .credits ul {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        .credits li {
+            margin: 0.25rem 0;
+        }
+
+        .credits a {
+            color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.45rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <section class="card">
+            <div class="toolbar">
+                <a id="back-link" class="button" href="./lang-fairy-search.html">Back To Search</a>
+                <input id="find-input" type="search" placeholder="Find in this story..." autocomplete="off">
+                <button id="find-prev" type="button">Prev</button>
+                <button id="find-next" type="button">Next</button>
+                <span id="find-status" class="status"></span>
+            </div>
+
+            <h1 id="story-title">Loading story...</h1>
+            <p id="story-meta" class="meta"></p>
+            <p id="status" class="status"></p>
+            <article id="story-content" class="content"></article>
+
+            <section class="credits" aria-label="Sources and credits">
+                <h2>Sources &amp; Credits</h2>
+                <ul>
+                    <li>MTDF Demo / Multilingual Folk Tale Database (MFTD): <a href="http://www.mftd.org/"
+                            target="_blank" rel="noopener noreferrer">http://www.mftd.org/</a></li>
+                    <li>Lang Fairy Books (source text): <a href="https://sacred-texts.com/neu/lfb/index.htm"
+                            target="_blank" rel="noopener noreferrer">https://sacred-texts.com/neu/lfb/index.htm</a>
+                        from <a href="https://sacred-texts.com/" target="_blank"
+                            rel="noopener noreferrer">https://sacred-texts.com/</a></li>
+                    <li>World of Tales: <a href="https://www.worldoftales.com/#gsc.tab=0" target="_blank"
+                            rel="noopener noreferrer">https://www.worldoftales.com/#gsc.tab=0</a></li>
+                    <li>Ashliman Folktexts: <a href="https://sites.pitt.edu/~dash/folktexts.html" target="_blank"
+                            rel="noopener noreferrer">https://sites.pitt.edu/~dash/folktexts.html</a></li>
+                </ul>
+            </section>
+        </section>
+    </main>
+
+    <script type="module">
+        import { initStoryData, getSource, getTable, fetchStoryById } from "./js/story-data.js";
+
+        const titleEl = document.getElementById("story-title");
+        const metaEl = document.getElementById("story-meta");
+        const statusEl = document.getElementById("status");
+        const contentEl = document.getElementById("story-content");
+        const findInputEl = document.getElementById("find-input");
+        const findPrevBtn = document.getElementById("find-prev");
+        const findNextBtn = document.getElementById("find-next");
+        const findStatusEl = document.getElementById("find-status");
+        const backLinkEl = document.getElementById("back-link");
+
+        let storyText = "";
+        let matchEls = [];
+        let matchIndex = -1;
+
+        const FORMAT_PROFILE_BY_SOURCE = {
+            lang: {
+                breakSectionHeadings: true,
+                breakDecorativeHeadings: true,
+                breakNarrationToQuote: true
+            },
+            world: {
+                breakSectionHeadings: true,
+                breakDecorativeHeadings: true,
+                breakNarrationToQuote: true,
+                stripOuterBracketSlash: true,
+                stripBoundaryBrackets: true
+            },
+            mtdf: {
+                breakSectionHeadings: true,
+                breakDecorativeHeadings: true,
+                breakNarrationToQuote: true
+            },
+            ashliman: {
+                breakSectionHeadings: true,
+                breakDecorativeHeadings: true,
+                breakNarrationToQuote: true
+            }
+        };
+
+        function escapeHtml(value) {
+            return String(value || "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#39;");
+        }
+
+        function escapeRegExp(value) {
+            return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        }
+
+        function formatStoryText(rawText, sourceKey) {
+            let text = String(rawText || "");
+            const profile = FORMAT_PROFILE_BY_SOURCE[sourceKey] || {
+                breakSectionHeadings: true,
+                breakDecorativeHeadings: true,
+                breakNarrationToQuote: true,
+                stripOuterBracketSlash: false,
+                stripBoundaryBrackets: false
+            };
+
+            text = text.replace(/\r\n?/g, "\n");
+            text = text.replace(/\u00a0/g, " ");
+            text = text.replace(/[ \t]+\n/g, "\n").replace(/\n[ \t]+/g, "\n");
+            text = text.replace(/[ \t]{2,}/g, " ");
+
+            if (profile.stripOuterBracketSlash) {
+                text = text.replace(/^\s*\[\s*\/\s*\]\s*/u, "");
+                text = text.replace(/\s*\[\s*\/\s*\]\s*$/u, "");
+            }
+
+            if (profile.stripBoundaryBrackets) {
+                text = text.replace(/^\s*\[\s*(?:\n+)?/u, "");
+                text = text.replace(/(?:\n+)?\s*\]\s*$/u, "");
+            }
+
+            if (profile.breakSectionHeadings) {
+                // Break before common section markers when source text has collapsed paragraphs.
+                text = text.replace(/\s+(?=(CHAPTER|BOOK|PART)\s+[IVXLC\d]+)/gi, "\n\n");
+            }
+
+            if (profile.breakDecorativeHeadings) {
+                // Break around decorative heading separators, e.g. title ======== line styles.
+                text = text.replace(/\s*={3,}\s*/g, "\n\n");
+            }
+
+            // Heuristic: split adjacent quoted speech into separate paragraphs.
+            // Example: ..." "More text... -> ..."\n\n"More text...
+            text = text.replace(/([.!?]["”’'])\s+(["“])/g, "$1\n\n$2");
+
+            if (profile.breakNarrationToQuote) {
+                // Heuristic: narration sentence followed by opening quote.
+                // Caveat guard: require at least 2 quoted words so short quoted terms don't split.
+                text = text.replace(
+                    /([.!?])\s+(["“])([A-Z][^"“”]{6,}?[\s,;:][^"“”]{2,})/g,
+                    "$1\n\n$2$3"
+                );
+            }
+
+            // Heuristic: if a quote is immediately followed by a common speech verb,
+            // separate narration/speaker tag from the next sentence block.
+            text = text.replace(/(["”’']\s*(?:said|asked|replied|answered|cried)\.?)(\s+)([A-Z])/g, "$1\n\n$3");
+
+            // Normalize accidental runs of blank lines.
+            text = text.replace(/\n{3,}/g, "\n\n");
+
+            return text.trim();
+        }
+
+        function focusMatch(index) {
+            if (!matchEls.length) return;
+            matchEls.forEach((el) => el.classList.remove("active"));
+            const count = matchEls.length;
+            const normalized = ((index % count) + count) % count;
+            matchIndex = normalized;
+            const el = matchEls[normalized];
+            el.classList.add("active");
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+            findStatusEl.textContent = `${normalized + 1}/${count}`;
+        }
+
+        function renderFind(term) {
+            const text = storyText || "";
+            if (!term.trim()) {
+                contentEl.innerHTML = escapeHtml(text);
+                matchEls = [];
+                matchIndex = -1;
+                findStatusEl.textContent = "";
+                return;
+            }
+
+            const safePattern = escapeRegExp(term.trim());
+            const regex = new RegExp(safePattern, "gi");
+            const parts = [];
+            let last = 0;
+            let match = null;
+            while ((match = regex.exec(text)) !== null) {
+                parts.push(escapeHtml(text.slice(last, match.index)));
+                parts.push(`<mark class=\"story-match\">${escapeHtml(match[0])}</mark>`);
+                last = match.index + match[0].length;
+            }
+            parts.push(escapeHtml(text.slice(last)));
+            contentEl.innerHTML = parts.join("");
+
+            matchEls = Array.from(contentEl.querySelectorAll("mark.story-match"));
+            if (!matchEls.length) {
+                matchIndex = -1;
+                findStatusEl.textContent = "No matches";
+                return;
+            }
+            focusMatch(0);
+        }
+
+        async function init() {
+            const params = new URLSearchParams(window.location.search);
+            const sourceKey = params.get("source") || "";
+            const tableKey = params.get("table") || "";
+            const rowid = params.get("rowid") || "";
+            const q = params.get("q") || "";
+
+            const backParams = new URLSearchParams();
+            if (q) backParams.set("q", q);
+            backLinkEl.href = `./lang-fairy-search.html${backParams.toString() ? `?${backParams.toString()}` : ""}`;
+
+            if (!sourceKey || !tableKey || !rowid) {
+                titleEl.textContent = "Missing Story Parameters";
+                statusEl.textContent = "URL must include source, table, and rowid.";
+                return;
+            }
+
+            const source = getSource(sourceKey);
+            const table = getTable(sourceKey, tableKey);
+            if (!source || !table) {
+                titleEl.textContent = "Unknown Story Source";
+                statusEl.textContent = "The requested source/table combination is not recognized.";
+                return;
+            }
+
+            try {
+                statusEl.textContent = "Loading story...";
+                await initStoryData();
+                const story = await fetchStoryById(sourceKey, tableKey, rowid);
+                if (!story) {
+                    titleEl.textContent = "Story Not Found";
+                    statusEl.textContent = "No row found for the requested rowid.";
+                    return;
+                }
+
+                storyText = formatStoryText(story.text || "", sourceKey);
+                titleEl.textContent = story.title || "Untitled";
+                const chapter = story.chapter_order == null ? "n/a" : String(story.chapter_order);
+                metaEl.textContent = `${source.label} (${table.label}) • ${story.book || source.label} • chapter ${chapter}`;
+                statusEl.textContent = "";
+
+                findInputEl.value = q;
+                renderFind(q);
+            } catch (error) {
+                titleEl.textContent = "Reader Error";
+                statusEl.textContent = String(error?.message || error || "Unknown error");
+            }
+        }
+
+        findInputEl.addEventListener("input", () => {
+            renderFind(findInputEl.value);
+        });
+
+        findNextBtn.addEventListener("click", () => {
+            if (!matchEls.length) return;
+            focusMatch(matchIndex + 1);
+        });
+
+        findPrevBtn.addEventListener("click", () => {
+            if (!matchEls.length) return;
+            focusMatch(matchIndex - 1);
+        });
+
+        init();
+    </script>
+</body>
+
+</html>

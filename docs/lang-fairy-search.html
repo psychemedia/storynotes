@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Traditional Tales Search</title>
+    <style>
+        :root {
+            --bg: #f6f4ef;
+            --panel: #fffdf8;
+            --ink: #1f2a30;
+            --muted: #6b7377;
+            --accent: #005f73;
+            --accent-2: #0a9396;
+            --mark: #ee9b00;
+            --border: #d7d2c6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 10% 10%, #ffffff 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, #e5f3f1 0%, transparent 35%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            padding: 1.2rem;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem;
+            font-size: 2rem;
+            line-height: 1.1;
+            color: var(--accent);
+        }
+
+        .sub {
+            margin: 0 0 1rem;
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        input[type="search"] {
+            width: 100%;
+            padding: 0.72rem 0.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+            background: #fff;
+        }
+
+        select {
+            width: 100%;
+            padding: 0.72rem 0.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+            background: #fff;
+            color: var(--ink);
+        }
+
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 0.72rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.5rem 0 0;
+            flex-wrap: wrap;
+        }
+
+        .source-picker {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.65rem 0.75rem;
+            margin: 0 0 0.8rem;
+            background: #fff;
+        }
+
+        .source-picker legend {
+            color: var(--muted);
+            font-size: 0.9rem;
+            padding: 0 0.35rem;
+        }
+
+        .sources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .sources label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.95rem;
+        }
+
+        .status {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .pager {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .pager button {
+            background: #31565d;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.92rem;
+        }
+
+        .results {
+            margin-top: 1rem;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .result {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            padding: 0.8rem;
+            transition: transform 140ms ease;
+            cursor: pointer;
+        }
+
+        .result:hover {
+            transform: translateY(-1px);
+        }
+
+        .result h3 {
+            margin: 0 0 0.3rem;
+            font-size: 1.05rem;
+            color: #0f4c5c;
+        }
+
+        .meta {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-bottom: 0.45rem;
+        }
+
+        .excerpt {
+            margin: 0;
+            line-height: 1.45;
+            font-size: 0.96rem;
+        }
+
+        mark {
+            background: color-mix(in srgb, var(--mark) 35%, white);
+            padding: 0 0.1em;
+            border-radius: 0.2em;
+        }
+
+        .hint {
+            margin-top: 0.75rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .credits {
+            margin-top: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .credits h2 {
+            margin: 0 0 0.45rem;
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .credits ul {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        .credits li {
+            margin: 0.25rem 0;
+        }
+
+        .credits a {
+            color: var(--accent);
+        }
+
+        .open-link {
+            display: inline-block;
+            margin-top: 0.45rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .versions {
+            margin-top: 0.45rem;
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        .versions-links {
+            margin-top: 0.25rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem 0.7rem;
+        }
+
+        .versions-links .open-link {
+            margin-top: 0;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .pager button {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <section class="card">
+            <h1>Traditional Tales Search</h1>
+            <p class="sub">Client-side search over <strong>lang_fairy_tale.db</strong>,
+                <strong>world_of_tales.db</strong>, <strong>mtdf_demo.db</strong>, and <strong>ashliman_demo.db</strong>
+                using SQLite FTS5 and optional semantic ranking.</p>
+
+            <form id="search-form">
+                <input id="query" type="search" placeholder="Search terms, e.g. giant, princess, enchanted"
+                    autocomplete="off" required>
+                <select id="search-mode" aria-label="Search mode">
+                    <option value="fts" selected>FTS</option>
+                    <option value="semantic">Semantic</option>
+                    <option value="both">Both (Hybrid)</option>
+                </select>
+                <button id="search-btn" type="submit">Search</button>
+            </form>
+
+            <fieldset class="source-picker">
+                <legend>Collections</legend>
+                <div class="sources" id="sources"></div>
+            </fieldset>
+
+            <div class="toolbar">
+                <div id="status" class="status">Loading database...</div>
+                <div class="pager">
+                    <button id="prev-btn" type="button" disabled>Previous</button>
+                    <button id="next-btn" type="button" disabled>Next</button>
+                </div>
+            </div>
+
+            <div id="results" class="results"></div>
+            <p id="hint" class="hint">Tip: this page requires FTS5. Try queries like <code>princess NEAR/5 giant</code>
+                or <code>enchant*</code>.</p>
+
+            <section class="credits" aria-label="Sources and credits">
+                <h2>Sources &amp; Credits</h2>
+                <ul>
+                    <li>MTDF Demo / Multilingual Folk Tale Database (MFTD): <a href="http://www.mftd.org/"
+                            target="_blank" rel="noopener noreferrer">http://www.mftd.org/</a></li>
+                    <li>Lang Fairy Books (source text): <a href="https://sacred-texts.com/neu/lfb/index.htm"
+                            target="_blank" rel="noopener noreferrer">https://sacred-texts.com/neu/lfb/index.htm</a>
+                        from <a href="https://sacred-texts.com/" target="_blank"
+                            rel="noopener noreferrer">https://sacred-texts.com/</a></li>
+                    <li>World of Tales: <a href="https://www.worldoftales.com/#gsc.tab=0" target="_blank"
+                            rel="noopener noreferrer">https://www.worldoftales.com/#gsc.tab=0</a></li>
+                    <li>Ashliman Folktexts: <a href="https://sites.pitt.edu/~dash/folktexts.html" target="_blank"
+                            rel="noopener noreferrer">https://sites.pitt.edu/~dash/folktexts.html</a></li>
+                </ul>
+            </section>
+        </section>
+    </main>
+
+    <script type="module">
+        import {
+            SOURCES,
+            EMBEDDING_MODEL_ID,
+            tableRef,
+            initStoryData,
+            checkFts5Enabled,
+            getSemanticEnabledTableRefs,
+            searchFtsRows,
+            loadSemanticCorpusRows
+        } from "./js/story-data.js";
+
+        const PAGE_SIZE = 25;
+        const EMBEDDING_MODEL_BROWSER = "Xenova/all-MiniLM-L6-v2";
+        const LOCAL_MODEL_BASE = "./models/";
+        const LOCAL_ORT_BASE = "./vendor/transformers/";
+        const MAX_FTS_ROWS_PER_SOURCE = 3000;
+
+        const formEl = document.getElementById("search-form");
+        const queryEl = document.getElementById("query");
+        const resultsEl = document.getElementById("results");
+        const statusEl = document.getElementById("status");
+        const hintEl = document.getElementById("hint");
+        const modeEl = document.getElementById("search-mode");
+        const sourcesEl = document.getElementById("sources");
+        const semanticOptionEl = modeEl.querySelector("option[value='semantic']");
+        const hybridOptionEl = modeEl.querySelector("option[value='both']");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+
+        let embedder = null;
+        let currentQuery = "";
+        let currentPage = 0;
+        let totalMatches = 0;
+        let semanticRuntimeAvailable = true;
+        let ftsCache = { key: "", rows: [] };
+        let semanticCache = { key: "", rows: [] };
+        let hybridCache = { key: "", rows: [] };
+        let semanticEnabledRefs = new Set();
+        const semanticCorpusByTable = new Map();
+
+        const HYBRID_FTS_LIMIT = 250;
+        const HYBRID_SEM_LIMIT = 250;
+
+        function escapeHtml(value) {
+            return value
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#39;");
+        }
+
+        function showStatus(message) {
+            statusEl.textContent = message;
+        }
+
+        function normalizeErrorMessage(error) {
+            const message = String(error?.message || error || "Unknown error");
+            if (/Forbidden|Unexpected token 'F'|not valid JSON|Failed to fetch/i.test(message)) {
+                return "Semantic model download failed (forbidden or blocked by network/CORS). Use FTS, or host model files locally.";
+            }
+            return message;
+        }
+
+        function readerUrlForRow(row) {
+            const params = new URLSearchParams({
+                source: String(row.source_key || ""),
+                table: String(row.table_key || ""),
+                rowid: String(row.book_rowid || "")
+            });
+            if (currentQuery) {
+                params.set("q", currentQuery);
+            }
+            return `./story-reader.html?${params.toString()}`;
+        }
+
+        function setHintByMode() {
+            if (modeEl.value === "semantic") {
+                hintEl.innerHTML = "Tip: Semantic mode searches precomputed embeddings for the selected story collections. The first run loads a local browser model for query encoding.";
+            } else if (modeEl.value === "both") {
+                hintEl.innerHTML = "Tip: Hybrid mode blends FTS relevance and semantic similarity across selected story collections.";
+            } else {
+                hintEl.innerHTML = "Tip: this uses SQLite FTS syntax, so you can try queries like <code>princess NEAR/5 giant</code> or <code>enchant*</code>.";
+            }
+        }
+
+        function selectedSourceKeys() {
+            const checked = Array.from(document.querySelectorAll("input[name='source-key']:checked"));
+            return checked.map((el) => el.value);
+        }
+
+        function selectedSources() {
+            const selected = new Set(selectedSourceKeys());
+            return SOURCES.filter((source) => selected.has(source.key));
+        }
+
+        function selectedTableConfigs() {
+            const rows = [];
+            for (const source of selectedSources()) {
+                for (const table of source.tables) {
+                    if (!table.defaultSelected) continue;
+                    rows.push({ source, table, ref: tableRef(source.key, table.key) });
+                }
+            }
+            return rows;
+        }
+
+        function selectedSemanticTableConfigs() {
+            return selectedTableConfigs().filter((cfg) => semanticEnabledRefs.has(cfg.ref));
+        }
+
+        function selectionKey(items) {
+            return items.slice().sort().join(",");
+        }
+
+        function setPagerState() {
+            const hasPrev = currentPage > 0;
+            const hasNext = (currentPage + 1) * PAGE_SIZE < totalMatches;
+            prevBtn.disabled = !hasPrev;
+            nextBtn.disabled = !hasNext;
+        }
+
+        function renderRows(groupedRows) {
+            if (!groupedRows.length) {
+                resultsEl.innerHTML = "<div class='result'><p class='excerpt'>No matches found.</p></div>";
+                return;
+            }
+
+            const html = groupedRows.map((group) => {
+                const primary = group.primary;
+                const title = escapeHtml(primary.title || "Untitled");
+                const book = escapeHtml(primary.book || "Unknown collection");
+                const source = escapeHtml(primary.source_label || primary.source_key || "Collection");
+                const table = escapeHtml(primary.table_label || "");
+                const chapter = primary.chapter_order == null ? "n/a" : String(primary.chapter_order);
+                const safeExcerpt = primary.excerpt || "";
+                const scoreBadge = primary.hybrid_score == null
+                    ? ""
+                    : `<div class="meta">hybrid score: ${Number(primary.hybrid_score).toFixed(3)}</div>`;
+
+                const versionsCount = group.versions.length;
+                const versionMeta = versionsCount > 1
+                    ? `<div class="versions">${versionsCount} versions found</div>`
+                    : "";
+
+                const versionsLinks = group.versions.map((row) => {
+                    const linkLabel = `${escapeHtml(row.source_label || row.source_key || "Collection")}${row.table_label ? ` (${escapeHtml(row.table_label)})` : ""}`;
+                    return `<a class="open-link" href="${readerUrlForRow(row)}">${linkLabel}</a>`;
+                }).join("");
+
+                return `
+                    <article class="result">
+            <h3>${title}</h3>
+                        <div class="meta">${source}${table ? ` (${table})` : ""} • ${book} • chapter ${chapter}</div>
+            ${scoreBadge}
+            <p class="excerpt">${safeExcerpt}</p>
+            ${versionMeta}
+            <div class="versions-links">${versionsLinks}</div>
+          </article>
+        `;
+            }).join("");
+
+            resultsEl.innerHTML = html;
+        }
+
+        function groupRowsByTitle(rows) {
+            const groups = new Map();
+
+            for (const row of rows) {
+                const key = String(row.title || "untitled").trim().toLowerCase();
+                if (!groups.has(key)) {
+                    groups.set(key, {
+                        primary: row,
+                        versions: [row],
+                        seen: new Set([`${row.source_key}:${row.table_key}:${row.book_rowid}`])
+                    });
+                    continue;
+                }
+
+                const group = groups.get(key);
+                const versionKey = `${row.source_key}:${row.table_key}:${row.book_rowid}`;
+                if (!group.seen.has(versionKey)) {
+                    group.versions.push(row);
+                    group.seen.add(versionKey);
+                }
+            }
+
+            return Array.from(groups.values()).map((group) => ({
+                primary: group.primary,
+                versions: group.versions
+            }));
+        }
+
+        function cosineDot(v1, v2) {
+            let acc = 0;
+            for (let i = 0; i < v1.length; i += 1) {
+                acc += v1[i] * v2[i];
+            }
+            return acc;
+        }
+
+        function normalizeByKey(rows, key) {
+            if (!rows.length) return;
+            let min = Number.POSITIVE_INFINITY;
+            let max = Number.NEGATIVE_INFINITY;
+            for (const row of rows) {
+                const value = Number(row[key]);
+                if (value < min) min = value;
+                if (value > max) max = value;
+            }
+            const span = max - min;
+            for (const row of rows) {
+                row[`${key}_norm`] = span === 0 ? 1 : (Number(row[key]) - min) / span;
+            }
+        }
+
+        function renderSources() {
+            const html = SOURCES.map((source) => `
+                <label>
+                    <input type="checkbox" name="source-key" value="${source.key}" checked>
+                    ${escapeHtml(source.label)}
+                </label>
+            `).join("");
+            sourcesEl.innerHTML = html;
+        }
+
+        function addExcerptMarks(text) {
+            return escapeHtml(text || "").replaceAll("[[", "<mark>").replaceAll("]]", "</mark>");
+        }
+
+        async function getEmbedder() {
+            if (embedder) return embedder;
+            if (!semanticRuntimeAvailable) {
+                throw new Error("Semantic runtime unavailable: browser model could not be loaded.");
+            }
+            showStatus("Loading semantic model (first run may take a minute)...");
+            try {
+                const { pipeline, env } = await import("./vendor/transformers/transformers.esm.js");
+                env.allowRemoteModels = false;
+                env.localModelPath = LOCAL_MODEL_BASE;
+                env.backends.onnx.wasm.wasmPaths = LOCAL_ORT_BASE;
+                env.backends.onnx.wasm.numThreads = 1;
+                embedder = await pipeline("feature-extraction", EMBEDDING_MODEL_BROWSER);
+                return embedder;
+            } catch (error) {
+                semanticRuntimeAvailable = false;
+                throw new Error(normalizeErrorMessage(error));
+            }
+        }
+
+        function renderPage(rows) {
+            const groupedRows = groupRowsByTitle(rows);
+            const startIdx = currentPage * PAGE_SIZE;
+            const pageRows = groupedRows.slice(startIdx, startIdx + PAGE_SIZE);
+            renderRows(pageRows);
+            const start = totalMatches ? startIdx + 1 : 0;
+            const end = Math.min(startIdx + PAGE_SIZE, totalMatches);
+            return { start, end };
+        }
+
+        function toResultRow(source, table, row, options = {}) {
+            return {
+                source_key: source.key,
+                source_label: source.label,
+                table_key: table.key,
+                table_label: table.label,
+                book_rowid: Number(row.book_rowid),
+                title: row.title || "Untitled",
+                book: row.book || source.label,
+                chapter_order: row.chapter_order,
+                excerpt: options.marked ? addExcerptMarks(row.excerpt || "") : escapeHtml(row.excerpt || ""),
+                semantic_score: row.semantic_score,
+                fts_score: row.fts_score,
+                semantic_score_norm: row.semantic_score_norm,
+                fts_score_norm: row.fts_score_norm,
+                hybrid_score: row.hybrid_score
+            };
+        }
+
+        async function ensureFtsResults() {
+            const selectedTables = selectedTableConfigs();
+            const key = `${currentQuery}::${selectionKey(selectedTables.map((cfg) => cfg.ref))}`;
+            if (ftsCache.key === key) {
+                return ftsCache.rows;
+            }
+
+            const allRows = [];
+            for (const { source, table } of selectedTables) {
+                const rows = await searchFtsRows(
+                    source.key,
+                    table.key,
+                    currentQuery,
+                    MAX_FTS_ROWS_PER_SOURCE
+                );
+                for (const row of rows) {
+                    allRows.push(toResultRow(source, table, row, { marked: true }));
+                }
+            }
+
+            normalizeByKey(allRows, "fts_score");
+            allRows.sort((a, b) => Number(b.fts_score || 0) - Number(a.fts_score || 0));
+            ftsCache = { key, rows: allRows };
+            return allRows;
+        }
+
+        async function loadSemanticCorpusForTable(source, table) {
+            const ref = tableRef(source.key, table.key);
+            if (semanticCorpusByTable.has(ref)) {
+                return semanticCorpusByTable.get(ref);
+            }
+
+            const rows = await loadSemanticCorpusRows(source.key, table.key);
+
+            const corpus = rows.map((row) => ({
+                source_key: source.key,
+                source_label: source.label,
+                table_key: table.key,
+                table_label: table.label,
+                book_rowid: Number(row.book_rowid),
+                book: row.book || source.label,
+                title: row.title || "Untitled",
+                chapter_order: row.chapter_order,
+                excerpt: row.excerpt || "",
+                embedding: row.embedding
+            }));
+
+            semanticCorpusByTable.set(ref, corpus);
+            return corpus;
+        }
+
+        async function ensureSemanticResults() {
+            const selectedTables = selectedSemanticTableConfigs();
+            const key = `${currentQuery}::${selectionKey(selectedTables.map((cfg) => cfg.ref))}`;
+            if (semanticCache.key === key) {
+                return semanticCache.rows;
+            }
+
+            let corpus = [];
+            for (const { source, table } of selectedTables) {
+                const sourceCorpus = await loadSemanticCorpusForTable(source, table);
+                corpus = corpus.concat(sourceCorpus);
+            }
+
+            if (!corpus.length) {
+                semanticCache = { key, rows: [] };
+                return [];
+            }
+
+            const model = await getEmbedder();
+            showStatus("Computing semantic similarity...");
+            const queryEmbedding = await model(currentQuery, { pooling: "mean", normalize: true });
+            const queryVec = Array.from(queryEmbedding.data);
+
+            const rows = corpus.map((entry) => ({
+                source_key: entry.source_key,
+                source_label: entry.source_label,
+                table_key: entry.table_key,
+                table_label: entry.table_label,
+                book_rowid: entry.book_rowid,
+                book: entry.book,
+                title: entry.title,
+                chapter_order: entry.chapter_order,
+                excerpt: escapeHtml(entry.excerpt),
+                semantic_score: cosineDot(queryVec, entry.embedding)
+            }));
+            normalizeByKey(rows, "semantic_score");
+            rows.sort((a, b) => Number(b.semantic_score || 0) - Number(a.semantic_score || 0));
+            semanticCache = { key, rows };
+            return rows;
+        }
+
+        async function runFtsSearch() {
+            const rows = await ensureFtsResults();
+            totalMatches = groupRowsByTitle(rows).length;
+            const { start, end } = renderPage(rows);
+            showStatus(`Showing ${start}-${end} of ${totalMatches} grouped result(s) [FTS across ${selectedSources().length} collection(s)].`);
+            setPagerState();
+        }
+
+        async function runSemanticSearch() {
+            const semanticTables = selectedSemanticTableConfigs();
+            if (!semanticTables.length) {
+                throw new Error("Semantic search is unavailable for the selected collection set.");
+            }
+
+            const rows = await ensureSemanticResults();
+            totalMatches = groupRowsByTitle(rows).length;
+            const { start, end } = renderPage(rows);
+            showStatus(`Showing ${start}-${end} of ${totalMatches} grouped semantic result(s) across ${selectedSources().length} collection(s).`);
+            setPagerState();
+        }
+
+        async function runHybridSearch() {
+            const semanticTables = selectedSemanticTableConfigs();
+            if (!semanticTables.length) {
+                throw new Error("Hybrid mode requires embeddings in at least one selected table.");
+            }
+
+            const key = `${currentQuery}::${selectionKey(selectedTableConfigs().map((cfg) => cfg.ref))}`;
+            if (hybridCache.key !== key) {
+                const semanticRows = (await ensureSemanticResults()).slice(0, HYBRID_SEM_LIMIT).map((row) => ({ ...row }));
+                const ftsRows = (await ensureFtsResults()).slice(0, HYBRID_FTS_LIMIT).map((row) => ({ ...row }));
+
+                normalizeByKey(semanticRows, "semantic_score");
+                normalizeByKey(ftsRows, "fts_score");
+
+                const merged = new Map();
+                for (const row of semanticRows) {
+                    const mapKey = `${row.source_key}:${row.table_key}:${row.book_rowid}`;
+                    merged.set(mapKey, {
+                        ...row,
+                        semantic_score_norm: row.semantic_score_norm ?? 0,
+                        fts_score_norm: 0
+                    });
+                }
+
+                for (const row of ftsRows) {
+                    const mapKey = `${row.source_key}:${row.table_key}:${row.book_rowid}`;
+                    if (merged.has(mapKey)) {
+                        const existing = merged.get(mapKey);
+                        merged.set(mapKey, {
+                            ...existing,
+                            excerpt: row.excerpt || existing.excerpt,
+                            fts_score_norm: row.fts_score_norm ?? 0
+                        });
+                    } else {
+                        merged.set(mapKey, {
+                            ...row,
+                            semantic_score_norm: 0,
+                            fts_score_norm: row.fts_score_norm ?? 0
+                        });
+                    }
+                }
+
+                const rows = Array.from(merged.values()).map((row) => ({
+                    ...row,
+                    hybrid_score: 0.55 * Number(row.fts_score_norm || 0) + 0.45 * Number(row.semantic_score_norm || 0)
+                }));
+                rows.sort((a, b) => Number(b.hybrid_score || 0) - Number(a.hybrid_score || 0));
+                hybridCache = { key, rows };
+            }
+
+            totalMatches = groupRowsByTitle(hybridCache.rows).length;
+            const { start, end } = renderPage(hybridCache.rows);
+            showStatus(`Showing ${start}-${end} of ${totalMatches} grouped result(s) [Hybrid rank across selected collections].`);
+            setPagerState();
+        }
+
+        async function runSearch() {
+            if (!currentQuery.trim()) {
+                resultsEl.innerHTML = "";
+                showStatus("Enter a search query.");
+                totalMatches = 0;
+                setPagerState();
+                return;
+            }
+
+            try {
+                if (!selectedTableConfigs().length) {
+                    throw new Error("Select at least one table (or collection in simple mode).");
+                }
+
+                if (modeEl.value === "semantic") {
+                    await runSemanticSearch();
+                } else if (modeEl.value === "both") {
+                    await runHybridSearch();
+                } else {
+                    await runFtsSearch();
+                }
+            } catch (error) {
+                const friendlyMessage = normalizeErrorMessage(error);
+
+                // If semantic/hybrid fails due runtime model download issues, gracefully fall back.
+                if ((modeEl.value === "semantic" || modeEl.value === "both") && !semanticRuntimeAvailable) {
+                    if (modeEl.value === "both") {
+                        await runFtsSearch();
+                        showStatus(`${friendlyMessage} Falling back to FTS results.`);
+                    } else {
+                        resultsEl.innerHTML = "";
+                        totalMatches = 0;
+                        setPagerState();
+                        showStatus(friendlyMessage);
+                    }
+                    return;
+                }
+
+                resultsEl.innerHTML = "";
+                showStatus(`Query error: ${friendlyMessage}`);
+                totalMatches = 0;
+                setPagerState();
+            }
+        }
+
+        async function init() {
+            try {
+                renderSources();
+                showStatus("Loading SQLite engine...");
+                await initStoryData();
+
+                showStatus("Loading selected collections...");
+                const hasFts5 = await checkFts5Enabled();
+                if (!hasFts5) {
+                    throw new Error("This SQLite WASM runtime is missing FTS5.");
+                }
+
+                semanticEnabledRefs = await getSemanticEnabledTableRefs();
+                const anySemantic = semanticEnabledRefs.size > 0;
+                if (!anySemantic) {
+                    semanticOptionEl.disabled = true;
+                    semanticOptionEl.textContent = "Semantic (generate embeddings first)";
+                    hybridOptionEl.disabled = true;
+                    hybridOptionEl.textContent = "Both (needs embeddings)";
+                }
+
+                setHintByMode();
+                showStatus("Collections loaded. Enter a query.");
+
+                const initialQuery = new URLSearchParams(window.location.search).get("q") || "";
+                if (initialQuery.trim()) {
+                    queryEl.value = initialQuery;
+                    currentQuery = initialQuery.trim();
+                    currentPage = 0;
+                    await runSearch();
+                }
+            } catch (error) {
+                showStatus(`Startup error: ${error.message}`);
+            }
+        }
+
+        formEl.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            currentQuery = queryEl.value.trim();
+            currentPage = 0;
+            await runSearch();
+        });
+
+        prevBtn.addEventListener("click", async () => {
+            if (currentPage === 0) return;
+            currentPage -= 1;
+            await runSearch();
+        });
+
+        nextBtn.addEventListener("click", async () => {
+            if ((currentPage + 1) * PAGE_SIZE >= totalMatches) return;
+            currentPage += 1;
+            await runSearch();
+        });
+
+        modeEl.addEventListener("change", async () => {
+            setHintByMode();
+            currentPage = 0;
+            if (currentQuery.trim()) {
+                await runSearch();
+            }
+        });
+
+        sourcesEl.addEventListener("change", async () => {
+            currentPage = 0;
+            ftsCache = { key: "", rows: [] };
+            semanticCache = { key: "", rows: [] };
+            hybridCache = { key: "", rows: [] };
+            if (currentQuery.trim()) {
+                await runSearch();
+            }
+        });
+
+        init();
+    </script>
+</body>
+
+</html>
