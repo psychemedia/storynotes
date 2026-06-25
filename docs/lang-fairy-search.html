@@ -283,9 +283,9 @@
                 <input id="query" type="search" placeholder="Search terms, e.g. giant, princess, enchanted"
                     autocomplete="off" required>
                 <select id="search-mode" aria-label="Search mode">
-                    <option value="fts" selected>FTS</option>
+                    <option value="fts">FTS</option>
                     <option value="semantic">Semantic</option>
-                    <option value="both">Both (Hybrid)</option>
+                    <option value="both" selected>Both (Hybrid)</option>
                 </select>
                 <button id="search-btn" type="submit">Search</button>
             </form>
@@ -461,7 +461,7 @@
                 const source = escapeHtml(primary.source_label || primary.source_key || "Collection");
                 const table = escapeHtml(primary.table_label || "");
                 const chapter = primary.chapter_order == null ? "n/a" : String(primary.chapter_order);
-                const safeExcerpt = primary.excerpt || "";
+                const safeExcerpt = normalizeExcerptText(primary.excerpt || "", primary.source_key);
                 const scoreBadge = primary.hybrid_score == null
                     ? ""
                     : `<div class="meta">hybrid score: ${Number(primary.hybrid_score).toFixed(3)}</div>`;
@@ -560,6 +560,8 @@
             }
             cleaned = cleaned.replace(/^\s*\[\s*\/\s*\]\s*/u, "");
             cleaned = cleaned.replace(/\s*\[\s*\/\s*\]\s*$/u, "");
+            cleaned = cleaned.replace(/^\s*\[\s*/u, "");
+            cleaned = cleaned.replace(/\s*\]\s*$/u, "");
             return cleaned;
         }
 
@@ -701,7 +703,7 @@
                 book: entry.book,
                 title: entry.title,
                 chapter_order: entry.chapter_order,
-                excerpt: escapeHtml(entry.excerpt),
+                excerpt: escapeHtml(normalizeExcerptText(entry.excerpt, entry.source_key)),
                 semantic_score: cosineDot(queryVec, entry.embedding)
             }));
             normalizeByKey(rows, "semantic_score");
