@@ -400,10 +400,8 @@
         }
 
         function relaxFtsQuery(query) {
-            return String(query || "")
-                .replace(/[,:;!?()[\]{}]+/g, " ")
-                .replace(/\s+/g, " ")
-                .trim();
+            const safeTokens = Array.from(String(query || "").matchAll(/[\p{L}\p{N}_*]+/gu), (match) => match[0]);
+            return safeTokens.join(" ").trim();
         }
 
         async function collectFtsRows(selectedTables, ftsQuery) {
