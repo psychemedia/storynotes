@@ -253,6 +253,11 @@
             text = text.replace(/[ \t]+\n/g, "\n").replace(/\n[ \t]+/g, "\n");
             text = text.replace(/[ \t]{2,}/g, " ");
 
+            // Normalize basic markdown heading forms seen in some imported sources.
+            text = text.replace(/^\s{0,3}#{1,6}\s*(.+)$/gm, "\n\n$1\n\n");
+            text = text.replace(/^\s*(.+?)\s*\n\s*-{3,}\s*$/gm, "\n\n$1\n\n");
+            text = text.replace(/^\s*-{3,}\s*$/gm, "\n\n");
+
             if (profile.stripOuterBracketSlash) {
                 text = text.replace(/^\s*\[\s*\/\s*\]\s*/u, "");
                 text = text.replace(/\s*\[\s*\/\s*\]\s*$/u, "");

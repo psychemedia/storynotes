@@ -378,6 +378,10 @@
                 .replaceAll("'", "&#39;");
         }
 
+        function escapeRegExp(value) {
+            return String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        }
+
         function showStatus(message) {
             statusEl.textContent = message;
         }
@@ -388,6 +392,34 @@
                 return "Semantic model download failed (forbidden or blocked by network/CORS). Use FTS, or host model files locally.";
             }
             return message;
+        }
+
+        function isFtsSyntaxError(error) {
+            const message = String(error?.message || error || "");
+            return /fts5:\s*syntax error/i.test(message);
+        }
+
+        function relaxFtsQuery(query) {
+            return String(query || "")
+                .replace(/[,:;!?()[\]{}]+/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
+        }
+
+        async function collectFtsRows(selectedTables, ftsQuery) {
+            const allRows = [];
+            for (const { source, table } of selectedTables) {
+                const rows = await searchFtsRows(
+                    source.key,
+                    table.key,
+                    ftsQuery,
+                    MAX_FTS_ROWS_PER_SOURCE
+                );
+                for (const row of rows) {
+                    allRows.push(toResultRow(source, table, row));
+                }
+            }
+            return allRows;
         }
 
         function readerUrlForRow(row) {
@@ -552,7 +584,7 @@
             sourcesEl.innerHTML = html;
         }
 
-        function normalizeExcerptText(text, sourceKey) {
+        function normalizeExcerptText(text, sourceKey, title = "") {
             let cleaned = String(text || "");
             if (sourceKey === "world") {
                 cleaned = cleaned.replace(/^\s*\[\s*(?:\/\s*)?\s*/u, "");
@@ -562,18 +594,28 @@
             cleaned = cleaned.replace(/\s*\[\s*\/\s*\]\s*$/u, "");
             cleaned = cleaned.replace(/^\s*\[\s*/u, "");
             cleaned = cleaned.replace(/\s*\]\s*$/u, "");
+            cleaned = cleaned.replace(/\s*-{3,}\s+/g, " ");
+            cleaned = cleaned.replace(/(^|\n)\s*#{1,6}\s*([^\n#]+)\s*(?=\n|$)/gm, "$1($2)");
+
+            const trimmedTitle = String(title || "").trim();
+            if (trimmedTitle) {
+                const leadingTitle = new RegExp(`^\\s*${escapeRegExp(trimmedTitle)}\\s+`, "iu");
+                cleaned = cleaned.replace(leadingTitle, "");
+                cleaned = cleaned.replace(/^\s*([A-Z][A-Za-z'’-]+(?:\s+[A-Z][A-Za-z'’-]+){0,2})\s+(?=[A-Z])/u, "($1) ");
+            }
             return cleaned;
         }
 
         function renderInlineMarkdown(escapedText) {
             return String(escapedText || "")
+                .replace(/(^|\n)\s*#{1,6}\s*([^\n#]+)\s*(?=\n|$)/gm, "$1($2)")
                 .replace(/\*\*([^*\n]+)\*\*/gu, "<strong>$1</strong>")
                 .replace(/\*([^*\n]+)\*/gu, "<em>$1</em>")
                 .replace(/_([^_\n]+)_/gu, "<em>$1</em>");
         }
 
-        function renderExcerptHtml(text, sourceKey) {
-            const normalized = normalizeExcerptText(text, sourceKey);
+        function renderExcerptHtml(text, sourceKey, title = "") {
+            const normalized = normalizeExcerptText(text, sourceKey, title);
             const markOpen = "\u0001";
             const markClose = "\u0002";
 
@@ -629,7 +671,7 @@
                 title: row.title || "Untitled",
                 book: row.book || source.label,
                 chapter_order: row.chapter_order,
-                excerpt: renderExcerptHtml(row.excerpt || "", source.key),
+                excerpt: renderExcerptHtml(row.excerpt || "", source.key, row.title || ""),
                 semantic_score: row.semantic_score,
                 fts_score: row.fts_score,
                 semantic_score_norm: row.semantic_score_norm,
@@ -645,17 +687,15 @@
                 return ftsCache.rows;
             }
 
-            const allRows = [];
-            for (const { source, table } of selectedTables) {
-                const rows = await searchFtsRows(
-                    source.key,
-                    table.key,
-                    currentQuery,
-                    MAX_FTS_ROWS_PER_SOURCE
-                );
-                for (const row of rows) {
-                    allRows.push(toResultRow(source, table, row));
+            let allRows = [];
+            try {
+                allRows = await collectFtsRows(selectedTables, currentQuery);
+            } catch (error) {
+                const relaxedQuery = relaxFtsQuery(currentQuery);
+                if (!isFtsSyntaxError(error) || !relaxedQuery || relaxedQuery === currentQuery) {
+                    throw error;
                 }
+                allRows = await collectFtsRows(selectedTables, relaxedQuery);
             }
 
             normalizeByKey(allRows, "fts_score");
@@ -721,7 +761,7 @@
                 book: entry.book,
                 title: entry.title,
                 chapter_order: entry.chapter_order,
-                excerpt: renderExcerptHtml(entry.excerpt, entry.source_key),
+                excerpt: renderExcerptHtml(entry.excerpt, entry.source_key, entry.title),
                 semantic_score: cosineDot(queryVec, entry.embedding)
             }));
             normalizeByKey(rows, "semantic_score");
