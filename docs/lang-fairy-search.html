@@ -276,7 +276,8 @@
             <h1>Traditional Tales Search</h1>
             <p class="sub">Client-side search over <strong>lang_fairy_tale.db</strong>,
                 <strong>world_of_tales.db</strong>, <strong>mtdf_demo.db</strong>, and <strong>ashliman_demo.db</strong>
-                using SQLite FTS5 and optional semantic ranking.</p>
+                using SQLite FTS5 and optional semantic ranking.
+            </p>
 
             <form id="search-form">
                 <input id="query" type="search" placeholder="Search terms, e.g. giant, princess, enchanted"
@@ -551,6 +552,17 @@
             sourcesEl.innerHTML = html;
         }
 
+        function normalizeExcerptText(text, sourceKey) {
+            let cleaned = String(text || "");
+            if (sourceKey === "world") {
+                cleaned = cleaned.replace(/^\s*\[\s*(?:\/\s*)?\s*/u, "");
+                cleaned = cleaned.replace(/\s*\]\s*$/u, "");
+            }
+            cleaned = cleaned.replace(/^\s*\[\s*\/\s*\]\s*/u, "");
+            cleaned = cleaned.replace(/\s*\[\s*\/\s*\]\s*$/u, "");
+            return cleaned;
+        }
+
         function addExcerptMarks(text) {
             return escapeHtml(text || "").replaceAll("[[", "<mark>").replaceAll("]]", "</mark>");
         }
@@ -595,7 +607,9 @@
                 title: row.title || "Untitled",
                 book: row.book || source.label,
                 chapter_order: row.chapter_order,
-                excerpt: options.marked ? addExcerptMarks(row.excerpt || "") : escapeHtml(row.excerpt || ""),
+                excerpt: options.marked
+                    ? addExcerptMarks(normalizeExcerptText(row.excerpt || "", source.key))
+                    : escapeHtml(normalizeExcerptText(row.excerpt || "", source.key)),
                 semantic_score: row.semantic_score,
                 fts_score: row.fts_score,
                 semantic_score_norm: row.semantic_score_norm,
@@ -620,7 +634,7 @@
                     MAX_FTS_ROWS_PER_SOURCE
                 );
                 for (const row of rows) {
-                    allRows.push(toResultRow(source, table, row, { marked: true }));
+                    excerpt: escapeHtml(normalizeExcerptText(entry.excerpt, source.key)),
                 }
             }
 
