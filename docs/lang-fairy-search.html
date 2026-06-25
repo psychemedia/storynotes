@@ -634,7 +634,7 @@
                     MAX_FTS_ROWS_PER_SOURCE
                 );
                 for (const row of rows) {
-                    excerpt: escapeHtml(normalizeExcerptText(entry.excerpt, source.key)),
+                    allRows.push(toResultRow(source, table, row, { marked: true }));
                 }
             }
 
