@@ -461,7 +461,7 @@
                 const source = escapeHtml(primary.source_label || primary.source_key || "Collection");
                 const table = escapeHtml(primary.table_label || "");
                 const chapter = primary.chapter_order == null ? "n/a" : String(primary.chapter_order);
-                const safeExcerpt = normalizeExcerptText(primary.excerpt || "", primary.source_key);
+                const safeExcerpt = primary.excerpt || "";
                 const scoreBadge = primary.hybrid_score == null
                     ? ""
                     : `<div class="meta">hybrid score: ${Number(primary.hybrid_score).toFixed(3)}</div>`;
@@ -565,8 +565,28 @@
             return cleaned;
         }
 
-        function addExcerptMarks(text) {
-            return escapeHtml(text || "").replaceAll("[[", "<mark>").replaceAll("]]", "</mark>");
+        function renderInlineMarkdown(escapedText) {
+            return String(escapedText || "")
+                .replace(/\*\*([^*\n]+)\*\*/gu, "<strong>$1</strong>")
+                .replace(/\*([^*\n]+)\*/gu, "<em>$1</em>")
+                .replace(/_([^_\n]+)_/gu, "<em>$1</em>");
+        }
+
+        function renderExcerptHtml(text, sourceKey) {
+            const normalized = normalizeExcerptText(text, sourceKey);
+            const markOpen = "\u0001";
+            const markClose = "\u0002";
+
+            const withSentinels = normalized
+                .replaceAll("[[", markOpen)
+                .replaceAll("]]", markClose);
+
+            const escaped = escapeHtml(withSentinels);
+            const withMarkdown = renderInlineMarkdown(escaped);
+
+            return withMarkdown
+                .replaceAll(markOpen, "<mark>")
+                .replaceAll(markClose, "</mark>");
         }
 
         async function getEmbedder() {
@@ -599,7 +619,7 @@
             return { start, end };
         }
 
-        function toResultRow(source, table, row, options = {}) {
+        function toResultRow(source, table, row) {
             return {
                 source_key: source.key,
                 source_label: source.label,
@@ -609,9 +629,7 @@
                 title: row.title || "Untitled",
                 book: row.book || source.label,
                 chapter_order: row.chapter_order,
-                excerpt: options.marked
-                    ? addExcerptMarks(normalizeExcerptText(row.excerpt || "", source.key))
-                    : escapeHtml(normalizeExcerptText(row.excerpt || "", source.key)),
+                excerpt: renderExcerptHtml(row.excerpt || "", source.key),
                 semantic_score: row.semantic_score,
                 fts_score: row.fts_score,
                 semantic_score_norm: row.semantic_score_norm,
@@ -636,7 +654,7 @@
                     MAX_FTS_ROWS_PER_SOURCE
                 );
                 for (const row of rows) {
-                    allRows.push(toResultRow(source, table, row, { marked: true }));
+                    allRows.push(toResultRow(source, table, row));
                 }
             }
 
@@ -703,7 +721,7 @@
                 book: entry.book,
                 title: entry.title,
                 chapter_order: entry.chapter_order,
-                excerpt: escapeHtml(normalizeExcerptText(entry.excerpt, entry.source_key)),
+                excerpt: renderExcerptHtml(entry.excerpt, entry.source_key),
                 semantic_score: cosineDot(queryVec, entry.embedding)
             }));
             normalizeByKey(rows, "semantic_score");
