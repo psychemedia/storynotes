@@ -242,6 +242,21 @@
             color: var(--accent);
         }
 
+        .find-similar-btn {
+            background: #7a5c00;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.85rem;
+            border-radius: 8px;
+            margin-top: 0.6rem;
+        }
+
+        #similar-banner {
+            background: color-mix(in srgb, var(--mark) 12%, white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+        }
+
         .open-link {
             display: inline-block;
             margin-top: 0.45rem;
@@ -331,6 +346,11 @@
                 </div>
             </div>
 
+            <div id="similar-banner" class="toolbar" style="display:none;">
+                <div id="similar-banner-text" class="status"></div>
+                <button id="back-to-search-btn" type="button">Back to search results</button>
+            </div>
+
             <div id="results" class="results"></div>
             <p id="hint" class="hint">Tip: this page requires FTS5. Try queries like <code>princess NEAR/5 giant</code>
                 or <code>enchant*</code>.</p>
@@ -362,7 +382,8 @@
             checkFts5Enabled,
             getSemanticEnabledTableRefs,
             searchFtsRows,
-            loadSemanticCorpusRows
+            loadSemanticCorpusRows,
+            findSimilarStories
         } from "./js/story-data.js";
 
         const PAGE_SIZE = 25;
@@ -382,6 +403,9 @@
         const hybridOptionEl = modeEl.querySelector("option[value='both']");
         const prevBtn = document.getElementById("prev-btn");
         const nextBtn = document.getElementById("next-btn");
+        const similarBanner = document.getElementById("similar-banner");
+        const similarBannerText = document.getElementById("similar-banner-text");
+        const backToSearchBtn = document.getElementById("back-to-search-btn");
 
         let embedder = null;
         let currentQuery = "";
@@ -392,6 +416,7 @@
         let semanticCache = { key: "", rows: [] };
         let hybridCache = { key: "", rows: [] };
         let semanticEnabledRefs = new Set();
+        let viewMode = "search"; // "search" | "similar"
         const semanticCorpusByTable = new Map();
 
         const HYBRID_FTS_LIMIT = 250;
@@ -520,9 +545,18 @@
                 const table = escapeHtml(primary.table_label || "");
                 const chapter = primary.chapter_order == null ? "n/a" : String(primary.chapter_order);
                 const safeExcerpt = primary.excerpt || "";
-                const scoreBadge = primary.hybrid_score == null
-                    ? ""
-                    : `<div class="meta">hybrid score: ${Number(primary.hybrid_score).toFixed(3)}</div>`;
+                const scoreBadge = primary.similarity_score != null
+                    ? `<div class="meta">similarity: ${Number(primary.similarity_score).toFixed(3)}</div>`
+                    : primary.hybrid_score != null
+                        ? `<div class="meta">hybrid score: ${Number(primary.hybrid_score).toFixed(3)}</div>`
+                        : "";
+                const findSimilarBtn = primary.source_key && primary.table_key && primary.book_rowid != null
+                    ? `<button type="button" class="find-similar-btn"
+                            data-source="${escapeHtml(primary.source_key)}"
+                            data-table="${escapeHtml(primary.table_key)}"
+                            data-rowid="${escapeHtml(String(primary.book_rowid))}"
+                            data-title="${escapeHtml(primary.title || "this story")}">Find similar stories</button>`
+                    : "";
 
                 const versionsCount = group.versions.length;
                 const versionMeta = versionsCount > 1
@@ -542,6 +576,7 @@
             <p class="excerpt">${safeExcerpt}</p>
             ${versionMeta}
             <div class="versions-links">${versionsLinks}</div>
+            ${findSimilarBtn}
           </article>
         `;
             }).join("");
@@ -704,6 +739,59 @@
                 fts_score_norm: row.fts_score_norm,
                 hybrid_score: row.hybrid_score
             };
+        }
+
+        function toSimilarRow(row) {
+            return {
+                source_key: row.source_key,
+                source_label: row.source_label,
+                table_key: row.table_key,
+                table_label: row.table_label,
+                book_rowid: Number(row.book_rowid),
+                title: row.title || "Untitled",
+                book: row.book || row.source_label,
+                chapter_order: row.chapter_order,
+                excerpt: renderExcerptHtml(row.excerpt || "", row.source_key, row.title || ""),
+                similarity_score: row.similarity
+            };
+        }
+
+        async function showSimilarStories(sourceKey, tableKey, rowid, title) {
+            viewMode = "similar";
+            prevBtn.disabled = true;
+            nextBtn.disabled = true;
+            similarBanner.style.display = "flex";
+            similarBannerText.textContent = `Finding stories similar to "${title}"...`;
+            showStatus("Comparing stored embeddings...");
+
+            try {
+                const matches = await findSimilarStories(sourceKey, tableKey, rowid, { limit: 20 });
+                const rows = matches.map(toSimilarRow);
+                const groupedRows = groupRowsByTitle(rows);
+                renderRows(groupedRows);
+
+                const countLabel = `${groupedRows.length} similar stor${groupedRows.length === 1 ? "y" : "ies"}`;
+                similarBannerText.textContent = `Showing ${countLabel} to "${title}".`;
+                showStatus(`Found ${countLabel} to "${title}".`);
+            } catch (error) {
+                resultsEl.innerHTML = "";
+                const friendlyMessage = normalizeErrorMessage(error);
+                similarBannerText.textContent = `Couldn't find similar stories for "${title}".`;
+                showStatus(`Similarity search error: ${friendlyMessage}`);
+            }
+        }
+
+        function restoreSearchView() {
+            viewMode = "search";
+            similarBanner.style.display = "none";
+            if (currentQuery.trim()) {
+                runSearch();
+            } else {
+                resultsEl.innerHTML = "";
+                totalMatches = 0;
+                setPagerState();
+                showStatus("Enter a search query.");
+            }
         }
 
         async function ensureFtsResults() {
@@ -956,6 +1044,8 @@
 
         formEl.addEventListener("submit", async (event) => {
             event.preventDefault();
+            viewMode = "search";
+            similarBanner.style.display = "none";
             currentQuery = queryEl.value.trim();
             currentPage = 0;
             await runSearch();
@@ -974,6 +1064,8 @@
         });
 
         modeEl.addEventListener("change", async () => {
+            viewMode = "search";
+            similarBanner.style.display = "none";
             setHintByMode();
             currentPage = 0;
             if (currentQuery.trim()) {
@@ -981,7 +1073,21 @@
             }
         });
 
+        resultsEl.addEventListener("click", async (event) => {
+            const btn = event.target.closest(".find-similar-btn");
+            if (!btn) return;
+            const { source, table, rowid, title } = btn.dataset;
+            if (!source || !table || !rowid) return;
+            await showSimilarStories(source, table, Number(rowid), title || "this story");
+        });
+
+        backToSearchBtn.addEventListener("click", () => {
+            restoreSearchView();
+        });
+
         sourcesEl.addEventListener("change", async () => {
+            viewMode = "search";
+            similarBanner.style.display = "none";
             currentPage = 0;
             ftsCache = { key: "", rows: [] };
             semanticCache = { key: "", rows: [] };

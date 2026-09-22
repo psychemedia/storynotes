@@ -89,6 +89,7 @@ let sqlite3 = null;
 let sqliteReady = null;
 const dbHandles = new Map();
 const sourceState = new Map();
+const semanticCorpusCache = new Map();
 
 export function tableRef(sourceKey, tableKey) {
   return `${sourceKey}:${tableKey}`;
@@ -285,9 +286,15 @@ export async function loadSemanticCorpusRows(sourceKey, tableKey) {
     throw new Error(`Unknown source/table: ${sourceKey}/${tableKey}`);
   }
 
+  const ref = tableRef(sourceKey, tableKey);
+  if (semanticCorpusCache.has(ref)) {
+    return semanticCorpusCache.get(ref);
+  }
+
   const { db, hasEmbeddingsMeta, tableSemantic } =
     await ensureSourceLoaded(sourceKey);
   if (!tableSemantic.get(tableKey)) {
+    semanticCorpusCache.set(ref, []);
     return [];
   }
 
@@ -332,7 +339,7 @@ export async function loadSemanticCorpusRows(sourceKey, tableKey) {
       : { $model: EMBEDDING_MODEL_ID },
   );
 
-  return rows.map((row) => ({
+  const corpus = rows.map((row) => ({
     book_rowid: Number(row.book_rowid),
     book: row.book || source.label,
     title: row.title || "Untitled",
@@ -340,6 +347,9 @@ export async function loadSemanticCorpusRows(sourceKey, tableKey) {
     excerpt: row.excerpt || "",
     embedding: blobToFloat32(row.embedding),
   }));
+
+  semanticCorpusCache.set(ref, corpus);
+  return corpus;
 }
 
 export async function fetchStoryById(sourceKey, tableKey, rowid) {
@@ -379,4 +389,110 @@ export async function fetchStoryById(sourceKey, tableKey, rowid) {
     chapter_order: row.chapter_order,
     book: row.book || source.label,
   };
+}
+
+function cosineSimilarity(v1, v2) {
+  const len = Math.min(v1.length, v2.length);
+  let dot = 0;
+  let norm1 = 0;
+  let norm2 = 0;
+  for (let i = 0; i < len; i += 1) {
+    dot += v1[i] * v2[i];
+    norm1 += v1[i] * v1[i];
+    norm2 += v2[i] * v2[i];
+  }
+  if (norm1 === 0 || norm2 === 0) return 0;
+  return dot / (Math.sqrt(norm1) * Math.sqrt(norm2));
+}
+
+async function fetchStoredEmbedding(sourceKey, tableKey, rowid) {
+  const { db, tableSemantic } = await ensureSourceLoaded(sourceKey);
+  if (!tableSemantic.get(tableKey)) {
+    return null;
+  }
+  const row = readRows(
+    db,
+    `SELECT embedding
+       FROM books_embeddings
+      WHERE book_rowid = $id
+        AND model_id = $model
+      LIMIT 1;`,
+    { $id: Number(rowid), $model: EMBEDDING_MODEL_ID },
+  )[0];
+  return row ? blobToFloat32(row.embedding) : null;
+}
+
+/**
+ * Find stories whose precomputed embedding is closest to the embedding of
+ * one given story (identified by sourceKey/tableKey/rowid). Uses whatever
+ * embeddings are already stored in each table's `books_embeddings` table, so
+ * no query text or embedding model is needed at call time.
+ *
+ * @param {string} sourceKey
+ * @param {string} tableKey
+ * @param {number} rowid
+ * @param {Object} [options]
+ * @param {{sourceKey: string, tableKey: string}[]} [options.candidateRefs]
+ *   Tables to search for matches in. Defaults to every semantic-enabled
+ *   table across all sources (i.e. matches can come from other collections
+ *   too). Pass e.g. `[{ sourceKey, tableKey }]` to restrict to the same
+ *   table as the source story.
+ * @param {number} [options.limit=10] Max number of matches to return.
+ * @returns {Promise<Array<{source_key, table_key, book_rowid, book, title,
+ *   chapter_order, excerpt, similarity}>>} Sorted most-similar first.
+ */
+export async function findSimilarStories(sourceKey, tableKey, rowid, options = {}) {
+  const { candidateRefs, limit = 10 } = options;
+
+  const source = getSource(sourceKey);
+  const table = getTable(sourceKey, tableKey);
+  if (!source || !table) {
+    throw new Error(`Unknown source/table: ${sourceKey}/${tableKey}`);
+  }
+
+  const targetVec = await fetchStoredEmbedding(sourceKey, tableKey, rowid);
+  if (!targetVec || !targetVec.length) {
+    throw new Error("No embedding is stored for this story, so similar stories can't be found.");
+  }
+
+  let refs = candidateRefs;
+  if (!refs || !refs.length) {
+    const enabledRefs = await getSemanticEnabledTableRefs();
+    refs = Array.from(enabledRefs).map((ref) => {
+      const [sk, tk] = ref.split(":");
+      return { sourceKey: sk, tableKey: tk };
+    });
+  }
+
+  const scored = [];
+  for (const candidate of refs) {
+    const candidateSource = getSource(candidate.sourceKey);
+    const candidateTable = getTable(candidate.sourceKey, candidate.tableKey);
+    if (!candidateSource || !candidateTable) continue;
+
+    const corpus = await loadSemanticCorpusRows(candidate.sourceKey, candidate.tableKey);
+    for (const entry of corpus) {
+      const isSelf =
+        candidate.sourceKey === sourceKey &&
+        candidate.tableKey === tableKey &&
+        entry.book_rowid === Number(rowid);
+      if (isSelf) continue;
+
+      scored.push({
+        source_key: candidate.sourceKey,
+        source_label: candidateSource.label,
+        table_key: candidate.tableKey,
+        table_label: candidateTable.label,
+        book_rowid: entry.book_rowid,
+        book: entry.book,
+        title: entry.title,
+        chapter_order: entry.chapter_order,
+        excerpt: entry.excerpt,
+        similarity: cosineSimilarity(targetVec, entry.embedding),
+      });
+    }
+  }
+
+  scored.sort((a, b) => b.similarity - a.similarity);
+  return scored.slice(0, limit);
 }
